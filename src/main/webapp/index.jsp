@@ -10,7 +10,8 @@
 <meta name="author" content="">
 <title>SKHU 졸업요건 관리 시스템</title>
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" type="text/css" href="res/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="res/vendor/bootstrap/css/bootstrap.min.css">
 
 <!-- Custom styles for this template -->
 <link href="res/css/modern-business.css" rel="stylesheet">
@@ -19,10 +20,13 @@
 <link href="res/vendor/bootstrap/css/make1.css" rel="stylesheet">
 </head>
 <body>
+	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-green fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">SKHU 졸업관리시스템</a>
+			<a class="navbar-brand" href="index.jsp"><img
+				src="res/img/skhu logot.png" width=50px; height=40px;> SKHU
+				졸업관리시스템</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -55,50 +59,45 @@
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<!-- Slide One - Set the background image for this slide in the line below -->
-				<div class="carousel-inner" role="listbox">
-					<!-- Slide One - Set the background image for this slide in the line below -->
-					<div class="carousel-item active"
-						style="background-image: url('http://placehold.it/1900x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3>First Slide</h3>
-							<p>This is a description for the first slide.</p>
-						</div>
-					</div>
-					<!-- Slide Two - Set the background image for this slide in the line below -->
-					<div class="carousel-item"
-						style="background-image: url('http://placehold.it/1900x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3>Second Slide</h3>
-							<p>This is a description for the second slide.</p>
-						</div>
-					</div>
-					<!-- Slide Three - Set the background image for this slide in the line below -->
-					<div class="carousel-item"
-						style="background-image: url('http://placehold.it/1900x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3>Third Slide</h3>
-							<p>This is a description for the third slide.</p>
-						</div>
+				<div class="carousel-item active">
+					<img src="res/img/graduation-1.jpg" width="100%" height="550px">
+					<div class="carousel-caption d-none d-md-block">
+
+						<!--
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p> -->
 					</div>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item">
+					<img src="res/img/graduation-3.jpg" width="100%" height="550px">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item">
+					<img src="res/img/graduation-2.jpg" width="100%" height="550px">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
 			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
 	</header>
 
 	<!-- Footer -->
-	<footer class="py-5 bg-grey">
+	<footer class="py-footer bg-white">
 		<div class="container">
-			<p class="m-0 text-left text-white">문의:skhu.ac.kr</p>
-			<p class="m-0 text-left text-white">Copyright&copy;2018SKHU
-				Software Engineering All rights reserved</p>
+			<p class="m-0 text-left text-grey">문의:test123@naver.com</p>
+			<p class="m-0 text-left text-grey">152-716 서울시 구로구 연동로320</p>
+			<p class="m-0 text-left text-grey">Copyright&copy; 2018SKHU
+				Software Engineering All Rights Reserved</p>
 		</div>
 		<!-- /.container -->
 	</footer>
