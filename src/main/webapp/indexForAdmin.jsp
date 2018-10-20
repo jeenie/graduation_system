@@ -260,7 +260,7 @@
                 <li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
                   <div class="dropdown-content">
                     <a href="professorInquiry.html">교수조회</a>
-                    <a href="StudentInquiryForAdmin.html">학생조회</a>
+                    <a href="studentListForAdmin.jsp">학생조회</a>
 
                   </div>
                 </li>
