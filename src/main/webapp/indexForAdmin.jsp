@@ -260,7 +260,7 @@
                 <li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
                   <div class="dropdown-content">
                     <a href="professorInquiry.html">교수조회</a>
-                    <a href="studentListForAdmin.jsp">학생조회</a>
+                    <a href="graduation/studentListForAdmin">학생조회</a>
 
                   </div>
                 </li>
@@ -478,7 +478,7 @@
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="/res/js/jquery-2.1.1.min.js"></script>
+  <script src="res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="res/js/bootstrap.min.js"></script>
   <script src="res/js/jquery.prettyPhoto.js"></script>

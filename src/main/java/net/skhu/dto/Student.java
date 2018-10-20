@@ -3,7 +3,8 @@ package net.skhu.dto;
 public class Student {
 	int id;
 	String name;
-	int department;
+	int departmentId;
+	String departmentName;
 	int grade;
 	String entranceType;
 	String password;
@@ -28,12 +29,20 @@ public class Student {
 		this.name = name;
 	}
 
-	public int getDepartment() {
-		return department;
+	public int getDepartmentId() {
+		return departmentId;
 	}
 
-	public void setDepartment(int department) {
-		this.department = department;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public int getGrade() {
