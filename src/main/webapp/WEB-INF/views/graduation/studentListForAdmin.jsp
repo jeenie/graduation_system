@@ -288,7 +288,7 @@
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="indexForAdmin.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+              <a href="indexForAdmin.jsp"><h1><span>SKHU</span>졸업관리시스템</h1></a>
             </div>
           </div>
 
@@ -307,8 +307,8 @@
                 <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
                 <li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
                   <div class="dropdown-content">
-                    <a href="professorInquiry.html">교수조회</a>
-                    <a href="StudentInquiryForAdmin.jsp">학생조회</a>
+                    <a href="graduation/professorInquiry">교수조회</a>
+                    <a href="graduation/studentListForAdmin">학생조회</a>
 
                   </div>
                 </li>
