@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   
   <style>
-  	.inquiry_btn {
+        .inquiry_btn {
             border: none;
             /* Remove borders */
             border-radius: 2.5px;
@@ -51,8 +51,8 @@
             /* Add a pointer cursor on mouse-over */
         }
 
-        .btn-m1 {
-            /*전공,교양,전공탐색 충족*/
+        .btn-statement3 {
+            /*열람가능여부 yes*/
             border: none;
             /* Remove borders */
             border-radius: 2.5px;
@@ -64,11 +64,11 @@
             height: 25px;
             cursor: pointer;
             /* Add a pointer cursor on mouse-over */
-            background-color:rgb(46, 110, 46);
+            background-color: grey;
         }
 
-        .btn-m2 {
-            /*전공,교양, 전공탐색 미충족*/
+        .btn-statement4 {
+            /*열람가능여부 no*/
             border: none;
             /* Remove borders */
             border-radius: 2.5px;
@@ -76,28 +76,11 @@
             /* Add a text color */
             padding: 4px 5px;
             /*14px 28px;  Add some padding */
-            width: 50px;
-            height: 25px;
+            width : 50px;
             cursor: pointer;
             /* Add a pointer cursor on mouse-over */
-            background-color: rgb(179, 179, 179);
+            background-color: rgb(80, 153, 92);
         }
-
-        .btn-delete {
-            border: none;
-            /* Remove borders */
-            border-radius: 2.5px;
-            color: white;
-            /* Add a text color */
-            padding: 4px 5px;
-            /*14px 28px;  Add some padding */
-            width: 60px;
-            height: 33px;
-            cursor: pointer;
-            /* Add a pointer cursor on mouse-over */
-            background-color:rgb(19, 160, 216);
-        }
-
 
         .warning {
             background-color: #ff9800;
@@ -113,7 +96,7 @@
 
         .pagination {
             justify-content: center;
-            text-align: center;
+            text-align : center;
         }
 
         .pagination a {
@@ -146,13 +129,11 @@
             width: 400px;
 
         }
-
-        .contents {
-            width: 1000px;
+        .contents{
+            width:1000px;
         }
 
         /* Style The Dropdown Button */
-
         .dropbtn {
             background-color: #4CAF50;
             color: white;
@@ -163,25 +144,22 @@
         }
 
         /* The container <div> - needed to position the dropdown content */
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
         /* Dropdown Content (Hidden by Default) */
-
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #4CAF50;
+            background-color :  #4CAF50;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
 
         /* Links inside the dropdown */
-
         .dropdown-content a {
             color: white;
             padding: 12px 16px;
@@ -190,28 +168,22 @@
         }
 
         /* Change color of dropdown links on hover */
-
-        .dropdown-content a:hover {
-            background-color: rgb(96, 185, 96)
-        }
+        .dropdown-content a:hover {background-color: rgb(96, 185, 96)}
 
         /* Show the dropdown menu on hover */
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
 
         /*input class 변경*/
-
         .form-controls {
             width: 160px;
-            height: 30px;
+            height: 35px;
             padding: 6px 12px;
             font-size: 14px;
             line-height: 1.42857143;
@@ -220,21 +192,21 @@
             background-image: none;
             border: 1px solid #ccc;
             border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 
         }
 
         .modalGreen {
-            width: 100%;
-            height: 35px;
-            background-color: whitesmoke;
-            color:black;
-            font-weight: normal;
-            padding-top: 7px;
-            padding-left: 7px;
+            width:100%;
+            height:35px;
+            background-color:rgb(22, 105, 22);
+            color:white;
+            font-weight : normal;
+            padding-top : 7px;
+            padding-left : 7px;
         }
-  </style>
+    </style>
 </head>
 <body>
 	<header>
@@ -310,10 +282,10 @@
                         <div style="text-align:left;">
                             <form>
                                &nbsp; 이름 :&nbsp;
-                                <input type="text" value="홍길동">&nbsp; 사번 :&nbsp;
-                                <input type="text" value="201632001">&nbsp; 소속학과 :&nbsp;
-                                <input type="text" value="소속학과">&nbsp;
-                                <button class="inquiry_btn warning">조회</button>
+                                <input type="text" value="">&nbsp; 사번 :&nbsp;
+                                <input type="text" value="">&nbsp; 소속학과 :&nbsp;
+                                <input type="text" name="departmentName" value="${departmentName}">&nbsp;
+                                <button type="submit" class="inquiry_btn warning">조회</button>
                                 <a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>
 
                             </form>

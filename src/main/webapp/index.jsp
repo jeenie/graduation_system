@@ -113,6 +113,101 @@
   .dropdown:hover .dropbtn {
       background-color: #3e8e41;
   }
+  
+    /****** LOGIN MODAL ******/
+  .loginmodal-container {
+    padding: 30px;
+    max-width: 350px;
+    width: 100% !important;
+    background-color: #F7F7F7;
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: roboto;
+  }
+
+  .loginmodal-container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    font-family: roboto;
+  }
+
+  .loginmodal-container input[type=submit] {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .loginmodal-container input[type=text], input[type=password] {
+    height: 44px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    /* border-radius: 2px; */
+    padding: 0 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+
+  .loginmodal-container input[type=text]:hover, input[type=password]:hover {
+    border: 1px solid #b9b9b9;
+    border-top: 1px solid #a0a0a0;
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .loginmodal {
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    height: 36px;
+    padding: 0 8px;
+  /* border-radius: 3px; */
+  /* -webkit-user-select: none;
+    user-select: none; */
+  }
+
+  .loginmodal-submit {
+    /* border: 1px solid #3079ed; */
+    border: 0px;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #1BBD36;
+    padding: 17px 0px;
+    font-family: roboto;
+    font-size: 14px;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+  }
+
+  .loginmodal-submit:hover {
+    /* border: 1px solid #2f5bb7; */
+    border: 0px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    background-color: #04B404;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+  }
+
+  .loginmodal-container a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 400;
+    text-align: center;
+    display: inline-block;
+    opacity: 0.6;
+    transition: opacity ease 0.5s;
+  }
+
+  .login-help{
+    font-size: 12px;
+  }
 
   </style>
 </head>
@@ -236,36 +331,19 @@
 
   <div class="modal fade" id="loginModal" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
       <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header" style="padding-bottom:1.5px;">
+      <div class="loginmodal-container">
+        <h1>로그인</h1><br>
+        <form>
+        <input type="text" name="user" placeholder="ID">
+        <input type="password" name="pass" placeholder="Password">
+        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+        </form>
 
-                  <h4><b>로그인</b>
-                      <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">×</span>
-                      <span class="sr-only">Close</span>
-                      </button>
-                  </h4>
-
-              </div>
-              <div class="modal-body">
-                <form>
-                    <div class="from-group">
-                      <label>ID</label>
-                      <input type="text" name="id" class="form-control" maxlength="20">
-                    </div>
-                    <br>
-                    <div class="from-group">
-                      <label>Password</label>
-                      <input type="password" name="password" class="form-control" maxlength="20">
-                    </div>
-                    <div class="modal-footer">
-                       <a class="btn btn-line" data-dismiss="modal" data-toggle="modal" href="#registerModal">회원가입</a>
-                       <button type="submit" class="btn btn-submit">로그인</button>
-                    </div>
-                </form>
-              </div>
-          </div>
+        <div class="login-help">
+        <a href="#">Register</a> - <a href="#">Forgot Password?</a>
+        </div>
       </div>
+    </div>
   </div>
 
   <div class="modal fade" id="registerModal" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">

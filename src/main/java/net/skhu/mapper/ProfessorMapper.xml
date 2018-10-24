@@ -5,4 +5,7 @@
 	<select id="findAll" resultType="Professor">
 		SELECT p.*, d.departmentName FROM Professor p LEFT JOIN department d ON p.departmentId = d.id
 	</select>
+	<select id="findByDepartment" resultType="Professor">
+		SELECT 	p.*, d.departmentName FROM Professor p LEFT JOIN Department d ON p.departmentId = d.id WHERE d.departmentName = #{departmentName}
+	</select>
 </mapper>

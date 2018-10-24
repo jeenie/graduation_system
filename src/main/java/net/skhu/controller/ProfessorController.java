@@ -21,4 +21,6 @@ public class ProfessorController {
 		model.addAttribute("professors", professors);
 		return "graduation/professorInquiry";
 	}
+
+
 }
