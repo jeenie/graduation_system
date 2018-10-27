@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Department;
+import net.skhu.dto.Master;
 import net.skhu.dto.PasswordQuiz;
 import net.skhu.dto.Student;
 import net.skhu.dto.User;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.MasterMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
@@ -25,6 +27,8 @@ public class SignCotroller {
 	UserMapper userMapper;
 	@Autowired
 	StudentMapper studentMapper;
+	@Autowired
+	MasterMapper masterMapper;
 	@Autowired
 	DepartmentMapper departmentMapper;
 	@Autowired
@@ -52,6 +56,27 @@ public class SignCotroller {
 		user.setUserType("학생");
 		userMapper.insert(user);
 		studentMapper.insert(student);
+
+		return "redirect:login";
+	}
+
+	@RequestMapping(value="adminsign", method = RequestMethod.GET)
+	public String adminsign(Model model) {
+		Master master = new Master();
+		model.addAttribute("master", master);
+		return "guest/mastersign";
+	}
+
+	@RequestMapping(value="adminsign", method = RequestMethod.POST)
+	public String adminsign(Model model, Master master) {
+		User user = new User();
+
+		user.setUserId(master.getId());
+		master.setPassword(Encryption.encrypt(master.getPassword(), Encryption.MD5));
+		user.setPassword(master.getPassword());
+		user.setUserType("관리자");
+		userMapper.insert(user);
+		masterMapper.insert(master);
 
 		return "redirect:login";
 	}

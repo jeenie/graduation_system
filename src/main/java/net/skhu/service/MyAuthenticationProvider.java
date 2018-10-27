@@ -30,7 +30,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
 		List<GrantedAuthority> grantedAuthorities=new ArrayList<GrantedAuthority>();
 		String role="";
 		switch(user.getUserType()) {
-			case "관리자": role = "ROLE_ADMIN"; break;
+			case "관리자": role="ROLE_ADMIN"; break;
 			case "교수": role="ROLE_PROFESSOR"; break;
 			case "학생": role="ROLE_STUDENT"; break;
 		}

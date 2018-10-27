@@ -8,4 +8,5 @@ import net.skhu.dto.Master;
 @Mapper
 public interface MasterMapper {
 	Master findById(int id);
+	void insert(Master master);
 }

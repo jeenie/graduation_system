@@ -11,7 +11,7 @@ import net.skhu.dto.Professor;
 import net.skhu.mapper.ProfessorMapper;
 
 @Controller
-@RequestMapping("/graduation")
+@RequestMapping("/user")
 public class ProfessorController {
 	@Autowired ProfessorMapper professorMapper;
 

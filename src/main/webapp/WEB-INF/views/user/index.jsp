@@ -17,6 +17,7 @@
   <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
   <link rel="stylesheet" href="${R}res/css/animate.css">
+  <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
   <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
   <link href="${R}res/css/style.css" rel="stylesheet" />
   <!-- =======================================================
@@ -26,6 +27,7 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <!--style-->
 
 
@@ -236,17 +238,48 @@
           <div class="navbar-collapse collapse">
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
-                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
-                    <div class="dropdown-content">
-                      <a href="about.html">마이페이지</a>
-                      <a href="checkGrades.html">성적조회</a>
-                      <a href="">대체/타전공 현황</a>
-                    </div>
-                </li>
+              	<sec:authorize access="hasRole('ROLE_ADMIN')">
+              		<li role="presentation"><a href="">졸업요건</a></li>
+	                <li role="presentation" class="dropdown" ><a href="">졸업관리</a>
+	                  <div class="dropdown-content">
+	                      <a href="">졸업요건 관리</a>
+	                      <a href="">대체 과목 리스트 관리</a>
+	                      <a href="majorAdmitManage.html">전공인정관리</a>
+	                    </div>
+	                </li>
+              	</sec:authorize>
+              	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
+              		<li role="presentation"><a href="">졸업요건</a></li>
+                	<li role="presentation" class="dropdown"><a href="studentInquiryForProfessor.html">학생조회</a></li>
+              	</sec:authorize>
+              	<sec:authorize access="hasRole('ROLE_STUDENT')">
+	                <li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
+	                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
+	                    <div class="dropdown-content">
+	                      <a href="about.html">마이페이지</a>
+	                      <a href="checkGrades.html">성적조회</a>
+	                      <a href="">대체/타전공 현황</a>
+	                    </div>
+	                </li>
+                </sec:authorize>
                 <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
                 <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-                <li role="presentation"><a href="guest/login">Logout</a></li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                	<li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
+                  <div class="dropdown-content">
+                    <a href="professorInquiry">교수조회</a>
+                    <a href="graduation/studentListForAdmin">학생조회</a>
+                  </div>
+                </li>
+                </sec:authorize>
+                <li role="presentation"><a href="logout_processing">Logout</a></li>
+                <li>
+                  <div style="margin-top:28px; margin-left:1.5px;">
+                      <a href="managerInfoEdit.html">
+                          <i class="fas fa-user-edit fa-lg"></i>
+                      </a>
+                  </div>
+              </li>
               </ul>
             </div>
           </div>
@@ -288,36 +321,74 @@
 
   <div class="feature">
     <div class="container">
-      <div class="text-center">
-        <div class="col-md-3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <a href="graduation_Guide.html"><i class="fa fa-book"></i></a>
-            <h2>졸업요건</h2>
-            <p>전체졸업요건을 확인해보세요</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <a href="about.html"><i class="fa fa-laptop"></i></a>
-            <h2>마이페이지</h2>
-            <p>졸업하기 위해 필요한 나의 남은 학점및 과정을 확인해보세요</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-            <a href="checkGrades.html"><i class="fa fa-heart-o"></i></a>
-            <h2>성적조회</h2>
-            <p>자신의 성적을 확인해보세요</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
-            <a href=""><i class="fa fa-cloud"></i></a>
-            <h2>대체/타전공 현황</h2>
-            <p>타전공 수강학점을 전공학점으로 신청하세요</p>
-          </div>
-        </div>
-      </div>
+    	<sec:authorize access="hasRole('ROLE_ADMIN')">
+    		  <div class="text-center">
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+		            <a href=""><i class="fa fa-book"></i></a>
+		            <h2>졸업요건 수정</h2>
+		            <p></p>
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+		            <a href=""><i class="fa fa-laptop"></i></a>
+		            <h2>대체리스트 수정</h2>
+		            <p></p>
+		
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+		            <a href="majorAdmitManage.html"><i class="fas fa-book-reader"></i></a>
+		            <h2>전공인정관리</h2>
+		            <p></p>
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
+		            <a href="registerProfessor"><i class="far fa-address-card"></i></a>
+		            <h2>교수 추가</h2>
+		            <p></p>
+		          </div>
+		        </div>
+		      </div>
+    	</sec:authorize>
+    	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
+			
+    	</sec:authorize>
+    	<sec:authorize access="hasRole('ROLE_STUDENT')">
+		      <div class="text-center">
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+		            <a href="graduation_Guide.html"><i class="fa fa-book"></i></a>
+		            <h2>졸업요건</h2>
+		            <p>전체졸업요건을 확인해보세요</p>
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+		            <a href="about.html"><i class="fa fa-laptop"></i></a>
+		            <h2>마이페이지</h2>
+		            <p>졸업하기 위해 필요한 나의 남은 학점및 과정을 확인해보세요</p>
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+		            <a href="checkGrades.html"><i class="fa fa-heart-o"></i></a>
+		            <h2>성적조회</h2>
+		            <p>자신의 성적을 확인해보세요</p>
+		          </div>
+		        </div>
+		        <div class="col-md-3">
+		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
+		            <a href=""><i class="fa fa-cloud"></i></a>
+		            <h2>대체/타전공 현황</h2>
+		            <p>타전공 수강학점을 전공학점으로 신청하세요</p>
+		          </div>
+		        </div>
+		      </div>
+		</sec:authorize>
     </div>
   </div>
 

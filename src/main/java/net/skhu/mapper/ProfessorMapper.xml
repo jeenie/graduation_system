@@ -11,4 +11,8 @@
 	<select id="findByDepartment" resultType="Professor">
 		SELECT 	p.*, d.departmentName FROM Professor p LEFT JOIN Department d ON p.departmentId = d.id WHERE d.departmentName = #{departmentName}
 	</select>
+	<insert id="insert" parameterType="Professor">
+    	INSERT Professor (id, name, email, departmentId, password)
+    	VALUES (#{id}, #{name}, #{email}, #{departmentId}, #{password})
+  	</insert>
 </mapper>

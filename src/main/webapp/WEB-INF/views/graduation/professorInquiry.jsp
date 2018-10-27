@@ -245,7 +245,7 @@
 
                   </div>
                 </li>
-                <li role="presentation"><a href="">Logout</a></li>
+                <li role="presentation"><a href="user/logout_processing">Logout</a></li>
                 <li>
                   
                   <div style="margin-top:28px; margin-left:1.5px;">
@@ -284,7 +284,7 @@
                                &nbsp; 이름 :&nbsp;
                                 <input type="text" value="">&nbsp; 사번 :&nbsp;
                                 <input type="text" value="">&nbsp; 소속학과 :&nbsp;
-                                <input type="text" name="departmentName" value="${departmentName}">&nbsp;
+                                <input type="text" name="departmentName" value="">&nbsp;
                                 <button type="submit" class="inquiry_btn warning">조회</button>
                                 <a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>
 
