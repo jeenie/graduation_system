@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:url var="R" value="/" />
+	
 <!DOCTYPE html>
 <html>
 
@@ -10,11 +14,11 @@
   <title>SKHU졸업관리시스템</title>
 
   <!-- Bootstrap -->
-  <link href="res/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="res/css/font-awesome.min.css">
-  <link rel="stylesheet" href="res/css/animate.css">
-  <link href="res/css/prettyPhoto.css" rel="stylesheet">
-  <link href="res/css/style.css" rel="stylesheet" />
+  <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${R}res/css/animate.css">
+  <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
+  <link href="${R}res/css/style.css" rel="stylesheet" />
   <!-- =======================================================
     Theme Name: Company
     Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
@@ -242,7 +246,7 @@
                 </li>
                 <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
                 <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-                <li role="presentation"><a data-toggle="modal" href="#loginModal">Login</a></li>
+                <li role="presentation"><a href="guest/login">Logout</a></li>
               </ul>
             </div>
           </div>
@@ -254,7 +258,7 @@
   <section id="main-slider" class="no-margin">
     <div class="carousel slide">
       <div class="carousel-inner">
-        <div class="item active" style="background-image: url(res/img/graduation-3.jpg)">
+        <div class="item active" style="background-image: url(${R}res/img/graduation-3.jpg)">
           <div class="container">
             <div class="row slide-margin">
               <div class="col-sm-6">
@@ -328,114 +332,14 @@
         </div>
       </div>
   </footer>
-
-  <div class="modal fade" id="loginModal" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-      <div class="loginmodal-container">
-        <h1>로그인</h1><br>
-        <form>
-        <input type="text" name="user" placeholder="ID">
-        <input type="password" name="pass" placeholder="Password">
-        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-        </form>
-
-        <div class="login-help">
-        <a href="#">Register</a> - <a href="#">Forgot Password?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="registerModal" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header" style="padding-bottom:1.5px;">
-
-                  <h4><b>회원가입</b>
-                      <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">×</span>
-                      <span class="sr-only">Close</span>
-                      </button>
-                  </h4>
-
-              </div>
-              <div class="modal-body">
-                <form>
-                    <div class="from-group">
-                      <label class="label-modal">이름</label>
-                      <input type="text" name="studentName" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">학번</label>
-                      <input type="text" name="studentNumber" class="form-control" maxlength="20">
-                    </div>
-                  
-                    <div class="from-group">
-                      <label class="label-modal">학과</label>
-                      <input type="text" name="studentMajor" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">학년</label>
-                      <input type="text" name="studentYear" class="form-control" maxlength="1">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label>비밀번호</label>
-                      <input type="password" name="password" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label>비밀번호 확인</label>
-                      <input type="password" name="password" class="form-control" maxlength="20">
-                    </div>
-                    <div class="form-group">
-                      <label>비밀번호 찾기 질문</label>
-                      <select class="form-control" name="findPassword">
-                          <option>내 보물 1호는?</option>
-                          <option>내 초등학교 별명은?</option>
-                          <option>내 남자(여자)친구 이름은?</option>
-                          <option>내 강아지 이름은?</option>
-                      </select>
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">비밀번호 찾기 답변</label>
-                      <input type="text" name="passwordAnswer" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">OTP</label>
-                      <input type="text" name="studentOTP" class="form-control" style="width: 350px; margin: 0;" maxlength="20">
-                      <input type="button" class="btn btn-line" style="margin-left: 0px; font-size: 14px; height:34px;" value="OTP 확인">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">이수 과목 목록 첨부</label>
-                      <input type="file" name="studentDB" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="modal-footer">
-                       <button type="submit" class="btn btn-submit">회원가입</button>
-                    </div>
-                    
-                </form>
-              </div>
-          </div>
-      </div>
-  </div>
-
-
-
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="/res/js/jquery-2.1.1.min.js"></script>
+  <script src="${R}res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="res/js/bootstrap.min.js"></script>
-  <script src="res/js/jquery.prettyPhoto.js"></script>
-  <script src="res/js/jquery.isotope.min.js"></script>
-  <script src="res/js/wow.min.js"></script>
-  <script src="res/js/functions.js"></script>
+  <script src="${R}res/js/bootstrap.min.js"></script>
+  <script src="${R}res/js/jquery.prettyPhoto.js"></script>
+  <script src="${R}res/js/jquery.isotope.min.js"></script>
+  <script src="${R}res/js/wow.min.js"></script>
+  <script src="${R}res/js/functions.js"></script>
 
 </body>
 

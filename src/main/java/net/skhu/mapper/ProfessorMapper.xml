@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.skhu.mapper.ProfessorMapper">
+	<select id="findById" resultType="Professor">
+		SELECT * FROM professor WHERE id = #{id}
+	</select>
 	<select id="findAll" resultType="Professor">
 		SELECT p.*, d.departmentName FROM Professor p LEFT JOIN department d ON p.departmentId = d.id
 	</select>

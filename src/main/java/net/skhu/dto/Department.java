@@ -2,7 +2,7 @@ package net.skhu.dto;
 
 public class Department {
 	int id;
-	int departmentName;
+	String departmentName;
 
 	public int getId() {
 		return id;
@@ -12,11 +12,11 @@ public class Department {
 		this.id = id;
 	}
 
-	public int getDepartmentName() {
+	public String getDepartmentName() {
 		return departmentName;
 	}
 
-	public void setDepartmentName(int departmentName) {
+	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
 }

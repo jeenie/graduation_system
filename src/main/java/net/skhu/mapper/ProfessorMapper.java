@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import net.skhu.dto.Professor;
 @Mapper
 public interface ProfessorMapper {
-	Professor findOne(String professorId);
+	Professor findById(int id);
 	List<Professor> findAll();
 	List<Professor> findByDepartment(String departmentName);
 }

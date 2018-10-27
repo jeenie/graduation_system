@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import net.skhu.dto.Department;
+import net.skhu.dto.PasswordQuiz;
 
 @Mapper
-public interface DepartmentMapper {
-	List<Department> findAll();
+public interface PasswordQuizMapper {
+	List<PasswordQuiz> findAll();
 }
