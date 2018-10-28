@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -117,7 +118,7 @@ select option:hover {
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="indexForAdmin.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+              <a href="index"><h1><span>SKHU</span>졸업관리시스템</h1></a>
             </div>
           </div>
 
@@ -141,11 +142,11 @@ select option:hover {
 
                   </div>
                 </li>
-                <li role="presentation"><a href="user/logout_processing">Logout</a></li>
+                <li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
                 <li>
                   
                   <div style="margin-top:28px; margin-left:1.5px;">
-                      <a href="managerInfoEdit.html">
+                      <a href="adminEdit">
                           <i class="fas fa-user-edit fa-lg"></i>
                       </a>
                   </div>
@@ -172,23 +173,32 @@ select option:hover {
       </div>
 
         <div class="contents">
-            <div class="group">
-                <h4><img src="images/abouti/manager.png" width="80px">&nbsp&nbsp&nbsp<font color="#DF4D4D">manager1</font> 님은 [<b> 관리자 </b>] 회원입니다.</h4>
-                <hr>
-            </div>
-            <div class="edit">
-                <p>아이디 <input type="text" class="form-control" name="id" value="manager1" readonly></p>
-                <p>비밀번호 <input type="password" class="form-control" name="password" value="123123"></p>
-                <p>비밀번호 확인 <input type="password" class="form-control" name="password" value="123123"></p> 
-                <p>이메일 <input type="email" class="form-control" name="email" value="test123@skhu.net"></p>
-                       
-                
-                <br>
-                
-                <p>
-                    <input type="submit" class="btn-submit" value="저장" style="float: right;">    
-                </p>
-            </div>
+        	<form:form method="post" modelAttribute="master">
+	            <div class="group">
+	                <h4><img src="${R}res/images/abouti/manager.png" width="80px">&nbsp&nbsp&nbsp<font color="#DF4D4D">${master.getId()}</font> 님은 [<b> 관리자 </b>] 회원입니다.</h4>
+	                <hr>
+	            </div>
+	            <div class="edit">
+	            	<div class="form-group">
+		      				<label>아이디</label>
+		      				<form:input path="id" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>이메일</label>
+		      				<form:input path="email" type="email" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>비밀번호</label>
+		      				<form:input path="password" type="password" class="form-control w300" />
+		    			</div>                       
+	                
+	                <br>
+	                
+	                <p>
+	                    <input type="submit" class="btn-submit" value="저장" style="float: right;">    
+	                </p>
+	            </div>
+            </form:form>
         </div>
   
 

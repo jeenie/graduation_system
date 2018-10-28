@@ -115,7 +115,7 @@
 	                <hr>
 	            </div>
             <div class="edit">
-                    <div class="form-group">
+                    	<div class="form-group">
 		      				<label>학번</label>
 		      				<form:input path="id" class="form-control w300" />
 		    			</div>

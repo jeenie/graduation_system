@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -116,7 +117,7 @@ select option:hover {
                   <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand">
-                  <a href="indexForAdmin.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+                  <a href="index"><h1><span>SKHU</span>졸업관리시스템</h1></a>
                 </div>
               </div>
 
@@ -149,31 +150,39 @@ select option:hover {
       </div>
 
         <div class="contents">
-            <div class="group">
-                <h4><img src="images/abouti/professor.png" width="80px">&nbsp&nbsp&nbsp<font color="#1266FF">최지현</font> 님은 [<b> 교수 </b>] 회원입니다.</h4>
-                <hr>
-            </div>
-            <div class="edit">
-                <p>이름 <input type="text" class="form-control" name="name" value="최지현"readonly></p>
-                <p>아이디 <input type="text" class="form-control" name="id" value="kim232"readonly></p>
-                <p>담당 학과
-                        <select name="department" class="form-control">
-                          <option>소프트웨어공학과</option>
-                          <option>컴퓨터공학과</option>
-                          <option>IT융합자율학부</option>
-                        </select>
-                      </p>
-                <p>이메일 <input type="email" class="form-control" name="email" value="test123@skhu.net"></p> 
-                <p>비밀번호 <input type="password" class="form-control" name="password" value="123123"></p>
-                <p>비밀번호 확인 <input type="password" class="form-control" name="password" value="123123"></p> 
-                
-                
-                <br>
-                
-                <p>
-                    <input type="submit" class="btn-submit" value="저장" style="float: right;">    
-                </p>
-            </div>
+        	<form:form method="post" modelAttribute="professor">
+	            <div class="group">
+	                <h4><img src="${R}res/images/abouti/professor.png" width="80px">&nbsp&nbsp&nbsp<font color="#1266FF">${professor.getName()}</font> 님은 [<b> 교수 </b>] 회원입니다.</h4>
+	                <hr>
+	            </div>
+	            <div class="edit">
+	            		<div class="form-group">
+		      				<label>교번</label>
+		      				<form:input path="id" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>이름</label>
+		      				<form:input path="name" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group"> 
+		    				<label>담당 학과</label> 
+		    				<form:select path="departmentId" class="form-control w300" itemValue="id" itemLabel="departmentName" items="${ departments }" /> 
+		    			</div>
+		    			<div class="form-group">
+		      				<label>이메일</label>
+		      				<form:input path="email" type="email" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>비밀번호</label>
+		      				<form:input path="password" type="password" class="form-control w300" />
+		    			</div>
+	                <br>
+	                
+	                <p>
+	                    <input type="submit" class="btn-submit" value="저장" style="float: right;">    
+	                </p>
+	            </div>
+	          </form:form>
         </div>
   
 

@@ -12,4 +12,5 @@ public interface ProfessorMapper {
 	List<Professor> findAll();
 	List<Professor> findByDepartment(String departmentName);
 	void insert(Professor professor);
+	void update(Professor professor);
 }

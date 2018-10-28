@@ -15,4 +15,7 @@
     	INSERT Professor (id, name, email, departmentId, password)
     	VALUES (#{id}, #{name}, #{email}, #{departmentId}, #{password})
   	</insert>
+  	<update id="update">
+  		UPDATE professor SET email = #{email}, password = #{password} WHERE id=#{id}
+  	</update>
 </mapper>

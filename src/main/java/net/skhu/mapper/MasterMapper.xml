@@ -9,4 +9,7 @@
   		INSERT Master (id, password, email)
     	VALUES (#{id}, #{password}, #{email})
   	</insert>
+  	<update id="update">
+  		UPDATE master SET email = #{email}, password = #{password} WHERE id=#{id}
+  	</update>
 </mapper>
