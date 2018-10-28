@@ -12,4 +12,7 @@
     	INSERT Student (id, name, departmentId, grade, entranceType, password, password2, passwordQuestion, passwordAnswer, email, completeSemester)
     	VALUES (#{id}, #{name}, #{departmentId}, #{grade}, #{entranceType}, #{password}, #{password2}, #{passwordQuestion}, #{passwordAnswer}, #{email}, #{completeSemester})
   	</insert>
+  	<update id="update">
+  		UPDATE student SET departmentId = #{departmentId}, grade = #{grade}, password = #{password}, password2 = #{password2}, passwordQuestion = #{passwordQuestion}, passwordAnswer=#{passwordAnswer}, email = #{email}, completeSemester = #{completeSemester} WHERE id=#{id}
+  	</update>
 </mapper>

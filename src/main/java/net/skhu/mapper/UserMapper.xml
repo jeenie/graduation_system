@@ -9,4 +9,7 @@
   		INSERT user (userId, password, userType)
   		VALUES (#{userId}, #{password}, #{userType})
   	</insert>
+  	<update id="update">
+  		UPDATE user SET password=#{password} WHERE userId=#{userId}
+  	</update>
 </mapper>

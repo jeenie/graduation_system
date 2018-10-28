@@ -17,15 +17,11 @@
   <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
   <link rel="stylesheet" href="${R}res/css/animate.css">
+  <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
   <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
   <link href="${R}res/css/style.css" rel="stylesheet" />
-  <!-- =======================================================
-    Theme Name: Company
-    Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
-
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <!--style-->
 
 

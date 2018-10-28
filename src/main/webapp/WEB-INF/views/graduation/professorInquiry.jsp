@@ -245,7 +245,7 @@
 
                   </div>
                 </li>
-                <li role="presentation"><a href="user/logout_processing">Logout</a></li>
+                <li role="presentation"><a href="logout_processing">Logout</a></li>
                 <li>
                   
                   <div style="margin-top:28px; margin-left:1.5px;">

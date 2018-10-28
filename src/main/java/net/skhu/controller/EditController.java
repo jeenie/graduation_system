@@ -3,13 +3,14 @@ package net.skhu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Department;
-import net.skhu.dto.Master;
 import net.skhu.dto.PasswordQuiz;
 import net.skhu.dto.Student;
 import net.skhu.dto.User;
@@ -20,9 +21,9 @@ import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.utils.Encryption;
 
-@RequestMapping("/guest")
+@RequestMapping("/user")
 @Controller
-public class SignCotroller {
+public class EditController {
 	@Autowired
 	UserMapper userMapper;
 	@Autowired
@@ -34,52 +35,28 @@ public class SignCotroller {
 	@Autowired
 	PasswordQuizMapper passwordQuizMapper;
 
-	@RequestMapping(value="sign", method = RequestMethod.GET)
-	public String sign(Model model) {
-		Student student = new Student();
+	@RequestMapping(value="studentEdit", method=RequestMethod.GET)
+	public String edit(Model model) {
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		int userNumber=Integer.parseInt(authentication.getName());
+
+		Student student = studentMapper.findById(userNumber);
 		List<Department> departments = departmentMapper.findAll();
 		List<PasswordQuiz> quizs = passwordQuizMapper.findAll();
-
 		model.addAttribute("student", student);
 		model.addAttribute("departments", departments);
 		model.addAttribute("quizs", quizs);
-		return "guest/sign";
+		return "edit/studentEdit";
 	}
 
-	@RequestMapping(value="sign", method = RequestMethod.POST)
-	public String sign(Model model, Student student) {
-		User user = new User();
-
-		user.setUserId(student.getId());
+	@RequestMapping(value="studentEdit", method=RequestMethod.POST)
+	public String edit(Model model, Student student) {
+		User user = userMapper.findOne(student.getId());
 		student.setPassword(Encryption.encrypt(student.getPassword(), Encryption.MD5));
 		student.setPassword2(Encryption.encrypt(student.getPassword2(), Encryption.MD5));
 		user.setPassword(student.getPassword());
-		user.setUserType("학생");
-		userMapper.insert(user);
-		studentMapper.insert(student);
-
-		return "redirect:login";
+		userMapper.update(user);
+		studentMapper.update(student);
+		return "redirect:index";
 	}
-
-	@RequestMapping(value="adminsign", method = RequestMethod.GET)
-	public String adminsign(Model model) {
-		Master master = new Master();
-		model.addAttribute("master", master);
-		return "guest/mastersign";
-	}
-
-	@RequestMapping(value="adminsign", method = RequestMethod.POST)
-	public String adminsign(Model model, Master master) {
-		User user = new User();
-
-		user.setUserId(master.getId());
-		master.setPassword(Encryption.encrypt(master.getPassword(), Encryption.MD5));
-		user.setPassword(master.getPassword());
-		user.setUserType("관리자");
-		userMapper.insert(user);
-		masterMapper.insert(master);
-
-		return "redirect:login";
-	}
-
 }

@@ -4,6 +4,37 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:url var="R" value="/" />
+
+<script>
+ $(function(){
+  $('#password').keyup(function(){
+   $('font[name=check]').text('');
+  }); //#user_pass.keyup
+  $('#password2').keyup(function(){
+   if($('#password').val()!=$('#password2').val()){
+    $('font[name=check]').text('');
+    $('font[name=check]').html("암호틀림");
+   }else{
+    $('font[name=check]').text('');
+    $('font[name=check]').html("암호맞음");
+   }
+  }); //#chpass.keyup
+ });
+ 
+ <script type="text/javascript">
+ window.onload=function(){
+	 
+  document.getElementById('signForm').onsubmit=function(){
+	  if($('#password').val()!=$('#password2').val()){
+		  alert('다시입력');
+		     return false; 
+   }
+   
+  }
+ }
+</script>
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -178,7 +209,7 @@
         <div class="container" style="margin-left:140px; margin-bottom:150px">
             <img src="${R}res/images/abouti/professor-1.png" style="width:250px; height:250px; float:left; border-radius:5px; padding-right:20px;">
 	            <div style="margin-left:250px;">
-		            <form:form method="post" modelAttribute="student">
+		            <form:form method="post" modelAttribute="student" id="signForm">
 		    			<div class="form-group">
 		      				<label>학번</label>
 		      				<form:input path="id" class="form-control w300" />

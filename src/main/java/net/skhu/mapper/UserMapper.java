@@ -8,4 +8,5 @@ import net.skhu.dto.User;
 public interface UserMapper {
 	User findOne(int id);
 	void insert(User user);
+	void update(User user);
 }

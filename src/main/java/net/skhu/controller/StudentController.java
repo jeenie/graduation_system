@@ -8,13 +8,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.skhu.dto.Student;
+import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.StudentMapper;
 
 @Controller
 @RequestMapping("/graduation")
 public class StudentController {
 	@Autowired StudentMapper studentMapper;
-
+	@Autowired DepartmentMapper departmentMapper;
+	@Autowired
+	PasswordQuizMapper passwordQuizMapper;
 
 	@RequestMapping("studentListForAdmin")
 	public String list(Model model) {

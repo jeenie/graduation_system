@@ -273,13 +273,33 @@
                 </li>
                 </sec:authorize>
                 <li role="presentation"><a href="logout_processing">Logout</a></li>
-                <li>
-                  <div style="margin-top:28px; margin-left:1.5px;">
-                      <a href="managerInfoEdit.html">
-                          <i class="fas fa-user-edit fa-lg"></i>
-                      </a>
-                  </div>
-              </li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                	<li>
+	                  <div style="margin-top:28px; margin-left:1.5px;">
+	                      <a href="adminEdit">
+	                          <i class="fas fa-user-edit fa-lg"></i>
+	                      </a>
+	                  </div>
+	                </li>
+	            </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_PROFESSOR')">
+                	<li>
+	                  <div style="margin-top:28px; margin-left:1.5px;">
+	                      <a href="professorEdit">
+	                          <i class="fas fa-user-edit fa-lg"></i>
+	                      </a>
+	                  </div>
+	                </li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_STUDENT')">
+	                <li>
+	                  <div style="margin-top:28px; margin-left:1.5px;">
+	                      <a href="studentEdit">
+	                          <i class="fas fa-user-edit fa-lg"></i>
+	                      </a>
+	                  </div>
+	                </li>
+	            </sec:authorize>
               </ul>
             </div>
           </div>

@@ -12,5 +12,6 @@ public interface StudentMapper {
 	List<Student> findByDepartment(int departmentId);
 	Student findById(int id);
 	void insert(Student student);
+	void update(Student student);
 	void delete(int id);
 }

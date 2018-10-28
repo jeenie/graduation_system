@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
                   <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand">
-                  <a href="indexForAdmin.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+                  <a href="index"><h1><span>SKHU</span>졸업관리시스템</h1></a>
                 </div>
               </div>
 
@@ -108,48 +109,60 @@
       </div>
 
         <div class="contents">
-            <div class="group">
-                <h4><img src="images/abouti/student.png" width="80px">&nbsp&nbsp&nbsp<font color="#41AF39">이자영</font> 님은 [<b> 학생 </b>] 회원입니다.</h4>
-                <hr>
-            </div>
+        	<form:form method="post" modelAttribute="student">
+	            <div class="group">
+	                <h4><img src="${R}res/images/abouti/student.png" width="80px">&nbsp&nbsp&nbsp<font color="#41AF39">${student.getName()}</font> 님은 [<b> 학생 </b>] 회원입니다.</h4>
+	                <hr>
+	            </div>
             <div class="edit">
-                    <p>이름 <input type="text" class="form-control" name="name" value="이자영"readonly></p>
-                    <p>아이디 <input type="text" class="form-control" name="num"value="201632000"readonly></p>
-                    <p>학과
-                            <select name="department" class="form-control">
-                              <option>소프트웨어공학과</option>
-                              <option>컴퓨터공학과</option>
-                              <option>IT융합자율학부</option>
-                            </select>
-                          </p> 
-                    <p>학년
-                        <select name="grd" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </p>
-                    <p>비밀번호 <input type="password" class="form-control" name="password" value="123123"></p>
-                    <p>비밀번호 확인 <input type="password" class="form-control" name="password" value="123123"></p> 
-                    <p>비밀번호 찾기 질문
-                            <select name="passwordQ" class="form-control">
-                                <option>내 보물 1호는?</option>
-                                <option>내 초등학교 별명은?</option>
-                                <option>내 남자(여자)친구 이름은?</option>
-                                <option>내 강아지 이름은?</option>
-                            </select>
-                        </p>
-                    <p>비밀번호 찾기 답변 <input type="text" class="form-control" name="passwordA"></p>
-                    <p>이수 과목 목록 첨부
-                        <input type="file" name="studentDB" class="form-control" maxlength="20">
-                    </p>
+                    <div class="form-group">
+		      				<label>학번</label>
+		      				<form:input path="id" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>이름</label>
+		      				<form:input path="name" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group"> 
+		    				<label>학과</label> 
+		    				<form:select path="departmentId" class="form-control w300" itemValue="id" itemLabel="departmentName" items="${ departments }" /> 
+		    			</div>
+		    			<div class="form-group">
+		      				<label>학년</label>
+		      				<form:input path="grade" type="number" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>비밀번호</label>
+		      				<form:input path="password" type="password" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>비밀번호 재입력</label>
+		      				<form:input path="password2" type="password" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group"> 
+		    				<label>비밀번호 찾기 질문</label> 
+		    				<form:select path="passwordQuestion" class="form-control w200" itemValue="quizCode" itemLabel="quizContent" items="${ quizs }" /> 
+		    			</div>
+		    			<div class="form-group">
+		      				<label>비밀번호 찾기 답변</label>
+		      				<form:input path="passwordAnswer" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
+		      				<label>이메일</label>
+		      				<form:input path="email" type="email" class="form-control w300" />
+		    			</div>
+		    			
+		    			<div class="form-group">
+		      				<label>이수완료학기</label>
+		      				<form:input path="completeSemester" type="number" class="form-control w300" />
+		    			</div>
                     <br>
                     
                     <p>
                         <input type="submit" class="btn-submit" value="저장" style="float: right;">    
                     </p>
             </div>
+            </form:form>
         </div>
   
 
