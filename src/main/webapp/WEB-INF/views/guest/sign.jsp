@@ -227,6 +227,10 @@
 		      				<form:input path="entranceType" class="form-control w300" />
 		    			</div>
 		    			<div class="form-group">
+		      				<label>학년</label>
+		      				<form:input path="grade" type="number" class="form-control w300" />
+		    			</div>
+		    			<div class="form-group">
 		      				<label>비밀번호</label>
 		      				<form:input path="password" type="password" class="form-control w300" />
 		    			</div>
