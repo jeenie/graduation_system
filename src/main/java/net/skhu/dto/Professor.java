@@ -7,6 +7,7 @@ public class Professor {
 	int departmentId;
 	String departmentName;
 	String password;
+	
 	public int getId() {
 		return id;
 	}

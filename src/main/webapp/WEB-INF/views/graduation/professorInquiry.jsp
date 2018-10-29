@@ -280,11 +280,11 @@
             <div style="margin-top: 30px">
                 <div class="contents" style="text-align:center;">
                         <div style="text-align:left;">
-                            <form>
+                            <form autocomplete=off>
                                &nbsp; 이름 :&nbsp;
-                                <input type="text" value="">&nbsp; 사번 :&nbsp;
-                                <input type="text" value="">&nbsp; 소속학과 :&nbsp;
-                                <input type="text" name="departmentName" value="">&nbsp;
+                                <input type="text" name="name" value="${name}">&nbsp; 사번 :&nbsp;
+                                <input type="text" name="id" value="${id }">&nbsp; 소속학과 :&nbsp;
+                                <input type="text" name="departmentName" value="${departmentName }">&nbsp;
                                 <button type="submit" class="inquiry_btn warning">조회</button>
                                 <a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>
 

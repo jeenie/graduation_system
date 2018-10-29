@@ -11,6 +11,15 @@
 	<select id="findByDepartment" resultType="Professor">
 		SELECT 	p.*, d.departmentName FROM Professor p LEFT JOIN Department d ON p.departmentId = d.id WHERE d.departmentName = #{departmentName}
 	</select>
+	<select id="findByInquiry" resultType="Professor">
+		<!-- String name, int id, String departmentName -->
+		SELECT p.*, d.departmentName 
+		FROM professor p LEFT JOIN department d ON p.departmentId = d.id
+		<!--WHERE d.departmentName LIKE CONCAT('%',#{departmentName},'%') or p.name=#{name}
+	    OR p.id=#{id} -->
+	    WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}
+	
+	</select>
 	<insert id="insert" parameterType="Professor">
     	INSERT Professor (id, name, email, departmentId, password)
     	VALUES (#{id}, #{name}, #{email}, #{departmentId}, #{password})
@@ -18,4 +27,7 @@
   	<update id="update">
   		UPDATE professor SET email = #{email}, password = #{password} WHERE id=#{id}
   	</update>
+  	<delete id="delete">
+		DELETE FROM professor WHERE id=#{id}
+	</delete>
 </mapper>
