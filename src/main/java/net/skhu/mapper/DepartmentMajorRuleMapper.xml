@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="net.skhu.dto.DepartmentMajorRuleMapper">
+<mapper namespace="net.skhu.mapper.DepartmentMajorRuleMapper">
 	<select id="findByDepartmentId" resultType="DepartmentMajorRule">
 		select * from department_major_rule where departmentId=#{departmentId} and entranceYear=#{entranceYear}
 	</select>
