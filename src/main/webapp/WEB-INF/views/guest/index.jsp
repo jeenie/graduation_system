@@ -225,7 +225,7 @@
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="index.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+              <a href="${R}"><h1><span>SKHU</span>졸업관리시스템</h1></a>
             </div>
           </div>
 
@@ -287,7 +287,7 @@
       <div class="text-center">
         <div class="col-md-3">
           <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <a href="graduation_Guide.html"><i class="fa fa-book"></i></a>
+            <a href="guest/graduationRule?departmentId=99&entranceYear=99"><i class="fa fa-book"></i></a>
             <h2>졸업요건</h2>
             <p>전체졸업요건을 확인해보세요</p>
           </div>
@@ -301,7 +301,7 @@
         </div>
         <div class="col-md-3">
           <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-            <a href="checkGrades.html"><i class="fa fa-heart-o"></i></a>
+            <a href="checkGrades.html"><i class="fa fa-heart"></i></a>
             <h2>성적조회</h2>
             <p>자신의 성적을 확인해보세요</p>
           </div>
@@ -345,88 +345,6 @@
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="registerModal" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header" style="padding-bottom:1.5px;">
-
-                  <h4><b>회원가입</b>
-                      <button type="button" class="close" data-dismiss="modal">
-                      <span aria-hidden="true">×</span>
-                      <span class="sr-only">Close</span>
-                      </button>
-                  </h4>
-
-              </div>
-              <div class="modal-body">
-                <form>
-                    <div class="from-group">
-                      <label class="label-modal">이름</label>
-                      <input type="text" name="studentName" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">학번</label>
-                      <input type="text" name="studentNumber" class="form-control" maxlength="20">
-                    </div>
-                  
-                    <div class="from-group">
-                      <label class="label-modal">학과</label>
-                      <input type="text" name="studentMajor" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">학년</label>
-                      <input type="text" name="studentYear" class="form-control" maxlength="1">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label>비밀번호</label>
-                      <input type="password" name="password" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label>비밀번호 확인</label>
-                      <input type="password" name="password" class="form-control" maxlength="20">
-                    </div>
-                    <div class="form-group">
-                      <label>비밀번호 찾기 질문</label>
-                      <select class="form-control" name="findPassword">
-                          <option>내 보물 1호는?</option>
-                          <option>내 초등학교 별명은?</option>
-                          <option>내 남자(여자)친구 이름은?</option>
-                          <option>내 강아지 이름은?</option>
-                      </select>
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">비밀번호 찾기 답변</label>
-                      <input type="text" name="passwordAnswer" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">OTP</label>
-                      <input type="text" name="studentOTP" class="form-control" style="width: 350px; margin: 0;" maxlength="20">
-                      <input type="button" class="btn btn-line" style="margin-left: 0px; font-size: 14px; height:34px;" value="OTP 확인">
-                    </div>
-                    
-                    <div class="from-group">
-                      <label class="label-modal">이수 과목 목록 첨부</label>
-                      <input type="file" name="studentDB" class="form-control" maxlength="20">
-                    </div>
-                    
-                    <div class="modal-footer">
-                       <button type="submit" class="btn btn-submit">회원가입</button>
-                    </div>
-                    
-                </form>
-              </div>
-          </div>
-      </div>
-  </div>
-
-
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="${R}res/js/jquery-2.1.1.min.js"></script>

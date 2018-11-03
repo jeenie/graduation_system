@@ -15,6 +15,7 @@
 
   <!-- Bootstrap -->
   <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="${R}res/css/font-awesome.css">
   <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
   <link rel="stylesheet" href="${R}res/css/animate.css">
   <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
@@ -231,7 +232,7 @@
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="index.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+              <a href=""><h1><span>SKHU</span>졸업관리시스템</h1></a>
             </div>
           </div>
 
@@ -395,7 +396,7 @@
 		        </div>
 		        <div class="col-md-3">
 		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-		            <a href="checkGrades.html"><i class="fa fa-heart-o"></i></a>
+		            <a href="checkGrades.html"><i class="fa fa-heart"></i></a>
 		            <h2>성적조회</h2>
 		            <p>자신의 성적을 확인해보세요</p>
 		          </div>
