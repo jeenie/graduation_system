@@ -239,7 +239,7 @@
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
               	<sec:authorize access="hasRole('ROLE_ADMIN')">
-              		<li role="presentation"><a href="">졸업요건</a></li>
+              		<li role="presentation"><a href="graduation/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 	                <li role="presentation" class="dropdown" ><a href="">졸업관리</a>
 	                  <div class="dropdown-content">
 	                      <a href="">졸업요건 관리</a>
@@ -249,11 +249,11 @@
 	                </li>
               	</sec:authorize>
               	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
-              		<li role="presentation"><a href="">졸업요건</a></li>
+              		<li role="presentation"><a href="graduation/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
                 	<li role="presentation" class="dropdown"><a href="studentInquiryForProfessor.html">학생조회</a></li>
               	</sec:authorize>
               	<sec:authorize access="hasRole('ROLE_STUDENT')">
-	                <li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
+	                <li role="presentation"><a href="graduation/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 	                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
 	                    <div class="dropdown-content">
 	                      <a href="about.html">마이페이지</a>

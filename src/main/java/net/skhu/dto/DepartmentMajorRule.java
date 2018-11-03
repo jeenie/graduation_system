@@ -2,7 +2,9 @@ package net.skhu.dto;
 
 public class DepartmentMajorRule {
 	int departmentId;
+	String departmentName;
 	int processId;
+	String processName;
 	int entranceYear;
 	int mustMajor;
 	int choiceMajor;
@@ -16,12 +18,28 @@ public class DepartmentMajorRule {
 		this.departmentId = departmentId;
 	}
 	
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
 	public int getProcessId() {
 		return processId;
 	}
 	
 	public void setProcessId(int processId) {
 		this.processId = processId;
+	}
+	
+	public String getProcessName() {
+		return processName;
+	}
+
+	public void setProcessName(String processName) {
+		this.processName = processName;
 	}
 	
 	public int getEntranceYear() {
