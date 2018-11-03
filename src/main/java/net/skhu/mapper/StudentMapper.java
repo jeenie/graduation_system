@@ -12,12 +12,10 @@ public interface StudentMapper {
 	List<Student> findByDepartment(int departmentId);
 	Student findById(int id);
 	Student findOne(int id);
+	Student findWithQuiz(int id);
 	void join(Student student);
 	void insert(Student student);
 	void update(Student student);
+	void updatePassword(Student student);
 	void delete(int id);
-	
-	
-	
-	
 }

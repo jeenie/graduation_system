@@ -10,6 +10,7 @@ public class Student {
 	String password;
 	String password2;
 	String passwordQuestion;
+	String quizContent;
 	String passwordAnswer;
 	String email;
 	int completeSemester;
@@ -84,6 +85,14 @@ public class Student {
 
 	public void setPasswordQuestion(String passwordQuestion) {
 		this.passwordQuestion = passwordQuestion;
+	}
+	
+	public String getQuizContent() {
+		return quizContent;
+	}
+
+	public void setQuizContent(String quizContent) {
+		this.quizContent = quizContent;
 	}
 
 	public String getPasswordAnswer() {

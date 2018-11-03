@@ -132,15 +132,18 @@
         <div class="container" style="margin-left:230px; margin-top:50px; margin-bottom:70px">
             <div style="width:132px; height:158px;margin-right:0; border-radius:5px; padding-right:20px; font-size: 150px;"><i class="fas fa-user-graduate"></i></div>
 	            <div style="float:right;margin-left:140px; margin-right:300px; margin-top:-150px">
-		            <form:form method="post" modelAttribute="student" style="margin-right:350px;">
+		            <form method="post" style="margin-right:350px;">
 		            	<div>
 			    			<div class="form-group">
-			      				<label>학번</label>
-			      				<form:input type="number" path="id" class="form-control w300" />
+			      				<label>질문</label>
+			      				<input type="text" value="${student.quizContent}" class="form-control w300" readonly/>
 			    			</div>
 			    			<div class="form-group">
-			      				<label>Email</label>
-			      				<form:input type="email" path="email" class="form-control w300" />
+			      				<label>답</label>
+			      				<input type="text" name="answer" value="" class="form-control w300" />
+			    			</div>
+			    			<div class="form-group" style="display:none">
+			    				<input name="id" value="${student.id}" readonly/>
 			    			</div>
 			    		</div>
 		    			<hr />
@@ -149,7 +152,7 @@
 		        				<span class="glyphicon glyphicon-ok"></span> 인증
 		        			</button>
 		    			</div>
-		  			</form:form>
+		  			</form>
 		  		</div>
         </div>
     </div>

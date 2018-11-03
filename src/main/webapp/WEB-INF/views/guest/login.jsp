@@ -151,7 +151,7 @@
 	                </li>
 	                <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 	                <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-	                <li role="presentation"><a href="guest/login">Login</a></li>
+	                <li role="presentation"><a href="${R}guest/login">Login</a></li>
 	              </ul>
 	            </div>
 	          </div>

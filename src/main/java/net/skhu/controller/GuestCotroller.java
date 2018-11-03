@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class GuestCotroller {
-	@RequestMapping({"/"})
+	
+	@RequestMapping("/")
     public String index() {
         return "guest/index";
     }
@@ -14,19 +15,4 @@ public class GuestCotroller {
     public String login() {
         return "guest/login";
     }
-	
-	@RequestMapping("guest/findPw")
-	public String findPw() {
-		return "guest/choice";
-	}
-	
-	@RequestMapping("guest/findStudentPw")
-	public String findStudentPw() {
-		return "guest/studentPw";
-	}
-	
-	@RequestMapping("guest/findProfessorPw")
-	public String findProfessorPw() {
-		return "guest/professorPw";
-	}
 }

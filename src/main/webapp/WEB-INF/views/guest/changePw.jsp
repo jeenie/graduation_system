@@ -135,12 +135,12 @@
 		            <form:form method="post" modelAttribute="student" style="margin-right:350px;">
 		            	<div>
 			    			<div class="form-group">
-			      				<label>학번</label>
-			      				<form:input type="number" path="id" class="form-control w300" />
+			      				<label>새 비밀번호 입력</label>
+			      				<form:input type="password" path="password" class="form-control w300"/>
 			    			</div>
 			    			<div class="form-group">
-			      				<label>Email</label>
-			      				<form:input type="email" path="email" class="form-control w300" />
+			      				<label>새 비밀번호 재입력</label>
+			      				<form:input type="password" path="password2" class="form-control w300" />
 			    			</div>
 			    		</div>
 		    			<hr />
