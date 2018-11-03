@@ -17,10 +17,32 @@
 		FROM professor p LEFT JOIN department d ON p.departmentId = d.id
 		<!--WHERE d.departmentName LIKE CONCAT('%',#{departmentName},'%') or p.name=#{name}
 	    OR p.id=#{id} -->
-	    WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}
-	
+	    <!--WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}-->
+	    <where>
+	    	<if test ="name != null &amp;&amp; id ==null &amp;&amp; departmentName == null">
+	    		p.name = #{name}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id !=null &amp;&amp; departmentName == null">
+	    		p.id = #{id}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id ==null &amp;&amp; departmentName != null">
+	    		d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id !=null &amp;&amp; departmentName == null">
+	    		p.name = #{name} AND p.id = #{id}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id ==null &amp;&amp; departmentName != null">
+	    		p.name = #{name} AND d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id !=null &amp;&amp; departmentName != null">
+	    		p.id = #{id} AND d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id !=null &amp;&amp; departmentName != null">
+	    		p.name = #{name} AND p.id = #{id} AND d.departmentName = #{departmentName}
+	    	</if>
+	    </where>
 	</select>
-	<insert id="insert" parameterType="Professor">
+	<insert id="insert">
     	INSERT Professor (id, name, email, departmentId, password)
     	VALUES (#{id}, #{name}, #{email}, #{departmentId}, #{password})
   	</insert>
