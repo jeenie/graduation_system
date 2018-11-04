@@ -318,10 +318,11 @@
           			<div class="navbar-collapse collapse">
             			<div class="menu">
               				<ul class="nav nav-tabs" role="tablist">
-                				<li role="presentation"><a href="">졸업요건</a></li>
+                				<li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
                 					<li role="presentation" class="dropdown" ><a href="">졸업관리</a>
                   						<div class="dropdown-content">
-					                      <a href="graduation/departmentRuleEdit">학과별 졸업요건 관리</a>
+					                      <a href="graduation/departmentRuleEdit">학과별 졸업요건</a>
+					                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
 					                      <a href="">대체 과목 리스트 관리</a>
 					                      <a href="majorAdmitManage.html">전공인정관리</a>
                     					</div>
@@ -356,50 +357,45 @@
       		<div class="breadcrumb">
         		<li></li>
         		<li style="font-size: 18px; margin-left: -5px;">
-            		졸업 요건 안내
+            		학과별 졸업 요건 관리
         		</li>
       		</div>
     	</div>
   	</div>
 
   	<div class="contents">
-	  	<div class="form-group">
-	          <p class="font2">전체 졸업 학점</p>
-	          <input type="number" value="" class="form-control" style="width:70px" name="all_grade" value="130" readonly/>
-	    </div>
-	    <br/>
     	<form>
       		<div>
 		        <div class="form-group" style="float:left; margin-right: 20px; margin-bottom:5px;">
 		            <p class="font2">학과</p>
 		            <select name="departmentId" class="form-control w200">
 		            	<option value="99">선택</option>
-		            	<option value="28">신문방송학과</option>
-		            	<option value="29">경영학부</option>
-		            	<option value="30">디지털컨텐츠학과</option>
-		            	<option value="31">컴퓨터공학과</option>
-		            	<option value="32">소프트웨어공학과</option>
-		            	<option value="33">정보통신공학과</option>
-		            	<option value="34">글로컬IT학과</option>
-		            	<option value="35">인문융합자율학부</option>
-		            	<option value="36">사회융합자율학부</option>
-		            	<option value="37">미디어컨텐츠융합학부</option>
-		            	<option value="38">IT융합자율학부</option>
+		            	<option value="28" ${departmentId == "28" ? "selected" : ""}>신문방송학과</option>
+		            	<option value="29" ${departmentId == "29" ? "selected" : ""}>경영학부</option>
+		            	<option value="30" ${departmentId == "30" ? "selected" : ""}>디지털컨텐츠학과</option>
+		            	<option value="31" ${departmentId == "31" ? "selected" : ""}>컴퓨터공학과</option>
+		            	<option value="32" ${departmentId == "32" ? "selected" : ""}>소프트웨어공학과</option>
+		            	<option value="33" ${departmentId == "33" ? "selected" : ""}>정보통신공학과</option>
+		            	<option value="34" ${departmentId == "34" ? "selected" : ""}>글로컬IT학과</option>
+		            	<option value="35" ${departmentId == "35" ? "selected" : ""}>인문융합자율학부</option>
+		            	<option value="36" ${departmentId == "36" ? "selected" : ""}>사회융합자율학부</option>
+		            	<option value="37" ${departmentId == "37" ? "selected" : ""}>미디어컨텐츠융합학부</option>
+		            	<option value="38" ${departmentId == "38" ? "selected" : ""}>IT융합자율학부</option>
 		            </select>
 		        </div>
 	        	<div class="form-group" style="float:left; margin-right: 20px; margin-bottom:5px;">
 	          		<p class="font2">학번</p>
 	          		<select name="entranceYear" class="form-control w200">
 	          			<option value="99" label="선택" /> 
-						<option value="2010" label="2010학번" />
-						<option value="2011" label="2011학번" />
-						<option value="2012" label="2012학번" />
-						<option value="2013" label="2013학번" />
-						<option value="2014" label="2014학번" />
-						<option value="2015" label="2015학번" />
-						<option value="2016" label="2016학번" />
-						<option value="2017" label="2017학번" />
-						<option value="2018" label="2018학번" /> 
+						<option value="2010" ${entranceYear == "2010" ? "selected" : ""}> 2015학번 </option>
+						<option value="2011" ${entranceYear == "2011" ? "selected" : ""}> 2015학번 </option>
+						<option value="2012" ${entranceYear == "2012" ? "selected" : ""}> 2012학번 </option>
+						<option value="2013" ${entranceYear == "2013" ? "selected" : ""}> 2013학번 </option>
+						<option value="2014" ${entranceYear == "2014" ? "selected" : ""}> 2014학번 </option>
+						<option value="2015" ${entranceYear == "2015" ? "selected" : ""}> 2015학번 </option>
+						<option value="2016" ${entranceYear == "2016" ? "selected" : ""}> 2016학번 </option>
+						<option value="2017" ${entranceYear == "2017" ? "selected" : ""}> 2015학번 </option>
+						<option value="2018" ${entranceYear == "2018" ? "selected" : ""}> 2015학번 </option>
 	          		</select>
 	        	</div>
         		<button type="submit" class="btn-submit" style="margin-left: 0; margin-top:0; padding: 5px 20px; float:left;">조회</button>
@@ -407,16 +403,16 @@
       	</form>
       <br/>
       <br/>
-	  <c:if test="">
+	  <c:if test="${departmentId == 32}">
 	  	<div style="margin-top:10px; margin-left:20px;">
 	  		<p style="">
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2">전필</p>
-	                <input type="number" value="" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly/>
+	                <input type="number" value="${firstRule.mustMajor}" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly/>
 	            </div>
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2">학점을 포함하여 전공</p>
-	                <input type="number" value="" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;" readonly/>
+	                <input type="number" value="${firstRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;" readonly/>
 	            </div>
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2" style="margin-bottom:0px;">학점</p>
@@ -456,64 +452,42 @@
           </div>
 	  	</div>
 	  	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	  	<div style="margin-top:0px; margin-left:20px;">
-          <p style="">
-            <div class="form-group" style="float:left; margin-bottom:0px;">
-                <p class="font2">교필</p>
-                <input type="number" class="form-control" style="width:60px; margin-right:0;" name="major_necessary" value="10"/>
-            </div>
-            <div class="form-group" style="float:left; margin-bottom:0px;">
-                <p class="font2">학점을 포함하여 교양</p>
-                <input type="number" class="form-control" style="width:60px; margin-right:0;" name="major_total" value="31"/>
-            </div>
-            <div class="form-group" style="float:left; margin-bottom:0px;">
-                <p class="font2" style="margin-bottom:0px;">학점</p>
-            </div>
-          </p>
-          <br/>
-          <br/>
-          <p>
-            <div class="form-group" style="">
-                <div style="width:330px;">
-                  <p class="font3">교양필수과목 <a data-toggle="modal" href="#addSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
-                </div>
-                <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
-                  <a href="#" class="list-group-item list-group-item-action">
-                    대학생활세미나1 <span style="float:right;">&times;</span>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action">대학생활세미나2 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">말과 글 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">사회봉사1 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">기도모임 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">기도모임 <span style="float:right;">&times;</span></a>
-                </div>
-            </div>
-          </p>
-        </div>
-        <br/>
         <div style="margin-left:20px">
         	<p>
               <div class="form-group" style="float:left; margin-bottom:0px;">
                   <p class="font2">전공과정</p>
               </div>
             </p>
-            <c:forEach var="departmentMajorRule" items="departmentMajorRules">
-	            <p class="font3">▶ 전공 기초 과정
-	                <p style="">
-	                  <div class="form-group" style="float:left; margin-bottom:0px;">
-	                	<p class="font2">전필</p>
-	                	<input type="number" value="" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly/>
-	            	  </div>
-	            	  <div class="form-group" style="float:left; margin-bottom:0px;">
-	                	<p class="font2">학점을 포함하여 전공</p>
-	               		<input type="number" value="" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;" readonly/>
-	            	  </div>
-		              <div class="form-group" style="float:left; margin-bottom:0px;">
-		                <p class="font2" style="margin-bottom:0px;">학점</p>
-		              </div>
-	                </p>
-	              </p>
-	        </c:forEach>
+            <br/><br/>
+            <form:form method="post">
+	            <c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
+	            	<div style="margin-left:40px">
+		            	<p class="font3">▶${departmentMajorRule.processName} </p>
+		                	<div style="margin-left:30px">
+		                  		<div class="form-group" style="float:left; margin-bottom:0px;">
+		                			<p class="font2">전필</p>
+		                			<input type="number" value="${departmentMajorRule.mustMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
+		            	  		</div>
+		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
+		                			<p class="font2">학점과 전선</p>
+		               				<input type="number" value="${departmentMajorRule.choiceMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+		            	  		</div>
+		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
+		                			<p class="font2">학점을 포함하여 전공</p>
+		               				<input type="number" value="${departmentMajorRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+		            	  		</div>
+			              		<div class="form-group" style="float:left; margin-bottom:0px;">
+			                		<p class="font2" style="margin-bottom:0px;">학점</p>
+			              		</div>
+		                	</div>
+		            </div>
+		              <br/>
+		              <br/>
+		        </c:forEach>
+		        <button type="submit" class="btn btn-submit">
+				    <span class="glyphicon glyphicon-ok"></span> 저장
+				</button>
+	        </form:form>
         </div>
 	  </c:if>
 	  
