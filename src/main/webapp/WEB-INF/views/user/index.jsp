@@ -268,7 +268,7 @@
                 	<li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
                   <div class="dropdown-content">
                     <a href="professorInquiry">교수조회</a>
-                    <a href="graduation/studentListForAdmin">학생조회</a>
+                    <a href="studentListForAdmin">학생조회</a>
                   </div>
                 </li>
                 </sec:authorize>
