@@ -43,10 +43,17 @@ public class GraduationRuleController {
 		return "guest/graduationRule";
 	}
 
-	@RequestMapping("graduation/graduationRule")
-	public String view(Model model) {
-		List<Department> departments = departmentMapper.findAll();
-		model.addAttribute("departments", departments);
+	@RequestMapping(value="graduation/graduationRule", method = RequestMethod.GET)
+	public String viewUser(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
+		Total total = totalMapper.find();
+		int totalGrade = total.getGrade();
+		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
+		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId, entranceYear);
+		model.addAttribute("departmentId", departmentId);
+		model.addAttribute("entranceYear", entranceYear);
+		model.addAttribute("total", totalGrade);
+		model.addAttribute("firstRule", firstRule);
+		model.addAttribute("departmentMajorRules", departmentMajorRules);
 		return "graduation/graduationRule";
 	}
 }
