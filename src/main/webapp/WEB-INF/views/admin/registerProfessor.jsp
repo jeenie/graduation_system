@@ -218,7 +218,8 @@
                 <li role="presentation"><a href="">졸업요건</a></li>
                 <li role="presentation" class="dropdown" ><a href="">졸업관리</a>
                   <div class="dropdown-content">
-                      <a href="">졸업요건 관리</a>
+                      <a href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별 졸업요건 </a>
+	                  <a href="${R}graduation/culturalSubject?entranceYear=99">교양 필수 과목 </a>
                       <a href="">대체 과목 리스트 관리</a>
                       <a href="majorAdmitManage.html">전공인정관리</a>
                     </div>
