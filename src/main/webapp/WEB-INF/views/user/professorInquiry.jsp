@@ -267,7 +267,7 @@ td {
 									href="StudentInquiryForAdmin.html">사용자관리</a>
 									<div class="dropdown-content">
 										<a href="${R}user/professorInquiry">교수조회</a> <a
-											href="graduation/studentListForAdmin">학생조회</a>
+											href="${R}user/studentListForAdmin">학생조회</a>
 
 									</div></li>
 								<li role="presentation"><a href="logout_processing">Logout</a></li>
