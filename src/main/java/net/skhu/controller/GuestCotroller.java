@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GuestCotroller {
 	
-	@RequestMapping("/")
+	@RequestMapping(value={"/","guest/index"})
     public String index() {
         return "guest/index";
     }

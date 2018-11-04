@@ -11,7 +11,6 @@ public interface ProfessorMapper {
 	Professor findById(int id);
 	List<Professor> findAll();
 	List<Professor> findByDepartment(String departmentName);
-	Professor findOne(String professorId);
 	List<Professor> findByInquiry(String name, Integer id, String departmentName);
 	void insert(Professor professor);
 	void update(Professor professor);
