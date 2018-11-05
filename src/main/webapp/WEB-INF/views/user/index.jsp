@@ -246,7 +246,6 @@
 	                      <a href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별 졸업요건 </a>
 	                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
 	                      <a href="${R}graduation/SubstitutionSubject">대체 과목 관리</a>
-	                      <a href="majorAdmitManage.html">전공인정관리</a>
 	                    </div>
 	                </li>
               	</sec:authorize>

@@ -196,59 +196,7 @@
   </style>
 </head>
 <body>
-	<header>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-            <div class="navbar-brand">
-              <a href="indexForAdmin.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
-            </div>
-          </div>
-
-          <div class="navbar-collapse collapse">
-            <div class="menu">
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="">졸업요건</a></li>
-                <li role="presentation" class="dropdown" ><a href="">졸업관리</a>
-                  <div class="dropdown-content">
-                      <a href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별 졸업요건 </a>
-	                  <a href="${R}graduation/culturalSubject?entranceYear=99">교양 필수 과목 </a>
-                      <a href="">대체 과목 리스트 관리</a>
-                      <a href="majorAdmitManage.html">전공인정관리</a>
-                    </div>
-                </li>
-                <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-                <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-                <li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
-                  <div class="dropdown-content">
-                    <a href="professorInquiry.html">교수조회</a>
-                    <a href="StudentInquiryForAdmin.html">학생조회</a>
-
-                  </div>
-                </li>
-                <li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
-                <li>
-                  <div style="margin-top:28px; margin-left:1.5px;">
-                      <a href="managerInfoEdit.html">
-                          <i class="fas fa-user-edit fa-lg"></i>
-                      </a>
-                  </div>
-              </li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp" %>
   <div id="breadcrumb">
     <div class="container">
         <div class="breadcrumb">
