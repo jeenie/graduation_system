@@ -659,5 +659,126 @@ textarea {
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
 
+<<<<<<< HEAD
+=======
+                    </form>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="studentInfo" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-bottom:1.5px;">
+    
+                        <h4><b>학생정보</b>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        </h4>
+    
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <table class="table-s">
+                                <tr>
+                                    <th class="th-s">학번</th>
+                                    <td class="td-s">20101010</td>
+                                    <th class="th-s">성명</th>
+                                    <td class="td-s">오지현</td>
+                                </tr>
+                                <tr>
+                                    <th class="th-s">학부(과)</th>
+                                    <td class="td-s">소프트웨어공학과</td>
+                                    <th class="th-s">학년</th>
+                                    <td class="td-s">3</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="th-s">입학구분</th>
+                                    <td class="td-s">신입학</td>
+                                    <th class="th-s">이수학기</th>
+                                    <td class="td-s">3학년-2학기</td>
+                                </tr>
+                            </table>
+                            <div>
+                                <br>
+                                &nbsp;OOO 학생은 <i class="fas fa-lock"></i>&nbsp;
+                                <select name="special course">
+                                    <option value="">특별과정선택</option>
+                                    <option value="전공기초과정" selected="selected">전공기초과정</option>
+                                    <option value="전공심화과정">전공심화과정</option>
+                                    <option value="타과복수전공과정">타과복수전공과정</option>
+                                    <option value="타과부전공과정">타과부전공과정</option>
+                                </select>&nbsp을 이수하고 있습니다.
+                                       
+                            </div> 
+                        </div>
+                        <div>
+                            <div class="skill">
+                                <div class="progress-wrap" style="width:350px;">
+                                    <br>
+                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                            <span class="bar-width">67%</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="progress-wrap" style="width:350px;">
+                                    <b>＞전공</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
+                                    <div class="progress">
+                                        <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="bar-width">78%</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <img src="images/abouti/maj.png" width="100%">
+                                <div class="progress-wrap" style="width:350px;">
+                                    <b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
+                                    <div class="progress">
+                                        <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                            <span class="bar-width">90%</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <img src="images/abouti/ref.png" width="100%">
+                            </div>
+                            
+
+                        </div>
+                        
+                           
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+ 
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	  <script src="${R}res/js/jquery-2.1.1.min.js"></script>
+	  <!-- Include all compiled plugins (below), or include individual files as needed -->
+	  <script src="${R}res/js/bootstrap.min.js"></script>
+	  <script src="${R}res/js/jquery.prettyPhoto.js"></script>
+	  <script src="${R}res/js/jquery.isotope.min.js"></script>
+	  <script src="${R}res/js/wow.min.js"></script>
+	  <script src="${R}res/js/functions.js"></script>
+	 
+>>>>>>> 3072222ec7ee0e1e597b61a378079dfd4e9f85e3
 </body>
 </html>

@@ -1,5 +1,7 @@
 package net.skhu.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.skhu.dto.Professor;
 import net.skhu.dto.Student;
 import net.skhu.dto.User;
+import net.skhu.mapper.ProfessorMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.service.GuestService;
 import net.skhu.utils.Encryption;
 
 @Controller
 @RequestMapping("/guest")
 public class FindPasswordController {
 	@Autowired StudentMapper studentMapper;
+	@Autowired ProfessorMapper professorMapper;
 	@Autowired UserMapper userMapper;
+	@Autowired GuestService guestService;
 	
 	@RequestMapping("findPw")
 	public String findPw() {
@@ -87,8 +94,25 @@ public class FindPasswordController {
 		return "redirect:login";
 	}
 	
-	@RequestMapping("findProfessorPw")
-	public String findProfessorPw() {
+	@RequestMapping(value="findProfessorPw", method=RequestMethod.GET)
+	public String findProfessorPw(Model model) {
+		Professor professor = new Professor();
+		model.addAttribute("professor", professor);
+		return "guest/professorPw";
+	}
+	
+	@RequestMapping(value="findProfessorPw", method=RequestMethod.POST)
+	public String findProfessorPw(Model model, Professor professor) throws IOException{
+		boolean success = false;
+		if(professorMapper.findById(professor.getId()) != null) {
+			Professor pro = professorMapper.findById(professor.getId());
+			
+			if(pro.getEmail().equals(professor.getEmail())) {
+				success = true;
+				guestService.sendEmail(professor.getEmail());
+				return "redirect:sendEmail?success=true";
+			}
+		}
 		return "guest/professorPw";
 	}
 }

@@ -8,8 +8,15 @@
 	<select id="findFirst" resultType="DepartmentMajorRule">
 		select * from department_major_rule where departmentId=#{departmentId} and entranceYear=#{entranceYear} and processId = 1
 	</select>
+	
 	<update id="update">
 		UPDATE department_major_rule SET mustMajor = #{mustMajor}, choiceMajor = #{choiceMajor}, mustPlusChoice = #{mustPlusChoice} WHERE departmentId = #{departmentId} and entranceYear=#{entranceYear} and processId = #{processId} 
+	</update>
+	
+	<update id="updateList" parameterType="java.util.List">
+		<foreach collection="list" item="DepartmentMajorRule" index="index" separator=";">
+        	update department_major_rule set mustMajor = #{mustMajor}, choiceMajor = #{choiceMajor}, mustPlusChoice = #{mustPlusChoice} WHERE departmentId = #{departmentId} and entranceYear=#{entranceYear} and processId = #{processId} 
+    	</foreach>
 	</update>
 	
 	<resultMap id="departmentMajorRules" type="net.skhu.dto.DepartmentMajorRule">

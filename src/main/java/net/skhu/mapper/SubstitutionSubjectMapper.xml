@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.SubstitutionSubjectMapper">
+	<select id="findAll" resultType="SubstitutionSubject">
+		SELECT abosub.name abolitionSubjectName, substi.name substitutionSubjectName FROM substitution_subject_list subsubject LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id;
+	</select>
+</mapper>
