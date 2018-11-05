@@ -17,7 +17,8 @@
 		FROM professor p LEFT JOIN department d ON p.departmentId = d.id
 		<!--WHERE d.departmentName LIKE CONCAT('%',#{departmentName},'%') or p.name=#{name}
 	    OR p.id=#{id} -->
-	    <!--WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}-->
+	    WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}
+	    <!--
 	    <where>
 	    	<if test ="name != null &amp;&amp; id ==null &amp;&amp; departmentName == null">
 	    		p.name = #{name}
@@ -41,6 +42,7 @@
 	    		p.name = #{name} AND p.id = #{id} AND d.departmentName = #{departmentName}
 	    	</if>
 	    </where>
+	    -->
 	</select>
 	<insert id="insert">
     	INSERT Professor (id, name, email, departmentId, password)

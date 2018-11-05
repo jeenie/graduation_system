@@ -3,7 +3,8 @@
 
 <mapper namespace="net.skhu.mapper.StudentMapper">
 	<select id="findAll" resultType="Student">
-		SELECT s.*, d.departmentName FROM student s LEFT JOIN department d ON s.departmentId = d.id
+		SELECT s.*, d.departmentName, file.totalUnit 
+		FROM (student s LEFT JOIN department d ON s.departmentId = d.id) LEFT JOIN student_gradefile file ON s.id = file.id
 	</select>
 	<select id="findById" resultType="Student">
 		SELECT * FROM Student WHERE id=#{id}
@@ -14,6 +15,42 @@
 	<select id="findWithQuiz" resultType="Student">
 		SELECT s.*, pq.quizContent from student s LEFT JOIN passwordquiz pq ON s.passwordQuestion = pq.quizCode WHERE id=#{id}
 	</select>
+	<select id="findByStudentInquiry" resultType="Student">
+		SELECT s.id, s.name, s.completeSemester, s.grade, s.departmentId, d.departmentName<!--ssg.subjectId, sub.name subjectName-->
+		FROM student s LEFT JOIN department d ON s.departmentId = d.id <!--LEFT JOIN student_subject_grade ssg ON s.id = ssg.id) LEFT JOIN subject sub ON ssg.subjectId = sub.id-->
+		<!--WHERE d.departmentName = #{departmentName} OR s.grade = #{grade} OR s.name = #{name} OR s.id = #{id} OR sub.name = #{subjectName}-->
+		WHERE d.departmentName = #{departmentName} OR s.grade = #{grade} OR s.name=#{name} OR s.id=#{id}
+		<!--<where>
+			<if test="subjectName != null">
+			
+			</if>
+		</where> -->
+		<!--		
+		<where>
+		    
+			<if test="grade != null">
+				AND grade IN
+				<foreach item="grade" collection="gradeList" open="(" separator="," close=")">
+					#{grade}
+				</foreach>
+			</if>
+			<if test="departmentName != null">
+				OR departmentName IN
+				<foreach item="departmentName" collection="departmentNameList" open="(" separator="," close=")">
+					#{departmentName}
+				</foreach>
+			</if>
+			
+			<if test="name != null">
+				AND name = #{name}
+			</if>
+			<if test="id != null">
+				AND id = #{id}
+			</if>
+		</where>
+	-->
+	</select>
+	
 	<insert id="insert" parameterType="Student">
     	INSERT Student (id, name, departmentId, grade, entranceType, password, password2, passwordQuestion, passwordAnswer, email, completeSemester)
     	VALUES (#{id}, #{name}, #{departmentId}, #{grade}, #{entranceType}, #{password}, #{password2}, #{passwordQuestion}, #{passwordAnswer}, #{email}, #{completeSemester})
@@ -24,4 +61,7 @@
   	<update id="updatePassword">
   		UPDATE student SET password = #{password}, password2 = #{password2} WHERE id=#{id}
   	</update>
+  		<delete id="delete">
+		DELETE FROM student WHERE id=#{id}
+	</delete>
 </mapper>

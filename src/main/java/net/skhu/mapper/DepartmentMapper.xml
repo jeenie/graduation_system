@@ -6,4 +6,14 @@
 	<select id="findAll" resultType="Department">
       SELECT * FROM Department
   	</select>
+  	<!-- 
+  	<select id="findAllWithStudents" resultMap="resultMap1">
+		SELECT sub.name subjectName, ssg.subjectId, ssg.id studentId, s.name sutdentName, s.completeSemester, d.departmentName, s.grade
+		FROM ((student_subject_grade ssg LEFT JOIN subject sub ON ssg.subjectId= sub.id) LEFT JOIN student s ON ssg.id=s.id) LEFT JOIN department d ON s.departmentId = d.id
+		ORDER BY sub.name;
+	</select>
+	<resultMap id = "resultMap1" type="Department">
+		<id property=""
+	</resultMap>
+	-->
 </mapper>
