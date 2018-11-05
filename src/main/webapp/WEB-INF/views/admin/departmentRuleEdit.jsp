@@ -336,15 +336,15 @@
 	          		<p class="font2">학번</p>
 	          		<select name="entranceYear" class="form-control w200">
 	          			<option value="99" label="선택" /> 
-						<option value="2010" ${entranceYear == "2010" ? "selected" : ""}> 2015학번 </option>
-						<option value="2011" ${entranceYear == "2011" ? "selected" : ""}> 2015학번 </option>
+						<option value="2010" ${entranceYear == "2010" ? "selected" : ""}> 2010학번 </option>
+						<option value="2011" ${entranceYear == "2011" ? "selected" : ""}> 2011학번 </option>
 						<option value="2012" ${entranceYear == "2012" ? "selected" : ""}> 2012학번 </option>
 						<option value="2013" ${entranceYear == "2013" ? "selected" : ""}> 2013학번 </option>
 						<option value="2014" ${entranceYear == "2014" ? "selected" : ""}> 2014학번 </option>
 						<option value="2015" ${entranceYear == "2015" ? "selected" : ""}> 2015학번 </option>
 						<option value="2016" ${entranceYear == "2016" ? "selected" : ""}> 2016학번 </option>
-						<option value="2017" ${entranceYear == "2017" ? "selected" : ""}> 2015학번 </option>
-						<option value="2018" ${entranceYear == "2018" ? "selected" : ""}> 2015학번 </option>
+						<option value="2017" ${entranceYear == "2017" ? "selected" : ""}> 2017학번 </option>
+						<option value="2018" ${entranceYear == "2018" ? "selected" : ""}> 2018학번 </option>
 	          		</select>
 	        	</div>
         		<button type="submit" class="btn-submit" style="margin-left: 0; margin-top:0; padding: 5px 20px; float:left;">조회</button>

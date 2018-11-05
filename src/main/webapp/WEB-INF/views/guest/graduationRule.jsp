@@ -339,7 +339,7 @@ select.form-control.w200 {
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
+								<li role="presentation" class="dropdown"><a href="login">졸업관리</a>
 									<div class="dropdown-content">
 										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
 										<a href="">대체/타전공 현황</a>
