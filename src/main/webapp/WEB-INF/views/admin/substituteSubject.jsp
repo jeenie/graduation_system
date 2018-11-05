@@ -224,59 +224,57 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+    	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      		<div class="navigation">
+        		<div class="container">
+          			<div class="navbar-header">
+            			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
 						</button>
-						<div class="navbar-brand">
-							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
+            			<div class="navbar-brand">
+              				<a href="${R}user/index"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+            			</div>
+          			</div>
 
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="graduation/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="">졸업요건 관리</a> <a href="${R}admin/substitute">대체 과목 리스트 관리</a> <a
-											href="majorAdmitManage.html">전공인정관리</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation" class="dropdown"><a
-									href="">사용자관리</a>
-									<div class="dropdown-content">
-										<a href="${R}user/professorInquiry">교수조회</a> <a
-											href="graduation/studentListForAdmin">학생조회</a>
-
-									</div></li>
-								<li role="presentation"><a href="logout_processing">Logout</a></li>
-								<li>
-
-									<div style="margin-top: 28px; margin-left: 1.5px;">
-										<a href="managerInfoEdit.html"> <i
-											class="fas fa-user-edit fa-lg"></i>
-										</a>
-									</div>
-								</li>
-
+          			<div class="navbar-collapse collapse">
+            			<div class="menu">
+              				<ul class="nav nav-tabs" role="tablist">
+                				<li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+                					<li role="presentation" class="dropdown" ><a href="">졸업관리</a>
+                  						<div class="dropdown-content">
+					                      <a href="graduation/departmentRuleEdit">학과별 졸업요건</a>
+					                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
+					                      <a href="${R}graduation/SubstitutionSubject">대체 과목 리스트 관리</a>
+					                      <a href="majorAdmitManage.html">전공인정관리</a>
+                    					</div>
+                					</li>
+					                <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
+					                <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
+					                <li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
+					                  <div class="dropdown-content">
+					                    <a href="professorInquiry.html">교수조회</a>
+					                    <a href="StudentInquiryForAdmin.html">학생조회</a>
+					
+					                  </div>
+                					</li>
+               		 				<li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
+                					<li>
+                  						<div style="margin-top:28px; margin-left:1.5px;">
+                      						<a href="managerInfoEdit.html">
+                          						<i class="fas fa-user-edit fa-lg"></i>
+                      						</a>
+                  						</div>
+              						</li>
 							</ul>
-						</div>
+					     </div>
 					</div>
 				</div>
 			</div>
-		</nav>
-	</header>
+    	</nav>
+  	</header>
 
 	<div id="breadcrumb">
 		<div class="container">
@@ -293,9 +291,7 @@
 				<div class="contents" style="text-align: center;">
 					<div style="text-align: left;">
 						<form action="professorSearch" autocomplete=off>
-							&nbsp; 이름 :&nbsp;<input type="text" name="name" value="${name}">
-							&nbsp; 사번 :&nbsp;<input type="text" name="id" value="${id }">
-							&nbsp; 소속학과 :&nbsp;<input type="text" name="departmentName" value="${departmentName }"> &nbsp;
+							&nbsp; 과목명 :&nbsp;<input type="text" name="name" value="${name}">&nbsp;
 							<button type="submit" class="inquiry_btn warning">조회</button>
 							<!--<a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>-->
 							<a href="professorAdd"><button type="button"
@@ -314,14 +310,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="professor" items="${ professors }">
+							<c:forEach var="substitutionSubject" items="${ substitutionSubjectList }">
 
 								<!--<tr data-toggle="modal" data-id="professorDelete" data-target="#professorDelete">-->
-								<tr onclick="button_event(${professor.id});">
-									<td>${ professor.id }</td>
-									<td>${ professor.name }</td>
-									<td>${ professor.departmentName }</td>
-									<td>${ professor.email }</td>
+								<tr>
+									<td>${ substitutionSubject.abolitionSubjectName }</td>
+									<td>${ substitutionSubject.substitutionSubjectName}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -424,17 +418,7 @@
 		</div>
 	</div>
 
-
-	<footer>
-		<div class="footer">
-			<div class="container">
-				문의:test123@naver.com <br> 152-716 서울시 구로구 연동로320 <br>
-				Copyright&copy; 2018SKHU Software Engineering All Rights Reserved <br>
-
-
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
