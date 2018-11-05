@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.RequiredCultureCount;
+import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.Total;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
+import net.skhu.mapper.RequiredCultureSubjectMapper;
 import net.skhu.mapper.TotalMapper;
 
 @Controller
@@ -23,6 +25,7 @@ public class GraduationRuleController {
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired DepartmentMajorRuleMapper departmentMajorRuleMapper;
 	@Autowired RequiredCultureCountMapper requiredCultureCountMapper;
+	@Autowired RequiredCultureSubjectMapper requiredCultureSubjectMapper;
 	@Autowired TotalMapper totalMapper;
 	
 	@RequestMapping("guest/graduationRule")
@@ -87,12 +90,20 @@ public class GraduationRuleController {
 	@RequestMapping("graduation/culturalSubject")
 	public String culturalSubject(Model model) {
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(2016);
+		List<RequiredCultureSubject> requiredCultureSubjects2018 = requiredCultureSubjectMapper.findByYear(2018);
 		model.addAttribute("requiredCultureCount", requiredCultureCount);
+		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
+		model.addAttribute("requiredCultureSubjects2018", requiredCultureSubjects2018);
 		return "admin/culturalSubject";
 	}
 	
 	@RequestMapping(value="graduation/culturalSubject", method=RequestMethod.POST)
-	public String editCultural(Model modle, RequiredCultureCount requiredCultureCount) {
+	public String editCultural(Model model, RequiredCultureCount requiredCultureCount) {
+		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(2016);
+		List<RequiredCultureSubject> requiredCultureSubjects2018 = requiredCultureSubjectMapper.findByYear(2018);
+		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
+		model.addAttribute("requiredCultureSubjects2018", requiredCultureSubjects2018);
 		requiredCultureCountMapper.update(requiredCultureCount);
 		return "admin/culturalSubject";
 	}
