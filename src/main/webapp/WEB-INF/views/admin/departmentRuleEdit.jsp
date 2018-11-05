@@ -323,7 +323,7 @@
                   						<div class="dropdown-content">
 					                      <a href="graduation/departmentRuleEdit">학과별 졸업요건</a>
 					                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
-					                      <a href="">대체 과목 리스트 관리</a>
+					                      <a href="${R}graduation/SubstitutionSubject">대체 과목 리스트 관리</a>
 					                      <a href="majorAdmitManage.html">전공인정관리</a>
                     					</div>
                 					</li>

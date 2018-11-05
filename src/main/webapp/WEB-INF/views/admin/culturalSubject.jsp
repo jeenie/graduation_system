@@ -323,7 +323,7 @@
                   						<div class="dropdown-content">
 					                      <a href="${R}graduation/departmentRuleEdit">학과별 졸업요건</a>
 					                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
-					                      <a href="">대체 과목 리스트 관리</a>
+					                      <a href="${R}graduation/SubstitutionSubject">대체 과목 리스트 관리</a>
 					                      <a href="majorAdmitManage.html">전공인정관리</a>
                     					</div>
                 					</li>
@@ -434,17 +434,7 @@
 		</div>
 		</form:form>
   </div>
-
-
-  <footer>
-  	<div class="footer">
-        <div class="container">
-          문의:test123@naver.com<br>
-          152-716 서울시 구로구 연동로320<br>
-          Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-        </div>
-      </div>
-  </footer>
+  <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="${R}res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
