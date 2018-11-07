@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="net.skhu.mapper.MajorMapper">
+	<select id="findMustMajor" resultType="Major">
+		SELECT m.*, s.name majorName, d.departmentName FROM major_list m LEFT JOIN department d ON m.departmentId = d.id LEFT JOIN subject s ON m.majorSubjectId = s.id where m.departmentId = #{departmentId} and s.completeType = '전공필수';
+	</select>
+</mapper>
+             
+             

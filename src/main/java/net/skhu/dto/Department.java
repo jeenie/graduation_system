@@ -1,5 +1,6 @@
 package net.skhu.dto;
 
+//학과
 public class Department {
 	int id;
 	String departmentName;
