@@ -357,11 +357,12 @@
 	  		<p style="">
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2">전필</p>
-	                <input type="number" value="${firstRule.mustMajor}" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly/>
+	                <input type="number" value="${firstRule.mustMajor}" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
 	            </div>
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2">학점을 포함하여 전공</p>
-	                <input type="number" value="${firstRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;" readonly/>
+	                <input type="number" value="${firstRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"
+	                 />
 	            </div>
 	            <div class="form-group" style="float:left; margin-bottom:0px;">
 	                <p class="font2" style="margin-bottom:0px;">학점</p>

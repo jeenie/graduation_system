@@ -13,11 +13,25 @@
 	</select>
 	<select id="findByInquiry" resultType="Professor">
 		<!-- String name, int id, String departmentName -->
+		<!--SET @name = #{name}
+		SET @id = #{id}
+		SET @departmentName = #{departmentName} -->
+		
 		SELECT p.*, d.departmentName 
 		FROM professor p LEFT JOIN department d ON p.departmentId = d.id
+		<!--
+		WHERE 
+			(@name IS NULL OR @name = "" OR @name = p.name)
+		AND (@id IS NULL OR @id = "" OR @id = p.id)
+		AND (@departmentName IS NULL OR @departmentName = "" OR @departmentName = d.departmentName)
+		-->
+		WHERE (#{name} IS NULL OR #{name}="" OR #{name}=p.name)
+		AND (#{id} IS NULL OR #{id}="" OR #{id}=p.id)
+		AND (#{departmentName} IS NULL OR #{departmentName}="" OR #{departmentName}=d.departmentName OR d.departmentName LIKE CONCAT('%',#{departmentName},'%'))
+		
 		<!--WHERE d.departmentName LIKE CONCAT('%',#{departmentName},'%') or p.name=#{name}
 	    OR p.id=#{id} -->
-	    WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}
+	    <!--WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}-->
 	    <!--
 	    <where>
 	    	<if test ="name != null &amp;&amp; id ==null &amp;&amp; departmentName == null">

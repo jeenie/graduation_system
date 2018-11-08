@@ -243,7 +243,7 @@
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a
-									href="guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+									href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 								<li role="presentation" class="dropdown"><a href="guest/login">졸업관리</a>
 									<div class="dropdown-content">
 										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
