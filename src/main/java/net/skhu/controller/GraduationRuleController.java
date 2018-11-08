@@ -1,5 +1,6 @@
 package net.skhu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Department;
+import net.skhu.dto.DepartmentCulture;
 import net.skhu.dto.DepartmentMajorRule;
+import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.Total;
+import net.skhu.mapper.DepartmentCultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
 import net.skhu.mapper.RequiredCultureSubjectMapper;
 import net.skhu.mapper.TotalMapper;
@@ -23,7 +28,9 @@ import net.skhu.mapper.TotalMapper;
 @Controller
 public class GraduationRuleController {
 	@Autowired DepartmentMapper departmentMapper;
+	@Autowired MajorMapper majorMapper;
 	@Autowired DepartmentMajorRuleMapper departmentMajorRuleMapper;
+	@Autowired DepartmentCultureMapper departmentCultureMapper;
 	@Autowired RequiredCultureCountMapper requiredCultureCountMapper;
 	@Autowired RequiredCultureSubjectMapper requiredCultureSubjectMapper;
 	@Autowired TotalMapper totalMapper;
@@ -41,11 +48,15 @@ public class GraduationRuleController {
 		int totalGrade = total.getGrade();
 		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
 		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId, entranceYear);
+		List<DepartmentCulture> departmentCultures = departmentCultureMapper.findByDepartmentId(departmentId, entranceYear);
+		List<Major> majors = majorMapper.findMustMajor(departmentId);
 		model.addAttribute("departmentId", departmentId);
 		model.addAttribute("entranceYear", entranceYear);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("firstRule", firstRule);
 		model.addAttribute("departmentMajorRules", departmentMajorRules);
+		model.addAttribute("majors", majors);
+		model.addAttribute("departmentCultures", departmentCultures);
 		return "guest/graduationRule";
 	}
 
@@ -70,6 +81,7 @@ public class GraduationRuleController {
 		return "user/graduationRule";
 	}
 	
+	//학과별 졸업요건 수정
 	@RequestMapping(value="graduation/deptRuleEdit", method = RequestMethod.GET)
 	public String choice(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
 		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
@@ -78,15 +90,31 @@ public class GraduationRuleController {
 		model.addAttribute("entranceYear", entranceYear);
 		model.addAttribute("firstRule", firstRule);
 		model.addAttribute("departmentMajorRules", departmentMajorRules);
+		
 		return "admin/departmentRuleEdit";
 	}
 	
 	@RequestMapping(value="graduation/deptRuleEdit", method = RequestMethod.POST)
-	public String edit(Model model, List<DepartmentMajorRule> departmentMajorRules) {
-		departmentMajorRuleMapper.updateList(departmentMajorRules);
+	public String edit(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear, @RequestParam("mustMajor") int[] mustMajors, @RequestParam("choiceMajor") int[] choiceMajors, @RequestParam("mustPlusChoice") int[] mustPlusChoices) {
+		/*departmentMajorRuleMapper.updateList(departmentMajorRules);
+		return "admin/departmentRuleEdit";*/
+		List<DepartmentMajorRule> rules = new ArrayList<DepartmentMajorRule>();
+		DepartmentMajorRule rule = new DepartmentMajorRule();
+		System.out.println(mustMajors.length);
+		for (int i = 0; i < mustMajors.length ; i++) {
+			rule.setDepartmentId(departmentId);
+			rule.setEntranceYear(i+1 ==1 || i == 2 ? entranceYear : 0);
+			rule.setProcessId(i+1);
+			rule.setMustMajor(mustMajors[i]);
+			rule.setChoiceMajor(choiceMajors[i]);
+			rule.setMustPlusChoice(mustPlusChoices[i]);
+			rules.add(rule);
+		}
+		departmentMajorRuleMapper.updateList(rules);
 		return "admin/departmentRuleEdit";
 	}
 	
+	//교양 필수 과목 수정
 	@RequestMapping("graduation/culturalSubject")
 	public String culturalSubject(Model model) {
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();

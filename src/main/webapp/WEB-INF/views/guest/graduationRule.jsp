@@ -153,35 +153,7 @@
 	height: 520px;
 }
 
-.left_sec {
-	margin-left: 60px;
-	float: left;
-	width: 300px;
-	height: 520px;
-}
 
-.abolish_list {
-	margin-top: 40px;
-	float: left;
-	border: 2px solid #1BBD36;
-	width: 300px;
-	height: 400px;
-}
-
-.right_sec {
-	margin-right: 60px;
-	float: right;
-	width: 300px;
-	height: 520px;
-}
-
-.alternative_list {
-	margin-top: 40px;
-	float: right;
-	border: 2px solid #1BBD36;
-	width: 300px;
-	height: 400px;
-}
 
 .myLavel {
 	margin: 0;
@@ -313,6 +285,10 @@ select.form-control.w200 {
 	padding-top: 2px;
 	padding-left: 10px;
 	padding-right: 0px;
+}
+.majorlist{
+	height : 259px;
+	overflow-y: scroll;
 }
 </style>
 </head>
@@ -448,45 +424,28 @@ select.form-control.w200 {
 					<div class="form-group" style="float: left">
 						<div style="width: 330px;">
 							<p class="font3">
-								전공필수과목 <a data-toggle="modal" href="#addMajorSubject"><span
-									style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span></a>
+								전공필수과목 
 							</p>
 						</div>
-						<div class="list-group"
+						<div class="list-group majorlist"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
-							<a href="#" class="list-group-item list-group-item-action">
-								C프로그래밍1 <span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">웹페이지구축1
-								<span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">컴퓨터
-								구조 <span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">자바프로그래밍
-								<span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">자료구조
-								<span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">운영체제론
-								<span style="float: right;">&times;</span>
-							</a>
+							<c:forEach var="major" items="${majors}"> 
+								<a href="#" class="list-group-item list-group-item-action">${major.majorName}</a>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="form-group" style="float: left; margin-left: 50px;">
 						<div style="width: 330px;">
 							<p class="font3">
-								학과지정교양 <a data-toggle="modal" href="#addMajorLiberal"><span
-									style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span></a>
+								학과지정교양
 							</p>
 						</div>
 						<div class="list-group"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
-							<a href="#" class="list-group-item list-group-item-action">
-								이산수학 <span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">정보사회론
-								<span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">대학수학
-								<span style="float: right;">&times;</span>
-							</a> <a href="#" class="list-group-item list-group-item-action">컴퓨터활용
-								<span style="float: right;">&times;</span>
-							</a>
+							<c:forEach var="departmentCulture" items="${departmentCultures}">
+								<a href="#" class="list-group-item list-group-item-action">
+								${departmentCulture.subjectName}</a>
+							</c:forEach> 
 						</div>
 					</div>
 				</div>

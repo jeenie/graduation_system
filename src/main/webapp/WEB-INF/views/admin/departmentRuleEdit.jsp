@@ -416,15 +416,15 @@
 		                	<div style="margin-left:30px">
 		                  		<div class="form-group" style="float:left; margin-bottom:0px;">
 		                			<p class="font2">전필</p>
-		                			<input type="number" value="${departmentMajorRule.mustMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
+		                			<input type="number" name="mustMajor" value="${departmentMajorRule.mustMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
 		            	  		</div>
 		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
 		                			<p class="font2">학점과 전선</p>
-		               				<input type="number" value="${departmentMajorRule.choiceMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+		               				<input type="number" name="choiceMajor" value="${departmentMajorRule.choiceMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
 		            	  		</div>
 		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
 		                			<p class="font2">학점을 포함하여 전공</p>
-		               				<input type="number" value="${departmentMajorRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+		               				<input type="number" name="mustPlusChoice" value="${departmentMajorRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
 		            	  		</div>
 			              		<div class="form-group" style="float:left; margin-bottom:0px;">
 			                		<p class="font2" style="margin-bottom:0px;">학점</p>

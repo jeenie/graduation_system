@@ -1,5 +1,6 @@
 package net.skhu.dto;
 
+//학과별 전공과정
 public class DepartmentMajorRule {
 	int departmentId;
 	String departmentName;
@@ -9,7 +10,7 @@ public class DepartmentMajorRule {
 	int mustMajor;
 	int choiceMajor;
 	int mustPlusChoice;
-	
+
 	public int getDepartmentId() {
 		return departmentId;
 	}
