@@ -5,6 +5,9 @@ public class SubstitutionSubject {
 	String abolitionSubjectName;
 	String substitutionSubject;
 	String substitutionSubjectName;
+	int departmentId;
+	String departmentName;
+	
 	public String getAbolitionSubject() {
 		return abolitionSubject;
 	}
@@ -28,5 +31,17 @@ public class SubstitutionSubject {
 	}
 	public void setSubstitutionSubjectName(String substitutionSubjectName) {
 		this.substitutionSubjectName = substitutionSubjectName;
+	}
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 }

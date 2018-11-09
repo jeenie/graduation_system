@@ -658,10 +658,7 @@ textarea {
 	<script src="${R}res/js/jquery.isotope.min.js"></script>
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
-
-<<<<<<< HEAD
-=======
-                    </form>
+       </form>
 
 
 

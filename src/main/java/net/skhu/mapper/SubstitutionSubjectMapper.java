@@ -9,4 +9,5 @@ import net.skhu.dto.SubstitutionSubject;
 @Mapper
 public interface SubstitutionSubjectMapper {
 	List<SubstitutionSubject> findAll();
+	List<SubstitutionSubject> findBySubject(String subject);
 }

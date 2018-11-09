@@ -239,8 +239,8 @@
 			<div style="margin-top: 30px">
 				<div class="contents" style="text-align: center;">
 					<div style="text-align: left;">
-						<form action="professorSearch" autocomplete=off>
-							&nbsp; 과목명 :&nbsp;<input type="text" name="name" value="${name}">&nbsp;
+						<form action="findSubject" autocomplete=off>
+							&nbsp; 과목명 :&nbsp;<input type="text" name="subject" value="${subject}">&nbsp;
 							<button type="submit" class="inquiry_btn warning">조회</button>
 							<!--<a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>-->
 							<a href="professorAdd"><button type="button"
@@ -254,6 +254,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
+								<th scope="col" class="text-center">담당 학과</th>
 								<th scope="col" class="text-center">폐지과목명</th>
 								<th scope="col" class="text-center">대체과목명</th>
 							</tr>
@@ -263,6 +264,7 @@
 
 								<!--<tr data-toggle="modal" data-id="professorDelete" data-target="#professorDelete">-->
 								<tr>
+									<td>${ substitutionSubject.departmentName }</td>
 									<td>${ substitutionSubject.abolitionSubjectName }</td>
 									<td>${ substitutionSubject.substitutionSubjectName}</td>
 								</tr>
