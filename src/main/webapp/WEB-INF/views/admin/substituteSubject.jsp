@@ -15,6 +15,7 @@
 <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
 <link rel="stylesheet" href="${R}res/css/animate.css">
+<link rel="stylesheet" href="${R}res/css/custom.css">
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
@@ -220,6 +221,15 @@
 		padding-top: 7px;
 		padding-left: 7px;
 	}
+	
+	.btn-submit {
+	padding: 6px 15px;
+	background: #1BBD36;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin-top: 0;
+	}
 </style>
 </head>
 <body>
@@ -243,8 +253,7 @@
 							&nbsp; 과목명 :&nbsp;<input type="text" name="subject" value="${subject}">&nbsp;
 							<button type="submit" class="inquiry_btn warning">조회</button>
 							<!--<a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>-->
-							<a href="professorAdd"><button type="button"
-									class="btn-statement4">추가</button></a>
+							<a data-toggle="modal" href="#addSubject" class="btn btn-submit">추가</a>
 
 						</form>
 
@@ -282,93 +291,83 @@
 		</div>
 
 	</div>
-	<div class="modal fade" id="professorAdd" tabinex="-1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
+	
+	<div class="modal fade" id="addSubject" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
-
 					<h4>
-						<b>교수추가</b>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-						</button>
-					</h4>
-
+						<b>대체 과목 추가</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
 				</div>
 				<div class="modal-body">
-					<img src="images/abouti/professor-1.png"
-						style="width: 180px; height: 200px; float: left; border-radius: 5px; padding-right: 20px;">
-
-					<p>
-						사번<input type="text" class="form-control" name="professorNum"
-							style="width: 250px">
-					</p>
-					<p>
-						이름<input type="text" class="form-control" style="width: 250px">
-					</p>
-					<p>
-						소속 학과 <select name="department" class="form-control"
-							style="width: 250px">
-							<option>소프트웨어공학과</option>
-							<option>컴퓨터공학과</option>
-							<option>IT융합자율학부</option>
-						</select>
-					</p>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						onclick="alert('해당교수에 대한 정보를 추가하시겠습니까?')">추가</button>
+					<form:form method="post" modelAttribute="substitutionSubject">
+						<div class="form-group">
+							<label>담당학과</label>
+							<form:select path="departmentId" class="form-control w200" itemValue="id" itemLabel="departmentName" items="${departments}"/>
+						</div>
+						<div class="form-group">
+							<label>폐지과목</label>
+							<form:input path="abolitionSubject" class="form-control w505"/>
+							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+						</div>
+						<div class="form-group">
+							<label>대체과목</label>
+							<form:input path="substitutionSubject" class="form-control w505"/>
+							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="professorDelete" tabinex="-1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
+	
+	<div class="modal fade" id="find" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
-
 					<h4>
-						<b>교수삭제</b>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-						</button>
-					</h4>
-
+						<b>과목 찾기</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
 				</div>
 				<div class="modal-body">
-					<img src="images/abouti/professor-1.png"
-						style="width: 180px; height: 200px; float: left; border-radius: 5px; padding-right: 20px;">
-
-					<p>
-						사번<input type="text" class="form-control" value="20100000"
-							name="professorNum" style="width: 250px">
-					</p>
-					<p>
-						이름<input type="text" class="form-control" value="홍은지"
-							style="width: 250px">
-					</p>
-					<p>
-						소속 학과 <select name="department" class="form-control"
-							style="width: 250px">
-							<option>소프트웨어공학과</option>
-							<option>컴퓨터공학과</option>
-							<option>IT융합자율학부</option>
-						</select>
-					</p>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						onclick="alert('해당교수에 대한 정보를 삭제하시겠습니까?')">삭제</button>
+					<form>
+						<div class="form-group">
+							<select class="form-control" name="ss" style="float:left; margin-right:5px; width:110px">
+								<option value="0">과목코드</option>
+								<option value="1">과목명</option>
+							</select>
+							<input type="text" name="st" value="${st}" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20">
+						</div>
+						<button type="button" class="btn btn-submit" onclick="searchSubject()">조회</button>
+					</form>
+					<table class="table table-bordered mt5" style="margin-top:10px;">
+						<thead>
+							<tr>
+								<th style="text-align:center;">과목코드</th>
+								<th style="text-align:center;">과목명</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="subject" items="${ subjects }">
+								<tr>
+									<td style="text-align:center;">${subject.id}</td>
+									<td style="text-align:center;">${subject.name}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
