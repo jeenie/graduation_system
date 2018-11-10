@@ -32,15 +32,16 @@ public class SubstitutionSubjectController {
 	}
 	
 	/*
-	@RequestMapping(value="SubstitutionSubject", method=RequestMethod.GET)
+	@RequestMapping(value="searchSubject", method=RequestMethod.POST)
 	public String search(Model model, @RequestParam(value="ss", required=false) String ss, @RequestParam(value="st", required=false) String st) {
 		if(ss == "0")
 			model.addAttribute("subjects", subjectMapper.findById(st));
 		else if(ss == "1")
-			model.addAttribute("subjects", subjectMapper.findBYName(st));
-		return "admin/substituteSubject";
+			model.addAttribute("subjects", subjectMapper.findByName(st));
+		return "modal/subjectList/ajax";
 	}
 	*/
+	
 	@RequestMapping(value="findSubject", method=RequestMethod.GET)
 	public String searchSubject(Model model, @RequestParam(value="subject", required=false) String subject) {
 		List<SubstitutionSubject> subjects = substitutionSubjectMapper.findBySubject(subject);

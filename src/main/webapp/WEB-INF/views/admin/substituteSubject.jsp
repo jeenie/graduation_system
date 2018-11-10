@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -231,6 +232,31 @@
 	margin-top: 0;
 	}
 </style>
+	<script type="text/javascript" language="javascript">
+		var params = { st: $("input[name=st]").val(), ss: $("select > option:selected").val()};
+		var url = 'popup?ss=' + params.ss + '&st=' + params.st;
+		var auto_refresh = setInterval(
+				function() {
+					$('#result').load(url).fadeIn('slow');
+				}, 5000		
+		);
+		
+		$(document).ready(function(){
+	        $.ajax({
+	             
+	            type : "GET",
+	            url : "popup?ss=0&st=",
+	            dataType : "text",
+	            error : function(){
+	                alert('통신실패!!');
+	            },
+	            success : function(data){
+	                $("#result").html(data) ;
+	            }
+	             
+	        });
+	    });
+	</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp" %>
@@ -337,7 +363,7 @@
 						</h4>
 				</div>
 				<div class="modal-body">
-					<form>
+					<form action="SubstitutionSubject/popup" id="searchSubject">
 						<div class="form-group">
 							<select class="form-control" name="ss" style="float:left; margin-right:5px; width:110px">
 								<option value="0">과목코드</option>
@@ -345,24 +371,10 @@
 							</select>
 							<input type="text" name="st" value="${st}" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20">
 						</div>
-						<button type="button" class="btn btn-submit" onclick="searchSubject()">조회</button>
+						<button type="submit" class="btn btn-submit" onclick="searchSubject();">조회</button>
 					</form>
-					<table class="table table-bordered mt5" style="margin-top:10px;">
-						<thead>
-							<tr>
-								<th style="text-align:center;">과목코드</th>
-								<th style="text-align:center;">과목명</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="subject" items="${ subjects }">
-								<tr>
-									<td style="text-align:center;">${subject.id}</td>
-									<td style="text-align:center;">${subject.name}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+					<div id="result">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -379,7 +391,14 @@
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
 
-
+	<script>
+	//	function searchSubject() {
+			//alert("함수실행ok");
+	//		var params = { st: $("input[name=st]").val(), ss: $("select > option:selected").val()};
+	//		console.log(params);
+	//		$("#result").load("searchSubject", params);
+	//	}
+	</script>
 
 </body>
 </html>

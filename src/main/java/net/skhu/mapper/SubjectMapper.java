@@ -9,5 +9,5 @@ import net.skhu.dto.Subject;
 @Mapper
 public interface SubjectMapper {
 	List<Subject> findById(String st);
-	List<Subject> findBYName(String st);
+	List<Subject> findByName(String st);
 }
