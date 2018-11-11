@@ -120,9 +120,11 @@ public class GraduationRuleController {
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(2016);
 		List<RequiredCultureSubject> requiredCultureSubjects2018 = requiredCultureSubjectMapper.findByYear(2018);
+		RequiredCultureSubject cultureMust = new RequiredCultureSubject();
 		model.addAttribute("requiredCultureCount", requiredCultureCount);
 		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
 		model.addAttribute("requiredCultureSubjects2018", requiredCultureSubjects2018);
+		model.addAttribute("cultureMust", cultureMust);
 		return "admin/culturalSubject";
 	}
 	
@@ -135,4 +137,18 @@ public class GraduationRuleController {
 		requiredCultureCountMapper.update(requiredCultureCount);
 		return "admin/culturalSubject";
 	}
+	
+	@RequestMapping(value="graduation/addSubject1617", method=RequestMethod.POST)
+	public String addSubject1617(Model model, RequiredCultureSubject cultureMust){
+		requiredCultureSubjectMapper.insert2016(cultureMust);
+		requiredCultureSubjectMapper.insert2017(cultureMust);
+		return "redirect:culturalSubject";
+	}
+	
+	@RequestMapping(value="graduation/addSubject18", method=RequestMethod.POST)
+	public String addSubject18(Model model, RequiredCultureSubject cultureMust){
+		requiredCultureSubjectMapper.insert2018(cultureMust);
+		return "redirect:culturalSubject";
+	}
+
 }

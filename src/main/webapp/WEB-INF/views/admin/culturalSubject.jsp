@@ -136,7 +136,7 @@
 	      margin-top: 5px;
 	      margin-right: 100px;
 	      margin-left: 140px;
-	      margin-bottom: 150px;
+	      margin-bottom: 350px;
 	    }
 	
 	    .divide {
@@ -146,35 +146,7 @@
 	      height: 520px;
 	
 	    }
-	    .left_sec {
-	      margin-left: 60px;
-	      float: left;
-	      width: 300px;
-	      height: 520px;
-	    }
-	
-	    .abolish_list {
-	      margin-top: 40px;
-	      float: left;
-	      border: 2px solid #1BBD36;
-	      width: 300px;
-	      height: 400px;
-	    }
-	
-	    .right_sec {
-	      margin-right: 60px;
-	      float: right;
-	      width: 300px;
-	      height: 520px;
-	    }
-	
-	    .alternative_list {
-	      margin-top: 40px;
-	      float: right;
-	      border: 2px solid #1BBD36;
-	      width: 300px;
-	      height: 400px;
-	    }
+	    
 	
 	    .myLavel {
 	      margin: 0;
@@ -203,39 +175,6 @@
 	      position:absolute;
 	      top:7px;
 	      right:7px;
-	    }
-	
-	    .demoSpan1 {
-	      width:40px;
-	      height:40px;
-	    }
-	
-	    .demoSpan1:before{
-	      content:'';
-	      height:8px;
-	      width:8px;
-	      background:#333;
-	      border-radius:6px;
-	      -webkit-border-radius:6px;
-	      -moz-border-radius:6px;
-	      display:block;
-	      position:absolute;
-	      top:5px;
-	      left:16px;
-	      box-shadow:0 12px 0 #333, 0 24px 0 #333;
-	      -webkit-box-shadow:0 12px 0 #333, 0 24px 0 #333;
-	      -moz-box-shadow:0 12px 0 #333, 0 24px 0 #333;
-	    }
-	
-	    .divide_top {
-	      width: 100%;
-	      height: 40px;
-	      display: block;
-	    }
-	
-	    .divide_top input[type="button"] {
-	      float: right;
-	      margin-right: 40px;
 	    }
 	
 	    select.form-control.w200 {
@@ -313,7 +252,7 @@
   	</div>
 
   	<div class="contents">
-  		<form:form method="post" modelAttribute="requiredCultureCount"  style="margin-bottom:350px">
+  		<form:form method="post" modelAttribute="requiredCultureCount"  style="">
 		  	<div class="form-group">
 		          <p class="font2">전체 학생</p>
 		          <br/><br/>
@@ -339,9 +278,14 @@
 						</div>
 					</div>
 				</div>
-				
-	    <br/><br/>
-	    <div>
+				  <div style="margin-top:0; margin-right:550px">
+		        	<button type="submit" class="btn btn-submit" style="float:right">
+						    <span class="glyphicon glyphicon-ok"></span> 저장
+					</button>
+				  </div>
+		</form:form>
+	  <br/><br/>
+	    <div style="">
 	  	<div style="margin-top:0px; margin-left:30px;">
           <p>
             <div class="form-group" style="float:left">
@@ -363,7 +307,7 @@
           <p>
             <div class="form-group" style="float:left; margin-left:50px; margin-top:-30px">
                 <div style="width:330px;">
-                  <p class="font3">2018학번 교양필수과목 <a data-toggle="modal" href="#addSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
+                  <p class="font3">2018학번 교양필수과목 <a data-toggle="modal" href="#addSubject18"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
                 </div>
                 <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
                   	<c:forEach var="requiredCultureSubject" items="${requiredCultureSubjects2018}">
@@ -376,14 +320,69 @@
           </p>
         </div>
         </div>
-        <div style="margin-top:300px; margin-right:280px">
-        	<button type="submit" class="btn btn-submit" style="float:right">
-				    <span class="glyphicon glyphicon-ok"></span> 저장
-			</button>
-		</div>
-		</form:form>
+		
   </div>
   <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+  
+  <div class="modal fade" id="addSubject" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>과목 추가</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
+				<div class="modal-body">
+					<form:form method="post" action="addSubject1617" modelAttribute="cultureMust">
+						<div class="form-group">
+							<label>입학년도</label>
+							<input value="2016, 2017" class="form-control w505" readonly/>
+						</div>
+						<div class="form-group">
+							<label>과목코드</label>
+							<form:input path="subjectId" class="form-control w505"/>
+							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+						</div>
+						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="addSubject18" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>과목 추가</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
+				<div class="modal-body">
+					<form:form method="post" action="addSubject18" modelAttribute="cultureMust">
+						<div class="form-group">
+							<label>입학년도</label>
+							<input value="2018" class="form-control w505" readonly/>
+						</div>
+						<div class="form-group">
+							<label>과목코드</label>
+							<form:input path="subjectId" class="form-control w505"/>
+							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+						</div>
+						<button type="submit" class="btn btn-submit" onclick="success18()">추가</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="${R}res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -392,5 +391,14 @@
   <script src="${R}res/js/jquery.isotope.min.js"></script>
   <script src="${R}res/js/wow.min.js"></script>
   <script src="${R}res/js/functions.js"></script>
+  
+  <script>
+		function success() {
+			alert("정상적으로 2016, 2017 학번의 교양 필수 과목이 등록되었습니다.");
+		}
+		function success() {
+			alert("정상적으로 2018학번의 교양 필수 과목이 등록되었습니다.");
+		}
+	</script>
 </body>
 </html>

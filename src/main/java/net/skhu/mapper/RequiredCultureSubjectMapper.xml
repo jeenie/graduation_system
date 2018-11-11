@@ -5,4 +5,13 @@
 	<select id="findByYear" resultType="RequiredCultureSubject">
 		SELECT rcl.*, s.name subjectName FROM requiredculture_list rcl LEFT JOIN subject s ON rcl.subjectId = s.id WHERE entranceYear = #{entranceYear}
 	</select>
+	<insert id="insert2016">
+		INSERT requiredculture_list (subjectId, entranceYear) VALUES (#{subjectId}, 2016)
+	</insert>
+	<insert id="insert2017">
+		INSERT requiredculture_list (subjectId, entranceYear) VALUES (#{subjectId}, 2017)
+	</insert>
+	<insert id="insert2018">
+		INSERT requiredculture_list (subjectId, entranceYear) VALUES (#{subjectId}, 2018)
+	</insert>
 </mapper>
