@@ -330,7 +330,7 @@
 						</h4>
 				</div>
 				<div class="modal-body">
-					<form:form method="post" modelAttribute="substitutionSubject">
+					<form:form method="post" action="addSubject" modelAttribute="substitutionSubject">
 						<div class="form-group">
 							<label>담당학과</label>
 							<form:select path="departmentId" class="form-control w200" itemValue="id" itemLabel="departmentName" items="${departments}"/>
@@ -345,6 +345,8 @@
 							<form:input path="substitutionSubject" class="form-control w505"/>
 							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
+						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
 					</form:form>
 				</div>
 			</div>
@@ -391,6 +393,11 @@
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
 
+	<script>
+		function success() {
+			alert("정상적으로 대체과목이 등록되었습니다.");
+		}
+	</script>
 	<script>
 	//	function searchSubject() {
 			//alert("함수실행ok");

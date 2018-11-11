@@ -42,6 +42,12 @@ public class SubstitutionSubjectController {
 	}
 	*/
 	
+	@RequestMapping(value="addSubject", method=RequestMethod.POST)
+	public String addSubject(Model model, SubstitutionSubject substitutionSubject) {
+		substitutionSubjectMapper.insert(substitutionSubject);
+		return "redirect:SubstitutionSubject";
+	}
+	
 	@RequestMapping(value="findSubject", method=RequestMethod.GET)
 	public String searchSubject(Model model, @RequestParam(value="subject", required=false) String subject) {
 		List<SubstitutionSubject> subjects = substitutionSubjectMapper.findBySubject(subject);
