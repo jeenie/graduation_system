@@ -419,7 +419,12 @@ textarea {
 										
 										<!-- total(${student.totalUnit}) -->
                                         
-										<button type="button" class="btn-m2">전공</button>
+										<button type="button" class="btn-m2">전공
+										<script>
+											var test1 = ${ student.departmentName };
+											alert(test1);
+										</script>
+										</button>
 										<button type="button" class="btn-m2">교양</button>
                                         
                                        
