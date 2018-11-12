@@ -9,4 +9,5 @@ public interface UserMapper {
 	User findOne(int id);
 	void insert(User user);
 	void update(User user);
+	void updatePassword(User user);
 }

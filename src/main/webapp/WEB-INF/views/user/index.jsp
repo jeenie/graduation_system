@@ -15,6 +15,7 @@
 
   <!-- Bootstrap -->
   <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="${R}res/css/font-awesome.css">
   <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
   <link rel="stylesheet" href="${R}res/css/animate.css">
   <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
@@ -231,7 +232,7 @@
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="index.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+              <a href=""><h1><span>SKHU</span>졸업관리시스템</h1></a>
             </div>
           </div>
 
@@ -239,21 +240,21 @@
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
               	<sec:authorize access="hasRole('ROLE_ADMIN')">
-              		<li role="presentation"><a href="">졸업요건</a></li>
+              		<li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 	                <li role="presentation" class="dropdown" ><a href="">졸업관리</a>
 	                  <div class="dropdown-content">
-	                      <a href="">졸업요건 관리</a>
-	                      <a href="">대체 과목 리스트 관리</a>
-	                      <a href="majorAdmitManage.html">전공인정관리</a>
+	                      <a href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별 졸업요건 </a>
+	                      <a href="${R}graduation/culturalSubject">교양 필수 과목 </a>
+	                      <a href="${R}graduation/SubstitutionSubject">대체 과목 관리</a>
 	                    </div>
 	                </li>
               	</sec:authorize>
               	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
-              		<li role="presentation"><a href="">졸업요건</a></li>
+              		<li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
                 	<li role="presentation" class="dropdown"><a href="studentInquiryForProfessor.html">학생조회</a></li>
               	</sec:authorize>
               	<sec:authorize access="hasRole('ROLE_STUDENT')">
-	                <li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
+	                <li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 	                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
 	                    <div class="dropdown-content">
 	                      <a href="about.html">마이페이지</a>
@@ -268,11 +269,11 @@
                 	<li role="presentation" class="dropdown" ><a href="StudentInquiryForAdmin.html">사용자관리</a>
                   <div class="dropdown-content">
                     <a href="professorInquiry">교수조회</a>
-                    <a href="graduation/studentListForAdmin">학생조회</a>
+                    <a href="studentListForAdmin">학생조회</a>
                   </div>
                 </li>
                 </sec:authorize>
-                <li role="presentation"><a href="logout_processing">Logout</a></li>
+                <li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                 	<li>
 	                  <div style="margin-top:28px; margin-left:1.5px;">
@@ -395,7 +396,7 @@
 		        </div>
 		        <div class="col-md-3">
 		          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-		            <a href="checkGrades.html"><i class="fa fa-heart-o"></i></a>
+		            <a href="checkGrades.html"><i class="fa fa-heart"></i></a>
 		            <h2>성적조회</h2>
 		            <p>자신의 성적을 확인해보세요</p>
 		          </div>
@@ -412,17 +413,7 @@
     </div>
   </div>
 
-  <footer>
-      <div class="footer">
-        <div class="container">
-          문의:test123@naver.com<br>
-          152-716 서울시 구로구 연동로320<br>
-          Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-
-
-        </div>
-      </div>
-  </footer>
+  <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="${R}res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->

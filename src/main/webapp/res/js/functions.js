@@ -46,6 +46,19 @@ jQuery(function($) {
 	$("a[rel^='prettyPhoto']").prettyPhoto({
 		social_tools: false
 	});	
+	
+	$("[data-url]").click(function() {
+		var url = $(this).attr("data-url");
+		location.href = url;
+	})
+	
+	$("[data-confirm-professorDelete]").click(function() {
+		return confirm("해당 교수의 정보를 삭제하시겠습니까?");
+	})
+	
+	$("[data-confirm-professorAdd]").click(function() {
+		return confirm("해당 교수의 정보를 추가하시겠습니까?");
+	})
     
     //Google Map
     var get_latitude = $('#google-map').data('latitude');
@@ -65,4 +78,6 @@ jQuery(function($) {
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize_google_map);
+    
+   
 });
