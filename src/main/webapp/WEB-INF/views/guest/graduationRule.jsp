@@ -154,8 +154,6 @@
 	height: 520px;
 }
 
-
-
 .myLavel {
 	margin: 0;
 	font-weight: bold;
@@ -261,6 +259,7 @@ select.form-control.w200 {
 	font-weight: bold;
 	font-size: 14px;
 }
+
 .plusCircle {
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
@@ -303,8 +302,9 @@ select.form-control.w200 {
 	padding-left: 10px;
 	padding-right: 0px;
 }
-.majorlist{
-	height : 259px;
+
+.majorlist {
+	height: 259px;
 	overflow-y: scroll;
 }
 </style>
@@ -331,11 +331,14 @@ select.form-control.w200 {
 					<div class="navbar-collapse collapse">
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="login">졸업관리</a>
+								<li role="presentation"><a
+									href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+								<li role="presentation" class="dropdown"><a
+									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
-										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-										<a href="">대체/타전공 현황</a>
+										<a href="${R}guest/login" onclick="alertGuest()">마이페이지</a> <a
+											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
+											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
 									</div></li>
 								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 								<li role="presentation"><a
@@ -359,57 +362,62 @@ select.form-control.w200 {
 	</div>
 
 	<div class="contents">
-		
+
 		<p class="font3">전체 학생</p>
 		<div class="form-group" style="margin-left: 20px;">
 			<p class="font2">총 졸업 학점</p>
 			<input type="number" value="${total}" class="form-control"
 				style="width: 70px" name="all_grade" value="130" readonly />
 		</div>
-		<div class="form-group" style="margin-top:-18px">   
-		          <br/>
-					<div style="margin-left: 20px;">
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2">기도모임(비아메디아채플)</p>
-							<input type="number" name="chapelCount" value="${chapelCount}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly/>
-						</div>
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2" style="margin-bottom: 0px;">회,</p>
-						</div>
-					</div>
-					<div style="margin-left: 30px">
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2">사회봉사</p>
-							<input type="number" name="serveCount" value="${serveCount}"
-								class="form-control"
-								style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;" readonly
-							 />
-						</div>
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2" style="margin-bottom: 0px;">회</p>
-						</div>
-					</div>
+		<div class="form-group" style="margin-top: -18px">
+			<br />
+			<div style="margin-left: 20px;">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">기도모임(비아메디아채플)</p>
+					<input type="number" name="chapelCount" value="${chapelCount}"
+						class="form-control"
+						style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
 				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">회,</p>
+				</div>
+			</div>
+			<div style="margin-left: 30px">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">사회봉사</p>
+					<input type="number" name="serveCount" value="${serveCount}"
+						class="form-control"
+						style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">회</p>
+				</div>
+			</div>
+		</div>
 		<form action="select">
-			<div style="margin-top:40px">
+			<div style="margin-top: 40px">
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학과</p>
 					<select name="departmentId" class="form-controls w200">
-							<option value="99">선택</option>
-							<c:forEach var="department" items="${departments}">
-								<option value="${department.id}" ${departmentId == department.id ? "selected" : ""}>${department.departmentName}</option>
-							</c:forEach>
+						<option value="99">선택</option>
+						<c:forEach var="department" items="${departments}">
+							<option value="${department.id}"
+								${departmentId == department.id ? "selected" : ""}>${department.departmentName}</option>
+						</c:forEach>
 					</select>
 				</div>
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학번</p>
 					<select name="entranceYear" class="form-controls w200">
-							<option value="99">선택</option>
-							<c:forEach var="year" items="${years}">
-								<option value="${year.year}" ${entranceYear == year.year ? "selected" : ""}>${year.year}</option>
-							</c:forEach>
+						<option value="99">선택</option>
+						<c:forEach var="year" items="${years}">
+							<option value="${year.year}"
+								${entranceYear == year.year ? "selected" : ""}>${year.year}</option>
+						</c:forEach>
 					</select>
 				</div>
 				<button type="submit" class="btn-submit"
@@ -422,88 +430,82 @@ select.form-control.w200 {
 				<p>
 				<div class="form-group" style="">
 					<div style="width: 330px;">
-						<p class="font5">
-							교양필수과목 
-						</p>
+						<p class="font5">교양필수과목</p>
 					</div>
 					<div class="list-group"
-							style="width: 330px; margin-top: 10px; margin-left: -5px;">
-							<c:forEach var="requiredCultureSubject" items="${requiredCultureSubjects}">
-								<a href="#" class="list-group-item list-group-item-action">
+						style="width: 330px; margin-top: 10px; margin-left: -5px;">
+						<c:forEach var="requiredCultureSubject"
+							items="${requiredCultureSubjects}">
+							<a href="#" class="list-group-item list-group-item-action">
 								${requiredCultureSubject.subjectName}</a>
-							</c:forEach> 
+						</c:forEach>
 					</div>
 				</div>
 				</p>
 			</div>
-			</c:if>
-			<c:if test="${departmentId < 99 && entranceYear < 2016}">
-				<div style="margin-top:90px"></div>
-			</c:if>
-			<c:if test="${departmentId <= 32}">
+		</c:if>
+		<c:if test="${departmentId < 99 && entranceYear < 2016}">
+			<div style="margin-top: 90px"></div>
+		</c:if>
+		<c:if test="${departmentId <= 32}">
 
-				<div style="margin-top: 20px; margin-left: 40px;">
-					<p style="">
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2">전필</p>
-							<input type="number" value="${firstRule.mustMajor}"
-								class="form-control"
-								style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
-								readonly />
-						</div>
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2">학점을 포함하여 전공</p>
-							<input type="number" value="${firstRule.mustPlusChoice}"
-								class="form-control"
-								style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right: 0;"
-								readonly />
-						</div>
-						<div class="form-group" style="float: left; margin-bottom: 0px;">
-							<p class="font2" style="margin-bottom: 0px;">학점</p>
-						</div>
-					</p>
-					<br /> <br />
+			<div style="margin-top: 20px; margin-left: 40px;">
+				<p style="">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">전필</p>
+					<input type="number" value="${firstRule.mustMajor}"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">학점을 포함하여 전공</p>
+					<input type="number" value="${firstRule.mustPlusChoice}"
+						class="form-control"
+						style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right: 0;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">학점</p>
+				</div>
+				</p>
+				<br /> <br />
 				<div>
 					<div class="form-group" style="float: left">
 						<div style="width: 330px;">
-							<p class="font5">
-								전공필수과목 
-							</p>
+							<p class="font5">전공필수과목</p>
 						</div>
 						<div class="list-group majorlist"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
-							<c:forEach var="major" items="${majors}"> 
+							<c:forEach var="major" items="${majors}">
 								<a href="#" class="list-group-item list-group-item-action">${major.majorName}</a>
 							</c:forEach>
 						</div>
 					</div>
 					<div class="form-group" style="float: left; margin-left: 50px;">
 						<div style="width: 330px;">
-							<p class="font5">
-								학과지정교양
-							</p>
+							<p class="font5">학과지정교양</p>
 						</div>
 						<div class="list-group"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
 							<c:forEach var="departmentCulture" items="${departmentCultures}">
 								<a href="#" class="list-group-item list-group-item-action">
-								${departmentCulture.subjectName}</a>
-							</c:forEach> 
+									${departmentCulture.subjectName}</a>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+
 
 			<br />
-			<div style="margin-top:300px; margin-left: 40px">
+			<div style="margin-top: 300px; margin-left: 40px">
 
 				<div class="form-group" style="float: left; margin-bottom: 0px;">
 					<p class="font5">전공과정</p>
 				</div>
-				
-				<br />
-				<br />
+
+				<br /> <br />
 				<c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
 					<div style="margin-left: 40px">
 						<p class="font6">▶${departmentMajorRule.processName}</p>
