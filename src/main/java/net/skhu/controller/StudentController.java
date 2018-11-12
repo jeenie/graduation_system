@@ -30,7 +30,7 @@ public class StudentController {
 	@RequestMapping("studentListForAdmin")
 	public String list(Model model) {
 		List<Student> students = studentMapper.findAll();
-		List<Department> departments = departmentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("students", students);
 		model.addAttribute("departments",departments);
 		return "user/studentListForAdmin";
@@ -56,7 +56,7 @@ public class StudentController {
 			}
 		}
 	    */
-		model.addAttribute("departments", departmentMapper.findAll());
+		model.addAttribute("departments", departmentMapper.findRealDept());
 		model.addAttribute("students", students);
 		return "user/studentListForAdmin";
 

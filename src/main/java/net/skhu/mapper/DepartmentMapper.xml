@@ -6,6 +6,9 @@
 	<select id="findAll" resultType="Department">
       SELECT * FROM Department
   	</select>
+  	<select id="findRealDept" resultType="Department">
+      SELECT * FROM Department WHERE id > 20
+  	</select>
   	<!-- 
   	<select id="findAllWithStudents" resultMap="resultMap1">
 		SELECT sub.name subjectName, ssg.subjectId, ssg.id studentId, s.name sutdentName, s.completeSemester, d.departmentName, s.grade
