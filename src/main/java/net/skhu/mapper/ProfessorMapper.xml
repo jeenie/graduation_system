@@ -11,11 +11,61 @@
 	<select id="findByDepartment" resultType="Professor">
 		SELECT 	p.*, d.departmentName FROM Professor p LEFT JOIN Department d ON p.departmentId = d.id WHERE d.departmentName = #{departmentName}
 	</select>
-	<insert id="insert" parameterType="Professor">
+	<select id="findByInquiry" resultType="Professor">
+		<!-- String name, int id, String departmentName -->
+		<!--SET @name = #{name}
+		SET @id = #{id}
+		SET @departmentName = #{departmentName} -->
+		
+		SELECT p.*, d.departmentName 
+		FROM professor p LEFT JOIN department d ON p.departmentId = d.id
+		<!--
+		WHERE 
+			(@name IS NULL OR @name = "" OR @name = p.name)
+		AND (@id IS NULL OR @id = "" OR @id = p.id)
+		AND (@departmentName IS NULL OR @departmentName = "" OR @departmentName = d.departmentName)
+		-->
+		WHERE (#{name} IS NULL OR #{name}="" OR #{name}=p.name)
+		AND (#{id} IS NULL OR #{id}="" OR #{id}=p.id)
+		AND (#{departmentName} IS NULL OR #{departmentName}="" OR #{departmentName}=d.departmentName OR d.departmentName LIKE CONCAT('%',#{departmentName},'%'))
+		
+		<!--WHERE d.departmentName LIKE CONCAT('%',#{departmentName},'%') or p.name=#{name}
+	    OR p.id=#{id} -->
+	    <!--WHERE p.name=#{name} OR p.id=#{id} OR d.departmentName=#{departmentName}-->
+	    <!--
+	    <where>
+	    	<if test ="name != null &amp;&amp; id ==null &amp;&amp; departmentName == null">
+	    		p.name = #{name}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id !=null &amp;&amp; departmentName == null">
+	    		p.id = #{id}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id ==null &amp;&amp; departmentName != null">
+	    		d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id !=null &amp;&amp; departmentName == null">
+	    		p.name = #{name} AND p.id = #{id}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id ==null &amp;&amp; departmentName != null">
+	    		p.name = #{name} AND d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name == null &amp;&amp; id !=null &amp;&amp; departmentName != null">
+	    		p.id = #{id} AND d.departmentName = #{departmentName}
+	    	</if>
+	    	<if test="name != null &amp;&amp; id !=null &amp;&amp; departmentName != null">
+	    		p.name = #{name} AND p.id = #{id} AND d.departmentName = #{departmentName}
+	    	</if>
+	    </where>
+	    -->
+	</select>
+	<insert id="insert">
     	INSERT Professor (id, name, email, departmentId, password)
     	VALUES (#{id}, #{name}, #{email}, #{departmentId}, #{password})
   	</insert>
   	<update id="update">
   		UPDATE professor SET email = #{email}, password = #{password} WHERE id=#{id}
   	</update>
+  	<delete id="delete">
+		DELETE FROM professor WHERE id=#{id}
+	</delete>
 </mapper>

@@ -17,12 +17,6 @@
   <link rel="stylesheet" href="${R}res/css/animate.css">
   <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
   <link href="${R}res/css/style.css" rel="stylesheet" />
-  <!-- =======================================================
-    Theme Name: Company
-    Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
 
   <!--style-->
 
@@ -119,6 +113,10 @@
   	input.form-control.w300 { 
   		width: 300px; 
   	}
+  	
+  	.atag:hover {
+  		color:black;
+  	}
   
 
   </style>
@@ -136,14 +134,14 @@
 								<span class="icon-bar"></span>
 							</button>
 	            <div class="navbar-brand">
-	              <a href="index.html"><h1><span>SKHU</span>졸업관리시스템</h1></a>
+	              <a href="${R}"><h1><span>SKHU</span>졸업관리시스템</h1></a>
 	            </div>
 	          </div>
 	
 	          <div class="navbar-collapse collapse">
 	            <div class="menu">
 	              <ul class="nav nav-tabs" role="tablist">
-	                <li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
+	                <li role="presentation"><a href="graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 	                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
 	                    <div class="dropdown-content">
 	                      <a href="about.html">마이페이지</a>
@@ -153,7 +151,7 @@
 	                </li>
 	                <li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 	                <li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-	                <li role="presentation"><a href="guest/login">Login</a></li>
+	                <li role="presentation"><a href="${R}guest/login">Login</a></li>
 	              </ul>
 	            </div>
 	          </div>
@@ -174,22 +172,27 @@
     	</div>
 	</div>
 	<div class="aboutus">
-        <div class="container" style="margin-left:140px; margin-bottom:150px">
+        <div class="container" style="margin-left:140px; margin-right:100px; margin-bottom:150px">
             <img src="${R}res/images/abouti/professor-1.png" style="width:250px; height:250px; float:left; border-radius:5px; padding-right:20px;">
-	            <div style="margin-left:250px;">
-		            <form method="post" action="login_processing">
-		    			<div class="form-group">
-		      				<label>ID</label>
-		      				<input type="text" name="loginId" class="form-control w300" />
-		    			</div>
-		    			<div class="form-group">
-		      				<label>PASSWORD</label>
-		      				<input type="password" name="passwd" class="form-control w300" />
-		    			</div>
+	            <div style="margin-left:250px; margin-right:100px;">
+		            <form method="post" action="login_processing" style="margin-right:350px;">
+		            	<div>
+			    			<div class="form-group">
+			      				<label>ID</label>
+			      				<input type="text" name="loginId" class="form-control w300" />
+			    			</div>
+			    			<div class="form-group">
+			      				<label>PASSWORD</label>
+			      				<input type="password" name="passwd" class="form-control w300" />
+			    			</div>
+			    		</div>
 		    			<hr />
 		    			<div>
-		    				<a href="sign" class="btn btn-primary" style="">회원가입</a>
-		      				<button type="submit" class="btn btn-submit">
+		    				<div style="margin-top:20px; margin-right:270px">
+			    				<a href="sign" class="atag"><U>회원가입</U></a> -
+			    				<a href="findPw" class="atag"><U>비밀번호 찾기</U></a>
+			    			</div>
+		      				<button type="submit" class="btn btn-submit" style="float:right; margin-top:-30px">
 		        				<span class="glyphicon glyphicon-ok"></span> 로그인
 		        			</button>
 		    			</div>

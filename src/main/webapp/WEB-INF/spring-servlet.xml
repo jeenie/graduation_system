@@ -1,0 +1,22 @@
+<!-- String에 대해서 인코딩 타입이 UTF-8인 text/html방식으로 응답받겠다 -->
+<mvc:annotation-driven>
+	<!-- messageConvertert -->
+	<mvc:message-converters>
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+					<!-- http응답 헤더 부분 -->
+					<value>text/html; charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+					<value>application/json; charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+	</mvc:message-converters>
+</mvc:annotation-driven>
