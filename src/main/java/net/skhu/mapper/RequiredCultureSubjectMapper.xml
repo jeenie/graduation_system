@@ -14,4 +14,7 @@
 	<insert id="insert2018">
 		INSERT requiredculture_list (subjectId, entranceYear) VALUES (#{subjectId}, 2018)
 	</insert>
+	<delete id="delete">
+		DELETE FROM requiredculture_list WHERE subjectId = #{subjectId} and entranceYear= #{entranceYear}
+	</delete>
 </mapper>

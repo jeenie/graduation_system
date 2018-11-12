@@ -12,4 +12,5 @@ public interface RequiredCultureSubjectMapper {
 	void insert2016(RequiredCultureSubject cultureMust);
 	void insert2017(RequiredCultureSubject cultureMust);
 	void insert2018(RequiredCultureSubject cultureMust);
+	void delete(String subjectId, int entranceYear);
 }

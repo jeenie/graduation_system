@@ -15,6 +15,7 @@
 	  <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
 	  <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
 	  <link rel="stylesheet" href="${R}res/css/animate.css">
+	  <link rel="stylesheet" href="${R}res/css/custom.css">
 	  <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 	  <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 	  <link href="${R}res/css/style.css" rel="stylesheet" />
@@ -106,7 +107,7 @@
 	      border:none;
 	      margin-top: 0;
 	    }
-	    .btn-cancle {
+	    .btn-cancel {
 	      padding: 6px 15px;
 	      background-color: #BDBDBD;
 	      border-color: #eea236;
@@ -279,7 +280,7 @@
 					</div>
 				</div>
 				  <div style="margin-top:0; margin-right:550px">
-		        	<button type="submit" class="btn btn-submit" style="float:right">
+		        	<button type="submit" class="btn btn-submit" style="float:right" onClick="saveCount()">
 						    <span class="glyphicon glyphicon-ok"></span> 저장
 					</button>
 				  </div>
@@ -294,7 +295,7 @@
                 </div>
                 <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
                 	<c:forEach var="requiredCultureSubject" items="${requiredCultureSubjects}">
-	                  <a href="#" class="list-group-item list-group-item-action">
+	                  <a href="deleteCulture?subjectId=${requiredCultureSubject.subjectId}&entranceYear=${requiredCultureSubject.entranceYear}" class="list-group-item list-group-item-action" onclick="deleteSubject()">
 	                    ${requiredCultureSubject.subjectName} <span style="float:right;">&times;</span>
 	                  </a>
                 	</c:forEach>
@@ -311,9 +312,10 @@
                 </div>
                 <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
                   	<c:forEach var="requiredCultureSubject" items="${requiredCultureSubjects2018}">
-	                  <a href="#" class="list-group-item list-group-item-action">
+	                  <a href="deleteCulture?subjectId=${requiredCultureSubject.subjectId}&entranceYear=${requiredCultureSubject.entranceYear}" class="list-group-item list-group-item-action" onclick="deleteSubject()">
 	                    ${requiredCultureSubject.subjectName} <span style="float:right;">&times;</span>
 	                  </a>
+	                 
 	                 </c:forEach> 
                 </div>
             </div>
@@ -336,7 +338,7 @@
 						</h4>
 				</div>
 				<div class="modal-body">
-					<form:form method="post" action="addSubject1617" modelAttribute="cultureMust">
+					<form:form method="post" action="addSubject1617" modelAttribute="cultureMust"  style="margin-bottom:40px">
 						<div class="form-group">
 							<label>입학년도</label>
 							<input value="2016, 2017" class="form-control w505" readonly/>
@@ -346,8 +348,10 @@
 							<form:input path="subjectId" class="form-control w505"/>
 							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
-						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
-						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<div style="float:right; margin-top:10px;">
+							<button type="submit" class="btn btn-submit" onclick="success()"">추가</button>
+							<button type="button" class="btn" data-dismiss="modal" >취소</button>
+						</div>
 					</form:form>
 				</div>
 			</div>
@@ -376,8 +380,8 @@
 							<form:input path="subjectId" class="form-control w505"/>
 							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
-						<button type="submit" class="btn btn-submit" onclick="success18()">추가</button>
-						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
+						<button type="button" class="btn btn-cancel" data-dismiss="modal">취소</button>
 					</form:form>
 				</div>
 			</div>
@@ -394,10 +398,13 @@
   
   <script>
 		function success() {
-			alert("정상적으로 2016, 2017 학번의 교양 필수 과목이 등록되었습니다.");
+			alert("정상적으로 교양 필수 과목이 등록되었습니다.");
 		}
-		function success() {
-			alert("정상적으로 2018학번의 교양 필수 과목이 등록되었습니다.");
+		function deleteSubject() {
+			confirm("과목을 삭제하시겠습니까?");
+		}
+		function saveCount() {
+			alert("정상적으로 교양 필수 항목이 저장되었습니다.");
 		}
 	</script>
 </body>

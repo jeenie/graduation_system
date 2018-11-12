@@ -132,8 +132,10 @@ public class GraduationRuleController {
 	public String editCultural(Model model, RequiredCultureCount requiredCultureCount) {
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(2016);
 		List<RequiredCultureSubject> requiredCultureSubjects2018 = requiredCultureSubjectMapper.findByYear(2018);
+		RequiredCultureSubject cultureMust = new RequiredCultureSubject();
 		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
 		model.addAttribute("requiredCultureSubjects2018", requiredCultureSubjects2018);
+		model.addAttribute("cultureMust", cultureMust);
 		requiredCultureCountMapper.update(requiredCultureCount);
 		return "admin/culturalSubject";
 	}
@@ -148,6 +150,12 @@ public class GraduationRuleController {
 	@RequestMapping(value="graduation/addSubject18", method=RequestMethod.POST)
 	public String addSubject18(Model model, RequiredCultureSubject cultureMust){
 		requiredCultureSubjectMapper.insert2018(cultureMust);
+		return "redirect:culturalSubject";
+	}
+	
+	@RequestMapping(value="graduation/deleteCulture", method=RequestMethod.GET)
+	public String deleteCulture(Model model, @RequestParam("subjectId") String subjectId, @RequestParam("entranceYear") int entranceYear) {
+		requiredCultureSubjectMapper.delete(subjectId, entranceYear);
 		return "redirect:culturalSubject";
 	}
 
