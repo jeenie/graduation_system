@@ -17,6 +17,7 @@ import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.Total;
+import net.skhu.dto.Year;
 import net.skhu.mapper.DepartmentCultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
@@ -24,6 +25,7 @@ import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
 import net.skhu.mapper.RequiredCultureSubjectMapper;
 import net.skhu.mapper.TotalMapper;
+import net.skhu.mapper.YearMapper;
 
 @Controller
 public class GraduationRuleController {
@@ -34,15 +36,24 @@ public class GraduationRuleController {
 	@Autowired RequiredCultureCountMapper requiredCultureCountMapper;
 	@Autowired RequiredCultureSubjectMapper requiredCultureSubjectMapper;
 	@Autowired TotalMapper totalMapper;
+	@Autowired YearMapper yearMapper;
 	
 	@RequestMapping("guest/graduationRule")
 	public String viewGuest(Model model) {
-		List<Department> departments = departmentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
+		List<Year> years = yearMapper.years();
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		Total total = totalMapper.find();
+		int totalGrade = total.getGrade();
 		model.addAttribute("departments", departments);
+		model.addAttribute("chapelCount", requiredCultureCount.getChapelCount());
+		model.addAttribute("serveCount", requiredCultureCount.getServeCount());
+		model.addAttribute("total", totalGrade);
+		model.addAttribute("years", years);
 		return "guest/graduationRule";
 	}
 	
-	@RequestMapping(value= "guest/graduationRule", method = RequestMethod.GET)
+	@RequestMapping(value= "guest/select", method = RequestMethod.GET)
 	public String viewGuest(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
@@ -50,6 +61,11 @@ public class GraduationRuleController {
 		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId, entranceYear);
 		List<DepartmentCulture> departmentCultures = departmentCultureMapper.findByDepartmentId(departmentId, entranceYear);
 		List<Major> majors = majorMapper.findMustMajor(departmentId);
+		List<Department> departments = departmentMapper.findRealDept();
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
+		List<Year> years = yearMapper.years();
+		model.addAttribute("departments", departments);
 		model.addAttribute("departmentId", departmentId);
 		model.addAttribute("entranceYear", entranceYear);
 		model.addAttribute("total", totalGrade);
@@ -57,6 +73,10 @@ public class GraduationRuleController {
 		model.addAttribute("departmentMajorRules", departmentMajorRules);
 		model.addAttribute("majors", majors);
 		model.addAttribute("departmentCultures", departmentCultures);
+		model.addAttribute("chapelCount", requiredCultureCount.getChapelCount());
+		model.addAttribute("serveCount", requiredCultureCount.getServeCount());
+		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
+		model.addAttribute("years", years);
 		return "guest/graduationRule";
 	}
 

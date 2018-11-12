@@ -303,7 +303,7 @@
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<a href="guest/graduationRule?departmentId=99&entranceYear=99"><i
+						<a href="guest/graduationRule"><i
 							class="fa fa-book"></i></a>
 						<h2>졸업요건</h2>
 						<p>전체졸업요건을 확인해보세요</p>
