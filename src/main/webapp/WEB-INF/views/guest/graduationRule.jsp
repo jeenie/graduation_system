@@ -509,6 +509,44 @@ select.form-control.w200 {
 				<c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
 					<div style="margin-left: 40px">
 						<p class="font6">▶${departmentMajorRule.processName}</p>
+						<c:if test="${ departmentMajorRule.processId == 6 && departmentId == 31}">
+							<div style="margin-left: 30px">
+								<div class="form-group" style="float: left; margin-bottom: 0px;">
+									<p class="font2">전필 포함</p>
+									<input type="number"
+										value="${departmentMajorRule.mustPlusChoice}"
+										class="form-control"
+										style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right: 0;"
+										readonly />
+								</div>
+								<div class="form-group" style="float: left; margin-bottom: 0px;">
+									<p class="font2" style="margin-bottom: 0px;">학점 이수</p>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${ departmentMajorRule.processId == 6 && departmentId == 32}">
+								<div style="margin-left: 30px">
+									<div class="form-group" style="float: left; margin-bottom: 0px;">
+										<p class="font2">지도 과목 제외하고 전필</p>
+										<input type="number"
+											value="${departmentMajorRule.mustMajor}"
+											class="form-control"
+											style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right: 0;"
+											readonly />
+									</div>
+									<div class="form-group" style="float: left; margin-bottom: 0px;">
+										<p class="font2">학점 포함하여 전공</p>
+										<input type="number"
+											value="${departmentMajorRule.mustMajor}"
+											class="form-control"
+											style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right: 0;"
+											readonly />
+									</div>
+									<div class="form-group" style="float: left; margin-bottom: 0px;">
+										<p class="font2" style="margin-bottom: 0px;">학점 이상 이수(지도 과목은 선택)</p>
+									</div>
+								</div>
+						</c:if>
 						<c:if test="${ departmentMajorRule.processId == 7}">
 							<div style="margin-left: 30px">
 								<div class="form-group" style="float: left; margin-bottom: 0px;">
@@ -524,7 +562,7 @@ select.form-control.w200 {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${ departmentMajorRule.processId != 7}">
+						<c:if test="${ departmentMajorRule.processId < 6}">
 							<div style="margin-left: 30px">
 								<div class="form-group" style="float: left; margin-bottom: 0px;">
 									<p class="font2">전필</p>
