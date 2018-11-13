@@ -7,7 +7,8 @@
       SELECT * FROM Department
   	</select>
   	<select id="findRealDept" resultType="Department">
-      SELECT * FROM Department WHERE id > 20
+      SELECT * FROM Department 
+      WHERE id > 20 || id=0
   	</select>
   	<!-- 
   	<select id="findAllWithStudents" resultMap="resultMap1">
