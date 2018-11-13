@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.DepartmentMapper">
+	<select id="findAll" resultType="Department">
+      SELECT * FROM Department
+  	</select>
+  	<select id="findRealDept" resultType="Department">
+      SELECT * FROM Department 
+      WHERE id > 20 || id=0
+
+  	</select>
+  	<!-- 
+  	<select id="findAllWithStudents" resultMap="resultMap1">
+		SELECT sub.name subjectName, ssg.subjectId, ssg.id studentId, s.name sutdentName, s.completeSemester, d.departmentName, s.grade
+		FROM ((student_subject_grade ssg LEFT JOIN subject sub ON ssg.subjectId= sub.id) LEFT JOIN student s ON ssg.id=s.id) LEFT JOIN department d ON s.departmentId = d.id
+		ORDER BY sub.name;
+	</select>
+	<resultMap id = "resultMap1" type="Department">
+		<id property=""
+	</resultMap>
+	-->
+</mapper>
