@@ -323,6 +323,9 @@ select.form-control.w200 {
 	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
 		<%@ include file="/WEB-INF/views/include/professorNavibar.jsp"%>
 	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
+	</sec:authorize>
 
 	<div id="breadcrumb">
 		<div class="container">
