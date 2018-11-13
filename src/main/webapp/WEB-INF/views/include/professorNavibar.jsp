@@ -30,7 +30,7 @@
 							<li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
 							<li>
 								<div style="margin-top: 28px; margin-left: 1.5px;">
-									<a href="managerInfoEdit.html"> <i
+									<a href="${R}user/professorEdit"> <i
 										class="fas fa-user-edit fa-lg"></i>
 									</a>
 								</div>
