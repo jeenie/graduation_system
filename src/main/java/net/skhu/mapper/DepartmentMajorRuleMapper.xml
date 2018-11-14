@@ -8,7 +8,9 @@
 	<select id="findFirst" resultType="DepartmentMajorRule">
 		select * from department_major_rule where departmentId=#{departmentId} and entranceYear=#{entranceYear} and processId = 1
 	</select>
-	
+	<select id="findSecond" resultType="DepartmentMajorRule">
+		select * from department_major_rule where departmentId=#{departmentId} and entranceYear=#{entranceYear} and processId = 2
+	</select>
 	<update id="update">
 		UPDATE department_major_rule SET mustMajor = #{mustMajor}, choiceMajor = #{choiceMajor}, mustPlusChoice = #{mustPlusChoice} WHERE departmentId = #{departmentId} and entranceYear=#{entranceYear} and processId = #{processId} 
 	</update>

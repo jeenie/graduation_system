@@ -57,10 +57,21 @@ public class GraduationRuleController {
 	public String viewGuest(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
-		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
+		DepartmentMajorRule firstRule = null;
+		if(departmentId == 31)
+			firstRule = departmentMajorRuleMapper.findSecond(departmentId, entranceYear);
+		else
+			firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
 		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId, entranceYear);
 		List<DepartmentCulture> departmentCultures = departmentCultureMapper.findByDepartmentId(departmentId, entranceYear);
-		List<Major> majors = majorMapper.findMustMajor(departmentId);
+		List<Major> majors = null;
+		if(departmentId == 32) 
+			if(entranceYear <= 2013)
+				majors =majorMapper.findSoft2013MustMajor(departmentId);
+			else
+				majors =majorMapper.findSoft2014MustMajor(departmentId);
+		else
+			majors = majorMapper.findMustMajor(departmentId);
 		List<Department> departments = departmentMapper.findRealDept();
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
