@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<c:url var="R" value="/" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,90 +13,331 @@
 <title>SKHU졸업관리시스템</title>
 
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/animate.css">
-<link href="css/prettyPhoto.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet" />
-<!-- =======================================================
-    Theme Name: Company
-    Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+<link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
+<link rel="stylesheet" href="${R}res/css/animate.css">
+<link rel="stylesheet" href="${R}res/css/custom.css">
+<link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
+<link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
+<link href="${R}res/css/style.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
 
 <style>
-select {
-	width: 200px;
-	height: 40px;
-	padding-left: 10px;
-	font-size: 18px;
-	color: #000000;
-	background-color: rgb(255, 255, 255);
-	border: 1.3px solid rgb(46, 46, 46);
-	border-radius: 10px;
-	text-align: center;
+/* Style The Dropdown Button */
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
 }
 
-select option:checked, select option:hover {
-	background: rgb(226, 240, 217);
-	color: rgb(57, 70, 255);
-	font-weight: bold;
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
 }
 
-.divide1 {
-	margin-top: -10px;
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #4CAF50;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: rgb(96, 185, 96)
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+/*input class 변경*/
+.form-controls {
+	width: 160px;
+	height: 35px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.form-group {
+	margin-bottom: 0;
+}
+
+.btn-submit {
+	padding: 6px 15px;
+	background: #1BBD36;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin-top: 0;
+}
+
+.btn-warning {
+	padding: 6px 15px;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin-top: 0;
+}
+
+.btn-cancle {
+	padding: 6px 15px;
+	background-color: #BDBDBD;
+	border-color: #eea236;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin-top: 0;
+}
+
+.btn-line {
+	padding: 8px 20px;
+	background-color: #fff;
+	border-color: #000000;
+	border-radius: 4px;
+	margin-top: 10px;
+}
+
+.modal-title {
+	width: 540px;
+	margin: 0;
+}
+
+.modal {
+	overflow: scroll;
+}
+
+.contents {
+	margin-top: 5px;
+	margin-right: 100px;
+	margin-left: 140px;
+	margin-bottom: 100px;
+}
+
+.divide {
+	margin-top: 20px;
 	margin-left: 60px;
 	margin-right: 60px;
-	height: 180px;
+	height: 520px;
 }
 
-.l_s {
-	margin-left: -40px;
-	float: left;
-	width: 180px;
-	height: 180px;
+.myLavel {
+	margin: 0;
+	font-weight: bold;
+	font-size: 22px;
 }
 
-.r_s {
-	margin-right: 60px;
-	float: left;
-	width: 800px;
-	height: 180px;
+.selectSpan {
+	overflow: hidden;
+	width: 25px;
 }
 
-.a_l {
-	margin-top: 10px;
-	float: left;
-	border: 1.5px solid #8a8a8a;
-	width: 160px;
-	height: 180px;
+.selectSpan:before {
+	content: '';
+	height: 20px;
+	width: 20px;
+	display: block;
+	border: 5px solid #333;
+	border-left-width: 0;
+	border-top-width: 0;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	position: absolute;
+	top: 7px;
+	right: 7px;
 }
 
-.alt_l {
-	margin-top: 10px;
-	float: left;
-	border: 2px solid rgb(255, 255, 255);
-	width: 700px;
-	height: 180px;
+.demoSpan1 {
+	width: 40px;
+	height: 40px;
 }
 
-tabl, td {
-	border: 1px solid #8a8a8a;
-	text-align: center;
+.demoSpan1:before {
+	content: '';
+	height: 8px;
+	width: 8px;
+	background: #333;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 16px;
+	box-shadow: 0 12px 0 #333, 0 24px 0 #333;
+	-webkit-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
+	-moz-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
 }
 
-th {
-	width: 100px;
-	border: 1px solid #8a8a8a;
-	text-align: center;
-	background-color: rgb(226, 240, 217);
-}
-
-table {
+.divide_top {
 	width: 100%;
-	color: black;
+	height: 40px;
+	display: block;
 }
+
+.divide_top input[type="button"] {
+	float: right;
+	margin-right: 40px;
+}
+
+select.form-control.w200 {
+	width: 200px;
+	float: left;
+}
+
+.plusCircle {
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+	color: #BDBDBD;
+}
+
+.plusCircle:before, .plusCircle:after {
+	content: '';
+	height: 3px;
+	width: 20px;
+	display: block;
+	background: #fff;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	position: absolute;
+	top: 11px;
+	left: 3px;
+}
+
+.plusCircle:after {
+	height: 20px;
+	width: 3px;
+	top: 3px;
+	left: 11px;
+}
+
+.inputNumber {
+	width: 60px;
+	margin-right: 0;
+}
+
+.gradeNum {
+	width: 40px;
+	padding-top: 2px;
+	padding-left: 10px;
+	padding-right: 0px;
+}
+
+.majorlist {
+	height: 259px;
+	overflow-y: scroll;
+}
+
+/*my page */
+select { 
+    width: 200px; 
+    height: 40px; 
+    padding-left: 10px; 
+    font-size: 18px; 
+    color: #000000; 
+    background-color: rgb(255, 255, 255);
+    border: 1.3px solid rgb(46, 46, 46); 
+    border-radius: 10px; 
+    text-align:center;
+}
+select option:checked,
+select option:hover {     
+      background: rgb(226, 240, 217);
+      color: rgb(57, 70, 255); 
+      font-weight: bold;
+    }
+    .divide1 {
+      margin-top: -10px;
+      margin-left: 60px;
+      margin-right: 60px;
+      height: 180px;
+
+    }
+    .l_s {
+      margin-left: -40px;
+      float: left;
+      width: 180px;
+      height: 180px;
+    }
+    .r_s {
+      margin-right: 60px;
+      float: left;
+      width: 800px;
+      height: 180px;
+    }
+
+    .a_l {
+      margin-top: 10px;
+      float: left;
+      border: 1.5px solid #8a8a8a;
+      width: 160px;
+      height: 180px;
+    }
+    .alt_l {
+      margin-top: 10px;
+      float: left;
+      border: 2px solid rgb(255, 255, 255);
+      width: 700px;
+      height: 180px;
+    }
+    tabl,td{
+      border: 1px solid #8a8a8a;
+      text-align: center;
+    }
+    
+    th{
+      width:100px;
+      border: 1px solid #8a8a8a;
+      text-align: center;
+      background-color: rgb(226, 240, 217);
+    }
+
+    table {
+      width: 100%;
+      color: black;
+    }
 </style>
 </head>
 
