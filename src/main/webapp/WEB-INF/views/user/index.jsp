@@ -272,7 +272,7 @@
 									<li role="presentation" class="dropdown"><a href="">졸업관리</a>
 										<div class="dropdown-content">
 											<a href="${R}user/myPage">마이페이지</a> <a
-												href="checkGrades.html">성적조회</a> <a href="">대체/타전공 현황</a>
+												href="checkGrades.html">성적조회</a> <a href="${R}student/status">대체/타전공 현황</a>
 										</div></li>
 								</sec:authorize>
 								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>

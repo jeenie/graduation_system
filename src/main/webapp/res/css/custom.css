@@ -19,3 +19,13 @@ input.form-control.w400 {
 input.form-control.w505 {
 	width: 505px;
 }
+
+.boldfont16 {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.boldfont18 {
+	font-weight: bold;
+	font-size: 18px;
+}
