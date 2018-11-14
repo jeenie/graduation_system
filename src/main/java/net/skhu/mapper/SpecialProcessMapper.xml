@@ -4,6 +4,6 @@
 
 <mapper namespace="net.skhu.mapper.SpecialProcessMapper">
 	<select id="findAll" resultType="SpecialProcess">
-		SELECT * FROM SpecialProcess
+		SELECT * FROM special_process
 	</select>
 </mapper>

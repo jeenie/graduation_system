@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
+import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
+import net.skhu.dto.StudentGradefile;
+import net.skhu.dto.Total;
 import net.skhu.mapper.CultureMapper;
+import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.SpecialProcessMapper;
+import net.skhu.mapper.StudentGradefileMapper;
 import net.skhu.mapper.StudentMapper;
+import net.skhu.mapper.TotalMapper;
 
 @Controller
 public class StudentController {
@@ -33,6 +39,12 @@ public class StudentController {
 	CultureMapper cultureMapper;
 	@Autowired
 	SpecialProcessMapper specialProcessMapper;
+	@Autowired
+	StudentGradefileMapper studentGradefileMapper;
+	@Autowired
+	TotalMapper totalMapper;
+	@Autowired
+	DepartmentMajorRuleMapper departmentMajorRuleMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -70,18 +82,29 @@ public class StudentController {
 		return "redirect:studentListForAdmin";
 	}
 
-	@RequestMapping("student/graduationStatus")
-	public String graduationStatus(Model model) {
+	@RequestMapping(value = "student/graduationStatus")
+	public String graduationStatus(Model model, @RequestParam("departmentId") int departmentId,
+			@RequestParam("entranceYear") int entranceYear, @RequestParam("processId") int processId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
 		Student student = studentMapper.findById2(userNumber);
 		Culture culture = cultureMapper.find();
 		List<SpecialProcess> specialProcess = specialProcessMapper.findAll();
+		StudentGradefile studentGradefile = studentGradefileMapper.findById(userNumber);
+		Total total = totalMapper.find();
+		int totalGrade = total.getGrade();
+		DepartmentMajorRule departmentMajorRule = departmentMajorRuleMapper.findTotalMajor(departmentId, entranceYear,
+				processId);
 		int cultureGrade = culture.getGrade();
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
+		model.addAttribute("studentGradefile", studentGradefile);
+		model.addAttribute("total", totalGrade);
+		model.addAttribute("departmentMajorRule", departmentMajorRule);
+		model.addAttribute("departmentId", departmentId);
+		model.addAttribute("entranceYear", entranceYear);
+		model.addAttribute("processId", processId);
 		model.addAttribute("culture", cultureGrade);
 		return "student/graduationStatus";
 	}
-
 }

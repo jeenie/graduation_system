@@ -407,7 +407,7 @@ table {
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">${ student.name }님은</p>
 					<select name="specialProcess" class="form-controls w200">
-						<option value="99">선택</option>
+						<option value="99">특별과정</option>
 						<c:forEach var="specialProcess" items="${specialProcess}">
 							<option value="${specialProcess.id}"
 								${specialProcessId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
@@ -420,7 +420,7 @@ table {
 				data-wow-delay="600ms">
 				<div class="skill">
 					<div class="progress-wrap">
-						<h4>＞총 학점&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
+						<h4>＞총 학점&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.totalUnit}/${total}</h4>
 						<div class="progress">
 							<div class="progress-bar color4" role="progressbar"
 								aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
@@ -432,7 +432,7 @@ table {
 					<br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp47/60</h4>
+						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}</h4>
 						<div class="progress">
 							<div class="progress-bar  color1" role="progressbar"
 								aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
@@ -513,7 +513,7 @@ table {
 					<br> <br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47</h4>
+						<h4>＞ 교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.cultureUnit}/47</h4>
 						<div class="progress">
 							<div class="progress-bar color3" role="progressbar"
 								aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
