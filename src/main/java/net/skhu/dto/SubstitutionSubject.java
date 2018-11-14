@@ -1,12 +1,20 @@
 package net.skhu.dto;
 
 public class SubstitutionSubject {
+	int studentId;
 	String abolitionSubject;
 	String abolitionSubjectName;
 	String substitutionSubject;
 	String substitutionSubjectName;
 	int departmentId;
 	String departmentName;
+	
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
 	
 	public String getAbolitionSubject() {
 		return abolitionSubject;
