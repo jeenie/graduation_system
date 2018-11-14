@@ -227,99 +227,16 @@
 </style>
 </head>
 
-<body onload="initialize()">
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href=""><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-									<li role="presentation"><a
-										href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-									<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-										<div class="dropdown-content">
-											<a
-												href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별
-												졸업요건 </a> <a href="${R}graduation/culturalSubject">교양 필수 과목
-											</a> <a href="${R}graduation/SubstitutionSubject">대체 과목 관리</a>
-										</div></li>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_PROFESSOR')">
-									<li role="presentation"><a
-										href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-									<li role="presentation"><a
-										href="studentInquiryForProfessor.html">학생조회</a></li>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_STUDENT')">
-									<li role="presentation"><a
-										href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-									<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-										<div class="dropdown-content">
-											<a href="${R}user/myPage">마이페이지</a> <a
-												href="checkGrades.html">성적조회</a> <a href="${R}student/status">대체/타전공 현황</a>
-										</div></li>
-								</sec:authorize>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-									<li role="presentation" class="dropdown"><a
-										href="StudentInquiryForAdmin.html">사용자관리</a>
-										<div class="dropdown-content">
-											<a href="professorInquiry">교수조회</a> <a
-												href="studentListForAdmin">학생조회</a>
-										</div></li>
-								</sec:authorize>
-								<li role="presentation"><a
-									href="${R}user/logout_processing">Logout</a></li>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-									<li>
-										<div style="margin-top: 28px; margin-left: 1.5px;">
-											<a href="adminEdit"> <i class="fas fa-user-edit fa-lg"></i>
-											</a>
-										</div>
-									</li>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_PROFESSOR')">
-									<li>
-										<div style="margin-top: 28px; margin-left: 1.5px;">
-											<a href="professorEdit"> <i
-												class="fas fa-user-edit fa-lg"></i>
-											</a>
-										</div>
-									</li>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_STUDENT')">
-									<li>
-										<div style="margin-top: 28px; margin-left: 1.5px;">
-											<a href="studentEdit"> <i class="fas fa-user-edit fa-lg"></i>
-											</a>
-										</div>
-									</li>
-								</sec:authorize>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+<body>
+	<sec:authorize access="hasRole('ROLE_STUDENT')">
+		<%@ include file="/WEB-INF/views/include/studentNavibar.jsp"%>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
+		<%@ include file="/WEB-INF/views/include/professorNavibar.jsp"%>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
+	</sec:authorize>
 
 	<section id="main-slider" class="no-margin">
 		<div class="carousel slide">

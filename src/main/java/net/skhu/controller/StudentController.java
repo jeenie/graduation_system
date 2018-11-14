@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
+import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.PasswordQuizMapper;
+import net.skhu.mapper.SpecialProcessMapper;
 import net.skhu.mapper.StudentMapper;
 
 @Controller
-@RequestMapping("/user")
 public class StudentController {
 	@Autowired
 	StudentMapper studentMapper;
@@ -30,8 +31,10 @@ public class StudentController {
 	PasswordQuizMapper passwordQuizMapper;
 	@Autowired
 	CultureMapper cultureMapper;
+	@Autowired
+	SpecialProcessMapper specialProcessMapper;
 
-	@RequestMapping("studentListForAdmin")
+	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
 		List<Student> students = studentMapper.findAll();
 		List<Department> departments = departmentMapper.findRealDept();
@@ -40,7 +43,7 @@ public class StudentController {
 		return "user/studentListForAdmin";
 	}
 
-	@RequestMapping(value = "studentSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "user/studentSearch", method = RequestMethod.GET)
 	public String studentSearch(Model model,
 			@RequestParam(value = "departmentName", required = false) String departmentName,
 			@RequestParam(value = "grade", required = false) Integer grade,
@@ -61,22 +64,24 @@ public class StudentController {
 
 	}
 
-	@RequestMapping("studentDelete")
+	@RequestMapping("user/studentDelete")
 	public String professorDelete(@RequestParam("id") int id) {
 		studentMapper.delete(id);
 		return "redirect:studentListForAdmin";
 	}
 
-	@RequestMapping("myPage")
-	public String myPage(Model model) {
+	@RequestMapping("student/graduationStatus")
+	public String graduationStatus(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
-		Student student = studentMapper.findById(userNumber);
+		Student student = studentMapper.findById2(userNumber);
 		Culture culture = cultureMapper.find();
+		List<SpecialProcess> specialProcess = specialProcessMapper.findAll();
 		int cultureGrade = culture.getGrade();
 		model.addAttribute("student", student);
+		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("culture", cultureGrade);
-		return "user/myPage";
+		return "student/graduationStatus";
 	}
 
 }

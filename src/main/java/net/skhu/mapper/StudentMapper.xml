@@ -9,6 +9,9 @@
 	<select id="findById" resultType="Student">
 		SELECT * FROM Student WHERE id=#{id}
 	</select>
+	<select id="findById2" resultType="Student">
+		SELECT Student.*, Department.departmentName FROM Student JOIN Department ON Student.departmentId = Department.id WHERE Student.id=#{studentId}
+	</select>
 	<select id="findOne" resultType="Student">
 		SELECT * FROM Student WHERE id=#{id}
 	</select>

@@ -271,73 +271,77 @@ select.form-control.w200 {
 }
 
 /*my page */
-select { 
-    width: 200px; 
-    height: 40px; 
-    padding-left: 10px; 
-    font-size: 18px; 
-    color: #000000; 
-    background-color: rgb(255, 255, 255);
-    border: 1.3px solid rgb(46, 46, 46); 
-    border-radius: 10px; 
-    text-align:center;
+select {
+	width: 200px;
+	height: 40px;
+	padding-left: 10px;
+	font-size: 18px;
+	color: #000000;
+	background-color: rgb(255, 255, 255);
+	border: 1.3px solid rgb(46, 46, 46);
+	border-radius: 10px;
+	text-align: center;
 }
-select option:checked,
-select option:hover {     
-      background: rgb(226, 240, 217);
-      color: rgb(57, 70, 255); 
-      font-weight: bold;
-    }
-    .divide1 {
-      margin-top: -10px;
-      margin-left: 60px;
-      margin-right: 60px;
-      height: 180px;
 
-    }
-    .l_s {
-      margin-left: -40px;
-      float: left;
-      width: 180px;
-      height: 180px;
-    }
-    .r_s {
-      margin-right: 60px;
-      float: left;
-      width: 800px;
-      height: 180px;
-    }
+select option:checked, select option:hover {
+	background: rgb(226, 240, 217);
+	color: rgb(57, 70, 255);
+	font-weight: bold;
+}
 
-    .a_l {
-      margin-top: 10px;
-      float: left;
-      border: 1.5px solid #8a8a8a;
-      width: 160px;
-      height: 180px;
-    }
-    .alt_l {
-      margin-top: 10px;
-      float: left;
-      border: 2px solid rgb(255, 255, 255);
-      width: 700px;
-      height: 180px;
-    }
-    tabl,td{
-      border: 1px solid #8a8a8a;
-      text-align: center;
-    }
-    
-    th{
-      width:100px;
-      border: 1px solid #8a8a8a;
-      text-align: center;
-      background-color: rgb(226, 240, 217);
-    }
+.divide1 {
+	margin-top: -10px;
+	margin-left: 60px;
+	margin-right: 60px;
+	height: 180px;
+}
 
-    table {
-      width: 100%;
-      color: black;
-    }
+.l_s {
+	margin-left: -40px;
+	float: left;
+	width: 180px;
+	height: 180px;
+}
+
+.r_s {
+	margin-right: 60px;
+	float: left;
+	width: 800px;
+	height: 180px;
+}
+
+.a_l {
+	margin-top: 10px;
+	float: left;
+	border: 1.5px solid #8a8a8a;
+	width: 160px;
+	height: 180px;
+}
+
+.alt_l {
+	margin-top: 10px;
+	float: left;
+	border: 2px solid rgb(255, 255, 255);
+	width: 700px;
+	height: 180px;
+}
+
+tabl, td {
+	border: 1px solid #8a8a8a;
+	text-align: center;
+}
+
+th {
+	width: 100px;
+	border: 1px solid #8a8a8a;
+	text-align: center;
+	background-color: rgb(226, 240, 217);
+}
+
+table {
+	width: 100%;
+	color: black;
+}
 </style>
 </head>
 
@@ -348,7 +352,7 @@ select option:hover {
 		<div class="container">
 			<div class="breadcrumb">
 				<li></li>
-				<li style="font-size: 20px; margin-left: -5px;">나의 졸업요건</li>
+				<li style="font-size: 20px; margin-left: -5px;">나의 졸업현황</li>
 			</div>
 			<hr>
 		</div>
@@ -371,23 +375,23 @@ select option:hover {
 									<table>
 										<tr style="height: 60px;">
 											<th>학번</th>
-											<td>201632000</td>
+											<td>${ student.id }</td>
 											<th>성명</th>
-											<td>이ㅇㅇ</td>
+											<td>${ student.name }</td>
 										</tr>
 
 										<tr style="height: 60px;">
 											<th>학부(과)</th>
-											<td>소프트웨어공학과</td>
+											<td>${ student.departmentName }</td>
 											<th>학년</th>
-											<td>3학년</td>
+											<td>${ student.grade }</td>
 										</tr>
 
 										<tr style="height: 60px;">
 											<th>입학구분</th>
-											<td>신입학(2016.02.29)</td>
+											<td>${ student.entranceType }</td>
 											<th>이수학기</th>
-											<td>3학년2학기</td>
+											<td>${ student.completeSemester }학기</td>
 										</tr>
 									</table>
 								</div>
@@ -399,16 +403,17 @@ select option:hover {
 
 				<br> <br> <br>
 
-				<h4>
-					&nbsp&nbsp&nbsp ○○○님은&nbsp <img src="images/abouti/lock.png"
-						width="15px">&nbsp <select name="special course">
-						<option value="">특별과정선택</option>
-						<option value="전공기초과정" selected="selected">전공기초과정</option>
-						<option value="전공심화과정">전공심화과정</option>
-						<option value="타과복수전공과정">타과복수전공과정</option>
-						<option value="타과부전공과정">타과부전공과정</option>
-					</select> &nbsp을 이수하고 있습니다.
-				</h4>
+				<div class="form-group"
+					style="float: left; margin-right: 20px; margin-bottom: 5px;">
+					<p class="font4">${ student.name }님은</p>
+					<select name="specialProcess" class="form-controls w200">
+						<option value="99">선택</option>
+						<c:forEach var="specialProcess" items="${specialProcess}">
+							<option value="${specialProcess.id}"
+								${specialProcessId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
+						</c:forEach>
+					</select>을 이수하고 있습니다.
+				</div>
 				<br> <br>
 			</div>
 			<div class="col-md-5 wow fadeInDown" data-wow-duration="1000ms"

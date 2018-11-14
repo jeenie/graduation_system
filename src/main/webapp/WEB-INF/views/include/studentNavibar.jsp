@@ -25,8 +25,9 @@
 								href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
 							<li role="presentation" class="dropdown"><a href="">졸업관리</a>
 								<div class="dropdown-content">
-									<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-									<a href="${R}student/status">대체/타전공 현황</a>
+									<a href="${R}student/graduationStatus">나의 졸업현황</a> <a
+										href="checkGrades.html">성적조회</a> <a href="${R}student/status">대체/타전공
+										현황</a>
 								</div></li>
 							<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 							<li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>

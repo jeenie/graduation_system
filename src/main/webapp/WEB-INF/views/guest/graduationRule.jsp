@@ -336,7 +336,7 @@ select.form-control.w200 {
 								<li role="presentation" class="dropdown"><a
 									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
-										<a href="${R}guest/login" onclick="alertGuest()">마이페이지</a> <a
+										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> <a
 											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
 											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
 									</div></li>
