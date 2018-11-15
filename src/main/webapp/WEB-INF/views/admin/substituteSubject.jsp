@@ -318,7 +318,7 @@
 
 	</div>
 	
-	<div class="modal fade" id="addSubject" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+	<div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
@@ -353,7 +353,7 @@
 		</div>
 	</div>
 	
-	<div class="modal fade" id="find" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+	<div class="modal fade" id="find" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">

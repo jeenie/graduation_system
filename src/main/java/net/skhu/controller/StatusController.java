@@ -9,4 +9,15 @@ public class StatusController {
 	public String selectStatus() {
         return "student/detailStatus";
     }
+
+	@RequestMapping("student/substitute")
+	public String selectSubstitute() {
+        return "student/substituteEdit";
+    }
+
+	@RequestMapping("student/otherMajor")
+	public String selectOtherMajor() {
+        return "student/otherMajorEdit";
+    }
+
 }

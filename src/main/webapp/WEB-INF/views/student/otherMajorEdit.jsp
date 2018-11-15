@@ -226,12 +226,15 @@
 	}
 	
 	.btn-submit {
+	height: 40px;
+	width: 70px;
 	padding: 6px 15px;
 	background: #1BBD36;
 	color: #fff;
 	border-radius: 4px;
 	border: none;
 	margin-top: 0;
+	float: right;
 	}
 	
 	/*status 페이지에서 사용할 css*/
@@ -240,84 +243,65 @@
 	font-weight: bold;
 	font-size: 18px;
 	}
+	/*otherMajor 페이지에서 사용할 css*/
+	.contents {
+	margin-left:auto;
+	margin-right:auto;
+	width: 600px;
+	}
+	.inlineinput div {
+    display: inline;
+}
+	
 </style>
 <body>
-	<%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
+<%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
 				<li></li>
-				<li style="font-size: 18px; margin-left: -5px;">대체 과목/타전공 인정 현황</li>
+				<li style="font-size: 18px; margin-left: -5px;">타학과 과목 전공 등록</li>
 			</div>
 			<hr>
 		</div>
 	</div>
 	
-	<div class="contents">
-		<p class="boldfont18">대체 과목 현황
-			<a href="${R}student/substitute">
-			<span onclick="location='substituteEdit.jsp'" style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
-			</a>
-		</p>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col" class="text-center">담당 학과</th>
-					<th scope="col" class="text-center">폐지과목명</th>
-					<th scope="col" class="text-center">대체과목명</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr>
-						<td>교양인문</td>
-						<td>기초 토익</td>
-						<td>실용영어(TOEIC)1</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급웹프로그래밍</td>
-						<td>고급웹프로그래밍1</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>모바일 프로그래밍2</td>
-						<td>게임프로그래밍</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급 Java 프로그래밍</td>
-						<td>JAVA 프로젝트</td>
-					</tr>
-			</tbody>
-		</table>
-		<br/><br/>
-		<p class="boldfont18">타전공 인정 현황
-			<a href="${R}student/otherMajor">
-				<span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
-			</a>
-		</p>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col" class="text-center">타학과</th>
-					<th scope="col" class="text-center">전공과목명</th>
-					<th scope="col" class="text-center">학점</th>
-					<th scope="col" class="text-center">수강일시</th>
-					<th scope="col" class="text-center">이수구분</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr>
-						<td>정보통신공학과</td>
-						<td>무선통신</td>
-					</tr>
-					<tr>
-						<td>정보통신공학과</td>
-						<td>빅데이터개론</td>
-					</tr>
-			</tbody>
-		</table>
+	<div class="container">
+  	<div class="contents">
+    <form action="http://localhost/login.php">
+    <p>타 학과(공학계) <input type="text" class="form-control" name="othermajor" ></p>
+    <p>교과목명 <input type="text" class="form-control" name="subject"></p>
+    <p>학점 <input type="text" class="form-control" name="score"></p>
+
+    <div>
+    <p>수강일시</p>
+    <span class="inlineinput">
+       	<input type='text' class="form-control" style='display: inline; width: 200px;' />
+    </span>년도
+    <span class="inlineinput">
+        <input type='text' class="form-control" style='display: inline; width: 200px;' />
+    </span>학기
 	</div>
+    <p>희망이수구분
+      <select name="division" class="form-control">
+        <option value="major_s">전공선택</option>
+        <option value="minor_e">부전공필수</option>
+        <option value="minor_s">부전공선택</option>
+        <option value="double_e">복수전공필수</option>
+        <option value="double_s">복수전공선택</option>
+        <option value="others">기타</option>
+      </select>
+    </p>
+
+    </form>
+    
+    <div class="bottom_sec">
+      	<button type="button" class="btn btn-submit">등록</button>
+    </div>
+    
+  	</div> <!-- contents -->  
+    </div> <!-- container -->
+	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 </body>

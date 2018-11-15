@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentSubstitutionMapper">
+	<select id="findLowGradeAbosub" resultType="SubstitutionSubject">
+		SELECT sublist.abolitionSubject,s.name abolitionSubjectName,ssg.grade
+		FROM substitution_subject_list sublist
+		LEFT JOIN student_subject_grade ssg ON sublist.abolitionSubject = ssg.subjectId
+		LEFT JOIN subject s ON sublist.abolitionSubject = s.id 
+		LEFT JOIN grade g ON ssg.grade = g.gradeLevel
+		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber};
+	</select>
+	<!--<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
+		SELECT subject.name 폐지과목명, substitution.name 대체과목명 
+		FROM substitution_subject_list sublist
+		LEFT JOIN subject subject
+		ON sublist.abolitionSubject = subject.id
+		LEFT JOIN major_list major
+		ON sublist.abolitionSubject = major.majorSubjectId
+		LEFT JOIN department d
+		ON major.departmentId = d.id
+		RIGHT JOIN major_list majorList
+		ON major.departmentId = majorList.departmentId
+		LEFT JOIN subject substitution
+		ON majorList.majorSubjectId = substitution.id
+		WHERE sublist.abolitionSubject = #{subjectid} && substitution.completeType = '전공선택' && majorList.majorSubjectId NOT IN (SELECT abolitionSubject from substitution_subject_list);			
+	</select>   -->
+	<insert id="insert">
+	</insert>
+</mapper>

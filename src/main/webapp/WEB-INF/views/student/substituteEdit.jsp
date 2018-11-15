@@ -226,12 +226,16 @@
 	}
 	
 	.btn-submit {
+	height: 40px;
+	width: 70px;
 	padding: 6px 15px;
 	background: #1BBD36;
 	color: #fff;
 	border-radius: 4px;
 	border: none;
 	margin-top: 0;
+	float: right;
+	margin-right: 120px;
 	}
 	
 	/*status 페이지에서 사용할 css*/
@@ -240,84 +244,200 @@
 	font-weight: bold;
 	font-size: 18px;
 	}
+	/*substitute 페이지에서 사용할 css*/
+	.contents {
+      margin-top: 5px;
+      margin-right: 100px;
+      margin-left: 90px;
+      height: 650px;
+    }
+
+    .divide {
+      margin-top: 20px;
+      margin-left: 60px;
+      margin-right: 60px;
+      height: 520px;
+
+    }
+    .left_sec {
+      margin-left: 60px;
+      float: left;
+      width: 300px;
+      height: 520px;
+    }
+
+    .abolish_list {
+      margin-top: 40px;
+      float: left;
+      border: 2px solid #1BBD36;
+      width: 300px;
+      height: 400px;
+    }
+
+    .right_sec {
+      margin-right: 60px;
+      float: right;
+      width: 300px;
+      height: 520px;
+    }
+
+    .alternative_list {
+      margin-top: 40px;
+      float: right;
+      border: 2px solid #1BBD36;
+      width: 300px;
+      height: 400px;
+    }
+
+    .myLavel {
+      margin: 0;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    .selectSpan{
+      overflow:hidden;
+      width:25px;
+    }
+
+    .selectSpan:before{
+      content:'';
+      height:20px;
+      width:20px;
+      display:block;
+      border:5px solid #333;
+      border-left-width:0;
+      border-top-width:0;
+      transform:rotate(-45deg);
+      -webkit-transform:rotate(-45deg);
+      -moz-transform:rotate(-45deg);
+      -o-transform:rotate(-45deg);
+      -ms-transform:rotate(-45deg);
+      position:absolute;
+      top:7px;
+      right:7px;
+    }
+
+    .demoSpan1 {
+      width:40px;
+      height:40px;
+    }
+
+    .demoSpan1:before{
+      content:'';
+      height:8px;
+      width:8px;
+      background:#333;
+      border-radius:6px;
+      -webkit-border-radius:6px;
+      -moz-border-radius:6px;
+      display:block;
+      position:absolute;
+      top:5px;
+      left:16px;
+      box-shadow:0 12px 0 #333, 0 24px 0 #333;
+      -webkit-box-shadow:0 12px 0 #333, 0 24px 0 #333;
+      -moz-box-shadow:0 12px 0 #333, 0 24px 0 #333;
+    }
+
+    .divide_top {
+      width: 100%;
+      height: 40px;
+      display: block;
+    }
+
+    .divide_top input[type="button"] {
+      float: right;
+      margin-right: 40px;
+    }
+
+    . {
+      float : right;
+      margin-top: -50px;
+      margin-right: 60px;
+    }
+	
 </style>
 <body>
-	<%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
+<%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
 				<li></li>
-				<li style="font-size: 18px; margin-left: -5px;">대체 과목/타전공 인정 현황</li>
+				<li style="font-size: 18px; margin-left: -5px;">대체 과목 등록</li>
 			</div>
 			<hr>
 		</div>
 	</div>
 	
 	<div class="contents">
-		<p class="boldfont18">대체 과목 현황
-			<a href="${R}student/substitute">
-			<span onclick="location='substituteEdit.jsp'" style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
-			</a>
-		</p>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col" class="text-center">담당 학과</th>
-					<th scope="col" class="text-center">폐지과목명</th>
-					<th scope="col" class="text-center">대체과목명</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr>
-						<td>교양인문</td>
-						<td>기초 토익</td>
-						<td>실용영어(TOEIC)1</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급웹프로그래밍</td>
-						<td>고급웹프로그래밍1</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>모바일 프로그래밍2</td>
-						<td>게임프로그래밍</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급 Java 프로그래밍</td>
-						<td>JAVA 프로젝트</td>
-					</tr>
-			</tbody>
-		</table>
-		<br/><br/>
-		<p class="boldfont18">타전공 인정 현황
-			<a href="${R}student/otherMajor">
-				<span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
-			</a>
-		</p>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col" class="text-center">타학과</th>
-					<th scope="col" class="text-center">전공과목명</th>
-					<th scope="col" class="text-center">학점</th>
-					<th scope="col" class="text-center">수강일시</th>
-					<th scope="col" class="text-center">이수구분</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr>
-						<td>정보통신공학과</td>
-						<td>무선통신</td>
-					</tr>
-					<tr>
-						<td>정보통신공학과</td>
-						<td>빅데이터개론</td>
-					</tr>
-			</tbody>
-		</table>
-	</div>
+      <div class="divide">
+          <div class="left_sec">
+            <p class="myLavel" align="center">C+ 이하 폐지 과목</p>
+            <div class="abolish_list">
+            <table class="table table-hover">
+						<tbody>
+							<c:forEach var="substitutionSubject" items="${ abolitionList }">
+								<tr>
+									<td>${ substitutionSubject.abolitionSubject }</td>
+									<td>${ substitutionSubject.abolitionSubjectName }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+              <!--  <table id="sublist" class="table table-bordered">
+              <tr id="available" onclick="javascript:clickTrEvent(this)" onmouseover="javascript:changeTrColor(this, '#FFFFF', '#ffe')" style="cursor:hand">
+                 
+              </table> -->
+            </div>
+          </div>
+          <div style="float: left; width:178px; height: 565px">
+            <span class="selectSpan" style="margin-top: 250px; margin-left: 90px; height:40px; width:40px; display:block; position:relative;"></span>
+          </div>
+          <div class="right_sec">
+            <p class="myLavel" align="center">대체 과목 목록</p>
+            <div class="alternative_list">
+              <table class="table table-bordered" id="available_data" style="display:none;">
+                  <tr>
+                    <td>GC00002</td>
+                    <td>사회의 구조와 변동</td>
+                    <td>전공선택</td>
+                  </tr>
+                  <tr>
+                    <td>GC00020</td>
+                    <td>조사방법론</td>
+                    <td>전공필수</td>
+                  </tr>
+                  <tr>
+                    <td>GC00004</td>
+                    <td>산업사회학</td>
+                    <td>전공선택</td>
+                  </tr>
+                  <tr>
+                    <td>GC00023</td>
+                    <td>한국 현대정치사</td>
+                    <td>전공선택</td>
+                  </tr>
+                  <tr>
+                    <td>GC00048</td>
+                    <td>경제사상사</td>
+                    <td>전공선택</td>
+                  </tr>
+                  <tr>
+                    <td>GC00047</td>
+                    <td>한국경제사</td>
+                    <td>전공선택</td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+      </div>
+      <div class="bottom_sec">
+      	<button type="button" class="btn btn-submit">등록</button>
+      </div>
+    </div>
+	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 </body>
