@@ -407,7 +407,7 @@ table {
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">${ student.name }님은</p>
 					<select name="specialProcess" class="form-controls w200">
-						<option value="99">특별과정</option>
+						<option value="0">특별과정</option>
 						<c:forEach var="specialProcess" items="${specialProcess}">
 							<option value="${specialProcess.id}"
 								${specialProcessId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
@@ -432,7 +432,7 @@ table {
 					<br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/34</h4>
+						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/${departmentMajorList.mustPlusChoice}</h4>
 						<div class="progress">
 							<div class="progress-bar  color1" role="progressbar"
 								aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"

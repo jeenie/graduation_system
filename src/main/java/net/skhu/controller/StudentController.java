@@ -82,7 +82,7 @@ public class StudentController {
 		return "redirect:studentListForAdmin";
 	}
 
-	@RequestMapping("student/graduationStatus")
+	@RequestMapping(value = "student/graduationStatus", method = RequestMethod.GET)
 	public String graduationStatus(Model model, @RequestParam("processId") int processId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
