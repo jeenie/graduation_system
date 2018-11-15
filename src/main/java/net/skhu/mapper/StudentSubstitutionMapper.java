@@ -9,6 +9,7 @@ import net.skhu.dto.SubstitutionSubject;
 @Mapper
 public interface StudentSubstitutionMapper {
 	List<SubstitutionSubject> findLowGradeAbosub(int userNumber);
-	List<SubstitutionSubject> findSubstiByAbosub(String abolitionSubject);
+	List<SubstitutionSubject> findSubstiByAbosub(String subjectId);
+	List<SubstitutionSubject> findSubstiStatus(int userNumber);
 	void insert(SubstitutionSubject subject);
 }

@@ -256,7 +256,7 @@
 	<div class="contents">
 		<p class="boldfont18">대체 과목 현황
 			<a href="${R}student/substitute/abolition">
-			<span onclick="location='substituteEdit.jsp'" style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
+			<span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
 			</a>
 		</p>
 		<table class="table table-hover">
@@ -268,26 +268,13 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="substitutionStatus" items="${ substiStatus }">
 					<tr>
-						<td>교양인문</td>
-						<td>기초 토익</td>
-						<td>실용영어(TOEIC)1</td>
+						<td>${ substitutionStatus.departmentName }</td>
+						<td>${ substitutionStatus.abolitionSubjectName }</td>
+						<td>${ substitutionStatus.substitutionSubjectName }</td>
 					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급웹프로그래밍</td>
-						<td>고급웹프로그래밍1</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>모바일 프로그래밍2</td>
-						<td>게임프로그래밍</td>
-					</tr>
-					<tr>
-						<td>소프트웨어공학과</td>
-						<td>고급 Java 프로그래밍</td>
-						<td>JAVA 프로젝트</td>
-					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<br/><br/>

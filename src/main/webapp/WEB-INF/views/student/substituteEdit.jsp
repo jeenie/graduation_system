@@ -26,6 +26,12 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
+<script type="text/javascript">
+	function button_event(value) {
+		location.href="sublist?subjectId="+value;
+	}
+</script>
+
 <style>
 	.inquiry_btn {
 		border: none;
@@ -260,7 +266,7 @@
 
     }
     .left_sec {
-      margin-left: 60px;
+      margin-left: 0px;
       float: left;
       width: 300px;
       height: 520px;
@@ -270,12 +276,12 @@
       margin-top: 40px;
       float: left;
       border: 2px solid #1BBD36;
-      width: 300px;
+      width: 400px;
       height: 400px;
     }
 
     .right_sec {
-      margin-right: 60px;
+      margin-right: 0px;
       float: right;
       width: 300px;
       height: 520px;
@@ -285,14 +291,21 @@
       margin-top: 40px;
       float: right;
       border: 2px solid #1BBD36;
-      width: 300px;
+      width: 420px;
       height: 400px;
     }
 
     .myLavel {
-      margin: 0;
+      margin-left: 100px;
       font-weight: bold;
       font-size: 22px;
+    }
+    
+    .myLavel2 {
+      margin-right: 100px;
+      font-weight: bold;
+      font-size: 22px;
+   
     }
 
     .selectSpan{
@@ -356,6 +369,9 @@
       margin-top: -50px;
       margin-right: 60px;
     }
+    th{
+      text-align:center;
+    }
 	
 </style>
 <body>
@@ -373,63 +389,51 @@
 	<div class="contents">
       <div class="divide">
           <div class="left_sec">
-            <p class="myLavel" align="center">C+ 이하 폐지 과목</p>
+            <p class="myLavel">C+ 이하 폐지 과목</p>
             <div class="abolish_list">
             <table class="table table-hover">
-						<tbody>
-							<c:forEach var="substitutionSubject" items="${ abolitionList }">
-								<tr>
-									<td>${ substitutionSubject.abolitionSubject }</td>
-									<td>${ substitutionSubject.abolitionSubjectName }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-
-              <!--  <table id="sublist" class="table table-bordered">
-              <tr id="available" onclick="javascript:clickTrEvent(this)" onmouseover="javascript:changeTrColor(this, '#FFFFF', '#ffe')" style="cursor:hand">
-                 
-              </table> -->
+        		<thead>
+        			<th>과목코드</th>
+        			<th>폐지과목명</th>
+        			<th>학점</th>
+        			<th>개설학과</th>
+        		</thead>
+				<tbody>
+					<c:forEach var="substitutionSubject" items="${ abolitionList }">
+						<tr onclick="button_event(${substitutionSubject.abolitionSubject});">
+							<td>${ substitutionSubject.abolitionSubject }</td>
+							<td>${ substitutionSubject.abolitionSubjectName }</td>
+							<td>${ substitutionSubject.grade }</td>
+							<td>${ substitutionSubject.departmentName }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
             </div>
           </div>
           <div style="float: left; width:178px; height: 565px">
-            <span class="selectSpan" style="margin-top: 250px; margin-left: 90px; height:40px; width:40px; display:block; position:relative;"></span>
+            <span class="selectSpan" style="margin-top: 250px; margin-left: 150px; height:40px; width:40px; display:block; position:relative;"></span>
           </div>
           <div class="right_sec">
-            <p class="myLavel" align="center">대체 과목 목록</p>
+            <p class="myLavel2">대체 과목 목록</p>
             <div class="alternative_list">
-              <table class="table table-bordered" id="available_data" style="display:none;">
-                  <tr>
-                    <td>GC00002</td>
-                    <td>사회의 구조와 변동</td>
-                    <td>전공선택</td>
-                  </tr>
-                  <tr>
-                    <td>GC00020</td>
-                    <td>조사방법론</td>
-                    <td>전공필수</td>
-                  </tr>
-                  <tr>
-                    <td>GC00004</td>
-                    <td>산업사회학</td>
-                    <td>전공선택</td>
-                  </tr>
-                  <tr>
-                    <td>GC00023</td>
-                    <td>한국 현대정치사</td>
-                    <td>전공선택</td>
-                  </tr>
-                  <tr>
-                    <td>GC00048</td>
-                    <td>경제사상사</td>
-                    <td>전공선택</td>
-                  </tr>
-                  <tr>
-                    <td>GC00047</td>
-                    <td>한국경제사</td>
-                    <td>전공선택</td>
-                  </tr>
-              </table>
+                <table class="table table-hover">
+        		<thead>
+        			<th>과목코드</th>
+        			<th>대체과목명</th>
+        			<th>개설학과</th>
+        		</thead>
+				<tbody>
+					<c:forEach var="subSubject" items="${ substitutionList }">
+						<tr>
+							<td>${ subSubject.substitutionSubject }</td>
+							<td>${ subSubject.substitutionSubjectName }</td>
+							<td>${ subSubject.departmentName }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+               
             </div>
           </div>
       </div>

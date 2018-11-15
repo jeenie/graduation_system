@@ -3,18 +3,19 @@
 
 <mapper namespace="net.skhu.mapper.StudentSubstitutionMapper">
 	<select id="findLowGradeAbosub" resultType="SubstitutionSubject">
-		SELECT sublist.abolitionSubject,s.name abolitionSubjectName,ssg.grade
+		SELECT d.departmentName,sublist.abolitionSubject,s.name abolitionSubjectName,ssg.grade
 		FROM substitution_subject_list sublist
 		LEFT JOIN student_subject_grade ssg ON sublist.abolitionSubject = ssg.subjectId
 		LEFT JOIN subject s ON sublist.abolitionSubject = s.id 
 		LEFT JOIN grade g ON ssg.grade = g.gradeLevel
+		LEFT JOIN department d ON sublist.departmentId = d.id
 		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber};
 	</select>
-	<!--<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
-		SELECT subject.name 폐지과목명, substitution.name 대체과목명 
+	<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
+		SELECT substitution.id substitutionSubject,s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
 		FROM substitution_subject_list sublist
-		LEFT JOIN subject subject
-		ON sublist.abolitionSubject = subject.id
+		LEFT JOIN subject s
+		ON sublist.abolitionSubject = s.id
 		LEFT JOIN major_list major
 		ON sublist.abolitionSubject = major.majorSubjectId
 		LEFT JOIN department d
@@ -23,8 +24,19 @@
 		ON major.departmentId = majorList.departmentId
 		LEFT JOIN subject substitution
 		ON majorList.majorSubjectId = substitution.id
-		WHERE sublist.abolitionSubject = #{subjectid} && substitution.completeType = '전공선택' && majorList.majorSubjectId NOT IN (SELECT abolitionSubject from substitution_subject_list);			
-	</select>   -->
+		WHERE sublist.abolitionSubject = #{subjectId} AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
+		NOT IN (SELECT abolitionSubject from substitution_subject_list);		
+	</select>
+	<select id="findSubstiStatus" resultType="SubstitutionSubject">
+		SELECT d.departmentName, sub1.name abolitionSubjectName, sub2.name substitutionSubjectName
+		FROM student_substitution_subject sss 
+		LEFT JOIN substitution_subject_list list ON sss.abolitionCode = list.abolitionSubject 
+		LEFT JOIN department d ON list.departmentId = d.id
+		LEFT JOIN student s ON sss.studentId = s.id
+		LEFT JOIN subject sub1 ON sss.abolitionCode = sub1.id 
+		LEFT JOIN subject sub2 ON sss.substitutionCode = sub2.id
+		WHERE sss.studentId= #{userNumber};
+	</select>
 	<insert id="insert">
 	</insert>
 </mapper>

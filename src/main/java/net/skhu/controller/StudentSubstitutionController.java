@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.StudentSubstitutionMapper;
@@ -18,9 +19,13 @@ import net.skhu.mapper.StudentSubstitutionMapper;
 public class StudentSubstitutionController {
 
 	@Autowired StudentSubstitutionMapper studentSubstitutionMapper;
-	
+
 	@RequestMapping("status")
-	public String selectStatus() {
+	public String selectStatus(Model model) {
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+        List<SubstitutionSubject> substiStatus = studentSubstitutionMapper.findSubstiStatus(userNumber);
+		model.addAttribute("substitutionStatus",substiStatus);
         return "student/detailStatus";
     }
 
@@ -28,7 +33,7 @@ public class StudentSubstitutionController {
 	public String selectOtherMajor() {
         return "student/otherMajorEdit";
     }
-	
+
     @RequestMapping(value="substitute/abolition", method=RequestMethod.GET)
     public String abolitionList(Model model) {
     	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -37,4 +42,12 @@ public class StudentSubstitutionController {
 		model.addAttribute("abolitionList",abolitionList);
 		return "student/substituteEdit";
     }
+
+    @RequestMapping(value="sublist", method=RequestMethod.GET)
+    public String substitutionList(Model model, @RequestParam("subjectId") String subjectId) {
+	    List<SubstitutionSubject> substitutionList = studentSubstitutionMapper.findSubstiByAbosub(subjectId);
+		model.addAttribute("substitutionList",substitutionList);
+		return "student/substituteEdit";
+    }
+
 }
