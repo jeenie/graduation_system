@@ -12,7 +12,7 @@
 		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber};
 	</select>
 	<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
-		SELECT substitution.id substitutionSubject,s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
+		SELECT DISTINCT substitution.id substitutionSubject,s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
 		FROM substitution_subject_list sublist
 		LEFT JOIN subject s
 		ON sublist.abolitionSubject = s.id
@@ -24,7 +24,7 @@
 		ON major.departmentId = majorList.departmentId
 		LEFT JOIN subject substitution
 		ON majorList.majorSubjectId = substitution.id
-		WHERE sublist.abolitionSubject = #{subjectId} AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
+		WHERE sublist.abolitionSubject = 'IC00055' AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
 		NOT IN (SELECT abolitionSubject from substitution_subject_list);		
 	</select>
 	<select id="findSubstiStatus" resultType="SubstitutionSubject">

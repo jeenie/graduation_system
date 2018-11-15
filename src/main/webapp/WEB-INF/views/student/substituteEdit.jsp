@@ -400,7 +400,7 @@
         		</thead>
 				<tbody>
 					<c:forEach var="substitutionSubject" items="${ abolitionList }">
-						<tr onclick="button_event(${substitutionSubject.abolitionSubject});">
+						<tr data-url="sublist?abolitionId=${ substitutionSubject.abolitionSubject }" style=${abolitionId == substitutionSubject.abolitionSubject ? "background-color:#ffe" : ""}>
 							<td>${ substitutionSubject.abolitionSubject }</td>
 							<td>${ substitutionSubject.abolitionSubjectName }</td>
 							<td>${ substitutionSubject.grade }</td>
@@ -444,6 +444,16 @@
     </div>
 	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
-
+	
+	  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	  <script src="${R}res/js/jquery-2.1.1.min.js"></script>
+	  <!-- Include all compiled plugins (below), or include individual files as needed -->
+	  <script src="${R}res/js/bootstrap.min.js"></script>
+	  <script src="${R}res/js/jquery.prettyPhoto.js"></script>
+	  <script src="${R}res/js/jquery.isotope.min.js"></script>
+	  <script src="${R}res/js/wow.min.js"></script>
+	  <script src="${R}res/js/functions.js"></script>	
+	  <script src="${R}res/js/StudentSubstitution.js"></script>	
+	  
 </body>
 </html>
