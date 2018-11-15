@@ -43,10 +43,15 @@ public class StudentSubstitutionController {
 		return "student/substituteEdit";
     }
 
-    @RequestMapping(value="sublist", method=RequestMethod.GET)
-    public String substitutionList(Model model, @RequestParam("subjectId") String subjectId) {
-	    List<SubstitutionSubject> substitutionList = studentSubstitutionMapper.findSubstiByAbosub(subjectId);
+    @RequestMapping(value="substitute/sublist", method=RequestMethod.GET)
+    public String substitutionList(Model model, @RequestParam("abolitionId") String abolitionId) {
+    	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+    	List<SubstitutionSubject> abolitionList = studentSubstitutionMapper.findLowGradeAbosub(userNumber);
+		model.addAttribute("abolitionList",abolitionList);
+	    List<SubstitutionSubject> substitutionList = studentSubstitutionMapper.findSubstiByAbosub(abolitionId);
 		model.addAttribute("substitutionList",substitutionList);
+		model.addAttribute("abolitionId", abolitionId);
 		return "student/substituteEdit";
     }
 
