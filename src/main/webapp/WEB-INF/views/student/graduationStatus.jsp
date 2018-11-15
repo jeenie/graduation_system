@@ -432,7 +432,7 @@ table {
 					<br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}</h4>
+						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/34</h4>
 						<div class="progress">
 							<div class="progress-bar  color1" role="progressbar"
 								aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
@@ -513,7 +513,7 @@ table {
 					<br> <br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.cultureUnit}/47</h4>
+						<h4>＞ 교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.cultureUnit}/${culture+departmentMajorList.addCulture}</h4>
 						<div class="progress">
 							<div class="progress-bar color3" role="progressbar"
 								aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"

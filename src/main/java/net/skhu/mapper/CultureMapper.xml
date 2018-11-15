@@ -5,6 +5,9 @@
 	<select id="find" resultType="Culture">
 		SELECT * FROM culture
 	</select>
+	<select id="findCulture" resultType="Culture">
+		SELECT * FROM culture
+	</select>
 	<update id="update">
 		UPDATE culture SET grade = #{grade}
 	</update>

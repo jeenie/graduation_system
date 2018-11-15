@@ -82,9 +82,8 @@ public class StudentController {
 		return "redirect:studentListForAdmin";
 	}
 
-	@RequestMapping(value = "student/graduationStatus")
-	public String graduationStatus(Model model, @RequestParam("departmentId") int departmentId,
-			@RequestParam("entranceYear") int entranceYear, @RequestParam("processId") int processId) {
+	@RequestMapping("student/graduationStatus")
+	public String graduationStatus(Model model, @RequestParam("processId") int processId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
 		Student student = studentMapper.findById2(userNumber);
@@ -93,6 +92,9 @@ public class StudentController {
 		StudentGradefile studentGradefile = studentGradefileMapper.findById(userNumber);
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
+		int departmentId = student.getDepartmentId();
+		String entranceYearChange = String.valueOf(userNumber).substring(1, 5);
+		int entranceYear = Integer.parseInt(entranceYearChange);
 		DepartmentMajorRule departmentMajorRule = departmentMajorRuleMapper.findTotalMajor(departmentId, entranceYear,
 				processId);
 		int cultureGrade = culture.getGrade();
