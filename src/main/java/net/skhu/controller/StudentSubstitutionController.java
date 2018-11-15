@@ -14,12 +14,22 @@ import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.StudentSubstitutionMapper;
 
 @Controller
-@RequestMapping("student/substitute")
+@RequestMapping("student/")
 public class StudentSubstitutionController {
 
 	@Autowired StudentSubstitutionMapper studentSubstitutionMapper;
+	
+	@RequestMapping("status")
+	public String selectStatus() {
+        return "student/detailStatus";
+    }
 
-    @RequestMapping(value="abolition", method=RequestMethod.GET)
+	@RequestMapping("otherMajor")
+	public String selectOtherMajor() {
+        return "student/otherMajorEdit";
+    }
+	
+    @RequestMapping(value="substitute/abolition", method=RequestMethod.GET)
     public String abolitionList(Model model) {
     	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         int userNumber=Integer.parseInt(authentication.getName());

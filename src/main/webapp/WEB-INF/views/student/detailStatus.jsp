@@ -255,7 +255,7 @@
 	
 	<div class="contents">
 		<p class="boldfont18">대체 과목 현황
-			<a href="${R}student/substitute">
+			<a href="${R}student/substitute/abolition">
 			<span onclick="location='substituteEdit.jsp'" style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
 			</a>
 		</p>
