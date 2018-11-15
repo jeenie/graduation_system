@@ -212,7 +212,8 @@ input.form-control.w300 {
 			<img src="${R}res/images/abouti/professor-1.png"
 				style="width: 250px; height: 250px; float: left; border-radius: 5px; padding-right: 20px;">
 			<div style="margin-left: 250px;">
-				<form:form method="post" modelAttribute="student" id="signForm">
+				<form:form method="post" modelAttribute="st
+				udent,file" id="signForm" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>학번</label>
 						<form:input path="id" class="form-control w300" />
@@ -263,6 +264,12 @@ input.form-control.w300 {
 						<form:input path="completeSemester" type="number"
 							class="form-control w300" />
 					</div>
+					
+					<div class="form-group">
+						<label>성적파일 업로드</label>
+						<form:input path="file" type="file" class="form-control w300" accept=".xls,xlsx"/>
+					</div>
+					
 					<hr />
 					<div>
 						<button type="submit" class="btn btn-submit">
