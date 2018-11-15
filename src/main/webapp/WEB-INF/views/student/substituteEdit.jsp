@@ -416,6 +416,7 @@
           </div>
           <div class="right_sec">
             <p class="myLavel2">대체 과목 목록</p>
+            <form:form method="post" modelAttribute="subject" autocomplete="off">
             <div class="alternative_list">
                 <table class="table table-hover">
         		<thead>
@@ -436,10 +437,10 @@
                
             </div>
           </div>
-      </div>
-      <div class="bottom_sec">
-      	<button type="button" class="btn btn-submit">등록</button>
-      </div>
+     	 </div>
+
+      	<button type="submit" class="btn btn-submit">등록</button>
+     	</form:form>
     </div>
 	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

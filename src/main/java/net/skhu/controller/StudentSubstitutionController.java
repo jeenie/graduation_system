@@ -50,4 +50,10 @@ public class StudentSubstitutionController {
 		return "student/substituteEdit";
     }
 
+    @RequestMapping(value="insert", method=RequestMethod.POST)
+    public String create(Model model, SubstitutionSubject subject) {
+        studentSubstitutionMapper.insert(subject);
+        return "redirect:status";
+    }
+
 }

@@ -38,5 +38,7 @@
 		WHERE sss.studentId= #{userNumber};
 	</select>
 	<insert id="insert">
+		INSERT SubstitutionSubject (studentId, abolitionSubject, substitutionSubject)
+		VALUES (#{studentId}, #{abolitionSubject}, #{substitutionSubject})
 	</insert>
 </mapper>
