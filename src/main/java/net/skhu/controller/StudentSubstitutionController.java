@@ -25,7 +25,7 @@ public class StudentSubstitutionController {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         int userNumber=Integer.parseInt(authentication.getName());
         List<SubstitutionSubject> substiStatus = studentSubstitutionMapper.findSubstiStatus(userNumber);
-		model.addAttribute("substitutionStatus",substiStatus);
+		model.addAttribute("substiStatus",substiStatus);
         return "student/detailStatus";
     }
 
