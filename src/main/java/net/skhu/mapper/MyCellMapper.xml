@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.skhu.mapper.MyCellMapper">
-	<!--void insert(Map<Integer,List<String>> data, int id, String strToday); -->
-	<insert id="insert" parameterType="MyCell">
+	<insert id="insert" parameterType="java.util.List">
 		INSERT INTO student_subject_grade3(id, latestUpdateDate, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectScore, grade)
     	VALUES
     	<foreach collection="list" item="item" separator=",">

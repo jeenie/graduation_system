@@ -100,12 +100,8 @@ public class SignCotroller {
 		
 		FileInputStream uploadFile = new FileInputStream(new File(fileLocation));
 		Workbook workbook = new XSSFWorkbook(uploadFile); //xlsx
-		
 		Sheet sheet = workbook.getSheetAt(0);
-		
 		List<MyCell> data = new ArrayList<MyCell>();
-		//Map<Integer, List<Object>> data = new HashMap<>();
-		
 		int rowMax = sheet.getPhysicalNumberOfRows();
 		
 		for(int rowIndex = 2; rowIndex<rowMax; rowIndex++) {
@@ -128,63 +124,20 @@ public class SignCotroller {
 			
 			
 			for(int cellIndex=0; cellIndex<cellMax; cellIndex++) {
-				XSSFCell cell = row.getCell(cellIndex); //셀을 얻는다.
+				XSSFCell cell = row.getCell(cellIndex); 
 				switch(cell.getCellTypeEnum()) {
 				case NUMERIC:
 					list.add(((int)cell.getNumericCellValue()));
 					break;
 				case STRING:
-					list.add(cell.getStringCellValue());
+					list.add((String)cell.getStringCellValue());
 					break;
 				default:
 					list.add(" ");
-					
-					
-				}
-				/*
-				if(cellIndex==3 || cellIndex==5) continue;
-				else if(cellIndex==0) { //년도
-					myCell.setYearOfClass((int)cell.getNumericCellValue()); 
+					break;
 					
 				}
-				else if(cellIndex==1) { //학기
-					myCell.setYearOfSemester((int)cell.getNumericCellValue());
-					
-				}
-				else if(cellIndex==2) { //과목코드
-					myCell.setSubjectId(cell.getStringCellValue());
-					
-				}
-				else if(cellIndex==4) { //이수구분
-					myCell.setCompleteType(cell.getStringCellValue());
-					
-				}
-				else if(cellIndex==6) { //성적등급
-					myCell.setGrade(cell.getStringCellValue());
-					data.add(myCell);
-				}
-				else {
-					throw new IOException("incorrect data format");
-				}
-				*/
 			}
-		
-				/*
-				switch(cell.getCellTypeEnum()) {
-				case NUMERIC:
-					
-					//list.add(((int)cell.getNumericCellValue()));
-					break;
-				case STRING:
-					list.add(cell.getStringCellValue());
-					break;
-				case FORMULA:
-					list.add(cell.getCellFormula()+"");
-					break;
-				default:
-					list.add("");
-				}
-				*/
 			
 			myCell.setYearOfClass((int)list.get(2));
 			myCell.setYearOfSemester((int)list.get(3));
@@ -196,33 +149,8 @@ public class SignCotroller {
 			
 			data.add(myCell);
 			
-				
 		}
-		/*
-		Map<Integer, List<String>> data = new HashMap<>();
-		int i = 0;
-		for(Row row : sheet) {
-			data.put(i, new ArrayList<String>());
-			for(Cell cell : row) {
-				switch(cell.getCellTypeEnum()) {
-				case STRING:
-					data.get(new Integer(i)).add(cell.getRichStringCellValue().getString());
-					break;
-				
-				case NUMERIC:
-					data.get(i).add(cell.getNumericCellValue()+"");
-					break;
-				case FORMULA:
-					data.get(i).add(cell.getCellFormula()+"");
-				default:
-					data.get(new Integer(i)).add(" ");
-				}
-			}
-			i++;
-		}
-		*/
 	
-		
 		myCellMapper.insert(data);
 		workbook.close();
 		

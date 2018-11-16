@@ -2,16 +2,16 @@ package net.skhu.dto;
 
 import java.util.Date;
 
-//student_subject_grade
+//student_subject_grade3
 public class MyCell {
 	private Date latestUpdateDate; //업로드 날짜
 	private int id; 
 	private int yearOfClass; //수강년도
 	private int yearOfSemester; //학기
 	private String subjectId; //과목코드
-	private String subjectName; //과목명은 쿼리로 output
+	private String subjectName; 
 	private String completeType; //이수구분
-	private int subjectScore; //학점은 subject table로 연결해서 output
+	private int subjectScore; //학점
 	private String grade; //성적등급
 	
 	public Date getLatestUpdateDate() {
