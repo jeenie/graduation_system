@@ -74,7 +74,7 @@ public class SignCotroller {
 	}
 
 	@RequestMapping(value="sign", method = RequestMethod.POST)
-	public String sign(Model model, Student student, MultipartFile file) throws IOException {
+	public String sign(Model model, Student student) throws IOException {
 		User user = new User();
 		user.setUserId(student.getId());
 		student.setPassword(Encryption.encrypt(student.getPassword(), Encryption.MD5));
@@ -84,10 +84,10 @@ public class SignCotroller {
 		userMapper.insert(user);
 		studentMapper.insert(student);
 		
-		InputStream in = file.getInputStream();
+		InputStream in = student.getFile().getInputStream();
 		File currDir = new File(".");
 		String path = currDir.getAbsolutePath();
-		fileLocation = path.substring(0,path.length()-1) + file.getOriginalFilename();
+		fileLocation = path.substring(0,path.length()-1) + student.getFile().getOriginalFilename();
 		FileOutputStream f = new FileOutputStream(fileLocation);
 		int ch = 0;
 		while((ch = in.read()) != -1) {
@@ -151,8 +151,7 @@ public class SignCotroller {
 		*/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar c1 = Calendar.getInstance();
-		String strToday = sdf.format(c1.getTime())
-				;
+		String strToday = sdf.format(c1.getTime());
 		myCellMapper.insert(data,student.getId(),strToday);
 		workbook.close();
 		
@@ -179,5 +178,6 @@ public class SignCotroller {
 
 		return "redirect:login";
 	}
+	
 
 }
