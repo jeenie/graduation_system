@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +76,7 @@ public class SignCotroller {
 	}
 
 	@RequestMapping(value="sign", method = RequestMethod.POST)
-	public String sign(Model model, Student student) throws IOException {
+	public String sign(Model model, Student student) throws IOException, ParseException {
 		User user = new User();
 		user.setUserId(student.getId());
 		student.setPassword(Encryption.encrypt(student.getPassword(), Encryption.MD5));
@@ -100,19 +102,78 @@ public class SignCotroller {
 		Workbook workbook = new XSSFWorkbook(uploadFile); //xlsx
 		
 		Sheet sheet = workbook.getSheetAt(0);
-		Map<Integer, List<Object>> data = new HashMap<>();
+		
+		List<MyCell> data = new ArrayList<MyCell>();
+		//Map<Integer, List<Object>> data = new HashMap<>();
+		
 		int rowMax = sheet.getPhysicalNumberOfRows();
-		for(int rowIndex = 1; rowIndex<rowMax; rowIndex++) {
+		
+		for(int rowIndex = 2; rowIndex<rowMax; rowIndex++) {
 			XSSFRow row = (XSSFRow) sheet.getRow(rowIndex);
 			int cellMax = row.getLastCellNum();
+			
 			List<Object> list = new ArrayList<Object>();
-			list.add(student.getId()+"");
+			MyCell myCell = new MyCell();
+			
+			list.add(student.getId());
+			myCell.setId(student.getId());
+			
+			Date myDate = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String strToday = sdf.format(myDate);
+			Date dt = sdf.parse(strToday);
+			
+			list.add(dt);
+			myCell.setLatestUpdateDate(dt);
+			
+			
 			for(int cellIndex=0; cellIndex<cellMax; cellIndex++) {
-				if(cellIndex==3 || cellIndex==5) continue;
-				XSSFCell cell = row.getCell(cellIndex);
+				XSSFCell cell = row.getCell(cellIndex); //셀을 얻는다.
 				switch(cell.getCellTypeEnum()) {
 				case NUMERIC:
 					list.add(((int)cell.getNumericCellValue()));
+					break;
+				case STRING:
+					list.add(cell.getStringCellValue());
+					break;
+				default:
+					list.add(" ");
+					
+					
+				}
+				/*
+				if(cellIndex==3 || cellIndex==5) continue;
+				else if(cellIndex==0) { //년도
+					myCell.setYearOfClass((int)cell.getNumericCellValue()); 
+					
+				}
+				else if(cellIndex==1) { //학기
+					myCell.setYearOfSemester((int)cell.getNumericCellValue());
+					
+				}
+				else if(cellIndex==2) { //과목코드
+					myCell.setSubjectId(cell.getStringCellValue());
+					
+				}
+				else if(cellIndex==4) { //이수구분
+					myCell.setCompleteType(cell.getStringCellValue());
+					
+				}
+				else if(cellIndex==6) { //성적등급
+					myCell.setGrade(cell.getStringCellValue());
+					data.add(myCell);
+				}
+				else {
+					throw new IOException("incorrect data format");
+				}
+				*/
+			}
+		
+				/*
+				switch(cell.getCellTypeEnum()) {
+				case NUMERIC:
+					
+					//list.add(((int)cell.getNumericCellValue()));
 					break;
 				case STRING:
 					list.add(cell.getStringCellValue());
@@ -123,8 +184,19 @@ public class SignCotroller {
 				default:
 					list.add("");
 				}
-			}
-			data.put(rowIndex,list);
+				*/
+			
+			myCell.setYearOfClass((int)list.get(2));
+			myCell.setYearOfSemester((int)list.get(3));
+			myCell.setSubjectId((String)list.get(4));
+			myCell.setSubjectName((String)list.get(5));
+			myCell.setCompleteType((String)list.get(6));
+			myCell.setSubjectScore((int)list.get(7));
+			myCell.setGrade((String)list.get(8));
+			
+			data.add(myCell);
+			
+				
 		}
 		/*
 		Map<Integer, List<String>> data = new HashMap<>();
@@ -149,10 +221,9 @@ public class SignCotroller {
 			i++;
 		}
 		*/
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Calendar c1 = Calendar.getInstance();
-		String strToday = sdf.format(c1.getTime());
-		myCellMapper.insert(data,student.getId(),strToday);
+	
+		
+		myCellMapper.insert(data);
 		workbook.close();
 		
 		return "redirect:login";

@@ -9,5 +9,5 @@ import net.skhu.dto.MyCell;
 
 @Mapper
 public interface MyCellMapper {
-	void insert(Map<Integer,List<Object>> data, int id, String strToday);
+	void insert(List<MyCell> data);
 }
