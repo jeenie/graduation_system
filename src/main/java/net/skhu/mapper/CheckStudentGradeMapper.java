@@ -5,15 +5,15 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import net.skhu.dto.Student;
-import net.skhu.dto.StudentGradeFile;
+import net.skhu.dto.StudentGradefile;
 
 @Mapper
 public interface CheckStudentGradeMapper {
 	Student findOneMini(int id);
 	List grade(int id);
-	StudentGradeFile totalGrade1(int id);
-	StudentGradeFile totalRequiredMajor(int id);
-	StudentGradeFile totalSelectedMajor(int id);
-	StudentGradeFile totalRequiredCulture(int id);
-	StudentGradeFile totalSelectedCulture(int id);
+	StudentGradefile totalGrade1(int id);
+	StudentGradefile totalRequiredMajor(int id);
+	StudentGradefile totalSelectedMajor(int id);
+	StudentGradefile totalRequiredCulture(int id);
+	StudentGradefile totalSelectedCulture(int id);
 }

@@ -26,7 +26,7 @@
 							<li role="presentation" class="dropdown"><a href="">졸업관리</a>
 								<div class="dropdown-content">
 									<a href="${R}student/graduationStatus?processId=0">나의 졸업현황</a> <a
-										href="checkGrades.html">성적조회</a> <a href="${R}student/status">대체/타전공
+										href="${R}user/vinfo">성적조회</a> <a href="${R}student/status">대체/타전공
 										현황</a>
 								</div></li>
 							<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
