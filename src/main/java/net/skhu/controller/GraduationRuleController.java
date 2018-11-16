@@ -1,12 +1,10 @@
 package net.skhu.controller;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentCulture;
@@ -24,6 +22,7 @@ import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.Total;
+import net.skhu.dto.Tree;
 import net.skhu.dto.Year;
 import net.skhu.mapper.DepartmentCultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
@@ -97,8 +96,8 @@ public class GraduationRuleController {
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
 		List<Year> years = yearMapper.years();
 		
-		Object obj = parser.parse(new FileReader("C:\\Users\\pc\\spring\\graduation_system\\src\\main\\webapp\\res\\data.json"));
-		JSONObject jsonObject = (JSONObject) obj;
+		//Object obj = parser.parse(new FileReader("C:\\Users\\pc\\spring\\graduation_system\\src\\main\\webapp\\res\\data.json"));
+		//JSONObject jsonObject = (JSONObject) obj;
 		
 		model.addAttribute("departments", departments);
 		model.addAttribute("departmentId", departmentId);
@@ -222,6 +221,111 @@ public class GraduationRuleController {
 			@RequestParam("entranceYear") int entranceYear) {
 		requiredCultureSubjectMapper.delete(subjectId, entranceYear);
 		return "redirect:culturalSubject";
+	}
+	
+	@RequestMapping(value="guest/exexex", method = RequestMethod.GET)
+	public ModelAndView ex()  {
+	/*
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject1 = new JSONObject();
+		jsonObject1.put("label", "핵심역량");
+		jsonObject1.put("itemId", "root");
+		jsonObject1.put("parentId", "999");
+		jsonObject1.put("order", "1");
+		jsonArray.add(jsonObject1);
+		JSONObject jsonObject2 = new JSONObject();
+		jsonObject2.put("label", "가치역량");
+		jsonObject2.put("itemId", "root");
+		jsonObject2.put("parentId", "999");
+		jsonObject2.put("order", "1");
+		jsonArray.add(jsonObject2);
+		JSONObject jsonObject3 = new JSONObject();
+		jsonObject3.put("label", "인간·인권");
+		jsonObject3.put("itemId", "root");
+		jsonObject3.put("parentId", "999");
+		jsonObject3.put("order", "1");
+		jsonArray.add(jsonObject3);
+		JSONObject jsonObject4 = new JSONObject();
+		jsonObject4.put("label", "생명·평화");
+		jsonObject4.put("itemId", "root");
+		jsonObject4.put("parentId", "999");
+		jsonObject4.put("order", "1");
+		jsonArray.add(jsonObject4);
+		JSONObject jsonObject5 = new JSONObject();
+		jsonObject5.put("label", "민주시민");
+		jsonObject5.put("itemId", "root");
+		jsonObject5.put("parentId", "999");
+		jsonObject5.put("order", "1");
+		jsonArray.add(jsonObject5);
+		JSONObject jsonObject6 = new JSONObject();
+		jsonObject6.put("label", "대안역량");
+		jsonObject6.put("itemId", "root");
+		jsonObject6.put("parentId", "999");
+		jsonObject6.put("order", "1");
+		jsonArray.add(jsonObject6);
+		JSONObject jsonObject7 = new JSONObject();
+		jsonObject7.put("label", "융·복합적 사고");
+		jsonObject7.put("itemId", "root");
+		jsonObject7.put("parentId", "999");
+		jsonObject7.put("order", "1");
+		jsonArray.add(jsonObject7);
+		JSONObject jsonObject8 = new JSONObject();
+		jsonObject8.put("label", "조사·분석·정보활용");
+		jsonObject8.put("itemId", "root");
+		jsonObject8.put("parentId", "999");
+		jsonObject8.put("order", "1");
+		jsonArray.add(jsonObject8);
+		JSONObject jsonObject9 = new JSONObject();
+		jsonObject9.put("label", "대안제시·문제해결");
+		jsonObject9.put("itemId", "root");
+		jsonObject9.put("parentId", "999");
+		jsonObject9.put("order", "1");
+		jsonArray.add(jsonObject9);
+		JSONObject jsonObject10 = new JSONObject();
+		jsonObject10.put("label", "실천역량");
+		jsonObject10.put("itemId", "root");
+		jsonObject10.put("parentId", "999");
+		jsonObject10.put("order", "1");
+		jsonArray.add(jsonObject10);
+		JSONObject jsonObject11 = new JSONObject();
+		jsonObject11.put("label", "민주적 소통");
+		jsonObject11.put("itemId", "root");
+		jsonObject11.put("parentId", "999");
+		jsonObject11.put("order", "1");
+		jsonArray.add(jsonObject11);
+		JSONObject jsonObject12 = new JSONObject();
+		jsonObject12.put("label", "연대와 공동체적 실천");
+		jsonObject12.put("itemId", "root");
+		jsonObject12.put("parentId", "999");
+		jsonObject12.put("order", "1");
+		jsonArray.add(jsonObject11);
+	
+		System.out.println(jsonArray.toJSONString());
+	*/
+		
+		Tree tree1 = new Tree("핵심역량", "root1", "999", "1");
+		Tree tree2 = new Tree("가치역량", "role1", "root", "2");
+		Tree tree3 = new Tree("인간·인권", "role11", "role1", "3");
+		Tree tree4 = new Tree("생명·평화", "role12",   "role1",  "4");
+		Tree tree5 = new Tree("민주시민", "role13", "role1", "5");
+		Tree tree6 = new Tree("대안역량", "role2", "root",  "6");
+		Tree tree7 = new Tree("융·복합적 사고", "role21", "role2", "7");
+		Tree tree8 = new Tree("조사·분석·정보활용", "role22", "role2", "8");
+		Tree tree9 = new Tree("대안제시·문제해결", "role23", "role2", "9");
+		Tree tree10 = new Tree("실천역량", "role3", "root", "10");
+		Tree tree11 = new Tree("민주적 소통", "role31", "role3", "11");
+		Tree tree12 = new Tree("연대와 공동체적 실천", "role32", "role3", "12");
+		List<Tree> trees = new ArrayList<Tree>();
+		
+		trees.add(tree1);trees.add(tree2);trees.add(tree3);trees.add(tree4);trees.add(tree5);trees.add(tree6);
+		trees.add(tree7);trees.add(tree8);trees.add(tree9);trees.add(tree10);trees.add(tree11);trees.add(tree12);
+		
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		mv.setViewName("guest/ex");
+		mv.addObject("json", trees);
+		//mv.addObject("jsonObject", jsonObject);
+		return mv;
 	}
 
 }
