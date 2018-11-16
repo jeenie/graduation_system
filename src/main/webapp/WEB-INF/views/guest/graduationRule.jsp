@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="${R}res/css/prism.css">
+<link href="${R}res/css/zooTree.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
@@ -308,6 +310,57 @@ select.form-control.w200 {
 	overflow-y: scroll;
 }
 </style>
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="${R}res/js/zooTree.js"></script>
+<script>
+		$(document).ready(function(){
+			var params = {
+					departmentId: $(select[name=departmentId]).val(),
+					entranceYear: $(select[name=entranceYear]).val()
+			};
+			$.ajax({
+				async: false,
+				type: "GET",
+				url : "select?departmentId=" + params.departmentId + "&entranceYear=" + params.entranceYear,
+				dataType: "json",
+				cache: false,
+				success:function(data){
+					if(data.length == 0) {
+					}else{
+						$("#beforeJSON").html( JSON.stringify(data, null, "    ") );
+						var jsonData = getTreeModel( data, '999',{
+			            	id: "itemId",
+			            	parentId: "parentId",
+                            order: ["label","desc"]
+						});
+						$("#afterJSON").html( JSON.stringify(jsonData, null, "    ") );
+						$(".verticalTree").zooTree(jsonData, {
+							forceCreate: true,
+							render: function(data) {
+								var $a = $("<a>").append(data.label);
+								return $a;
+							}
+						});
+						$(".horizontalTree").zooTree(jsonData, {
+							forceCreate: true,
+							render: function(data) {
+								var $a = $("<a>").append(data.label);
+								return $a;
+							}
+						});
+						$(".horizontalTreeTop").zooTree(jsonData, {
+							forceCreate: true,
+							render: function(data) {
+								var $a = $("<a>").append(data.label);
+								return $a;
+							}
+						});
+					}
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<header>
@@ -443,6 +496,9 @@ select.form-control.w200 {
 				</div>
 				</p>
 			</div>
+		</c:if>
+		<c:if test="${entranceYear == 2016}">
+			<div class="verticalTree"></div>
 		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear < 2016}">
 			<div style="margin-top: 90px"></div>
@@ -601,5 +657,14 @@ select.form-control.w200 {
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="${R}res/js/bootstrap.min.js"></script>
+  <script src="${R}res/js/jquery.prettyPhoto.js"></script>
+  <script src="${R}res/js/jquery.isotope.min.js"></script>
+  <script src="${R}res/js/wow.min.js"></script>
+  <script src="${R}res/js/functions.js"></script>
+  <script src="${R}res/js/prism.js"></script>
 </body>
 </html>

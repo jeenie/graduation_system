@@ -1,14 +1,21 @@
 package net.skhu.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentCulture;
@@ -45,6 +52,8 @@ public class GraduationRuleController {
 	TotalMapper totalMapper;
 	@Autowired
 	YearMapper yearMapper;
+	
+	JSONParser parser = new JSONParser();
 
 	@RequestMapping("guest/graduationRule")
 	public String viewGuest(Model model) {
@@ -63,7 +72,7 @@ public class GraduationRuleController {
 
 	@RequestMapping(value = "guest/select", method = RequestMethod.GET)
 	public String viewGuest(Model model, @RequestParam("departmentId") int departmentId,
-			@RequestParam("entranceYear") int entranceYear) {
+			@RequestParam("entranceYear") int entranceYear) throws FileNotFoundException, IOException, ParseException {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
 		DepartmentMajorRule firstRule = null;
@@ -87,6 +96,10 @@ public class GraduationRuleController {
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
 		List<Year> years = yearMapper.years();
+		
+		Object obj = parser.parse(new FileReader("C:\\Users\\pc\\spring\\graduation_system\\src\\main\\webapp\\res\\data.json"));
+		JSONObject jsonObject = (JSONObject) obj;
+		
 		model.addAttribute("departments", departments);
 		model.addAttribute("departmentId", departmentId);
 		model.addAttribute("entranceYear", entranceYear);
@@ -101,6 +114,7 @@ public class GraduationRuleController {
 		model.addAttribute("years", years);
 		return "guest/graduationRule";
 	}
+	
 
 	@RequestMapping("user/graduationRule")
 	public String viewUser(Model model) {
