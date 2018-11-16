@@ -171,7 +171,7 @@
             <div class="edit">
                     	<div class="form-group">
 		      				<label>학번</label>
-		      				<form:input path="id" class="form-control w300" />
+		      				<form:input path="id" class="form-control w300"/>
 		    			</div>
 		    			<div class="form-group">
 		      				<label>이름</label>

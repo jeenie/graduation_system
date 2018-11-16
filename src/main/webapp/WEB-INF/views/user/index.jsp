@@ -258,7 +258,7 @@
 	                <li role="presentation" class="dropdown"><a href="">졸업관리</a>
 	                    <div class="dropdown-content">
 	                      <a href="about.html">마이페이지</a>
-	                      <a href="checkGrades.html">성적조회</a>
+	                      <a href="${R}user/vinfo">성적조회</a>
 	                      <a href="">대체/타전공 현황</a>
 	                    </div>
 	                </li>
