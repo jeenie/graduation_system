@@ -12,7 +12,7 @@
 		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber};
 	</select>
 	<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
-		SELECT DISTINCT substitution.id substitutionSubject,s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
+		SELECT DISTINCT substitution.id substitutionSubject, sublist.abolitionSubject, s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
 		FROM substitution_subject_list sublist
 		LEFT JOIN subject s
 		ON sublist.abolitionSubject = s.id
@@ -38,5 +38,7 @@
 		WHERE sss.studentId= #{userNumber};
 	</select>
 	<insert id="insert">
+		INSERT student_substitution_subject (studentId, abolitionCode, substitutionCode)
+		VALUES (#{userNumber}, #{abolitionId}, #{substitutionId})
 	</insert>
 </mapper>

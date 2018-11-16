@@ -30,6 +30,7 @@
 	function button_event(value) {
 		location.href="sublist?subjectId="+value;
 	}
+
 </script>
 
 <style>
@@ -425,7 +426,7 @@
         		</thead>
 				<tbody>
 					<c:forEach var="subSubject" items="${ substitutionList }">
-						<tr>
+						<tr data-url="insert?abolitionId=${ abolitionId }&substitutionId=${ subSubject.substitutionSubject}" onclick="confirm('해당 과목으로 대체하시겠습니까?')">
 							<td>${ subSubject.substitutionSubject }</td>
 							<td>${ subSubject.substitutionSubjectName }</td>
 							<td>${ subSubject.departmentName }</td>
@@ -436,10 +437,10 @@
                
             </div>
           </div>
-      </div>
-      <div class="bottom_sec">
-      	<button type="button" class="btn btn-submit">등록</button>
-      </div>
+     	 </div>
+
+      	<button type="submit" class="btn btn-submit">등록</button>
+
     </div>
 	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

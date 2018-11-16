@@ -11,5 +11,5 @@ public interface StudentSubstitutionMapper {
 	List<SubstitutionSubject> findLowGradeAbosub(int userNumber);
 	List<SubstitutionSubject> findSubstiByAbosub(String subjectId);
 	List<SubstitutionSubject> findSubstiStatus(int userNumber);
-	void insert(SubstitutionSubject subject);
+	void insert(int userNumber, String abolitionId, String substitutionId);
 }
