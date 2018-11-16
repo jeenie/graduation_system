@@ -3,9 +3,11 @@
 
 <mapper namespace="net.skhu.mapper.MyCellMapper">
 	<!--void insert(Map<Integer,List<String>> data, int id, String strToday); -->
-	<insert id="insert" parameterType="Student">
-    	INSERT Student (id, name, departmentId, grade, entranceType, password, password2, passwordQuestion, passwordAnswer, email, completeSemester)
-    	VALUES (#{id}, #{name}, #{departmentId}, #{grade}, #{entranceType}, #{password}, #{password2}, #{passwordQuestion}, #{passwordAnswer}, #{email}, #{completeSemester})
+	<insert id="insert" parameterType="HashMap">
+		INSERT INTO student_subject_grade(id, yearOfClass, yearOfSemester, subjectId, completeType, grade)
+    	VALUES
+    	<foreach collection="rowIndex" item="row1" separator=",">
+    		(#{row1.id}, #{row1.yearOfClass}, #{row1.yearOfSemester}, #{row1.subjectId}, #{row1.completeType}, #{row1.grade} )
+    	</foreach>
   	</insert>
-  	
 </mapper>

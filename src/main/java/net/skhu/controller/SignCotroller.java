@@ -16,6 +16,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -98,7 +100,33 @@ public class SignCotroller {
 		Workbook workbook = new XSSFWorkbook(uploadFile); //xlsx
 		
 		Sheet sheet = workbook.getSheetAt(0);
-		
+		Map<Integer, List<Object>> data = new HashMap<>();
+		int rowMax = sheet.getPhysicalNumberOfRows();
+		for(int rowIndex = 1; rowIndex<rowMax; rowIndex++) {
+			XSSFRow row = (XSSFRow) sheet.getRow(rowIndex);
+			int cellMax = row.getLastCellNum();
+			List<Object> list = new ArrayList<Object>();
+			list.add(student.getId()+"");
+			for(int cellIndex=0; cellIndex<cellMax; cellIndex++) {
+				if(cellIndex==3 || cellIndex==5) continue;
+				XSSFCell cell = row.getCell(cellIndex);
+				switch(cell.getCellTypeEnum()) {
+				case NUMERIC:
+					list.add(((int)cell.getNumericCellValue()));
+					break;
+				case STRING:
+					list.add(cell.getStringCellValue());
+					break;
+				case FORMULA:
+					list.add(cell.getCellFormula()+"");
+					break;
+				default:
+					list.add("");
+				}
+			}
+			data.put(rowIndex,list);
+		}
+		/*
 		Map<Integer, List<String>> data = new HashMap<>();
 		int i = 0;
 		for(Row row : sheet) {
@@ -120,7 +148,7 @@ public class SignCotroller {
 			}
 			i++;
 		}
-		
+		*/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar c1 = Calendar.getInstance();
 		String strToday = sdf.format(c1.getTime())
