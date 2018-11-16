@@ -287,6 +287,7 @@
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">타학과</th>
+					<th scope="col" class="text-center">과목코드</th>
 					<th scope="col" class="text-center">전공과목명</th>
 					<th scope="col" class="text-center">학점</th>
 					<th scope="col" class="text-center">수강일시</th>
@@ -294,14 +295,16 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="otherMajorStatus" items="${ majorStatus }">
 					<tr>
-						<td>정보통신공학과</td>
-						<td>무선통신</td>
+						<td>${ otherMajorStatus.departmentName }</td>
+						<td>${ otherMajorStatus.anotherMajorId }</td>
+						<td>${ otherMajorStatus.otherMajorName }</td>
+						<td>${ otherMajorStatus.score }</td>
+						<td>${ otherMajorStatus.year }년 ${ otherMajorStatus.semester }학기</td>
+						<td>${ otherMajorStatus.type }</td>
 					</tr>
-					<tr>
-						<td>정보통신공학과</td>
-						<td>빅데이터개론</td>
-					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

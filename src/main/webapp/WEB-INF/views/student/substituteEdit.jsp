@@ -30,6 +30,7 @@
 	function button_event(value) {
 		location.href="sublist?subjectId="+value;
 	}
+
 </script>
 
 <style>
@@ -416,7 +417,6 @@
           </div>
           <div class="right_sec">
             <p class="myLavel2">대체 과목 목록</p>
-            <form:form method="post" modelAttribute="subject" autocomplete="off">
             <div class="alternative_list">
                 <table class="table table-hover">
         		<thead>
@@ -426,7 +426,7 @@
         		</thead>
 				<tbody>
 					<c:forEach var="subSubject" items="${ substitutionList }">
-						<tr>
+						<tr data-url="insert?abolitionId=${ abolitionId }&substitutionId=${ subSubject.substitutionSubject}" onclick="confirm('해당 과목으로 대체하시겠습니까?')">
 							<td>${ subSubject.substitutionSubject }</td>
 							<td>${ subSubject.substitutionSubjectName }</td>
 							<td>${ subSubject.departmentName }</td>
@@ -440,7 +440,7 @@
      	 </div>
 
       	<button type="submit" class="btn btn-submit">등록</button>
-     	</form:form>
+
     </div>
 	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
