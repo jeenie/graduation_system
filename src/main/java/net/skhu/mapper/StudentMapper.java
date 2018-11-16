@@ -12,6 +12,7 @@ public interface StudentMapper {
 	List<Student> findByDepartment(int departmentId);
 	List<Student> findByStudentInquiry(String departmentName, Integer grade, String subjectName, String name, Integer id);
 	Student findById(int id);
+	Student findById2(int studentId);
 	Student findOne(int id);
 	Student findWithQuiz(int id);
 	void join(Student student);

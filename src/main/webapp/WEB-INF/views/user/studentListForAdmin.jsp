@@ -116,6 +116,7 @@
 	/* Add a pointer cursor on mouse-over */
 	background-color: rgb(19, 160, 216);
 }
+
 .btn-statement4 {
 	/*열람가능여부 no*/
 	border: none;
@@ -161,23 +162,117 @@
 
 /* Add a grey background color on mouse-over */
 .pagination
+
+
+
+
+
+
  
+
+
+
+
+
+
 a
+
+
+
+
+
+
+
+
+
+
+
+
 :hover
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
  
+
+
+
+
+
+
 (
 .active
+
+
+
+
+
+
  
+
+
+
+
+
+
 )
 {
 background-color
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
  
+
+
+
+
+
+
 #ddd
+
+
+
+
+
+
+
+
+
+
+
+
 ;
-
-
 }
 td {
 	text-align: center;
@@ -306,60 +401,8 @@ textarea {
 </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="indexForAdmin.jsp"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
 
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="">졸업요건 관리</a> <a href="">대체 과목 리스트 관리</a> <a
-											href="majorAdmitManage.html">전공인정관리</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation" class="dropdown"><a
-									href="StudentInquiryForAdmin.html">사용자관리</a>
-									<div class="dropdown-content">
-										<a href="${R}user/professorInquiry">교수조회</a> <a
-											href="${R}user/studentListForAdmin">학생조회</a>
-
-									</div></li>
-								<li role="presentation"><a href="logout_processing">Logout</a></li>
-								<li>
-
-									<div style="margin-top: 28px; margin-left: 1.5px;">
-										<a href="managerInfoEdit.html"> <i
-											class="fas fa-user-edit fa-lg"></i>
-										</a>
-									</div>
-								</li>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
 
 	<div id="breadcrumb">
 		<div class="container">
@@ -375,27 +418,26 @@ textarea {
 			<div style="margin-top: 30px">
 				<div class="contents" style="text-align: center;">
 					<div>
-						
-							<input type="text" class="form-controls btn-m1"
-								style="width: 665px;"> &nbsp;<input
-								type="submit" value="검색"> <a data-toggle="modal"
-								href="#search">
-								<h5 style="color: rgb(104, 97, 97)">
-									<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u>검색대상설정</u> <i
-										class="fas fa-angle-down fa-lg"></i>
-									</b>
-								</h5>
-							</a>
-						
+
+						<input type="text" class="form-controls btn-m1"
+							style="width: 665px;"> &nbsp;<input type="submit"
+							value="검색"> <a data-toggle="modal" href="#search">
+							<h5 style="color: rgb(104, 97, 97)">
+								<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u>검색대상설정</u> <i
+									class="fas fa-angle-down fa-lg"></i>
+								</b>
+							</h5>
+						</a>
+
 					</div>
 					<br> <br>
 					<table class="table table-hover">
@@ -410,24 +452,24 @@ textarea {
 						</thead>
 						<tbody>
 							<c:forEach var="student" items="${students}">
-								<tr onclick="button_event(${student.id});" >
+								<tr onclick="button_event(${student.id});">
 									<td>${ student.departmentName }</td>
 									<td>${ student.name }</td>
 									<td>${ student.id }</td>
 									<td>${ student.completeSemester}학기</td>
 									<td>
-										
 										<!-- total(${student.totalUnit}) -->
-                                        
-										<button type="button" class="btn-m2">전공
-										<script>
+
+										<button type="button" class="btn-m2">
+											전공
+											<script>
 											var test1 = ${ student.departmentName };
 											alert(test1);
 										</script>
 										</button>
 										<button type="button" class="btn-m2">교양</button>
-                                        
-                                       
+
+
 									</td>
 								</tr>
 								<!--<tr data-toggle="modal" data-id="studentInfo"
@@ -462,7 +504,7 @@ textarea {
 		aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-			
+
 				<form action="studentSearch" autocomplete="off">
 					<div class="modal-header" style="padding-bottom: 1.5px;">
 
@@ -477,17 +519,19 @@ textarea {
 					<div class="modal-body">
 
 						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학과&nbsp;
-							<select name="departmentName" class="form-controls" style="height:32px;">
-							<c:forEach var="department" items="${departments}">
-								<option value="${department.departmentName}">${department.departmentName}</option>
-							</c:forEach>
+							<i class="fas fa-caret-right"></i>&nbsp;학과&nbsp; <select
+								name="departmentName" class="form-controls"
+								style="height: 32px;">
+								<c:forEach var="department" items="${departments}">
+									<option value="${department.departmentName}">${department.departmentName}</option>
+								</c:forEach>
 							</select>
 						</div>
-						
+
 						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학년&nbsp;
-							<input type="text" class="form-controls" style="width:100px;" name="grade" value="${grade}">
+							<i class="fas fa-caret-right"></i>&nbsp;학년&nbsp; <input
+								type="text" class="form-controls" style="width: 100px;"
+								name="grade" value="${grade}">
 						</div>
 						<!--  
 						<div class="modalGreen">
@@ -506,154 +550,41 @@ textarea {
 							</select>
 						</div>
                         -->
-                        
+
 						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;수강과목&nbsp; 
-							<input type="text" class="form-controls" name="subjectName" value="${subjectName}">
-						</div>
-                        
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;이름 &nbsp; 
-							<input type="text" class="form-controls" name="name" value="${name}" style="width: 100px;">
+							<i class="fas fa-caret-right"></i>&nbsp;수강과목&nbsp; <input
+								type="text" class="form-controls" name="subjectName"
+								value="${subjectName}">
 						</div>
 
 						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학번 &nbsp; 
-							<input type="text" class="form-controls" name="id" value="${id}" style="width: 100px;">
+							<i class="fas fa-caret-right"></i>&nbsp;이름 &nbsp; <input
+								type="text" class="form-controls" name="name" value="${name}"
+								style="width: 100px;">
 						</div>
-                        <!--
+
+						<div class="modalGreen">
+							<i class="fas fa-caret-right"></i>&nbsp;학번 &nbsp; <input
+								type="text" class="form-controls" name="id" value="${id}"
+								style="width: 100px;">
+						</div>
+						<!--
 						<div class="modalGreen">
 							<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
 								type="checkbox">&nbsp;&nbsp;
 						</div>
                         -->
-
-
-
-
-
-
-
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn-statement4" style="width:60px; height:35px">검색</button>
+						<button type="submit" class="btn-statement4"
+							style="width: 60px; height: 35px">검색</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<div class="modal fade" id="studentInfo" tabinex="-1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" style="padding-bottom: 1.5px;">
-
-					<h4>
-						<b>학생정보</b>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-						</button>
-					</h4>
-
-				</div>
-				<div class="modal-body">
-					<div>
-						<table class="table-s">
-							<tr>
-								<th class="th-s">학번</th>
-								<td class="td-s">20101010</td>
-								<th class="th-s">성명</th>
-								<td class="td-s">오지현</td>
-							</tr>
-							<tr>
-								<th class="th-s">학부(과)</th>
-								<td class="td-s">소프트웨어공학과</td>
-								<th class="th-s">학년</th>
-								<td class="td-s">3</td>
-
-							</tr>
-							<tr>
-								<th class="th-s">입학구분</th>
-								<td class="td-s">신입학</td>
-								<th class="th-s">이수학기</th>
-								<td class="td-s">3학년-2학기</td>
-							</tr>
-						</table>
-						<div>
-							<br> &nbsp;OOO 학생은 <i class="fas fa-lock"></i>&nbsp; <select
-								name="special course">
-								<option value="">특별과정선택</option>
-								<option value="전공기초과정" selected="selected">전공기초과정</option>
-								<option value="전공심화과정">전공심화과정</option>
-								<option value="타과복수전공과정">타과복수전공과정</option>
-								<option value="타과부전공과정">타과부전공과정</option>
-							</select>&nbsp을 이수하고 있습니다.
-
-						</div>
-					</div>
-					<div>
-						<div class="skill">
-							<div class="progress-wrap" style="width: 350px;">
-								<br> <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
-								</h4>
-								<div class="progress">
-									<div class="progress-bar color4" role="progressbar"
-										aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-										style="width: 65%">
-										<span class="bar-width">67%</span>
-									</div>
-								</div>
-							</div>
-							<div class="progress-wrap" style="width: 350px;">
-								<b>＞전공</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
-								<div class="progress">
-									<div class="progress-bar  color1" role="progressbar"
-										aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
-										style="width: 80%">
-										<span class="bar-width">78%</span>
-									</div>
-								</div>
-
-							</div>
-							<img src="images/abouti/maj.png" width="100%">
-							<div class="progress-wrap" style="width: 350px;">
-								<b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
-								<div class="progress">
-									<div class="progress-bar color3" role="progressbar"
-										aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-										style="width: 90%">
-										<span class="bar-width">90%</span>
-									</div>
-								</div>
-
-							</div>
-							<img src="images/abouti/ref.png" width="100%">
-						</div>
-
-
-					</div>
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<footer>
-		<div class="footer">
-			<div class="container">
-				문의:test123@naver.com <br> 152-716 서울시 구로구 연동로320 <br>
-				Copyright&copy; 2018SKHU Software Engineering All Rights Reserved <br>
-
-
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
@@ -663,124 +594,5 @@ textarea {
 	<script src="${R}res/js/jquery.isotope.min.js"></script>
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
-       </form>
-
-
-
-
-                </div>
-                <div class="modal-footer">
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="studentInfo" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="padding-bottom:1.5px;">
-    
-                        <h4><b>학생정보</b>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">×</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        </h4>
-    
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <table class="table-s">
-                                <tr>
-                                    <th class="th-s">학번</th>
-                                    <td class="td-s">20101010</td>
-                                    <th class="th-s">성명</th>
-                                    <td class="td-s">오지현</td>
-                                </tr>
-                                <tr>
-                                    <th class="th-s">학부(과)</th>
-                                    <td class="td-s">소프트웨어공학과</td>
-                                    <th class="th-s">학년</th>
-                                    <td class="td-s">3</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="th-s">입학구분</th>
-                                    <td class="td-s">신입학</td>
-                                    <th class="th-s">이수학기</th>
-                                    <td class="td-s">3학년-2학기</td>
-                                </tr>
-                            </table>
-                            <div>
-                                <br>
-                                &nbsp;OOO 학생은 <i class="fas fa-lock"></i>&nbsp;
-                                <select name="special course">
-                                    <option value="">특별과정선택</option>
-                                    <option value="전공기초과정" selected="selected">전공기초과정</option>
-                                    <option value="전공심화과정">전공심화과정</option>
-                                    <option value="타과복수전공과정">타과복수전공과정</option>
-                                    <option value="타과부전공과정">타과부전공과정</option>
-                                </select>&nbsp을 이수하고 있습니다.
-                                       
-                            </div> 
-                        </div>
-                        <div>
-                            <div class="skill">
-                                <div class="progress-wrap" style="width:350px;">
-                                    <br>
-                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
-                                    <div class="progress">
-                                        <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                                            <span class="bar-width">67%</span>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div class="progress-wrap" style="width:350px;">
-                                    <b>＞전공</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
-                                    <div class="progress">
-                                        <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="bar-width">78%</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <img src="images/abouti/maj.png" width="100%">
-                                <div class="progress-wrap" style="width:350px;">
-                                    <b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
-                                    <div class="progress">
-                                        <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                            <span class="bar-width">90%</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <img src="images/abouti/ref.png" width="100%">
-                            </div>
-                            
-
-                        </div>
-                        
-                           
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
- 
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	  <script src="${R}res/js/jquery-2.1.1.min.js"></script>
-	  <!-- Include all compiled plugins (below), or include individual files as needed -->
-	  <script src="${R}res/js/bootstrap.min.js"></script>
-	  <script src="${R}res/js/jquery.prettyPhoto.js"></script>
-	  <script src="${R}res/js/jquery.isotope.min.js"></script>
-	  <script src="${R}res/js/wow.min.js"></script>
-	  <script src="${R}res/js/functions.js"></script>
-	 
->>>>>>> 3072222ec7ee0e1e597b61a378079dfd4e9f85e3
 </body>
 </html>

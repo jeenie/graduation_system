@@ -244,11 +244,11 @@
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a
 									href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="guest/login">졸업관리</a>
+								<li role="presentation" class="dropdown"><a href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
-										<a href="guest/login" onclick="alertGuest()">마이페이지</a> 
-										<a href="guest/login" onclick="alertGuest()">성적조회</a>
-										<a href="guest/login" onclick="alertGuest()">대체/타전공 현황</a>
+										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> 
+										<a href="${R}guest/login" onclick="alertGuest()">성적조회</a>
+										<a href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
 									</div></li>
 								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 								<li role="presentation"><a
@@ -303,7 +303,7 @@
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<a href="guest/graduationRule?departmentId=99&entranceYear=99"><i
+						<a href="guest/graduationRule"><i
 							class="fa fa-book"></i></a>
 						<h2>졸업요건</h2>
 						<p>전체졸업요건을 확인해보세요</p>

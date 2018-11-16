@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.OtherMajorMapper">
+	<select id="otherMajorStatus" resultType="OtherMajor">
+		SELECT m.anotherMajorId, m.score, m.year, m.semester, m.type, s.name otherMajorName, d.departmentName
+		FROM another_major m
+		LEFT JOIN subject s ON m.anotherMajorId=s.id
+		LEFT JOIN department d ON m.departmentId=d.id
+		WHERE m.studentId= #{userNumber};		
+	</select>
+	<insert id="insert">
+		
+	</insert>
+</mapper>

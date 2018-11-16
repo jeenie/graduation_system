@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -317,44 +319,15 @@ select.form-control.w200 {
 </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="${R}user/index"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-										<a href="">대체/타전공 현황</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<sec:authorize access="hasRole('ROLE_STUDENT')">
+		<%@ include file="/WEB-INF/views/include/studentNavibar.jsp"%>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_PROFESSOR')">
+		<%@ include file="/WEB-INF/views/include/professorNavibar.jsp"%>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
+	</sec:authorize>
 
 	<div id="breadcrumb">
 		<div class="container">
@@ -560,8 +533,7 @@ select.form-control.w200 {
 					<p class="font2">전공과정</p>
 				</div>
 				</p>
-				<br />
-				<br />
+				<br /> <br />
 				<c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
 					<div style="margin-left: 40px">
 						<p class="font3">▶${departmentMajorRule.processName}</p>

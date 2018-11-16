@@ -1,13 +1,23 @@
 package net.skhu.dto;
 
 public class SubstitutionSubject {
+	int studentId;
 	String abolitionSubject;
 	String abolitionSubjectName;
 	String substitutionSubject;
 	String substitutionSubjectName;
 	int departmentId;
 	String departmentName;
-	
+	String grade;
+
+
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
 	public String getAbolitionSubject() {
 		return abolitionSubject;
 	}
@@ -44,4 +54,11 @@ public class SubstitutionSubject {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade= grade;
+	}
+
 }

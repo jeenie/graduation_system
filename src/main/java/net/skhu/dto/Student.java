@@ -1,5 +1,7 @@
 package net.skhu.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Student {
 	int id;
 	String name;
@@ -21,7 +23,9 @@ public class Student {
 	int majorexUnit;
 	int processId;
 	int mustPlusChoice;
+	MultipartFile file;
 
+	
 	public int getId() {
 		return id;
 	}
@@ -181,5 +185,14 @@ public class Student {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 
 }

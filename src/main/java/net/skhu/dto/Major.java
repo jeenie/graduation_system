@@ -4,6 +4,8 @@ package net.skhu.dto;
 public class Major {
 	int departmentId;
 	String departmentName;
+	int entranceYear;
+	String completeType;
 	String majorSubjectId;
 	String majorName;
 	
@@ -23,6 +25,22 @@ public class Major {
 		this.departmentName = departmentName;
 	}
 	
+	public int getEntranceYear() {
+		return entranceYear;
+	}
+
+	public void setEntranceYear(int entranceYear) {
+		this.entranceYear = entranceYear;
+	}
+
+	public String getCompleteType() {
+		return completeType;
+	}
+
+	public void setCompleteType(String completeType) {
+		this.completeType = completeType;
+	}
+
 	public String getMajorSubjectId() {
 		return majorSubjectId;
 	}

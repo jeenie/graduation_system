@@ -53,7 +53,7 @@ public class CheckStudentGradeController {
 		// 학생 교필 총점
 		StudentGradeFile totalRC=checkStudentGradeMapper.totalRequiredCulture(userNumber);
 		model.addAttribute("totalRC", totalRC);
-
+		
 		// 학생 교선 총점
 		StudentGradeFile totalSC=checkStudentGradeMapper.totalSelectedCulture(userNumber);
 		model.addAttribute("totalSC", totalSC);
