@@ -32,11 +32,13 @@ import net.skhu.dto.Department;
 import net.skhu.dto.Master;
 import net.skhu.dto.PasswordQuiz;
 import net.skhu.dto.Student;
+import net.skhu.dto.StudentGradefile;
 import net.skhu.dto.User;
 import net.skhu.dto.MyCell;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MasterMapper;
 import net.skhu.mapper.PasswordQuizMapper;
+import net.skhu.mapper.StudentGradefileMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.mapper.MyCellMapper;
@@ -62,6 +64,8 @@ public class SignCotroller {
 	PasswordQuizMapper passwordQuizMapper;
 	@Autowired
 	MyCellMapper myCellMapper;
+	@Autowired
+	StudentGradefileMapper studentGradefileMapper;
 
 	@RequestMapping(value="sign", method = RequestMethod.GET)
 	public String sign(Model model) {
@@ -150,8 +154,36 @@ public class SignCotroller {
 			data.add(myCell);
 			
 		}
-	
+		//id, latestUploadDate, totalUnit, majorUnit, cultureUnit,totalAvgGrade, majorexUnit
+		//latestUpdateDate, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectSocre, grade
 		myCellMapper.insert(data);
+		
+		StudentGradefile studentGradefile = new StudentGradefile();
+		int totalUnit=0; int majorUnit=0; int cultureUnit=0; float totalGrade=0; float totalAvgGrade=0; int majorexUnit=0;
+		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
+			if(myCell.getGrade() != "F") totalUnit += myCell.getSubjectScore();
+			if(myCell.getCompleteType()=="전필" || myCell.getCompleteType()=="전선") majorUnit += myCell.getSubjectScore();
+			if(myCell.getCompleteType()=="교필" || myCell.getCompleteType()=="교선") cultureUnit += myCell.getSubjectScore();
+			if(myCell.getCompleteType()=="전탐") majorexUnit += myCell.getSubjectScore();
+			totalGrade += myCell.getScore();
+		}
+		totalAvgGrade = totalGrade/myCellMapper.findAllById(student.getId()).size();
+		studentGradefile.setId(student.getId());
+		
+		Date myDate = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String strToday = sdf.format(myDate);
+		Date dt = sdf.parse(strToday);
+		
+		studentGradefile.setLatestUploadDate(dt);
+		studentGradefile.setTotalUnit(totalUnit);
+		studentGradefile.setMajorUnit(majorUnit);
+		studentGradefile.setCultureUnit(cultureUnit);
+		studentGradefile.setTotalAvgGrade(totalAvgGrade);
+		studentGradefile.setMajorexUnit(majorexUnit);
+		
+		studentGradefileMapper.insert(studentGradefile);
+		
 		workbook.close();
 		
 		return "redirect:login";

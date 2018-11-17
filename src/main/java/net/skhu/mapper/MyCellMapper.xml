@@ -9,4 +9,10 @@
     		(#{item.id}, #{item.latestUpdateDate}, #{item.yearOfClass}, #{item.yearOfSemester}, #{item.subjectId}, #{item.subjectName},  #{item.completeType}, #{item.subjectScore}, #{item.grade} )
     	</foreach>
   	</insert>
+  	<select id="findAllById" resultType="MyCell">
+  		SELECT *, g.score 
+  		FROM student_subject_grade3 LEFT JOIN grade g ON grade = g.gradeLevel
+  		WHERE id=#{id}
+  	</select>
+  	
 </mapper>
