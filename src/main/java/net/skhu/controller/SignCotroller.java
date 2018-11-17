@@ -160,24 +160,26 @@ public class SignCotroller {
 		
 		StudentGradefile studentGradefile = new StudentGradefile();
 		int totalUnit=0; int majorUnit=0; int cultureUnit=0; float totalGrade=0; float totalAvgGrade=0; int majorexUnit=0;
+		String str; int num;
 		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
 			totalGrade += myCell.getScore();
-			if(myCell.getCompleteType()=="전필" || myCell.getCompleteType()=="전선") majorUnit += myCell.getSubjectScore();
-			if(myCell.getGrade() != "F") totalUnit += myCell.getSubjectScore();
-			if(myCell.getCompleteType()=="전필" || myCell.getCompleteType()=="전선") majorUnit += myCell.getSubjectScore();
-			if(myCell.getCompleteType()=="교필" || myCell.getCompleteType()=="교선") cultureUnit += myCell.getSubjectScore();
-			if(myCell.getCompleteType()=="전탐") majorexUnit += myCell.getSubjectScore();
+			str = myCell.getCompleteType();
+			num = myCell.getSubjectScore();
+			if(myCell.getGrade() != "F") totalUnit += num;
+			if(str=="전필" || str=="전선") majorUnit += num;
+			if(str=="교필" || str=="교선") cultureUnit += num;
+			if(str=="전탐") majorexUnit += num;
 			
 		}
 		totalAvgGrade = totalGrade/(myCellMapper.findAllById(student.getId()).size()+1);
 		double totalAvgGrade2 = Math.round(totalAvgGrade*10d)/10d;
-		studentGradefile.setId(student.getId());
 		
 		Date myDate = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String strToday = sdf.format(myDate);
 		Date dt = sdf.parse(strToday);
 		
+		studentGradefile.setId(student.getId());
 		studentGradefile.setLatestUploadDate(dt);
 		studentGradefile.setTotalUnit(totalUnit);
 		studentGradefile.setMajorUnit(majorUnit);

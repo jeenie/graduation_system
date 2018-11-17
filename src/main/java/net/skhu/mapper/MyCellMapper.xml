@@ -14,5 +14,8 @@
   		FROM student_subject_grade3 LEFT JOIN grade g ON grade = g.gradeLevel
   		WHERE id=#{id}
   	</select>
-  	
+  	<delete id="delete">
+  		DELETE FROM student_subject_grade3
+  		WHERE id=#{id}
+  	</delete>
 </mapper>

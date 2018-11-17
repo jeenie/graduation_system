@@ -11,4 +11,5 @@ import net.skhu.dto.MyCell;
 public interface MyCellMapper {
 	void insert(List<MyCell> data);
 	List<MyCell> findAllById(int id);
+	void delete(int id);
 }

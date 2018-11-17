@@ -14,4 +14,8 @@
 		INSERT INTO student_gradefile(id,latestUploadDate, totalUnit, majorUnit, cultureUnit, totalAvgGrade, majorexUnit)
 		VALUES (#{id},#{latestUploadDate}, #{totalUnit}, #{majorUnit}, #{cultureUnit}, #{totalAvgGrade}, #{majorexUnit})
 	</insert>
+	<delete id="delete">
+		DELETE FROM student_gradefile
+		WHERE id=#{id}
+	</delete>
 </mapper>
