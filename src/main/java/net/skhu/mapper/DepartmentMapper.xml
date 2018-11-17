@@ -11,6 +11,12 @@
       WHERE id > 20 || id=0
 
   	</select>
+  	<select id="findItDept" resultType="Department">
+      SELECT * FROM Department
+      WHERE id BETWEEN 31 AND 34 
+  	</select>
+  	
+  	
   	<!-- 
   	<select id="findAllWithStudents" resultMap="resultMap1">
 		SELECT sub.name subjectName, ssg.subjectId, ssg.id studentId, s.name sutdentName, s.completeSemester, d.departmentName, s.grade

@@ -34,11 +34,6 @@ public class StudentSubstitutionController {
         return "student/detailStatus";
     }
 
-	@RequestMapping("otherMajor")
-	public String selectOtherMajor() {
-        return "student/otherMajorEdit";
-    }
-
     @RequestMapping(value="substitute/abolition", method=RequestMethod.GET)
     public String abolitionList(Model model) {
     	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
