@@ -22,7 +22,7 @@
 		entranceYear=#{entranceYear} and processId = 2
 	</select>
 	<select id="findTotalMajor" resultType="DepartmentMajorRule">
-		select * from
+		select mustPlusChoice from
 		department_major_rule where departmentId=#{departmentId} and
 		entranceYear=#{entranceYear} and processId=#{processId}
 	</select>
