@@ -161,13 +161,16 @@ public class SignCotroller {
 		StudentGradefile studentGradefile = new StudentGradefile();
 		int totalUnit=0; int majorUnit=0; int cultureUnit=0; float totalGrade=0; float totalAvgGrade=0; int majorexUnit=0;
 		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
+			totalGrade += myCell.getScore();
+			if(myCell.getCompleteType()=="전필" || myCell.getCompleteType()=="전선") majorUnit += myCell.getSubjectScore();
 			if(myCell.getGrade() != "F") totalUnit += myCell.getSubjectScore();
 			if(myCell.getCompleteType()=="전필" || myCell.getCompleteType()=="전선") majorUnit += myCell.getSubjectScore();
 			if(myCell.getCompleteType()=="교필" || myCell.getCompleteType()=="교선") cultureUnit += myCell.getSubjectScore();
 			if(myCell.getCompleteType()=="전탐") majorexUnit += myCell.getSubjectScore();
-			totalGrade += myCell.getScore();
+			
 		}
-		totalAvgGrade = totalGrade/myCellMapper.findAllById(student.getId()).size();
+		totalAvgGrade = totalGrade/(myCellMapper.findAllById(student.getId()).size()+1);
+		double totalAvgGrade2 = Math.round(totalAvgGrade*10d)/10d;
 		studentGradefile.setId(student.getId());
 		
 		Date myDate = new Date();
@@ -179,7 +182,7 @@ public class SignCotroller {
 		studentGradefile.setTotalUnit(totalUnit);
 		studentGradefile.setMajorUnit(majorUnit);
 		studentGradefile.setCultureUnit(cultureUnit);
-		studentGradefile.setTotalAvgGrade(totalAvgGrade);
+		studentGradefile.setTotalAvgGrade((float)totalAvgGrade2);
 		studentGradefile.setMajorexUnit(majorexUnit);
 		
 		studentGradefileMapper.insert(studentGradefile);
