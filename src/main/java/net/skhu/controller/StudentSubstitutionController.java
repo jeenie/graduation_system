@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.OtherMajor;
+import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.OtherMajorMapper;
+import net.skhu.mapper.StudentSubjectGradeMapper;
 import net.skhu.mapper.StudentSubstitutionMapper;
-
 @Controller
 @RequestMapping("student/")
 public class StudentSubstitutionController {
 
 	@Autowired StudentSubstitutionMapper studentSubstitutionMapper;
 	@Autowired OtherMajorMapper otherMajorMapper;
+	@Autowired StudentSubjectGradeMapper studentSubjectGradeMapper;
 
 	@RequestMapping("status")
 	public String selectStatus(Model model) {
@@ -51,6 +53,8 @@ public class StudentSubstitutionController {
 		model.addAttribute("abolitionList",abolitionList);
 	    List<SubstitutionSubject> substitutionList = studentSubstitutionMapper.findSubstiByAbosub(abolitionId);
 		model.addAttribute("substitutionList",substitutionList);
+		List<StudentSubjectGrade> studentSubjectList = studentSubjectGradeMapper.findSubjectIdList(userNumber);
+		model.addAttribute("studentSubjectList",studentSubjectList);
 		model.addAttribute("abolitionId", abolitionId);
 		return "student/substituteEdit";
     }

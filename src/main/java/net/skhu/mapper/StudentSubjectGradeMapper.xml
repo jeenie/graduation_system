@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentSubjectGradeMapper">
+	<select id="findSubjectIdList" resultType="StudentSubjectGrade">
+		SELECT ssg.id, ssg.subjectId
+		FROM student_subject_grade ssg
+		WHERE ssg.id=#{userNumber};
+	</select>
+</mapper>

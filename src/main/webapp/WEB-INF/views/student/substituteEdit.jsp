@@ -32,6 +32,9 @@
 	}
 
 </script>
+<!-- 
+<script type="text/javascript" src="substituteEdit.js"></script>
+ -->
 
 <style>
 	.inquiry_btn {
@@ -424,13 +427,21 @@
         			<th>대체과목명</th>
         			<th>개설학과</th>
         		</thead>
-				<tbody>
+				<tbody>				
 					<c:forEach var="subSubject" items="${ substitutionList }">
-						<tr data-url="insert?abolitionId=${ abolitionId }&substitutionId=${ subSubject.substitutionSubject}" onclick="confirm('해당 과목으로 대체하시겠습니까?')">
-							<td>${ subSubject.substitutionSubject }</td>
-							<td>${ subSubject.substitutionSubjectName }</td>
-							<td>${ subSubject.departmentName }</td>
-						</tr>
+						<c:forEach var="studentSubject" items="${ studentSubjectList }">
+							<c:set var="color" value="#FFFFFF" />	
+								<c:if test="${ subSubject.substitutionSubject == studentSubject.subjectId}">
+									<c:set var="color" value="#FF4000" />
+								</c:if>
+						</c:forEach>
+							<tr data-url="insert?abolitionId=${ abolitionId }&substitutionId=${ subSubject.substitutionSubject}" 
+							style= "background-color:${color}" onclick="confirm('해당 과목으로 대체하시겠습니까?')">
+								<td>${ subSubject.substitutionSubject }</td>
+								<td>${ subSubject.substitutionSubjectName }</td>
+								<td>${ subSubject.departmentName }</td>
+							</tr>
+						
 					</c:forEach>
 				</tbody>
 			</table>
@@ -438,9 +449,6 @@
             </div>
           </div>
      	 </div>
-
-      	<button type="submit" class="btn btn-submit">등록</button>
-
     </div>
 	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
