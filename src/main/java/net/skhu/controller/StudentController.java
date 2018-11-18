@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
+import net.skhu.dto.Major;
 import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentGradefile;
@@ -23,6 +24,7 @@ import net.skhu.dto.Total;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.SpecialProcessMapper;
 import net.skhu.mapper.StudentGradefileMapper;
@@ -53,6 +55,8 @@ public class StudentController {
 	StudentSubjectGradeMapper studentSubjectGradeMapper;
 	@Autowired
 	SubjectMapper SubjectMapper;
+	@Autowired
+	MajorMapper majorMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -109,6 +113,7 @@ public class StudentController {
 		List<StudentSubjectGrade> mustMajor = studentSubjectGradeMapper.findByIdMustMajor(userNumber);
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
+		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(32);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("studentGradefile", studentGradefile);
@@ -118,6 +123,7 @@ public class StudentController {
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("mustCulture", mustCulture);
 		model.addAttribute("subjects", subjects);
+		model.addAttribute("mustmajor2", mustmajor2);
 		return "student/graduationStatus";
 	}
 }

@@ -375,6 +375,26 @@ td {
 						</c:forEach>
 					</tbody>
 				</table>
+
+				<div>${ major.departmentId }</div>
+				<table class="table">
+					<thead>
+						<tr style="height: 30px;">
+							<th scope="col" class="text-center">학과</th>
+							<th scope="col" class="text-center">과목이름</th>
+							<th scope="col" class="text-center">과목코드</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="major" items="${mustMajor2}">
+							<tr>
+								<td>${ major.departmentId }</td>
+								<td>${ major.majorName }</td>
+								<td>${ major.majorSubjectId }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 
