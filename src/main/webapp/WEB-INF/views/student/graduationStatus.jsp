@@ -302,15 +302,38 @@ td {
 			</table>
 		</div>
 	</div>
+
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
+
 	<div style="margin-right: 100px; margin-left: 100px;">
+		<form>
+			<div>
+				<div style="float: left">
+					<p style="font-size: 18px; font-weight: bold;">
+						>&nbsp ${ student.name }님에 맞는 &nbsp <select name="processId"
+							class="form-controls w200">
+							<option value="0">특별과정</option>
+							<c:forEach var="specialProcess" items="${specialProcess}">
+								<option value="${specialProcess.id}"
+									${processId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
+							</c:forEach>
+						</select>&nbsp &nbsp &nbsp
+						<button type="submit" class="btn-submit"
+							style="margin-left: 0; margin-top: 0; padding: 5px 20px; font-size: 16px;">조회</button>
+					</p>
+
+				</div>
+			</div>
+		</form>
+		<br> <br> <br> <br>
+
 		<div style="float: left;">
-			<p style="font-size: 18px; font-weight: bold;">> 총 학점
+			<p style="font-size: 18px; font-weight: bold;">>&nbsp 총 학점
 				${studentGradefile.totalUnit}/${total}</p>
 
 			<div class="progressbar progressbar-green">
@@ -318,10 +341,10 @@ td {
 					style="width:${(studentGradefile.totalUnit/total)*100}%"></div>
 			</div>
 		</div>
-		<br> <br> <br> <br>
+		<br> <br> <br> <br> <br>
 
 		<div class="progress-wrap">
-			<p style="font-size: 18px; font-weight: bold;">> 전공
+			<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
 				${studentGradefile.majorUnit}/${departmentMajorList.mustPlusChoice}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
@@ -355,10 +378,10 @@ td {
 			</div>
 		</div>
 
-		<br> <br> <br> <br>
+		<br> <br> <br>
 
 		<div>
-			<p style="font-size: 18px; font-weight: bold;">> 교양
+			<p style="font-size: 18px; font-weight: bold;">>&nbsp 교양
 				${studentGradefile.cultureUnit}/${culture+departmentMajorList.addCulture}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
@@ -400,7 +423,6 @@ td {
 	<br>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-
 </body>
 
 </html>
