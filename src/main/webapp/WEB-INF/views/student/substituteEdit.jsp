@@ -429,10 +429,15 @@
         		</thead>
 				<tbody>				
 					<c:forEach var="subSubject" items="${ substitutionList }">
+						<c:set var="loop_flag" value="false" />
 						<c:forEach var="studentSubject" items="${ studentSubjectList }">
+							<c:if test="${not loop_flag }">
 							<c:set var="color" value="#FFFFFF" />	
 								<c:if test="${ subSubject.substitutionSubject == studentSubject.subjectId}">
-									<c:set var="color" value="#FF4000" />
+									<c:set var="color" value="#E1F5A9" />
+									<c:set var="loop_flag" value="true" />
+	
+								</c:if>
 								</c:if>
 						</c:forEach>
 							<tr data-url="insert?abolitionId=${ abolitionId }&substitutionId=${ subSubject.substitutionSubject}" 
