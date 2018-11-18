@@ -13,6 +13,7 @@ public class MyCell {
 	private String completeType; //이수구분
 	private int subjectScore; //학점
 	private String grade; //성적등급
+	private float score; //3.0,4.5... 
 	
 	public Date getLatestUpdateDate() {
 		return latestUpdateDate;
@@ -69,7 +70,13 @@ public class MyCell {
 		this.grade = grade;
 	}
 	
+	public float getScore() {
+		return score;
+	}
 	
+	public void setScore(float score) {
+		this.score = score;
+	}
 	
 	
 }

@@ -17,10 +17,6 @@ public class Student {
 	String email;
 	String subjectName;
 	int completeSemester;
-	int totalUnit;
-	int majorUnit;
-	int cultureUnit;
-	int majorexUnit;
 	int processId;
 	int mustPlusChoice;
 	MultipartFile file;
@@ -130,37 +126,7 @@ public class Student {
 		this.completeSemester = completeSemester;
 	}
 	
-	public int getTotalUnit() {
-		return totalUnit;
-	}
 
-	public void setTotalUnit(int totalUnit) {
-		this.totalUnit = totalUnit;
-	}
-
-	public int getMajorUnit() {
-		return majorUnit;
-	}
-
-	public void setMajorUnit(int majorUnit) {
-		this.majorUnit = majorUnit;
-	}
-
-	public int getCultureUnit() {
-		return cultureUnit;
-	}
-
-	public void setCultureUnit(int cultureUnit) {
-		this.cultureUnit = cultureUnit;
-	}
-
-	public int getMajorexUnit() {
-		return majorexUnit;
-	}
-
-	public void setMajorexUnit(int majorexUnit) {
-		this.majorexUnit = majorexUnit;
-	}
 
 	public int getProcessId() {
 		return processId;

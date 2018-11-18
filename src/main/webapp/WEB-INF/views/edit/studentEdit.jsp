@@ -171,7 +171,7 @@ select option:checked, select option:hover {
       </div>
 
         <div class="contents">
-        	<form:form method="post" modelAttribute="student">
+        	<form:form method="post" modelAttribute="student" enctype="multipart/form-data">
 	            <div class="group">
 	                <h4><img src="${R}res/images/abouti/student.png" width="80px">&nbsp&nbsp&nbsp<font color="#41AF39">${student.getName()}</font> 님은 [<b> 학생 </b>] 회원입니다.</h4>
 	                <hr>
@@ -218,6 +218,10 @@ select option:checked, select option:hover {
 		      				<label>이수완료학기</label>
 		      				<form:input path="completeSemester" type="number" class="form-control w300" />
 		    			</div>
+		    			<div class="form-group">
+							<label>성적파일 업로드</label>
+							<form:input path="file" type="file" class="form-control w300" accept=".xls,xlsx"/>
+						</div>
                     <br>
                     
                     <p>

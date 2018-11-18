@@ -291,9 +291,9 @@ select option:checked, select option:hover {
 
 .divide1 {
 	margin-top: -10px;
-	margin-left: 60px;
-	margin-right: 60px;
-	height: 180px;
+	margin-left: 50px;
+	margin-right: 50px;
+	height: 200px;
 }
 
 .l_s {
@@ -365,7 +365,8 @@ table {
 					<div class="divide1">
 						<div class="l_s">
 							<div class="a_l">
-								<img src="" width="150px" height="170px">
+								<img src="${R}res/images/abouti/student.png" width="150px"
+									height="170px">
 							</div>
 						</div>
 
@@ -398,7 +399,6 @@ table {
 							</div>
 						</div>
 					</div>
-
 				</div>
 
 				<br> <br> <br>
@@ -414,13 +414,14 @@ table {
 						</c:forEach>
 					</select>을 이수하고 있습니다.
 				</div>
-				<br> <br>
+				<br> <br> <br>
 			</div>
 			<div class="col-md-5 wow fadeInDown" data-wow-duration="1000ms"
 				data-wow-delay="600ms">
 				<div class="skill">
 					<div class="progress-wrap">
-						<h4>＞총 학점&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.totalUnit}/${total}</h4>
+						<h4>＞총
+							학점&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.totalUnit}/${total}</h4>
 						<div class="progress">
 							<div class="progress-bar color4" role="progressbar"
 								aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
@@ -432,7 +433,8 @@ table {
 					<br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/${departmentMajorList.mustPlusChoice}</h4>
+						<h4>＞
+							전공&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.majorUnit}/${departmentMajorList.mustPlusChoice}</h4>
 						<div class="progress">
 							<div class="progress-bar  color1" role="progressbar"
 								aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
@@ -445,75 +447,37 @@ table {
 							&nbsp&nbsp&nbsp- 전공필수
 						</h4>
 						<div class="t2">
-							<table style="width: 870px;">
-								<tr style="height: 30px;">
-									<th>학년</th>
-									<th>학기</th>
-									<th colspan="3">과목</th>
-								</tr>
 
-								<tr>
-									<td rowspan="2">1</td>
-									<td>1</td>
-									<td><font color="#DB0000">C프로그래밍I (3)</font></td>
-									<td colspan="2"><font color="#DB0000">과정지도1 (1)</font></td>
-								</tr>
+							<table class="table table-hover" style="width: 870px;">
+								<thead>
+									<tr style="height: 30px;">
+										<th scope="col" class="text-center">학번</th>
+										<th scope="col" class="text-center">과목</th>
+										<th scope="col" class="text-center">이수학기</th>
+										<th scope="col" class="text-center">학점</th>
 
-								<tr>
-									<td>2</td>
-									<td><font color="#DB0000">웹페이지구축I (3)</font></td>
-									<td colspan="2"><font color="#DB0000">과정지도2 (1)</font></td>
-								</tr>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="studentSubjectGrade" items="${mustMajor}">
 
-								<tr>
-									<td rowspan="3">2</td>
-									<td rowspan="2">1</td>
-									<td><font color="#DB0000">컴퓨터구조 (3)</font></td>
-									<td colspan="2"><font color="#DB0000">데이터베이스개론 (3)</font></td>
-								</tr>
-
-								<tr>
-									<td><font color="#DB0000">Java프로그래밍 (3)</font></td>
-									<td colspan="2"><font color="#DB0000">과정지도3 (1)</font></td>
-								</tr>
-
-								<tr>
-									<td>2</td>
-									<td><font color="#DB0000">자료구조론 (3)</font></td>
-									<td><font color="#DB0000">운영체제론 (3)</font></td>
-									<td><font color="#DB0000">과정지도4 (1)</font></td>
-								</tr>
-
-								<tr>
-									<td rowspan="2">3</td>
-									<td>1</td>
-									<td><font color="#DB0000">알고리즘3 (3)</font></td>
-									<td colspan="2"><font color="#DB0000">과정지도5 (1)</font></td>
-								</tr>
-
-								<tr>
-									<td>2</td>
-									<td colspan="3">과정지도6 (1)</td>
-								</tr>
-
-								<tr>
-									<td>4</td>
-									<td>1,2</td>
-									<td colspan="3">졸업지도 (1)</td>
-
-								</tr>
-
-								<tr style="height: 30px;">
-									<th colspan="2">학점 계</th>
-									<th colspan="3">31</th>
-								</tr>
+										<tr>
+											<td>${ studentSubjectGrade.id }</td>
+											<td>${ studentSubjectGrade.subjectName }</td>
+											<td>${ studentSubjectGrade.yearOfClass }</td>
+											<td>${ studentSubjectGrade.grade }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
 							</table>
+
 						</div>
 					</div>
 					<br> <br> <br>
 
 					<div class="progress-wrap">
-						<h4>＞ 교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.cultureUnit}/${culture+departmentMajorList.addCulture}</h4>
+						<h4>＞
+							교양&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${studentGradefile.cultureUnit}/${culture+departmentMajorList.addCulture}</h4>
 						<div class="progress">
 							<div class="progress-bar color3" role="progressbar"
 								aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
@@ -526,31 +490,28 @@ table {
 							&nbsp&nbsp&nbsp- 교양필수
 						</h4>
 						<div class="t4">
-							<table style="width: 870px;">
-								<tr style="height: 30px;">
-									<th colspan="2">과목</th>
-								</tr>
 
-								<tr>
-									<td><font color="#DB0000">기도모임(비아메디아 채플) 2회</font></td>
-									<td><font color="#DB0000">사회봉사 그룹(사회봉사I, 해외봉사,
-											농촌봉사, CUAC서비스러닝 프로그램 중 택1) (2)</font></td>
-								</tr>
+							<table class="table table-hover" style="width: 870px;">
+								<thead>
+									<tr style="height: 30px;">
+										<th scope="col" class="text-center">학번</th>
+										<th scope="col" class="text-center">과목</th>
+										<th scope="col" class="text-center">이수학기</th>
+										<th scope="col" class="text-center">학점</th>
 
-								<tr>
-									<td><font color="#DB0000">대학생활세미나I (2)</font></td>
-									<td><font color="#DB0000">대학생활세미나II (1)</font></td>
-								</tr>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="studentSubjectGrade" items="${mustCulture}">
 
-								<tr>
-									<td><font color="#DB0000">말과글 (2)</font></td>
-									<td></td>
-								</tr>
-
-								<tr style="height: 30px;">
-									<th>학점 계</th>
-									<th>7</th>
-								</tr>
+										<tr>
+											<td>${ studentSubjectGrade.id }</td>
+											<td>${ studentSubjectGrade.subjectName }</td>
+											<td>${ studentSubjectGrade.yearOfClass }</td>
+											<td>${ studentSubjectGrade.grade }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
 							</table>
 						</div>
 					</div>
