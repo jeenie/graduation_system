@@ -386,7 +386,7 @@ td {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="major" items="${mustMajor2}">
+						<c:forEach var="major" items="${mustmajor2}">
 							<tr>
 								<td>${ major.departmentId }</td>
 								<td>${ major.majorName }</td>
