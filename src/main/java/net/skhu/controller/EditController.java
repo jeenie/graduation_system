@@ -152,8 +152,7 @@ public class EditController {
 			data.add(myCell);
 			
 		}
-		//id, latestUploadDate, totalUnit, majorUnit, cultureUnit,totalAvgGrade, majorexUnit
-		//latestUpdateDate, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectSocre, grade
+		
 		myCellMapper.delete(student.getId());
 		studentGradefileMapper.delete(student.getId());
 		myCellMapper.insert(data);

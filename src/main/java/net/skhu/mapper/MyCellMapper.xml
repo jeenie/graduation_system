@@ -3,19 +3,19 @@
 
 <mapper namespace="net.skhu.mapper.MyCellMapper">
 	<insert id="insert" parameterType="java.util.List">
-		INSERT INTO student_subject_grade3(id, latestUpdateDate, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectScore, grade)
+		INSERT INTO student_subject_gradeCopy(id, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectScore, grade)
     	VALUES
     	<foreach collection="list" item="item" separator=",">
-    		(#{item.id}, #{item.latestUpdateDate}, #{item.yearOfClass}, #{item.yearOfSemester}, #{item.subjectId}, #{item.subjectName},  #{item.completeType}, #{item.subjectScore}, #{item.grade} )
+    		(#{item.id}, #{item.yearOfClass}, #{item.yearOfSemester}, #{item.subjectId}, #{item.subjectName},  #{item.completeType}, #{item.subjectScore}, #{item.grade} )
     	</foreach>
   	</insert>
   	<select id="findAllById" resultType="MyCell">
   		SELECT *, g.score 
-  		FROM student_subject_grade3 LEFT JOIN grade g ON grade = g.gradeLevel
+  		FROM student_subject_gradeCopy LEFT JOIN grade g ON grade = g.gradeLevel
   		WHERE id=#{id}
   	</select>
   	<delete id="delete">
-  		DELETE FROM student_subject_grade3
+  		DELETE FROM student_subject_grade
   		WHERE id=#{id}
   	</delete>
 </mapper>

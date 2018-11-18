@@ -8,11 +8,9 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -154,8 +152,7 @@ public class SignCotroller {
 			data.add(myCell);
 			
 		}
-		//id, latestUploadDate, totalUnit, majorUnit, cultureUnit,totalAvgGrade, majorexUnit
-		//latestUpdateDate, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectSocre, grade
+	
 		myCellMapper.insert(data);
 		
 		StudentGradefile studentGradefile = new StudentGradefile();
