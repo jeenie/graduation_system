@@ -25,13 +25,14 @@
 				async: false,
 				type: "GET",
 				url : "exexex",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				dataType: "json",
 				cache: false,
 				success:function(data){
 					if(data.length == 0) {
 					}else{
 						$("#beforeJSON").html( JSON.stringify(data, null, "    ") );
-						var jsonData = getTreeModel( data, '999',{
+						var jsonData = getTreeModel( JSON.parse(data.coreJson), '999',{
 			            	id: "itemId",
 			            	parentId: "parentId",
                             order: ["label","desc"]

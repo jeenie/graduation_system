@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,6 @@ import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.Total;
-import net.skhu.dto.Tree;
 import net.skhu.dto.Year;
 import net.skhu.mapper.DepartmentCultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
@@ -165,14 +166,20 @@ public class GraduationRuleController {
 		DepartmentMajorRule rule = new DepartmentMajorRule();
 		System.out.println(mustMajors.length);
 		for (int i = 0; i < mustMajors.length; i++) {
+			System.out.println("목록시작" + i);
 			rule.setDepartmentId(departmentId);
+			System.out.println(rule.getDepartmentId());
 			rule.setEntranceYear(i + 1 == 1 || i == 2 ? entranceYear : 0);
+			System.out.println(rule.getEntranceYear());
 			rule.setProcessId(i + 1);
+			System.out.println(rule.getProcessId());
 			rule.setMustMajor(mustMajors[i]);
-			rule.setChoiceMajor(choiceMajors[i]);
-			rule.setMustPlusChoice(mustPlusChoices[i]);
+			System.out.println(rule.getMustMajor());
+			rule.setChoiceMajor(choiceMajors[i]); System.out.println(rule.getChoiceMajor());
+			rule.setMustPlusChoice(mustPlusChoices[i]); System.out.println(rule.getMustPlusChoice());
 			rules.add(rule);
 		}
+		System.out.println(rules.size());
 		departmentMajorRuleMapper.updateList(rules);
 		return "admin/departmentRuleEdit";
 	}
@@ -223,8 +230,8 @@ public class GraduationRuleController {
 		return "redirect:culturalSubject";
 	}
 	
-	@RequestMapping(value="guest/exexex", method = RequestMethod.GET)
-	public ModelAndView ex()  {
+	@RequestMapping(value="guest/exexex", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public ModelAndView ex(HttpServletResponse response)  {
 	/*
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject1 = new JSONObject();
@@ -302,7 +309,7 @@ public class GraduationRuleController {
 	
 		System.out.println(jsonArray.toJSONString());
 	*/
-		
+	/*
 		Tree tree1 = new Tree("핵심역량", "root1", "999", "1");
 		Tree tree2 = new Tree("가치역량", "role1", "root", "2");
 		Tree tree3 = new Tree("인간·인권", "role11", "role1", "3");
@@ -325,6 +332,28 @@ public class GraduationRuleController {
 		mv.setViewName("guest/ex");
 		mv.addObject("json", trees);
 		//mv.addObject("jsonObject", jsonObject);
+		return mv;
+		*/
+		ModelAndView mv = new ModelAndView();
+		
+		String coreJson = "[\r\n" + 
+				"    { \"label\" : \"핵심역량\",         \"itemId\" : \"root\",     \"parentId\" : \"999\",     \"order\" : \"1\" },\r\n" + 
+				"    { \"label\" : \"가치역량\",         \"itemId\" : \"role1\",    \"parentId\" : \"root\",    \"order\" : \"2\" },\r\n" + 
+				"    { \"label\" : \"인간·인권\",     \"itemId\" : \"role11\",   \"parentId\" : \"role1\",   \"order\" : \"3\" },\r\n" + 
+				"    { \"label\" : \"생명·평화\",     \"itemId\" : \"role12\",   \"parentId\" : \"role1\",   \"order\" : \"4\" },\r\n" + 
+				"    { \"label\" : \"민주시만\",     \"itemId\" : \"role13\",   \"parentId\" : \"role1\",   \"order\" : \"5\" },\r\n" + 
+				"    { \"label\" : \"대안역량\",	    \"itemId\" : \"role2\",    \"parentId\" : \"root\",    \"order\" : \"6\" },\r\n" + 
+				"    { \"label\" : \"융·복합적 사고\",     \"itemId\" : \"role21\",   \"parentId\" : \"role2\",   \"order\" : \"7\" },\r\n" + 
+				"    { \"label\" : \"조사·분석·정보활용\",     \"itemId\" : \"role22\",   \"parentId\" : \"role2\",   \"order\" : \"8\" },\r\n" + 
+				"    { \"label\" : \"대안제시·문제해결\",     \"itemId\" : \"role23\",   \"parentId\" : \"role2\",   \"order\" : \"9\" },\r\n" + 
+				"    { \"label\" : \"실천역략\",	    \"itemId\" : \"role3\",    \"parentId\" : \"root\",    \"order\" : \"10\" },\r\n" + 
+				"    { \"label\" : \"민주적 소통\",     \"itemId\" : \"role31\",   \"parentId\" : \"role3\",   \"order\" : \"11\" },\r\n" + 
+				"    { \"label\" : \"연대와 공동체적 실천\",     \"itemId\" : \"role32\",   \"parentId\" : \"role3\",   \"order\" : \"12\" }\r\n" + 
+				"]";
+		
+		mv.addObject(coreJson);
+		mv.setViewName("guest/ex");
+		
 		return mv;
 	}
 
