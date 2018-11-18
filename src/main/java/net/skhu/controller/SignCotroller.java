@@ -161,11 +161,12 @@ public class SignCotroller {
 		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
 			totalGrade += myCell.getScore();
 			str = myCell.getCompleteType();
+			System.out.println(str);
 			num = myCell.getSubjectScore();
 			if(myCell.getGrade() != "F") totalUnit += num;
-			if(str=="전필" || str=="전선") majorUnit += num;
-			if(str=="교필" || str=="교선") cultureUnit += num;
-			if(str=="전탐") majorexUnit += num;
+			if(str.equals("전필") || str.equals("전선")) majorUnit += num;
+			if(str.equals("교필") || str.equals("교선")) cultureUnit += num;
+			if(str.equals("전탐")) majorexUnit += num;
 			
 		}
 		totalAvgGrade = totalGrade/(myCellMapper.findAllById(student.getId()).size()+1);

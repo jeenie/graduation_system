@@ -106,7 +106,6 @@ public class StudentController {
 		DepartmentMajorRule departmentMajorRule = departmentMajorRuleMapper.findTotalMajor(departmentId, entranceYear,
 				processId);
 		int cultureGrade = culture.getGrade();
-		List<StudentSubjectGrade> findSubject = studentSubjectGradeMapper.findById();
 		List<StudentSubjectGrade> mustMajor = studentSubjectGradeMapper.findByIdMustMajor(userNumber);
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
@@ -115,11 +114,7 @@ public class StudentController {
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
-		model.addAttribute("departmentId", departmentId);
-		model.addAttribute("entranceYear", entranceYear);
-		model.addAttribute("processId", processId);
 		model.addAttribute("culture", cultureGrade);
-		model.addAttribute("findSubject", findSubject);
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("mustCulture", mustCulture);
 		model.addAttribute("subjects", subjects);
