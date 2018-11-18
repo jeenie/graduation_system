@@ -15,7 +15,7 @@
   		WHERE id=#{id}
   	</select>
   	<delete id="delete">
-  		DELETE FROM student_subject_grade
+  		DELETE FROM student_subject_gradeCopy
   		WHERE id=#{id}
   	</delete>
 </mapper>
