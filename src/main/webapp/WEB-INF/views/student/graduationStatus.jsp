@@ -350,7 +350,7 @@ td {
 					style="width:${((studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100)>100 ? "100" : (studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100}%"></div>
 			</div>
 			<br> <br>
-			<p style="font-size: 16px">전공 필수</p>
+			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
 			<div style="margin-right: 200px">
 				<table class="table">
 					<thead>
@@ -387,7 +387,7 @@ td {
 			</div>
 		</div>
 
-		<br> <br> <br>
+		<br> <br>
 
 		<div>
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 교양
@@ -397,7 +397,11 @@ td {
 					style="width:${((studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100)>100 ? "100" : (studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100}%"></div>
 			</div>
 			<br> <br>
-			<p style="font-size: 16px">교양 필수</p>
+			<p style="font-size: 16px; font-weight: bold; float: left;">＊ 교양
+				필수 :&nbsp</p>
+			<p style="font-size: 16px; float: left;">기도모임(비아메디아채플)
+				${serveSubject}/${requiredCultureCount.chapelCount} 회, 사회봉사
+				${requiredCultureCount.serveCount} 회</p>
 			<div style="margin-right: 200px">
 				<table class="table">
 					<thead>
@@ -408,25 +412,11 @@ td {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="major" items="${ mustmajor2 }">
-							<c:set var="loop_flag" value="false" />
-							<c:set var="check" value="false" />
-							<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
-								<c:if test="${not loop_flag }">
-									<c:set var="color" value="#FFFFFF" />
-									<c:if
-										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
-										<c:set var="color" value="#E1F5A9" />
-										<c:set var="loop_flag" value="true" />
-										<c:set var="check" value="true" />
-										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
-									</c:if>
-								</c:if>
-							</c:forEach>
-							<tr style="background-color:${color}">
-								<td>${ major.majorName }</td>
-								<td>${ major.subjectScore }</td>
-								<td>${ check.equals("true") ? grade : "" }</td>
+						<c:forEach var="studentSubjectGrade" items="${ mustCulture }">
+							<tr>
+								<td style="width: 500px;">${ studentSubjectGrade.subjectName }</td>
+								<td>${ studentSubjectGrade.subjectScore }</td>
+								<td>${ studentSubjectGrade.grade }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
