@@ -335,10 +335,9 @@ td {
 		<div style="float: left;">
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 총 학점
 				${studentGradefile.totalUnit}/${total}</p>
-
 			<div class="progressbar progressbar-green">
 				<div class="progressbar-inner"
-					style="width:${(studentGradefile.totalUnit/total)*100}%"></div>
+					style="width:${((studentGradefile.totalUnit/total)*100)>100 ? "100" : (studentGradefile.totalUnit/total)*100}%"></div>
 			</div>
 		</div>
 		<br> <br> <br> <br> <br>
@@ -348,7 +347,7 @@ td {
 				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
-					style="width:${(studentGradefile.majorUnit/departmentMajorList.mustPlusChoice)*100}%"></div>
+					style="width:${((studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100)>100 ? "100" : (studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100}%"></div>
 			</div>
 			<br> <br>
 			<p style="font-size: 16px">전공 필수</p>
@@ -392,10 +391,10 @@ td {
 
 		<div>
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 교양
-				${studentGradefile.cultureUnit}/${culture+departmentMajorList.addCulture}</p>
+				${studentGradefile.cultureUnit}/${culture+departmentMajorRule.addCulture}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
-					style="width:${(studentGradefile.cultureUnit/(culture+departmentMajorList.addCulture))*100}%"></div>
+					style="width:${((studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100)>100 ? "100" : (studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100}%"></div>
 			</div>
 			<br> <br>
 			<p style="font-size: 16px">교양 필수</p>
