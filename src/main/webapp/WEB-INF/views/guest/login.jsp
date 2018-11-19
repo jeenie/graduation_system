@@ -194,12 +194,12 @@ input.form-control.w300 {
 					</div>
 					<hr />
 					<div>
-						<div style="margin-top: 20px; margin-right: 270px">
+						<div style="margin-top: 20px;">
 							<a href="sign" class="atag"><U>회원가입</U></a> - <a href="findPw"
 								class="atag"><U>비밀번호 찾기</U></a>
 						</div>
 						<button type="submit" class="btn btn-submit"
-							style="float: right; margin-top: -30px">
+							style="float: right; margin-top: -30px; margin-right:-30px">
 							<span class="glyphicon glyphicon-ok"></span> 로그인
 						</button>
 					</div>

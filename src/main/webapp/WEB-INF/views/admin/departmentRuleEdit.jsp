@@ -380,7 +380,7 @@
                 <div class="list-group majorlist"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
 							<c:forEach var="major" items="${majors}">
-								<a href="#" class="list-group-item list-group-item-action">${major.majorName}
+								<a href="deleteMajor?departmentId=${major.departmentId}&majorSubjectId=${major.majorSubjectId}&entranceYear=${major.entranceYear}" class="list-group-item list-group-item-action" data-confirm-delete>${major.majorName}
 								<span style="float:right;">&times;</span>
 								</a>
 							</c:forEach>
@@ -461,5 +461,15 @@
   <script src="${R}res/js/jquery.isotope.min.js"></script>
   <script src="${R}res/js/wow.min.js"></script>
   <script src="${R}res/js/functions.js"></script>
+  <script src="${R}res/js/commons.js"></script>
+  
+  <script>
+		function alertGuest() {
+			alert("로그인 후 이용해주세요.");
+		}
+		function deleteSubject() {
+			confirm("과목을 삭제하시겠습니까?");
+		}
+	</script>
 </body>
 </html>

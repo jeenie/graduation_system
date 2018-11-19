@@ -256,6 +256,13 @@ public class GraduationRuleController {
 		return "redirect:culturalSubject";
 	}
 
+	@RequestMapping(value = "graduation/deleteMajor", method = RequestMethod.GET)
+	public String deleteMajor(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("majorSubjectId") String majorSubjectId,
+			@RequestParam("entranceYear") int entranceYear) {
+		majorMapper.delete(departmentId, majorSubjectId, entranceYear);
+		return "redirect:deptRuleEdit?departmentId=" + departmentId + "&entranceYear=" + entranceYear;
+	}
+	
 	@RequestMapping(value = "graduation/deleteCulture", method = RequestMethod.GET)
 	public String deleteCulture(Model model, @RequestParam("subjectId") String subjectId,
 			@RequestParam("entranceYear") int entranceYear) {
