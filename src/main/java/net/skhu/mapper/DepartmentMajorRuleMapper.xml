@@ -35,19 +35,9 @@
 	</update>
 
 	<update id="updateList" parameterType="java.util.List">
-<<<<<<< HEAD
 		<foreach collection="list" item="item" separator=";">
 			update department_major_rule set mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor}, mustPlusChoice = #{item.mustPlusChoice} 
 			WHERE departmentId=#{item.departmentId} and entranceYear=#{item.entranceYear} and processId=#{item.processId}
-=======
-		<foreach collection="list" item="item" index="index"
-			separator=";">
-			update department_major_rule set
-			mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor},
-			mustPlusChoice = #{item.mustPlusChoice}
-			WHERE departmentId=#{item.departmentId} and
-			entranceYear=#{item.entranceYear} and processId=#{item.processId}
->>>>>>> 37e0b747d95b93e9f9d8ea667089e08519d856a0
 		</foreach>
 	</update>
 
