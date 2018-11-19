@@ -351,6 +351,9 @@ td {
 			</div>
 			<br> <br>
 			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
+			<p
+				style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
+				과목은 색으로 표시됩니다</p>
 			<div style="margin-right: 200px">
 				<table class="table">
 					<thead>
@@ -400,8 +403,17 @@ td {
 			<p style="font-size: 16px; font-weight: bold; float: left;">＊ 교양
 				필수 :&nbsp</p>
 			<p style="font-size: 16px; float: left;">기도모임(비아메디아채플)
-				${serveSubject}/${requiredCultureCount.chapelCount} 회, 사회봉사
+			<p
+				style="color: Green; font-size: 16px; font-weight: bold; float: left;">&nbsp
+				${chapelSubject}</p>
+			<p style="float: left; font-size: 16px;">&nbsp/
+				${requiredCultureCount.chapelCount} 회, 사회봉사
+			<p
+				style="color: Green; font-size: 16px; font-weight: bold; float: left;">&nbsp
+				${serveSubject}</p>
+			<p style="float: left; font-size: 16px;">&nbsp/
 				${requiredCultureCount.serveCount} 회</p>
+
 			<div style="margin-right: 200px">
 				<table class="table">
 					<thead>

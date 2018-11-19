@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import net.skhu.dto.ServeSubject;
+import net.skhu.dto.ChapelSubject;
 
 @Mapper
-public interface ServeSubjectMapper {
-	List<ServeSubject> findAll();
+public interface ChapelSubjectMapper {
+	List<ChapelSubject> findAll();
 
 	int findById(int id);
 }
