@@ -2,12 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.skhu.mapper.MyCellMapper">
-	<!--void insert(Map<Integer,List<String>> data, int id, String strToday); -->
-	<insert id="insert" parameterType="HashMap">
-		INSERT INTO student_subject_grade(id, yearOfClass, yearOfSemester, subjectId, completeType, grade)
+	<insert id="insert" parameterType="java.util.List">
+		INSERT INTO student_subject_gradeCopy(id, yearOfClass, yearOfSemester, subjectId, subjectName, completeType, subjectScore, grade)
     	VALUES
-    	<foreach collection="rowIndex" item="row1" separator=",">
-    		(#{row1.id}, #{row1.yearOfClass}, #{row1.yearOfSemester}, #{row1.subjectId}, #{row1.completeType}, #{row1.grade} )
+    	<foreach collection="list" item="item" separator=",">
+    		(#{item.id}, #{item.yearOfClass}, #{item.yearOfSemester}, #{item.subjectId}, #{item.subjectName},  #{item.completeType}, #{item.subjectScore}, #{item.grade} )
     	</foreach>
   	</insert>
+  	<select id="findAllById" resultType="MyCell">
+  		SELECT *, g.score 
+  		FROM student_subject_gradeCopy LEFT JOIN grade g ON grade = g.gradeLevel
+  		WHERE id=#{id}
+  	</select>
+  	<delete id="delete">
+  		DELETE FROM student_subject_gradeCopy
+  		WHERE id=#{id}
+  	</delete>
 </mapper>

@@ -14,17 +14,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
+import net.skhu.dto.Major;
 import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentGradefile;
+import net.skhu.dto.StudentSubjectGrade;
+import net.skhu.dto.Subject;
 import net.skhu.dto.Total;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.SpecialProcessMapper;
 import net.skhu.mapper.StudentGradefileMapper;
 import net.skhu.mapper.StudentMapper;
+import net.skhu.mapper.StudentSubjectGradeMapper;
+import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.TotalMapper;
 
 @Controller
@@ -45,6 +51,12 @@ public class StudentController {
 	TotalMapper totalMapper;
 	@Autowired
 	DepartmentMajorRuleMapper departmentMajorRuleMapper;
+	@Autowired
+	StudentSubjectGradeMapper studentSubjectGradeMapper;
+	@Autowired
+	SubjectMapper SubjectMapper;
+	@Autowired
+	MajorMapper majorMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -98,15 +110,20 @@ public class StudentController {
 		DepartmentMajorRule departmentMajorRule = departmentMajorRuleMapper.findTotalMajor(departmentId, entranceYear,
 				processId);
 		int cultureGrade = culture.getGrade();
+		List<StudentSubjectGrade> mustMajor = studentSubjectGradeMapper.findByIdMustMajor(userNumber);
+		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
+		List<Subject> subjects = SubjectMapper.find();
+		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(32);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
-		model.addAttribute("departmentId", departmentId);
-		model.addAttribute("entranceYear", entranceYear);
-		model.addAttribute("processId", processId);
 		model.addAttribute("culture", cultureGrade);
+		model.addAttribute("mustMajor", mustMajor);
+		model.addAttribute("mustCulture", mustCulture);
+		model.addAttribute("subjects", subjects);
+		model.addAttribute("mustmajor2", mustmajor2);
 		return "student/graduationStatus";
 	}
 }

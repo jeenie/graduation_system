@@ -329,7 +329,7 @@ select.form-control.w200 {
 					if(data.length == 0) {
 					}else{
 						$("#beforeJSON").html( JSON.stringify(data, null, "    ") );
-						var jsonData = getTreeModel( data, '999',{
+						var jsonData = getTreeModel( JSON.parse(data.coreJson), '999',{
 			            	id: "itemId",
 			            	parentId: "parentId",
                             order: ["label","desc"]

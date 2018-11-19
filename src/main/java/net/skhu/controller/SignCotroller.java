@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -30,11 +30,13 @@ import net.skhu.dto.Department;
 import net.skhu.dto.Master;
 import net.skhu.dto.PasswordQuiz;
 import net.skhu.dto.Student;
+import net.skhu.dto.StudentGradefile;
 import net.skhu.dto.User;
 import net.skhu.dto.MyCell;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MasterMapper;
 import net.skhu.mapper.PasswordQuizMapper;
+import net.skhu.mapper.StudentGradefileMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.mapper.MyCellMapper;
@@ -60,6 +62,8 @@ public class SignCotroller {
 	PasswordQuizMapper passwordQuizMapper;
 	@Autowired
 	MyCellMapper myCellMapper;
+	@Autowired
+	StudentGradefileMapper studentGradefileMapper;
 
 	@RequestMapping(value="sign", method = RequestMethod.GET)
 	public String sign(Model model) {
@@ -74,7 +78,7 @@ public class SignCotroller {
 	}
 
 	@RequestMapping(value="sign", method = RequestMethod.POST)
-	public String sign(Model model, Student student) throws IOException {
+	public String sign(Model model, Student student) throws IOException, ParseException {
 		User user = new User();
 		user.setUserId(student.getId());
 		student.setPassword(Encryption.encrypt(student.getPassword(), Encryption.MD5));
@@ -98,61 +102,91 @@ public class SignCotroller {
 		
 		FileInputStream uploadFile = new FileInputStream(new File(fileLocation));
 		Workbook workbook = new XSSFWorkbook(uploadFile); //xlsx
-		
 		Sheet sheet = workbook.getSheetAt(0);
-		Map<Integer, List<Object>> data = new HashMap<>();
+		List<MyCell> data = new ArrayList<MyCell>();
 		int rowMax = sheet.getPhysicalNumberOfRows();
-		for(int rowIndex = 1; rowIndex<rowMax; rowIndex++) {
+		
+		for(int rowIndex = 2; rowIndex<rowMax; rowIndex++) {
 			XSSFRow row = (XSSFRow) sheet.getRow(rowIndex);
 			int cellMax = row.getLastCellNum();
+			
 			List<Object> list = new ArrayList<Object>();
-			list.add(student.getId()+"");
+			MyCell myCell = new MyCell();
+			
+			list.add(student.getId());
+			myCell.setId(student.getId());
+			
+			Date myDate = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String strToday = sdf.format(myDate);
+			Date dt = sdf.parse(strToday);
+			
+			list.add(dt);
+			myCell.setLatestUpdateDate(dt);
+			
+			
 			for(int cellIndex=0; cellIndex<cellMax; cellIndex++) {
-				if(cellIndex==3 || cellIndex==5) continue;
-				XSSFCell cell = row.getCell(cellIndex);
+				XSSFCell cell = row.getCell(cellIndex); 
 				switch(cell.getCellTypeEnum()) {
 				case NUMERIC:
 					list.add(((int)cell.getNumericCellValue()));
 					break;
 				case STRING:
-					list.add(cell.getStringCellValue());
-					break;
-				case FORMULA:
-					list.add(cell.getCellFormula()+"");
+					list.add((String)cell.getStringCellValue());
 					break;
 				default:
-					list.add("");
+					list.add(" ");
+					break;
+					
 				}
 			}
-			data.put(rowIndex,list);
+			
+			myCell.setYearOfClass((int)list.get(2));
+			myCell.setYearOfSemester((int)list.get(3));
+			myCell.setSubjectId((String)list.get(4));
+			myCell.setSubjectName((String)list.get(5));
+			myCell.setCompleteType((String)list.get(6));
+			myCell.setSubjectScore((int)list.get(7));
+			myCell.setGrade((String)list.get(8));
+			
+			data.add(myCell);
+			
 		}
-		/*
-		Map<Integer, List<String>> data = new HashMap<>();
-		int i = 0;
-		for(Row row : sheet) {
-			data.put(i, new ArrayList<String>());
-			for(Cell cell : row) {
-				switch(cell.getCellTypeEnum()) {
-				case STRING:
-					data.get(new Integer(i)).add(cell.getRichStringCellValue().getString());
-					break;
-				
-				case NUMERIC:
-					data.get(i).add(cell.getNumericCellValue()+"");
-					break;
-				case FORMULA:
-					data.get(i).add(cell.getCellFormula()+"");
-				default:
-					data.get(new Integer(i)).add(" ");
-				}
-			}
-			i++;
+	
+		myCellMapper.insert(data);
+		
+		StudentGradefile studentGradefile = new StudentGradefile();
+		int totalUnit=0; int majorUnit=0; int cultureUnit=0; float totalGrade=0; float totalAvgGrade=0; int majorexUnit=0;
+		String str; int num;
+		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
+			totalGrade += myCell.getScore();
+			str = myCell.getCompleteType();
+			System.out.println(str);
+			num = myCell.getSubjectScore();
+			if(myCell.getGrade() != "F") totalUnit += num;
+			if(str.equals("전필") || str.equals("전선")) majorUnit += num;
+			if(str.equals("교필") || str.equals("교선")) cultureUnit += num;
+			if(str.equals("전탐")) majorexUnit += num;
+			
 		}
-		*/
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Calendar c1 = Calendar.getInstance();
-		String strToday = sdf.format(c1.getTime());
-		myCellMapper.insert(data,student.getId(),strToday);
+		totalAvgGrade = totalGrade/(myCellMapper.findAllById(student.getId()).size()+1);
+		double totalAvgGrade2 = Math.round(totalAvgGrade*10d)/10d;
+		
+		Date myDate = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String strToday = sdf.format(myDate);
+		Date dt = sdf.parse(strToday);
+		
+		studentGradefile.setId(student.getId());
+		studentGradefile.setLatestUploadDate(dt);
+		studentGradefile.setTotalUnit(totalUnit);
+		studentGradefile.setMajorUnit(majorUnit);
+		studentGradefile.setCultureUnit(cultureUnit);
+		studentGradefile.setTotalAvgGrade((float)totalAvgGrade2);
+		studentGradefile.setMajorexUnit(majorexUnit);
+		
+		studentGradefileMapper.insert(studentGradefile);
+		
 		workbook.close();
 		
 		return "redirect:login";

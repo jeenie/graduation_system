@@ -212,7 +212,7 @@ input.form-control.w300 {
 			<img src="${R}res/images/abouti/professor-1.png"
 				style="width: 250px; height: 250px; float: left; border-radius: 5px; padding-right: 20px;">
 			<div style="margin-left: 250px;">
-				<form:form method="post" modelAttribute="student"  id="signForm" autocomplete="off" enctype="multipart/form-data">
+				<form:form method="post" modelAttribute="student"  id="signForm"  enctype="multipart/form-data">
 					<div class="form-group">
 						<label>학번</label>
 						<form:input path="id" class="form-control w300" />

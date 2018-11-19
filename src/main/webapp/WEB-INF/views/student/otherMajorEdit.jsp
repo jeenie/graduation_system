@@ -268,37 +268,41 @@
 	
 	<div class="container">
   	<div class="contents">
-    <form action="http://localhost/login.php">
-    <p>타 학과(공학계) <input type="text" class="form-control" name="othermajor" ></p>
-    <p>교과목명 <input type="text" class="form-control" name="subject"></p>
-    <p>학점 <input type="text" class="form-control" name="score"></p>
-
-    <div>
-    <p>수강일시</p>
-    <span class="inlineinput">
-       	<input type='text' class="form-control" style='display: inline; width: 200px;' />
-    </span>년도
-    <span class="inlineinput">
-        <input type='text' class="form-control" style='display: inline; width: 200px;' />
-    </span>학기
-	</div>
-    <p>희망이수구분
-      <select name="division" class="form-control">
-        <option value="major_s">전공선택</option>
-        <option value="minor_e">부전공필수</option>
-        <option value="minor_s">부전공선택</option>
-        <option value="double_e">복수전공필수</option>
-        <option value="double_s">복수전공선택</option>
-        <option value="others">기타</option>
-      </select>
-    </p>
-
-    </form>
     
-    <div class="bottom_sec">
-      	<button type="button" class="btn btn-submit">등록</button>
-    </div>
-    
+    <form:form method="post" modelAttribute="otherMajor">
+    	<div class="form-group">
+    		<label>타 학과(공학계)</label> 
+    		<form:select path="departmentId" class="form-control"
+                   itemValue="id" itemLabel="departmentName" items="${ departments }" />
+    	</div>
+    	<div class="form-group">
+    		<label>과목코드</label> 
+    		<form:input path="anotherMajorId" class="form-control" />
+    	</div>
+    	<div class="form-group">
+    		<label>교과목명</label> 
+    		<form:input path="otherMajorName" class="form-control" />
+    	</div>
+	    
+	    <div class="form-group">
+	    	<label>학점</label> 
+	    	<form:input path="score" class="form-control" />
+		</div>
+		    
+	    <div class="form-group">
+	    	<label>수강일시</label></br>	
+	       	<form:input path="year" class="form-control" style="display: inline; width: 200px;" />년도
+	        <form:input path="semester" class="form-control" style="display: inline; width: 200px;" />학기
+		</div>
+		
+		<div class="form-group">
+	    <label>희망이수구분</label>
+	      <form:select path="type" class="form-control"
+                   itemValue="anotherMajorType" itemLabel="anotherMajorType" items="${ types }" />
+		</div>
+	      <button type="submit" class="btn btn-submit">등록</button>
+	</form:form>
+	 
   	</div> <!-- contents -->  
     </div> <!-- container -->
 	  

@@ -24,7 +24,7 @@
 		ON major.departmentId = majorList.departmentId
 		LEFT JOIN subject substitution
 		ON majorList.majorSubjectId = substitution.id
-		WHERE sublist.abolitionSubject = 'IC00055' AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
+		WHERE sublist.abolitionSubject = #{subjectId} AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
 		NOT IN (SELECT abolitionSubject from substitution_subject_list);		
 	</select>
 	<select id="findSubstiStatus" resultType="SubstitutionSubject">

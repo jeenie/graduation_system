@@ -10,6 +10,7 @@
 		WHERE m.studentId= #{userNumber};		
 	</select>
 	<insert id="insert">
-		
+		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId)
+		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId});
 	</insert>
 </mapper>

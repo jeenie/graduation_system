@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -27,222 +28,245 @@
 	crossorigin="anonymous">
 
 <style>
-	.inquiry_btn {
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 10px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 30px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-	}
+.inquiry_btn {
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 10px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 30px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+}
 
-	.body_btn {
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 10px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 25px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-	}
+.body_btn {
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 10px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+}
 
-	.btn-statement3 {
-		/*열람가능여부 yes*/
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 5px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 25px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-		background-color: grey;
-	}
+.btn-statement3 {
+	/*열람가능여부 yes*/
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 5px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+	background-color: grey;
+}
 
-	.btn-statement4 {
-		/*열람가능여부 no*/
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 5px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-		background-color: rgb(80, 153, 92);
-	}
-	
-	.warning {
-		background-color: #ff9800;
-	}
-	
-	/* Orange */
-	.warning:hover {
-		background: #e68a00;
-	}
-	
-	/*pagination*/
-	.pagination {
-		justify-content: center;
-		text-align: center;
-	}
-	
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-		transition: background-color .3s;
-	}
-	
-	.pagination a.active {
-		background-color: dodgerblue;
-		color: white;
-	}
-	
-	/* Add a grey background color on mouse-over */
-	.pagination
+.btn-statement4 {
+	/*열람가능여부 no*/
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 5px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+	background-color: rgb(80, 153, 92);
+}
+
+.warning {
+	background-color: #ff9800;
+}
+
+/* Orange */
+.warning:hover {
+	background: #e68a00;
+}
+
+/*pagination*/
+.pagination {
+	justify-content: center;
+	text-align: center;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a.active {
+	background-color: dodgerblue;
+	color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination
+
+
 	 
-	a
-	:hover
-	:not
+	
+
+a
+
+
+	
+
+:hover
+
+
+	
+
+:not
+
+
 	 
-	(
-	.active
+	
+
+(
+.active
+
+
 	 
-	)
-	{
-	background-color
-	:
-	 
-	#ddd
-	;
 	
+
+)
+{
+background-color
+
+
+:
 	
-	}
-	td {
-		text-align: center;
-		vertical-align: middle;
-	}
-	
-	.table-info {
-		width: 400px;
-	}
-	
-	.contents {
-		margin-top: 5px;
-		margin-right: 100px;
-		margin-left: 140px;
-		margin-bottom: 100px;
-	}
-	
-	/* Style The Dropdown Button */
-	.dropbtn {
-		background-color: #4CAF50;
-		color: white;
-		padding: 16px;
-		font-size: 16px;
-		border: none;
-		cursor: pointer;
-	}
-	
-	/* The container <div> - needed to position the dropdown content */
-	.dropdown {
-		position: relative;
-		display: inline-block;
-	}
-	
-	/* Dropdown Content (Hidden by Default) */
-	.dropdown-content {
-		display: none;
-		position: absolute;
-		background-color: #4CAF50;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 1;
-	}
-	
-	/* Links inside the dropdown */
-	.dropdown-content a {
-		color: white;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-	}
-	
-	/* Change color of dropdown links on hover */
-	.dropdown-content a:hover {
-		background-color: rgb(96, 185, 96)
-	}
-	
-	/* Show the dropdown menu on hover */
-	.dropdown:hover .dropdown-content {
-		display: block;
-	}
-	
-	/* Change the background color of the dropdown button when the dropdown content is shown */
-	.dropdown:hover .dropbtn {
-		background-color: #3e8e41;
-	}
-	
-	/*input class 변경*/
-	.form-controls {
-		width: 160px;
-		height: 35px;
-		padding: 6px 12px;
-		font-size: 14px;
-		line-height: 1.42857143;
-		color: #555;
-		background-color: #fff;
-		background-image: none;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	}
-	
-	.modalGreen {
-		width: 100%;
-		height: 35px;
-		background-color: rgb(22, 105, 22);
-		color: white;
-		font-weight: normal;
-		padding-top: 7px;
-		padding-left: 7px;
-	}
-	
-	.btn-submit {
+
+#ddd
+;
+
+
+}
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table-info {
+	width: 400px;
+}
+
+.contents {
+	margin-top: 5px;
+	margin-right: 100px;
+	margin-left: 140px;
+	margin-bottom: 100px;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #4CAF50;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: rgb(96, 185, 96)
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+/*input class 변경*/
+.form-controls {
+	width: 160px;
+	height: 35px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.modalGreen {
+	width: 100%;
+	height: 35px;
+	background-color: rgb(22, 105, 22);
+	color: white;
+	font-weight: normal;
+	padding-top: 7px;
+	padding-left: 7px;
+}
+
+.btn-submit {
 	padding: 6px 15px;
 	background: #1BBD36;
 	color: #fff;
 	border-radius: 4px;
 	border: none;
 	margin-top: 0;
-	}
-	
-	/*status 페이지에서 사용할 css*/
-	/*font*/
-	.boldfont18 {
+}
+
+/*status 페이지에서 사용할 css*/
+/*font*/
+.boldfont18 {
 	font-weight: bold;
 	font-size: 18px;
-	}
+}
 </style>
 <body>
-	<%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
+	<%@ include file="/WEB-INF/views/include/studentNavibar.jsp"%>
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
@@ -252,11 +276,11 @@
 			<hr>
 		</div>
 	</div>
-	
+
 	<div class="contents">
-		<p class="boldfont18">대체 과목 현황
-			<a href="${R}student/substitute/abolition">
-			<span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
+		<p class="boldfont18">
+			대체 과목 현황 <a href="${R}student/substitute/abolition"> <span
+				style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span>
 			</a>
 		</p>
 		<table class="table table-hover">
@@ -277,10 +301,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<br/><br/>
-		<p class="boldfont18">타전공 인정 현황
-			<a href="${R}student/otherMajor">
-				<span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span>
+		<br /> <br />
+		<p class="boldfont18">
+			타전공 인정 현황 <a href="${R}student/otherMajor"> <span
+				style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span>
 			</a>
 		</p>
 		<table class="table table-hover">
@@ -301,14 +325,14 @@
 						<td>${ otherMajorStatus.anotherMajorId }</td>
 						<td>${ otherMajorStatus.otherMajorName }</td>
 						<td>${ otherMajorStatus.score }</td>
-						<td>${ otherMajorStatus.year }년 ${ otherMajorStatus.semester }학기</td>
+						<td>${ otherMajorStatus.year }년${ otherMajorStatus.semester }학기</td>
 						<td>${ otherMajorStatus.type }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 </body>
 </html>

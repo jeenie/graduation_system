@@ -10,4 +10,5 @@ import net.skhu.dto.Department;
 public interface DepartmentMapper {
 	List<Department> findAll();
 	List<Department> findRealDept();
+	List<Department> findItDept();
 }

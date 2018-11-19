@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentSubjectGradeMapper">
+	<select id="findSubjectIdList" resultType="StudentSubjectGrade">
+		SELECT ssg.id, ssg.subjectId
+		FROM student_subject_grade ssg
+		WHERE ssg.id=#{userNumber};
+	</select>
+	<select id="findById" resultType="StudentSubjectGrade">
+		SELECT student_subject_grade.*,
+		subject.name subjectName FROM student_subject_grade JOIN subject ON
+		student_subject_grade.subjectid = subject.id where
+		student_subject_grade.id = '201232001' and
+		student_subject_grade.completeType = '전공필수';
+	</select>
+	<select id="findByIdMustMajor" resultType="StudentSubjectGrade">
+		SELECT student_subject_grade.*,
+		subject.name subjectName FROM student_subject_grade JOIN subject ON
+		student_subject_grade.subjectid = subject.id where
+		student_subject_grade.id = #{id} and
+		student_subject_grade.completeType = '전공필수';
+	</select>
+		<select id="findByIdMustCulture" resultType="StudentSubjectGrade">
+		SELECT student_subject_grade.*,
+		subject.name subjectName FROM student_subject_grade JOIN subject ON
+		student_subject_grade.subjectid = subject.id where
+		student_subject_grade.id = #{id} and
+		student_subject_grade.completeType = '교양필수';
+	</select>
+
+</mapper>

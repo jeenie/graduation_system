@@ -8,5 +8,6 @@ import net.skhu.dto.OtherMajor;
 
 @Mapper
 public interface OtherMajorMapper {
-	List<OtherMajor> otherMajorStatus(int userNumber);
+	List<OtherMajor> otherMajorStatus(int studentId);
+	void insert(OtherMajor othermajor);
 }
