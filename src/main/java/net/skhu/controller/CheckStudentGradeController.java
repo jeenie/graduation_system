@@ -25,8 +25,8 @@ public class CheckStudentGradeController {
 	CheckStudentGradeMapper checkStudentGradeMapper;
 
 
-	@RequestMapping("vinfo")
-	public String viewInfo(Model model) {
+	@RequestMapping("checkGrades")
+	public String ckGrades(Model model) {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		int userNumber=Integer.parseInt(authentication.getName());
 
@@ -53,23 +53,13 @@ public class CheckStudentGradeController {
 		// 학생 교필 총점
 		StudentGradefile totalRC=checkStudentGradeMapper.totalRequiredCulture(userNumber);
 		model.addAttribute("totalRC", totalRC);
-		
+
 		// 학생 교선 총점
 		StudentGradefile totalSC=checkStudentGradeMapper.totalSelectedCulture(userNumber);
 		model.addAttribute("totalSC", totalSC);
 
 		return "user/checkStudentGrade";
 		}
-/***
-	@RequestMapping("vgrade ")
-	public String viewgrade(Model model) {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		int userNumber=Integer.parseInt(authentication.getName());
 
-		List<StudentSubjectGrade> grades=checkStudentGradeMapper.grade(userNumber);
-		model.addAttribute("grades", grades);
-
-		return "user/checkStudentGrade";
-		}***/
 
 }
