@@ -24,15 +24,68 @@
 	crossorigin="anonymous">
 
 <style>
+
+/* Style The Dropdown Button */
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #4CAF50;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: rgb(96, 185, 96)
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
 	tabl,
     th,
     td {
       border: 1px solid #bcbcbc;
-      text-align: center;}
+      text-align: center;
+      }
 
     table {
       width: 100%;
-      color: black;}
+      color: black;
+      }
+      
 </style>
 </head>
 <body>
@@ -98,7 +151,7 @@
               <th>이름</th>
             </tr>
       
-        <tr data-url="vinfo?id=${ student.id }">
+        <tr data-url="checkGrades?id=${ student.id }">
           <td>${ student.departmentName }</td>
           <td>${ student.grade }</td>
           <td>${ student.id }</td>
@@ -122,7 +175,7 @@
             </tr>
          
         <c:forEach var="grade" items="${ grades }">
-        <tr data-url="vinfo?id=${ grade.id }">
+        <tr data-url="checkGrades?id=${ grade.id }">
           <td>${ grade.yearOfClass }</td>
           <td>${ grade.yearOfSemester }</td>
           <td>${ grade.subjectId }</td>
