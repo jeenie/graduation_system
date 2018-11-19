@@ -169,7 +169,7 @@ public class GraduationRuleController {
 			System.out.println("목록시작" + i);
 			rule.setDepartmentId(departmentId);
 			System.out.println(rule.getDepartmentId());
-			rule.setEntranceYear(i + 1 == 1 || i == 2 ? entranceYear : 0);
+			rule.setEntranceYear(i + 1 == 1 || i + 1 == 2 ? entranceYear : 0);
 			System.out.println(rule.getEntranceYear());
 			rule.setProcessId(i + 1);
 			System.out.println(rule.getProcessId());
