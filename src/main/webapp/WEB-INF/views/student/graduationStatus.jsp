@@ -345,7 +345,7 @@ td {
 
 		<div class="progress-wrap">
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
-				${studentGradefile.majorUnit}/${departmentMajorList.mustPlusChoice}</p>
+				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
 					style="width:${(studentGradefile.majorUnit/departmentMajorList.mustPlusChoice)*100}%"></div>
@@ -356,41 +356,31 @@ td {
 				<table class="table">
 					<thead>
 						<tr style="height: 30px;">
-							<th scope="col" class="text-center">학번</th>
-							<th scope="col" class="text-center">과목</th>
-							<th scope="col" class="text-center">이수학기</th>
-							<th scope="col" class="text-center">학점</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="studentSubjectGrade" items="${mustMajor}">
-
-							<tr>
-								<td>${ studentSubjectGrade.id }</td>
-								<td>${ studentSubjectGrade.subjectName }</td>
-								<td>${ studentSubjectGrade.yearOfClass }</td>
-								<td>${ studentSubjectGrade.grade }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-				<div>${ major.departmentId }</div>
-				<table class="table">
-					<thead>
-						<tr style="height: 30px;">
-							<th scope="col" class="text-center">학과</th>
 							<th scope="col" class="text-center">과목이름</th>
-							<th scope="col" class="text-center">과목코드</th>
+							<th scope="col" class="text-center">학점</th>
+							<th scope="col" class="text-center">성적</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="major" items="${mustmajor2}">
-							<tr>
-								<td>${ major.departmentId }</td>
+						<c:forEach var="major" items="${ mustmajor2 }">
+							<c:set var="loop_flag" value="false" />
+							<c:set var="check" value="false" />
+							<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+								<c:if test="${not loop_flag }">
+									<c:set var="color" value="#FFFFFF" />
+									<c:if
+										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+										<c:set var="color" value="#E1F5A9" />
+										<c:set var="loop_flag" value="true" />
+										<c:set var="check" value="true" />
+										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
+									</c:if>
+								</c:if>
+							</c:forEach>
+							<tr style="background-color:${color}">
 								<td>${ major.majorName }</td>
-								<td>${ major.majorSubjectId }</td>
+								<td>${ major.subjectScore }</td>
+								<td>${ check.equals("true") ? grade : "" }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -413,21 +403,31 @@ td {
 				<table class="table">
 					<thead>
 						<tr style="height: 30px;">
-							<th scope="col" class="text-center">학번</th>
-							<th scope="col" class="text-center">과목</th>
-							<th scope="col" class="text-center">이수학기</th>
+							<th scope="col" class="text-center">과목이름</th>
 							<th scope="col" class="text-center">학점</th>
-
+							<th scope="col" class="text-center">성적</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="studentSubjectGrade" items="${mustCulture}">
-
-							<tr>
-								<td>${ studentSubjectGrade.id }</td>
-								<td>${ studentSubjectGrade.subjectName }</td>
-								<td>${ studentSubjectGrade.yearOfClass }</td>
-								<td>${ studentSubjectGrade.grade }</td>
+						<c:forEach var="major" items="${ mustmajor2 }">
+							<c:set var="loop_flag" value="false" />
+							<c:set var="check" value="false" />
+							<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+								<c:if test="${not loop_flag }">
+									<c:set var="color" value="#FFFFFF" />
+									<c:if
+										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+										<c:set var="color" value="#E1F5A9" />
+										<c:set var="loop_flag" value="true" />
+										<c:set var="check" value="true" />
+										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
+									</c:if>
+								</c:if>
+							</c:forEach>
+							<tr style="background-color:${color}">
+								<td>${ major.majorName }</td>
+								<td>${ major.subjectScore }</td>
+								<td>${ check.equals("true") ? grade : "" }</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -14,5 +14,5 @@ public interface MajorMapper {
 
 	List<Major> findSoft2014MustMajor(int departmentId);
 
-	List<Major> findMustMajorByUser(int departmentId);
+	List<Major> findMustMajorByUser(int departmentId, int entranceYear);
 }

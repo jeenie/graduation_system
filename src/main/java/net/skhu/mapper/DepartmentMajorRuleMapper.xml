@@ -24,7 +24,8 @@
 	<select id="findTotalMajor" resultType="DepartmentMajorRule">
 		select * from
 		department_major_rule where departmentId=#{departmentId} and
-		entranceYear=#{entranceYear} and processId=#{processId}
+		(entranceYear=#{entranceYear} or entranceYear=0) and
+		processId=#{processId}
 	</select>
 	<update id="update">
 		UPDATE department_major_rule SET mustMajor =
@@ -34,10 +35,13 @@
 	</update>
 
 	<update id="updateList" parameterType="java.util.List">
-		<foreach collection="list" item="item"
-			index="index" separator=";">
-			update department_major_rule set mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor}, mustPlusChoice = #{item.mustPlusChoice} 
-			WHERE departmentId=#{item.departmentId} and entranceYear=#{item.entranceYear} and processId=#{item.processId}
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+			update department_major_rule set
+			mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor},
+			mustPlusChoice = #{item.mustPlusChoice}
+			WHERE departmentId=#{item.departmentId} and
+			entranceYear=#{item.entranceYear} and processId=#{item.processId}
 		</foreach>
 	</update>
 

@@ -105,7 +105,7 @@ public class StudentController {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
 		int departmentId = student.getDepartmentId();
-		String entranceYearChange = String.valueOf(userNumber).substring(1, 5);
+		String entranceYearChange = String.valueOf(userNumber).substring(0, 4);
 		int entranceYear = Integer.parseInt(entranceYearChange);
 		DepartmentMajorRule departmentMajorRule = departmentMajorRuleMapper.findTotalMajor(departmentId, entranceYear,
 				processId);
@@ -113,7 +113,7 @@ public class StudentController {
 		List<StudentSubjectGrade> mustMajor = studentSubjectGradeMapper.findByIdMustMajor(userNumber);
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
-		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(32);
+		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("studentGradefile", studentGradefile);

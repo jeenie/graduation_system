@@ -34,12 +34,15 @@
 	</select>
 	<select id="findMustMajorByUser" resultType="Major">
 		select m.*,
-		s.name
-		majorName from
+		s.name majorName, s.subjectScore subjectScore
+		from
 		major_list m join subject s on m.majorSubjectId
 		= s.id
 		where
-		m.departmentId = #{departmentId} and
+		m.departmentId = 32 and
+		(m.entranceYear = 0 or
+		m.entranceYear = 2012)
+		and
 		m.completeType = '필수'
 	</select>
 </mapper>

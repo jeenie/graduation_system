@@ -8,23 +8,25 @@ public class Major {
 	String completeType;
 	String majorSubjectId;
 	String majorName;
-	
+	int subjectScore;
+	String grade;
+
 	public int getDepartmentId() {
 		return departmentId;
 	}
-	
+
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-	
+
 	public String getDepartmentName() {
 		return departmentName;
 	}
-	
+
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
+
 	public int getEntranceYear() {
 		return entranceYear;
 	}
@@ -44,16 +46,33 @@ public class Major {
 	public String getMajorSubjectId() {
 		return majorSubjectId;
 	}
-	
+
 	public void setMajorSubjectId(String majorSubjectId) {
 		this.majorSubjectId = majorSubjectId;
 	}
-	
+
 	public String getMajorName() {
 		return majorName;
 	}
-	
+
 	public void setMajorName(String majorName) {
 		this.majorName = majorName;
 	}
+
+	public int getSubjectScore() {
+		return subjectScore;
+	}
+
+	public void setSubjectScore(int subjectScore) {
+		this.subjectScore = subjectScore;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
 }
