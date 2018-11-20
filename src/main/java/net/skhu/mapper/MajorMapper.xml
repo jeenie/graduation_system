@@ -45,6 +45,9 @@
 		and
 		m.completeType = '필수'
 	</select>
+	<delete id="delete">
+		DELETE FROM major_list WHERE departmentId =#{departmentId} and majorSubjectId = #{majorSubjectId} and entranceYear= #{entranceYear}
+	</delete>
 </mapper>
              
              

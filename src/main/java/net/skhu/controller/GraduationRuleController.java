@@ -143,14 +143,26 @@ public class GraduationRuleController {
 	@RequestMapping(value = "graduation/deptRuleEdit", method = RequestMethod.GET)
 	public String choice(Model model, @RequestParam("departmentId") int departmentId,
 			@RequestParam("entranceYear") int entranceYear) {
+		List<Department> departments = departmentMapper.findRealDept();
+		List<Year> years = yearMapper.years();
 		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
 		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId,
 				entranceYear);
+		List<Major> majors = null;
+		if (departmentId == 32)
+			if (entranceYear <= 2013)
+				majors = majorMapper.findSoft2013MustMajor(departmentId);
+			else
+				majors = majorMapper.findSoft2014MustMajor(departmentId);
+		else
+			majors = majorMapper.findMustMajor(departmentId);
 		model.addAttribute("departmentId", departmentId);
 		model.addAttribute("entranceYear", entranceYear);
+		model.addAttribute("departments", departments);
 		model.addAttribute("firstRule", firstRule);
 		model.addAttribute("departmentMajorRules", departmentMajorRules);
-
+		model.addAttribute("majors", majors);
+		model.addAttribute("years", years);
 		return "admin/departmentRuleEdit";
 	}
 
@@ -162,6 +174,27 @@ public class GraduationRuleController {
 		 * departmentMajorRuleMapper.updateList(departmentMajorRules); return
 		 * "admin/departmentRuleEdit";
 		 */
+		List<Department> departments = departmentMapper.findRealDept();
+		List<Year> years = yearMapper.years();
+		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
+		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId,
+				entranceYear);
+		List<Major> majors = null;
+		if (departmentId == 32)
+			if (entranceYear <= 2013)
+				majors = majorMapper.findSoft2013MustMajor(departmentId);
+			else
+				majors = majorMapper.findSoft2014MustMajor(departmentId);
+		else
+			majors = majorMapper.findMustMajor(departmentId);
+		model.addAttribute("departmentId", departmentId);
+		model.addAttribute("entranceYear", entranceYear);
+		model.addAttribute("departments", departments);
+		model.addAttribute("firstRule", firstRule);
+		model.addAttribute("departmentMajorRules", departmentMajorRules);
+		model.addAttribute("majors", majors);
+		model.addAttribute("years", years);
+		
 		List<DepartmentMajorRule> rules = new ArrayList<DepartmentMajorRule>();
 		DepartmentMajorRule rule = new DepartmentMajorRule();
 		System.out.println(mustMajors.length);
@@ -223,6 +256,13 @@ public class GraduationRuleController {
 		return "redirect:culturalSubject";
 	}
 
+	@RequestMapping(value = "graduation/deleteMajor", method = RequestMethod.GET)
+	public String deleteMajor(Model model, @RequestParam("departmentId") int departmentId, @RequestParam("majorSubjectId") String majorSubjectId,
+			@RequestParam("entranceYear") int entranceYear) {
+		majorMapper.delete(departmentId, majorSubjectId, entranceYear);
+		return "redirect:deptRuleEdit?departmentId=" + departmentId + "&entranceYear=" + entranceYear;
+	}
+	
 	@RequestMapping(value = "graduation/deleteCulture", method = RequestMethod.GET)
 	public String deleteCulture(Model model, @RequestParam("subjectId") String subjectId,
 			@RequestParam("entranceYear") int entranceYear) {
@@ -231,7 +271,7 @@ public class GraduationRuleController {
 	}
 	
 	@RequestMapping(value="guest/exexex", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public ModelAndView ex(HttpServletResponse response)  {
+	public String ex()  {
 	/*
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject1 = new JSONObject();
@@ -334,8 +374,8 @@ public class GraduationRuleController {
 		//mv.addObject("jsonObject", jsonObject);
 		return mv;
 		*/
-		ModelAndView mv = new ModelAndView();
-		
+		//ModelAndView mv = new ModelAndView();
+		/*
 		String coreJson = "[\r\n" + 
 				"    { \"label\" : \"핵심역량\",         \"itemId\" : \"root\",     \"parentId\" : \"999\",     \"order\" : \"1\" },\r\n" + 
 				"    { \"label\" : \"가치역량\",         \"itemId\" : \"role1\",    \"parentId\" : \"root\",    \"order\" : \"2\" },\r\n" + 
@@ -355,6 +395,9 @@ public class GraduationRuleController {
 		mv.setViewName("guest/ex");
 		
 		return mv;
+		
+		*/
+		return "guest/ex";
 	}
 
 }

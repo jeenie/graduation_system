@@ -15,4 +15,6 @@ public interface MajorMapper {
 	List<Major> findSoft2014MustMajor(int departmentId);
 
 	List<Major> findMustMajorByUser(int departmentId, int entranceYear);
+	
+	void delete(int departmentId, String majorSubjectId, int entranceYear);
 }

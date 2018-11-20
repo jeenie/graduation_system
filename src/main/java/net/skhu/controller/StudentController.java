@@ -15,17 +15,21 @@ import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.Major;
+import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentGradefile;
 import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.dto.Subject;
 import net.skhu.dto.Total;
+import net.skhu.mapper.ChapelSubjectMapper;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.PasswordQuizMapper;
+import net.skhu.mapper.RequiredCultureCountMapper;
+import net.skhu.mapper.ServeSubjectMapper;
 import net.skhu.mapper.SpecialProcessMapper;
 import net.skhu.mapper.StudentGradefileMapper;
 import net.skhu.mapper.StudentMapper;
@@ -57,6 +61,12 @@ public class StudentController {
 	SubjectMapper SubjectMapper;
 	@Autowired
 	MajorMapper majorMapper;
+	@Autowired
+	RequiredCultureCountMapper requiredCultureCountMapper;
+	@Autowired
+	ServeSubjectMapper serveSubjectMapper;
+	@Autowired
+	ChapelSubjectMapper chapelSubjectMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -114,6 +124,9 @@ public class StudentController {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
 		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		int serveSubject = serveSubjectMapper.findById(userNumber);
+		int chapelSubject = chapelSubjectMapper.findById(userNumber);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("studentGradefile", studentGradefile);
@@ -124,6 +137,10 @@ public class StudentController {
 		model.addAttribute("mustCulture", mustCulture);
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("mustmajor2", mustmajor2);
+		model.addAttribute("requiredCultureCount", requiredCultureCount);
+		model.addAttribute("serveSubject", serveSubject);
+		model.addAttribute("chapelSubject", chapelSubject);
+		model.addAttribute("processId", processId);
 		return "student/graduationStatus";
 	}
 }
