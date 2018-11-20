@@ -7,7 +7,7 @@ public class MyCell {
 	private Date latestUpdateDate; //업로드 날짜
 	private int id; 
 	private int yearOfClass; //수강년도
-	private int yearOfSemester; //학기
+	private String yearOfSemester; //학기
 	private String subjectId; //과목코드
 	private String subjectName; 
 	private String completeType; //이수구분
@@ -33,10 +33,10 @@ public class MyCell {
 	public void setYearOfClass(int yearOfClass) {
 		this.yearOfClass = yearOfClass;
 	}
-	public int getYearOfSemester() {
+	public String getYearOfSemester() {
 		return yearOfSemester;
 	}
-	public void setYearOfSemester(int yearOfSemester) {
+	public void setYearOfSemester(String yearOfSemester) {
 		this.yearOfSemester = yearOfSemester;
 	}
 	public String getSubjectId() {

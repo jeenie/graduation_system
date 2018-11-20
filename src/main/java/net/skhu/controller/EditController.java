@@ -103,7 +103,7 @@ public class EditController {
 		FileInputStream uploadFile = new FileInputStream(new File(fileLocation));
 		Workbook workbook = new XSSFWorkbook(uploadFile); //xlsx
 		Sheet sheet = workbook.getSheetAt(0);
-		List<MyCell> data = new ArrayList<MyCell>();
+		List<MyCell> data = new ArrayList<MyCell>(); // 
 		int rowMax = sheet.getPhysicalNumberOfRows();
 		
 		for(int rowIndex = 2; rowIndex<rowMax; rowIndex++) {
@@ -115,14 +115,6 @@ public class EditController {
 			
 			list.add(student.getId());
 			myCell.setId(student.getId());
-			
-			Date myDate = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String strToday = sdf.format(myDate);
-			Date dt = sdf.parse(strToday);
-			
-			list.add(dt);
-			myCell.setLatestUpdateDate(dt);
 			
 			
 			for(int cellIndex=0; cellIndex<cellMax; cellIndex++) {
@@ -141,13 +133,14 @@ public class EditController {
 				}
 			}
 			
-			myCell.setYearOfClass((int)list.get(2));
-			myCell.setYearOfSemester((int)list.get(3));
-			myCell.setSubjectId((String)list.get(4));
-			myCell.setSubjectName((String)list.get(5));
-			myCell.setCompleteType((String)list.get(6));
-			myCell.setSubjectScore((int)list.get(7));
-			myCell.setGrade((String)list.get(8));
+
+			myCell.setYearOfClass((int)list.get(1));
+			myCell.setYearOfSemester((String)list.get(2));
+			myCell.setSubjectId((String)list.get(3));
+			myCell.setCompleteType((String)list.get(5));
+			myCell.setSubjectScore((int)list.get(6));
+			myCell.setGrade((String)list.get(7));
+			
 			
 			data.add(myCell);
 			
@@ -157,13 +150,13 @@ public class EditController {
 		studentGradefileMapper.delete(student.getId());
 		myCellMapper.insert(data);
 		
+
 		StudentGradefile studentGradefile = new StudentGradefile();
 		int totalUnit=0; int majorUnit=0; int cultureUnit=0; float totalGrade=0; float totalAvgGrade=0; int majorexUnit=0;
 		String str; int num;
 		for(MyCell myCell : myCellMapper.findAllById(student.getId())) {
-			totalGrade += myCell.getScore();
+			totalGrade += myCell.getScore(); 
 			str = myCell.getCompleteType();
-			System.out.println(str);
 			num = myCell.getSubjectScore();
 			if(myCell.getGrade() != "F") totalUnit += num;
 			if(str.equals("전필") || str.equals("전선")) majorUnit += num;
