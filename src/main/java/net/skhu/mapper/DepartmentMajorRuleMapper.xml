@@ -40,7 +40,7 @@
 			separator=";">
 			update department_major_rule set
 			mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor}, mustPlusChoice = #{item.mustPlusChoice}
-
+		
 		<foreach collection="list" item="item" separator=";">
 			update department_major_rule set mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor}, mustPlusChoice = #{item.mustPlusChoice} 
 			WHERE departmentId=#{item.departmentId} and entranceYear=#{item.entranceYear} and processId=#{item.processId}
