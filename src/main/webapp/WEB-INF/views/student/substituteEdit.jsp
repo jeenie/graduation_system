@@ -29,9 +29,8 @@
 
 <script type="text/javascript">
 	function button_event(value) {
-		location.href="sublist?subjectId="+value;
+		location.href = "sublist?subjectId=" + value;
 	}
-
 </script>
 <!-- 
 <script type="text/javascript" src="substituteEdit.js"></script>
@@ -106,59 +105,6 @@
 	background: #e68a00;
 }
 
-/*pagination*/
-.pagination {
-	justify-content: center;
-	text-align: center;
-}
-
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-	transition: background-color .3s;
-}
-
-.pagination a.active {
-	background-color: dodgerblue;
-	color: white;
-}
-
-/* Add a grey background color on mouse-over */
-.pagination
-
-	 
-	
-a
-
-	
-:hover
-
-	
-:not
-
-	 
-	
-(
-.active
-
-	 
-	
-)
-{
-background-color
-
-	
-:
-
-	 
-	
-#ddd
-
-	
-;
-}
 td {
 	text-align: center;
 	vertical-align: middle;
@@ -314,6 +260,13 @@ td {
 	height: 400px;
 }
 
+.alternative_list2 {
+	float: right;
+	border: 2px solid #1BBD36;
+	width: 420px;
+	height: 400px;
+}
+
 .myLavel {
 	margin-left: 100px;
 	font-weight: bold;
@@ -385,29 +338,239 @@ td {
 .
 {
 float
- 
-:
- 
-right
-;
 
-      
-margin-top
-:
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+margin-top
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 -50
 px
-;
 
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
 margin-right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
 60
 px
-;
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
 }
 th {
 	text-align: center;
@@ -458,7 +621,10 @@ th {
 			</div>
 			<div class="right_sec">
 				<p class="myLavel2">대체 과목 목록</p>
-				<div class="alternative_list">
+				<p
+					style="font-size: 11px; float: right; color: #ac0; font-weight: bold; margin-top: 8px;">수강한
+					과목은 색으로 표시됩니다</p>
+				<div class="alternative_list2">
 					<table class="table table-hover">
 						<thead>
 							<th>과목코드</th>
