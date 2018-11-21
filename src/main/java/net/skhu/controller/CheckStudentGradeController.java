@@ -17,7 +17,7 @@ import net.skhu.mapper.CheckStudentGradeMapper;
 import net.skhu.mapper.StudentMapper;
 
 @Controller
-@RequestMapping("user/")
+@RequestMapping("student/")
 public class CheckStudentGradeController {
 	@Autowired
 	StudentMapper studentMapper;
@@ -58,7 +58,7 @@ public class CheckStudentGradeController {
 		StudentGradefile totalSC=checkStudentGradeMapper.totalSelectedCulture(userNumber);
 		model.addAttribute("totalSC", totalSC);
 
-		return "user/checkStudentGrade";
+		return "student/checkStudentGrade";
 		}
 
 
