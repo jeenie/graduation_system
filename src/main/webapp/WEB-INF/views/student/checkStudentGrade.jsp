@@ -5,7 +5,6 @@
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -119,10 +118,23 @@ th, td {
 					<th>학점</th>
 					<th>성적등급</th>
 				</tr>
+				<c:set var="checkYear" value="0000" />
+				<c:set var="checkSemester" value="0" />
 				<c:forEach var="grade" items="${ grades }">
-					<tr data-url="checkGrades?id=${ grade.id }">
-						<td>${ grade.yearOfClass }</td>
-						<td>${ grade.yearOfSemester }</td>
+					<tr>
+						<c:choose>
+							<c:when
+								test="${grade.yearOfClass eq checkYear && grade.yearOfSemester eq checkSemester}">
+								<td></td>
+								<td></td>
+							</c:when>
+							<c:otherwise>
+								<td>${ grade.yearOfClass }</td>
+								<td>${ grade.yearOfSemester }</td>
+								<c:set var="checkYear" value="${ grade.yearOfClass }" />
+								<c:set var="checkSemester" value="${ grade.yearOfSemester }" />
+							</c:otherwise>
+						</c:choose>
 						<td>${ grade.subjectId }</td>
 						<td>${ grade.subjectName }</td>
 						<td>${ grade.completeType }</td>
@@ -165,6 +177,5 @@ th, td {
 	<br>
 	<br>
 
-	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
