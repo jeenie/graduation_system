@@ -26,25 +26,25 @@
   	<select id="totalRequiredMajor" resultType="StudentGradeFile">
   	select sum(sj.subjectScore) totalRequiredMajor
   	from student_subject_grade sg left join subject sj on sg.subjectId=sj.id 
-  	where sg.id = #{id} and sg.completeType="전공필수"
+  	where sg.id = #{id} and (sg.completeType="전공필수" or sg.completeType="전필")
   	</select>
   	
   	<select id="totalSelectedMajor" resultType="StudentGradeFile">
   	select sum(sj.subjectScore) totalSelectedMajor
   	from student_subject_grade sg left join subject sj on sg.subjectId=sj.id 
-  	where sg.id = #{id} and sg.completeType="전공선택"
+  	where sg.id = #{id} and (sg.completeType="전공선택" or sg.completeType="전선")
   	</select>
   	
   	<select id="totalRequiredCulture" resultType="StudentGradeFile">
   	select sum(sj.subjectScore) totalRequiredCulture
   	from student_subject_grade sg left join subject sj on sg.subjectId=sj.id 
-  	where sg.id = #{id} and sg.completeType="교양필수"
+  	where sg.id = #{id} and (sg.completeType="교양필수" or sg.completeType="교필")
   	</select>
   	
   	<select id="totalSelectedCulture" resultType="StudentGradeFile">
   	select sum(sj.subjectScore) totalSelectedCulture
   	from student_subject_grade sg left join subject sj on sg.subjectId=sj.id 
-  	where sg.id = #{id} and sg.completeType="교양선택"
+  	where sg.id = #{id} and (sg.completeType="교양선택" or sg.completeType="교선")
   	</select>
   	
 </mapper>
