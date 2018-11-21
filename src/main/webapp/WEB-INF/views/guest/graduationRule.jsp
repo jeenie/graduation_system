@@ -149,18 +149,6 @@
 	margin-bottom: 100px;
 }
 
-.divide {
-	margin-top: 20px;
-	margin-left: 60px;
-	margin-right: 60px;
-	height: 520px;
-}
-
-.myLavel {
-	margin: 0;
-	font-weight: bold;
-	font-size: 22px;
-}
 
 .selectSpan {
 	overflow: hidden;
@@ -239,6 +227,15 @@ select.form-control.w200 {
 	font-size: 14px;
 }
 
+.font25 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
 .font3 {
 	font-weight: bold;
 	font-size: 16px;
@@ -315,48 +312,88 @@ select.form-control.w200 {
   <script src="${R}res/js/zooTree.js"></script>
 <script>
 		$(document).ready(function(){
-			var params = {
-					departmentId: $(select[name=departmentId]).val(),
-					entranceYear: $(select[name=entranceYear]).val()
-			};
-			$.ajax({
-				async: false,
-				type: "GET",
-				url : "select?departmentId=" + params.departmentId + "&entranceYear=" + params.entranceYear,
-				dataType: "json",
-				cache: false,
-				success:function(data){
-					if(data.length == 0) {
-					}else{
-						$("#beforeJSON").html( JSON.stringify(data, null, "    ") );
-						var jsonData = getTreeModel( JSON.parse(data.coreJson), '999',{
-			            	id: "itemId",
-			            	parentId: "parentId",
-                            order: ["label","desc"]
-						});
-						$("#afterJSON").html( JSON.stringify(jsonData, null, "    ") );
-						$(".verticalTree").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-						$(".horizontalTree").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-						$(".horizontalTreeTop").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-					}
+			$(".verticalTree").zooTree([
+			    {
+			        "label": "핵심역량",
+			        "itemId": "root",
+			        "parentId": "999",
+			        "children": [
+			            {
+			                "label": "가치역량",
+			                "itemId": "role1",
+			                "parentId": "root",
+			                "children": [
+			                    {
+			                        "label": "인간·인권",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+			                    {
+			                        "label": "생명·평화",
+			                        "itemId": "role12",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+													{
+			                        "label": "민주시민",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    }
+			                ]
+			            },
+			            {
+			                "label": "대안역량",
+			                "itemId": "role2",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "융·복합적 사고",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "조사·분석·정보활용",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "대안제시·문제해결",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            },
+			            {
+			                "label": "실천역량",
+			                "itemId": "role3",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "민주적 소통",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "연대와 공동체적 실천",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            }
+			        ]
+			    }
+			], {
+				forceCreate: true,
+				render: function(data) {
+					var $a = $("<a>").append(data.label);
+					return $a;
 				}
 			});
 		});
@@ -497,8 +534,26 @@ select.form-control.w200 {
 				</p>
 			</div>
 		</c:if>
-		<c:if test="${entranceYear == 2016}">
-			<div class="verticalTree"></div>
+		<c:if test="${entranceYear == 2018}">
+			<div class="form-group" style="margin-left: 40px;">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font25">역량 필수</p>
+					<input type="number" value="18"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">학점 이상 이수</p>
+				</div>
+				
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;"><small>- 각 역량에서 6학점 이상 이수</small></p>
+				</div>
+				<br/><br/>
+				<div class="verticalTree"></div>
+			</div>
 		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear < 2016}">
 			<div style="margin-top: 90px"></div>
