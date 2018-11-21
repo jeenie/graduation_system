@@ -72,7 +72,7 @@ public class GraduationRuleController {
 
 	@RequestMapping(value = "guest/select", method = RequestMethod.GET)
 	public String viewGuest(Model model, @RequestParam("departmentId") int departmentId,
-			@RequestParam("entranceYear") int entranceYear) throws FileNotFoundException, IOException, ParseException {
+			@RequestParam("entranceYear") int entranceYear) {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
 		DepartmentMajorRule firstRule = null;
@@ -97,8 +97,6 @@ public class GraduationRuleController {
 		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
 		List<Year> years = yearMapper.years();
 		
-		//Object obj = parser.parse(new FileReader("C:\\Users\\pc\\spring\\graduation_system\\src\\main\\webapp\\res\\data.json"));
-		//JSONObject jsonObject = (JSONObject) obj;
 		
 		model.addAttribute("departments", departments);
 		model.addAttribute("departmentId", departmentId);
@@ -118,24 +116,59 @@ public class GraduationRuleController {
 
 	@RequestMapping("user/graduationRule")
 	public String viewUser(Model model) {
-		List<Department> departments = departmentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
+		List<Year> years = yearMapper.years();
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		Total total = totalMapper.find();
+		int totalGrade = total.getGrade();
 		model.addAttribute("departments", departments);
+		model.addAttribute("chapelCount", requiredCultureCount.getChapelCount());
+		model.addAttribute("serveCount", requiredCultureCount.getServeCount());
+		model.addAttribute("total", totalGrade);
+		model.addAttribute("years", years);
 		return "user/graduationRule";
 	}
 
-	@RequestMapping(value = "user/graduationRule", method = RequestMethod.GET)
+	@RequestMapping(value = "user/select", method = RequestMethod.GET)
 	public String viewUser(Model model, @RequestParam("departmentId") int departmentId,
 			@RequestParam("entranceYear") int entranceYear) {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
-		DepartmentMajorRule firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
+		DepartmentMajorRule firstRule = null;
+		if (departmentId == 31)
+			firstRule = departmentMajorRuleMapper.findSecond(departmentId, entranceYear);
+		else
+			firstRule = departmentMajorRuleMapper.findFirst(departmentId, entranceYear);
 		List<DepartmentMajorRule> departmentMajorRules = departmentMajorRuleMapper.findByDepartmentId(departmentId,
 				entranceYear);
+		List<DepartmentCulture> departmentCultures = departmentCultureMapper.findByDepartmentId(departmentId,
+				entranceYear);
+		List<Major> majors = null;
+		if (departmentId == 32)
+			if (entranceYear <= 2013)
+				majors = majorMapper.findSoft2013MustMajor(departmentId);
+			else
+				majors = majorMapper.findSoft2014MustMajor(departmentId);
+		else
+			majors = majorMapper.findMustMajor(departmentId);
+		List<Department> departments = departmentMapper.findRealDept();
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		List<RequiredCultureSubject> requiredCultureSubjects = requiredCultureSubjectMapper.findByYear(entranceYear);
+		List<Year> years = yearMapper.years();
+		
+		
+		model.addAttribute("departments", departments);
 		model.addAttribute("departmentId", departmentId);
 		model.addAttribute("entranceYear", entranceYear);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("firstRule", firstRule);
 		model.addAttribute("departmentMajorRules", departmentMajorRules);
+		model.addAttribute("majors", majors);
+		model.addAttribute("departmentCultures", departmentCultures);
+		model.addAttribute("chapelCount", requiredCultureCount.getChapelCount());
+		model.addAttribute("serveCount", requiredCultureCount.getServeCount());
+		model.addAttribute("requiredCultureSubjects", requiredCultureSubjects);
+		model.addAttribute("years", years);
 		return "user/graduationRule";
 	}
 

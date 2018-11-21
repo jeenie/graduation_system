@@ -27,54 +27,6 @@
 	crossorigin="anonymous">
 
 <style>
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /*input class 변경*/
 .form-controls {
@@ -271,8 +223,19 @@ select.form-control.w200 {
 			alert("로그인 후 이용해주세요.");
 		}
 	</script>
-<script>
+	<script>
 		$(document).ready(function(){
+			var departmentId;
+			var entranceYear;
+			$('#departmentId').on('change', function() {
+				departmentId = this.value;
+				//alert(departmentId);
+			});
+			$('#entranceYear').on('change', function() {
+				if(this.value == 2018){
+					alert("18학번은 학부로 조회해주시기 바랍니다.");
+				}
+			});
 			$(".verticalTree").zooTree([
 			    {
 			        "label": "핵심역량",
@@ -383,7 +346,7 @@ select.form-control.w200 {
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a
-									href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+									href="${R}guest/graduationRule">졸업요건</a></li>
 								<li role="presentation" class="dropdown"><a
 									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
@@ -452,7 +415,7 @@ select.form-control.w200 {
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학과</p>
-					<select name="departmentId" class="form-controls w200">
+					<select name="departmentId" class="form-controls w200" id="departmentId">
 						<option value="99">선택</option>
 						<c:forEach var="department" items="${departments}">
 							<option value="${department.id}"
@@ -463,7 +426,7 @@ select.form-control.w200 {
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학번</p>
-					<select name="entranceYear" class="form-controls w200">
+					<select name="entranceYear" class="form-controls w200" id="entranceYear">
 						<option value="99">선택</option>
 						<c:forEach var="year" items="${years}">
 							<option value="${year.year}"
@@ -471,8 +434,8 @@ select.form-control.w200 {
 						</c:forEach>
 					</select>
 				</div>
-				<button type="submit" class="btn-submit"
-					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;">조회</button>
+				<button type="submit" class="btn-submit" id="selectRule"
+					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;" onclick="">조회</button>
 			</div>
 		</form>
 		<c:if test="${departmentId < 99 && entranceYear >= 2016}">

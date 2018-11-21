@@ -22,7 +22,7 @@
 					<div class="menu">
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a
-								href="${R}user/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+								href="${R}user/graduationRule">졸업요건</a></li>
 							<li role="presentation" class="dropdown"><a href="">졸업관리</a>
 								<div class="dropdown-content">
 									<a href="${R}student/graduationStatus?processId=0">나의 졸업현황</a> <a
