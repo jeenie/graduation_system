@@ -16,6 +16,7 @@ import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
+import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.SpecialProcess;
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentGradefile;
@@ -29,6 +30,7 @@ import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
+import net.skhu.mapper.RequiredCultureSubjectMapper;
 import net.skhu.mapper.ServeSubjectMapper;
 import net.skhu.mapper.SpecialProcessMapper;
 import net.skhu.mapper.StudentGradefileMapper;
@@ -67,6 +69,8 @@ public class StudentController {
 	ServeSubjectMapper serveSubjectMapper;
 	@Autowired
 	ChapelSubjectMapper chapelSubjectMapper;
+	@Autowired
+	RequiredCultureSubjectMapper requiredCultureSubjectMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -127,6 +131,7 @@ public class StudentController {
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		int serveSubject = serveSubjectMapper.findById(userNumber);
 		int chapelSubject = chapelSubjectMapper.findById(userNumber);
+		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("studentGradefile", studentGradefile);
@@ -141,6 +146,8 @@ public class StudentController {
 		model.addAttribute("serveSubject", serveSubject);
 		model.addAttribute("chapelSubject", chapelSubject);
 		model.addAttribute("processId", processId);
+		model.addAttribute("requiredCultureSubject", requiredCultureSubject);
+		model.addAttribute("entranceYear", entranceYear);
 		return "student/graduationStatus";
 	}
 }

@@ -106,7 +106,7 @@ public class EditController {
 		List<MyCell> data = new ArrayList<MyCell>(); // 
 		int rowMax = sheet.getPhysicalNumberOfRows();
 		
-		for(int rowIndex = 2; rowIndex<rowMax; rowIndex++) {
+		for(int rowIndex = 1; rowIndex<rowMax; rowIndex++) {
 			XSSFRow row = (XSSFRow) sheet.getRow(rowIndex);
 			int cellMax = row.getLastCellNum();
 			

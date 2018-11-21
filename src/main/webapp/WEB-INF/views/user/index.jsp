@@ -33,8 +33,6 @@
 
 
 <style>
-
-
 .btn-line {
 	padding: 8px 20px;
 	background-color: #fff;
@@ -68,8 +66,6 @@
 .menu li:hover ul {
 	display: block;
 }
-
-
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
@@ -222,16 +218,16 @@
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="300ms">
-							<a href=""><i class="fa fa-book"></i></a>
-							<h2>졸업요건 수정</h2>
+							<a href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99"><i class="fa fa-book"></i></a>
+							<h2>학과별 졸업 요건 관리</h2>
 							<p></p>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="600ms">
-							<a href=""><i class="fa fa-laptop"></i></a>
-							<h2>대체리스트 수정</h2>
+							<a href="${R}graduation/culturalSubject"><i class="fa fa-laptop"></i></a>
+							<h2>교양필수 과목 관리</h2>
 							<p></p>
 
 						</div>
@@ -239,15 +235,15 @@
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="900ms">
-							<a href="majorAdmitManage.html"><i class="fas fa-book-reader"></i></a>
-							<h2>전공인정관리</h2>
+							<a href="${R}graduation/SubstitutionSubject"><i class="fas fa-book-reader"></i></a>
+							<h2>대체과목 관리</h2>
 							<p></p>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="1200ms">
-							<a href="registerProfessor"><i class="far fa-address-card"></i></a>
+							<a href="${R}user/professorAdd"><i class="far fa-address-card"></i></a>
 							<h2>교수 추가</h2>
 							<p></p>
 						</div>
@@ -262,7 +258,8 @@
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="300ms">
-							<a href="graduation_Guide.html"><i class="fa fa-book"></i></a>
+							<a href="${R}user/graduationRule?departmentId=99&entranceYear=99"><i
+								class="fa fa-book"></i></a>
 							<h2>졸업요건</h2>
 							<p>전체졸업요건을 확인해보세요</p>
 						</div>
@@ -270,23 +267,24 @@
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="600ms">
-							<a href="about.html"><i class="fa fa-laptop"></i></a>
-							<h2>마이페이지</h2>
+							<a href="${R}student/graduationStatus?processId=0"><i
+								class="fa fa-laptop"></i></a>
+							<h2>나의 졸업현황</h2>
 							<p>졸업하기 위해 필요한 나의 남은 학점및 과정을 확인해보세요</p>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="900ms">
-							<a href="checkGrades.html"><i class="fa fa-heart"></i></a>
-							<h2>성적조회</h2>
+							<a href="${R}student/checkGrades"><i class="fa fa-heart"></i></a>
+							<h2>성적 조회</h2>
 							<p>자신의 성적을 확인해보세요</p>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 							data-wow-duration="1000ms" data-wow-delay="1200ms">
-							<a href=""><i class="fa fa-cloud"></i></a>
+							<a href="${R}student/status"><i class="fa fa-cloud"></i></a>
 							<h2>대체/타전공 현황</h2>
 							<p>타전공 수강학점을 전공학점으로 신청하세요</p>
 						</div>

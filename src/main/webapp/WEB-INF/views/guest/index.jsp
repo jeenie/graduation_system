@@ -242,13 +242,13 @@
 					<div class="navbar-collapse collapse">
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a
-									href="${R}guest/graduationRule">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="${R}guest/login">졸업관리</a>
+								<li role="presentation"><a href="${R}guest/graduationRule">졸업요건</a></li>
+								<li role="presentation" class="dropdown"><a
+									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
-										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> 
-										<a href="${R}guest/login" onclick="alertGuest()">성적조회</a>
-										<a href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
+										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> <a
+											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
+											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
 									</div></li>
 								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 								<li role="presentation"><a
@@ -303,7 +303,7 @@
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<a href="guest/graduationRule"><i
+						<a href="${R}guest/graduationRule?departmentId=99&entranceYear=99"><i
 							class="fa fa-book"></i></a>
 						<h2>졸업요건</h2>
 						<p>전체졸업요건을 확인해보세요</p>
@@ -312,23 +312,26 @@
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="600ms">
-						<a href="guest/login" onclick="alertGuest()"><i class="fa fa-laptop"></i></a>
-						<h2>마이페이지</h2>
+						<a href="${R}guest/login" onclick="alertGuest()"><i
+							class="fa fa-laptop"></i></a>
+						<h2>나의 졸업현황</h2>
 						<p>졸업하기 위해 필요한 나의 남은 학점및 과정을 확인해보세요</p>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="900ms">
-						<a href="guest/login" onclick="alertGuest()"><i class="fa fa-heart"></i></a>
-						<h2>성적조회</h2>
+						<a href="${R}guest/login" onclick="alertGuest()"><i
+							class="fa fa-heart"></i></a>
+						<h2>성적 조회</h2>
 						<p>자신의 성적을 확인해보세요</p>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="hi-icon-wrap hi-icon-effect wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="1200ms">
-						<a href="guest/login" onclick="alertGuest()"><i class="fa fa-cloud"></i></a>
+						<a href="${R}guest/login" onclick="alertGuest()"><i
+							class="fa fa-cloud"></i></a>
 						<h2>대체/타전공 현황</h2>
 						<p>타전공 수강학점을 전공학점으로 신청하세요</p>
 					</div>
@@ -376,7 +379,7 @@
 	<script src="${R}res/js/jquery.isotope.min.js"></script>
 	<script src="${R}res/js/wow.min.js"></script>
 	<script src="${R}res/js/functions.js"></script>
-	
+
 	<script>
 		function alertGuest() {
 			alert("로그인 후 이용해주세요.");

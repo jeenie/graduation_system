@@ -31,6 +31,7 @@ public class OtherMajorController {
         int userNumber=Integer.parseInt(authentication.getName());
 		otherMajor.setStudentId(userNumber);
         otherMajorMapper.insert(otherMajor);
+        otherMajorMapper.update(userNumber,otherMajor.getType());
         return "redirect:/student/status";
     }
 

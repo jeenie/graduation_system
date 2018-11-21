@@ -27,8 +27,8 @@
 								<div class="dropdown-content">
 									<a
 										href="${R}graduation/deptRuleEdit?departmentId=99&entranceYear=99">학과별
-										졸업요건 </a> <a href="${R}graduation/culturalSubject">교양 필수 과목 </a> <a
-										href="${R}graduation/SubstitutionSubject">대체 과목 관리</a>
+										졸업요건 </a> <a href="${R}graduation/culturalSubject">교양필수 과목 </a> <a
+										href="${R}graduation/SubstitutionSubject">대체과목 관리</a>
 								</div></li>
 							<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 							<li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>

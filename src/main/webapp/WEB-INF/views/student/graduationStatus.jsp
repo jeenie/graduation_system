@@ -358,7 +358,7 @@ td {
 				<table class="table">
 					<thead>
 						<tr style="height: 30px;">
-							<th scope="col" class="text-center">과목이름</th>
+							<th scope="col" class="text-center">과목명</th>
 							<th scope="col" class="text-center">학점</th>
 							<th scope="col" class="text-center">성적</th>
 						</tr>
@@ -413,12 +413,18 @@ td {
 				${serveSubject}</p>
 			<p style="float: left; font-size: 16px;">&nbsp/
 				${requiredCultureCount.serveCount} 회</p>
+			<br> <br>
 
 			<div style="margin-right: 200px">
+				<p
+					style="font-size: 14px; color: #ac0; font-weight: bold; float: left;">
+					&nbsp&nbsp
+					<수강 과목>
+				</p>
 				<table class="table">
 					<thead>
 						<tr style="height: 30px;">
-							<th scope="col" class="text-center">과목이름</th>
+							<th scope="col" class="text-center">과목명</th>
 							<th scope="col" class="text-center">학점</th>
 							<th scope="col" class="text-center">성적</th>
 						</tr>
@@ -433,13 +439,46 @@ td {
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${ entranceYear >= 2016 }">
+					<p
+						style="font-size: 14px; color: #ac0; font-weight: bold; float: left;">
+						&nbsp&nbsp
+						<미수강 과목>
+					</p>
+					<table class="table">
+						<thead>
+							<tr style="height: 30px;">
+								<th scope="col" class="text-center">과목코드</th>
+								<th scope="col" class="text-center">과목명</th>
+								<th scope="col" class="text-center">학점</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="requiredCultureSubject"
+								items="${ requiredCultureSubject }">
+								<c:set var="loop_flag" value="false" />
+								<c:forEach var="studentSubjectGrade" items="${ mustCulture }">
+									<c:if test="${not loop_flag }">
+										<c:if
+											test="${ requiredCultureSubject.subjectId == studentSubjectGrade.subjectId}">
+											<c:set var="loop_flag" value="true" />
+										</c:if>
+									</c:if>
+								</c:forEach>
+								<tr>
+									<c:if test="${loop_flag == false}">
+										<td style="width: 200px;">${ requiredCultureSubject.subjectId }</td>
+										<td style="width: 500px;">${ requiredCultureSubject.subjectName }</td>
+										<td style="width: 200px;">${ requiredCultureSubject.subjectScore }</td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
 	<br>
 	<br>
 

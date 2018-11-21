@@ -69,7 +69,8 @@ public class StudentSubstitutionController {
 		model.addAttribute("substitutionList",substitutionList);
 		model.addAttribute("abolitionId", abolitionId);
         model.addAttribute("substitutionId",substitutionId);
-        studentSubstitutionMapper.insert(userNumber,abolitionId,substitutionId);
+        studentSubstitutionMapper.insert(userNumber,abolitionId,substitutionId); //학생 대체과목 현황 테이블에 추가
+        studentSubstitutionMapper.delete(userNumber,abolitionId); //학생 성적 테이블에서 폐지과목 성적 삭제
         return "redirect:/student/status";
     }
 
