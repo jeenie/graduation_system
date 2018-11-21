@@ -150,50 +150,6 @@
 }
 
 
-.selectSpan {
-	overflow: hidden;
-	width: 25px;
-}
-
-.selectSpan:before {
-	content: '';
-	height: 20px;
-	width: 20px;
-	display: block;
-	border: 5px solid #333;
-	border-left-width: 0;
-	border-top-width: 0;
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	position: absolute;
-	top: 7px;
-	right: 7px;
-}
-
-.demoSpan1 {
-	width: 40px;
-	height: 40px;
-}
-
-.demoSpan1:before {
-	content: '';
-	height: 8px;
-	width: 8px;
-	background: #333;
-	border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 16px;
-	box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-webkit-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-moz-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-}
 
 .divide_top {
 	width: 100%;
@@ -310,6 +266,11 @@ select.form-control.w200 {
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="${R}res/js/zooTree.js"></script>
+  <script>
+		function alertGuest() {
+			alert("로그인 후 이용해주세요.");
+		}
+	</script>
 <script>
 		$(document).ready(function(){
 			$(".verticalTree").zooTree([
@@ -554,6 +515,42 @@ select.form-control.w200 {
 				<br/><br/>
 				<div class="verticalTree"></div>
 			</div>
+			<br/>
+			<div class="form-group" style="margin-left: 40px;">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font25" style="margin-bottom: 0px;">전공 탐색</p>
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">총</p>
+					<input type="number" value="7"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">과목</p>
+					<input type="number" value="19"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">학점 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 1학기(1과목) : 소속 학부 내에서 1과목 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 2학기~3학기(5과목) : 반드시 타 학부 전탐 1과목 포함 총 5 과목 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 전공탐색세미나 : 3학기 이후부터 신청 가능</p>
+				</div>
+				<br/><br/>
+			</div>
 		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear < 2016}">
 			<div style="margin-top: 90px"></div>
@@ -708,10 +705,11 @@ select.form-control.w200 {
 				</c:forEach>
 			</div>
 		</c:if>
-
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
+	
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed -->
