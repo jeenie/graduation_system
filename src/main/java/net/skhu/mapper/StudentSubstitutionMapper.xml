@@ -9,7 +9,7 @@
 		LEFT JOIN subject s ON sublist.abolitionSubject = s.id 
 		LEFT JOIN grade g ON ssg.grade = g.gradeLevel
 		LEFT JOIN department d ON sublist.departmentId = d.id
-		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber};
+		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber}
 	</select>
 	<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
 		SELECT DISTINCT substitution.id substitutionSubject, sublist.abolitionSubject, s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
@@ -25,7 +25,7 @@
 		LEFT JOIN subject substitution
 		ON majorList.majorSubjectId = substitution.id
 		WHERE sublist.abolitionSubject = #{subjectId} AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
-		NOT IN (SELECT abolitionSubject from substitution_subject_list);		
+		NOT IN (SELECT abolitionSubject from substitution_subject_list)		
 	</select>
 	<select id="findSubstiStatus" resultType="SubstitutionSubject">
 		SELECT d.departmentName, sub1.name abolitionSubjectName, sub2.name substitutionSubjectName
@@ -35,10 +35,14 @@
 		LEFT JOIN student s ON sss.studentId = s.id
 		LEFT JOIN subject sub1 ON sss.abolitionCode = sub1.id 
 		LEFT JOIN subject sub2 ON sss.substitutionCode = sub2.id
-		WHERE sss.studentId= #{userNumber};
+		WHERE sss.studentId= #{userNumber}
 	</select>
 	<insert id="insert">
 		INSERT student_substitution_subject (studentId, abolitionCode, substitutionCode)
 		VALUES (#{userNumber}, #{abolitionId}, #{substitutionId})
 	</insert>
+	<delete id="delete">
+		DELETE FROM student_subject_grade
+		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
+	</delete>
 </mapper>

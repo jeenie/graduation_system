@@ -13,4 +13,9 @@
 		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId)
 		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId});
 	</insert>
+	<update id="update">
+    	UPDATE student_subject_grade 
+    	SET completeType = #{type} 
+    	WHERE id = #{userNumber}
+  	</update>
 </mapper>
