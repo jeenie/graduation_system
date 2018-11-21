@@ -10,6 +10,6 @@
 		SELECT count(*) FROM
 		chapelsubject c join student_subject_grade ssg on
 		c.idchapel =
-		ssg.subjectId where ssg.id = #{id};
+		ssg.subjectId where ssg.id = #{id} and not grade = 'N';
 	</select>
 </mapper>

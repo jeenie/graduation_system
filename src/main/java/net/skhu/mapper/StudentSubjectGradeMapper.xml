@@ -30,7 +30,8 @@
 		SELECT ssg.*,
 		s.name subjectName, s.subjectScore
 		subjectScore
-		FROM student_subject_grade ssg JOIN subject s ON
+		FROM
+		student_subject_grade ssg JOIN subject s ON
 		ssg.subjectid = s.id where
 		ssg.id = #{id} and
 		ssg.completeType = '교양필수';
