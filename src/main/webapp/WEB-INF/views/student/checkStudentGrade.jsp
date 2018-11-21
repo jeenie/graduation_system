@@ -4,7 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,15 +16,21 @@
 <link href="${R}res/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
 <link rel="stylesheet" href="${R}res/css/animate.css">
+<link rel="stylesheet" href="${R}res/css/custom.css">
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+
+<!-- font awesome-->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-
 <style>
+th, td {
+	text-align: center;
+	vertical-align: middle;
+}
 
 /* Style The Dropdown Button */
 .dropbtn {
@@ -68,21 +75,6 @@
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
-
-tabl, th, td {
-	border: 1px solid #bcbcbc;
-	text-align: center;
-}
-
-table {
-	width: 100%;
-	color: black;
-}
 </style>
 </head>
 <body>
@@ -92,36 +84,33 @@ table {
 		<div class="container">
 			<div class="breadcrumb">
 				<li></li>
-				<li style="font-size: 20px; margin-left: -5px;">성적조회</li>
+				<li style="font-size: 18px; margin-left: -5px;">성적 조회</li>
 			</div>
 			<hr>
 		</div>
 	</div>
-	<div class="feature">
-
+	<br>
+	<div style="margin-right: 150px; margin-left: 150px;">
 		<div class="privacy">
-			<table>
-				<tr bgcolor="#BCE55C">
+			<table class="table">
+				<tr bgcolor="#E1F5A9">
 					<th>학과</th>
 					<th>학년</th>
 					<th>학번</th>
 					<th>이름</th>
 				</tr>
-
 				<tr data-url="checkGrades?id=${ student.id }">
 					<td>${ student.departmentName }</td>
 					<td>${ student.grade }</td>
 					<td>${ student.id }</td>
 					<td>${ student.name }</td>
 				</tr>
-
 			</table>
 		</div>
 		<hr>
-
 		<div class="gradeCheck">
-			<table>
-				<tr bgcolor="#BCE55C">
+			<table class="table">
+				<tr bgcolor="#E1F5A9">
 					<th>년도</th>
 					<th>학기</th>
 					<th>과목코드</th>
@@ -130,7 +119,6 @@ table {
 					<th>학점</th>
 					<th>성적등급</th>
 				</tr>
-
 				<c:forEach var="grade" items="${ grades }">
 					<tr data-url="checkGrades?id=${ grade.id }">
 						<td>${ grade.yearOfClass }</td>
@@ -142,33 +130,27 @@ table {
 						<td>${ grade.grade }</td>
 					</tr>
 				</c:forEach>
-
 			</table>
-
-			<table>
-				<tr bgcolor="#A6A6A6">
-					<th>전체 취득학점</th>
+			<table class="table">
+				<tr bgcolor="#D5D5D5">
+					<th style="width: 500px">전체 취득학점</th>
 					<th>전체 평점</th>
 				</tr>
-
 				<tr>
 					<td>${ totalG.totalUnit }</td>
 					<td>${ totalG.totalAvgGrade }</td>
 				</tr>
 			</table>
 			<hr>
-
 			<div class="total">
-				<table>
-
-					<tr bgcolor="#BCE55C">
+				<table class="table">
+					<tr bgcolor="#E1F5A9">
 						<th>전필</th>
 						<th>전선</th>
 						<th>교필</th>
 						<th>교선</th>
 						<th>합계</th>
 					</tr>
-
 					<tr>
 						<td>${ totalRM.totalRequiredMajor }</td>
 						<td>${ totalSM.totalSelectedMajor }</td>
@@ -180,19 +162,9 @@ table {
 			</div>
 		</div>
 	</div>
-
-	</div>
+	<br>
+	<br>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="${R}res/js/bootstrap.min.js"></script>
-	<script src="${R}res/js/jquery.prettyPhoto.js"></script>
-	<script src="${R}res/js/jquery.isotope.min.js"></script>
-	<script src="${R}res/js/wow.min.js"></script>
-	<script src="${R}res/js/functions.js"></script>
-
 </body>
 </html>
