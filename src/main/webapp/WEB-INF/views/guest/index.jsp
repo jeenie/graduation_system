@@ -208,6 +208,7 @@
 								<li role="presentation"><a
 									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
 								<li role="presentation"><a href="${R}guest/login">Login</a></li>
+								<li role="presentation"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
 							</ul>
 						</div>
 					</div>
