@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="${R}res/css/animate.css">
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
+<link href="${R}res/css/custom.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -26,54 +27,7 @@
 	crossorigin="anonymous">
 
 <style>
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /*input class 변경*/
 .form-controls {
@@ -95,14 +49,7 @@
 	margin-bottom: 0;
 }
 
-.btn-submit {
-	padding: 6px 15px;
-	background: #1BBD36;
-	color: #fff;
-	border-radius: 4px;
-	border: none;
-	margin-top: 0;
-}
+
 
 .btn-warning {
 	padding: 6px 15px;
@@ -132,119 +79,11 @@
 	margin-top: 10px;
 }
 
-.modal-title {
-	width: 540px;
-	margin: 0;
-}
-
-.modal {
-	overflow: scroll;
-}
-
 .contents {
 	margin-top: 5px;
 	margin-right: 100px;
 	margin-left: 140px;
 	margin-bottom: 150px;
-}
-
-.divide {
-	margin-top: 20px;
-	margin-left: 60px;
-	margin-right: 60px;
-	height: 520px;
-}
-
-.left_sec {
-	margin-left: 60px;
-	float: left;
-	width: 300px;
-	height: 520px;
-}
-
-.abolish_list {
-	margin-top: 40px;
-	float: left;
-	border: 2px solid #1BBD36;
-	width: 300px;
-	height: 400px;
-}
-
-.right_sec {
-	margin-right: 60px;
-	float: right;
-	width: 300px;
-	height: 520px;
-}
-
-.alternative_list {
-	margin-top: 40px;
-	float: right;
-	border: 2px solid #1BBD36;
-	width: 300px;
-	height: 400px;
-}
-
-.myLavel {
-	margin: 0;
-	font-weight: bold;
-	font-size: 22px;
-}
-
-.selectSpan {
-	overflow: hidden;
-	width: 25px;
-}
-
-.selectSpan:before {
-	content: '';
-	height: 20px;
-	width: 20px;
-	display: block;
-	border: 5px solid #333;
-	border-left-width: 0;
-	border-top-width: 0;
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	position: absolute;
-	top: 7px;
-	right: 7px;
-}
-
-.demoSpan1 {
-	width: 40px;
-	height: 40px;
-}
-
-.demoSpan1:before {
-	content: '';
-	height: 8px;
-	width: 8px;
-	background: #333;
-	border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 16px;
-	box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-webkit-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-moz-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-}
-
-.divide_top {
-	width: 100%;
-	height: 40px;
-	display: block;
-}
-
-.divide_top input[type="button"] {
-	float: right;
-	margin-right: 40px;
 }
 
 select.form-control.w200 {

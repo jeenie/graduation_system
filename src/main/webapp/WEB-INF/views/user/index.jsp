@@ -19,15 +19,11 @@
 <link rel="stylesheet" href="${R}res/css/font-awesome.css">
 <link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
 <link rel="stylesheet" href="${R}res/css/animate.css">
+
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
-<!-- =======================================================
-    Theme Name: Company
-    Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+<link href="${R}res/css/custom.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -37,14 +33,7 @@
 
 
 <style>
-.btn-submit {
-	padding: 8px 20px;
-	background: #1BBD36;
-	color: #fff;
-	border-radius: 4px;
-	border: none;
-	margin-top: 10px;
-}
+
 
 .btn-line {
 	padding: 8px 20px;
@@ -80,54 +69,7 @@
 	display: block;
 }
 
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 140px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
