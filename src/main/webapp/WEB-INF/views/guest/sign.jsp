@@ -50,12 +50,7 @@
 <link rel="stylesheet" href="${R}res/css/animate.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
-<!-- =======================================================
-    Theme Name: Company
-    Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+<link href="${R}res/css/custom.css" rel="stylesheet">
 
 <!--style-->
 
@@ -104,54 +99,6 @@
 	display: block;
 }
 
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 140px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 input.form-control.w300 {
 	width: 300px;
@@ -171,7 +118,7 @@ input.form-control.w300 {
 								class="icon-bar"></span>
 						</button>
 						<div class="navbar-brand">
-							<a href="index.html"><h1>
+							<a href="${R}"><h1>
 									<span>SKHU</span>졸업관리시스템
 								</h1></a>
 						</div>
@@ -180,16 +127,19 @@ input.form-control.w300 {
 					<div class="navbar-collapse collapse">
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="graduation_Guide.html">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
+								<li role="presentation"><a href="${R}guest/graduationRule">졸업요건</a></li>
+								<li role="presentation" class="dropdown"><a
+									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
-										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-										<a href="">대체/타전공 현황</a>
+										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> <a
+											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
+											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
 									</div></li>
 								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 								<li role="presentation"><a
 									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="guest/login">Login</a></li>
+								<li role="presentation"><a href="${R}guest/login">Login</a></li>
+								<li role="presentation"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
 							</ul>
 						</div>
 					</div>
@@ -197,6 +147,7 @@ input.form-control.w300 {
 			</div>
 		</nav>
 	</header>
+	
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">

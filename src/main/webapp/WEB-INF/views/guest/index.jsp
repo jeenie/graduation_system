@@ -208,7 +208,7 @@
 								<li role="presentation"><a
 									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
 								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-								<li role="presentation"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
+								<li role="presentation" style="display:none"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
 							</ul>
 						</div>
 					</div>
@@ -312,15 +312,15 @@
 			<div class="loginmodal-container">
 				<h1>로그인</h1>
 				<br>
-				<form>
-					<input type="text" name="user" placeholder="ID"> <input
-						type="password" name="pass" placeholder="Password"> <input
-						type="submit" name="login" class="login loginmodal-submit"
+				<form method="post" action="login_processing">
+					<input type="text" name="loginId" placeholder="ID"> 
+					<input type="password" name="passwd" placeholder="Password"> 
+					<input type="submit" name="login" class="login loginmodal-submit"
 						value="Login">
 				</form>
 
 				<div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password?</a>
+					<a href="${R}guest/sign">Register</a> - <a href="${R}guest/findPw">Forgot Password?</a>
 				</div>
 			</div>
 		</div>
