@@ -69,9 +69,31 @@ public class StudentSubstitutionController {
 		model.addAttribute("substitutionList",substitutionList);
 		model.addAttribute("abolitionId", abolitionId);
         model.addAttribute("substitutionId",substitutionId);
-        studentSubstitutionMapper.insert(userNumber,abolitionId,substitutionId); //학생 대체과목 현황 테이블에 추가
+
+        SubstitutionSubject aboliInfo = studentSubstitutionMapper.findAboliInfo(userNumber, abolitionId);
+        int abolitionYear=aboliInfo.getAbolitionYear();
+        String abolitionSemester=aboliInfo.getAbolitionSemester();
+        String abolitionGrade=aboliInfo.getAbolitionGrade();
+        String abolitionType=aboliInfo.getAbolitionType();
+        SubstitutionSubject substiInfo = studentSubstitutionMapper.findAboliInfo(userNumber, substitutionId);
+        String substitutionGrade=substiInfo.getAbolitionGrade();
+        studentSubstitutionMapper.insertStatus(userNumber,abolitionId,substitutionId,abolitionYear,abolitionSemester,abolitionGrade,substitutionGrade,abolitionType); //학생 대체과목 현황 테이블에 추가
         studentSubstitutionMapper.delete(userNumber,abolitionId); //학생 성적 테이블에서 폐지과목 성적 삭제
         return "redirect:/student/status";
+    }
+
+    @RequestMapping(value="substitute/delete", method=RequestMethod.GET)
+    public String substiDelete(Model model, @RequestParam("abolitionId") String abolitionId) {
+    	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+        SubstitutionSubject abosubInfo =studentSubstitutionMapper.findStatusByAbosub(userNumber, abolitionId);	//현황 테이블에서 삭제하려는 row 찾기
+        int abolitionYear=abosubInfo.getAbolitionYear();
+        String abolitionSemester=abosubInfo.getAbolitionSemester();
+        String abolitionGrade=abosubInfo.getAbolitionGrade();
+        String abolitionType=abosubInfo.getAbolitionType();
+    	studentSubstitutionMapper.insert(userNumber,abolitionYear,abolitionSemester,abolitionId,abolitionType,abolitionGrade);
+    	studentSubstitutionMapper.deleteStatus(userNumber, abolitionId);
+    	return "redirct:/student/status";
     }
 
 }

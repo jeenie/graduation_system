@@ -27,6 +27,16 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
+<script type="text/javascript">
+	function button_event(value) {
+		if(confirm("삭제하시겠습니까?")==true) {
+			location.href="substitute/delete?abolitionId="+value;
+		}else{
+			return;
+		}
+	}
+</script>
+
 <style>
 .inquiry_btn {
 	border: none;
@@ -293,7 +303,7 @@ td {
 			</thead>
 			<tbody>
 				<c:forEach var="substitutionStatus" items="${ substiStatus }">
-					<tr>
+					<tr onclick="button_event(${ substitutionStatus.abolitionSubject });">
 						<td>${ substitutionStatus.departmentName }</td>
 						<td>${ substitutionStatus.abolitionSubjectName }</td>
 						<td>${ substitutionStatus.substitutionSubjectName }</td>
