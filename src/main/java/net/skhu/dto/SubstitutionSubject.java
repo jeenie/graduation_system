@@ -9,7 +9,11 @@ public class SubstitutionSubject {
 	int departmentId;
 	String departmentName;
 	String grade;
-
+	int abolitionYear;
+	String abolitionSemester;
+	String abolitionGrade;
+	String substitutionGrade;
+	String abolitionType;
 
 	public int getStudentId() {
 		return studentId;
@@ -17,7 +21,6 @@ public class SubstitutionSubject {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
-
 	public String getAbolitionSubject() {
 		return abolitionSubject;
 	}
@@ -60,5 +63,34 @@ public class SubstitutionSubject {
 	public void setGrade(String grade) {
 		this.grade= grade;
 	}
-
+	public int getAbolitionYear() {
+		return abolitionYear;
+	}
+	public void setAbolitionYear(int abolitionYear) {
+		this.abolitionYear = abolitionYear;
+	}
+	public String getAbolitionSemester() {
+		return abolitionSemester;
+	}
+	public void setAbolitionSemester(String abolitionSemester) {
+		this.abolitionSemester = abolitionSemester;
+	}
+	public String getAbolitionGrade() {
+		return abolitionGrade;
+	}
+	public void setAbolitionGrade(String abolitionGrade) {
+		this.abolitionGrade = abolitionGrade;
+	}
+	public String getSubstitutionGrade() {
+		return substitutionGrade;
+	}
+	public void setSubstitutionGrade(String substitutionGrade) {
+		this.substitutionGrade = substitutionGrade;
+	}
+	public String getAbolitionType() {
+		return abolitionType;
+	}
+	public void setAbolitionType(String abolitionType) {
+		this.abolitionType = abolitionType;
+	}
 }

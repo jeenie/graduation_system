@@ -27,54 +27,6 @@
 	crossorigin="anonymous">
 
 <style>
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /*input class 변경*/
 .form-controls {
@@ -149,63 +101,7 @@
 	margin-bottom: 100px;
 }
 
-.divide {
-	margin-top: 20px;
-	margin-left: 60px;
-	margin-right: 60px;
-	height: 520px;
-}
 
-.myLavel {
-	margin: 0;
-	font-weight: bold;
-	font-size: 22px;
-}
-
-.selectSpan {
-	overflow: hidden;
-	width: 25px;
-}
-
-.selectSpan:before {
-	content: '';
-	height: 20px;
-	width: 20px;
-	display: block;
-	border: 5px solid #333;
-	border-left-width: 0;
-	border-top-width: 0;
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	position: absolute;
-	top: 7px;
-	right: 7px;
-}
-
-.demoSpan1 {
-	width: 40px;
-	height: 40px;
-}
-
-.demoSpan1:before {
-	content: '';
-	height: 8px;
-	width: 8px;
-	background: #333;
-	border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 16px;
-	box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-webkit-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-	-moz-box-shadow: 0 12px 0 #333, 0 24px 0 #333;
-}
 
 .divide_top {
 	width: 100%;
@@ -238,6 +134,15 @@ select.form-control.w200 {
 	font-weight: bold;
 	font-size: 14px;
 }
+
+.font25 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+
 
 .font3 {
 	font-weight: bold;
@@ -313,50 +218,106 @@ select.form-control.w200 {
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="${R}res/js/zooTree.js"></script>
-<script>
+  <script>
+		function alertGuest() {
+			alert("로그인 후 이용해주세요.");
+		}
+	</script>
+	<script>
 		$(document).ready(function(){
-			var params = {
-					departmentId: $(select[name=departmentId]).val(),
-					entranceYear: $(select[name=entranceYear]).val()
-			};
-			$.ajax({
-				async: false,
-				type: "GET",
-				url : "select?departmentId=" + params.departmentId + "&entranceYear=" + params.entranceYear,
-				dataType: "json",
-				cache: false,
-				success:function(data){
-					if(data.length == 0) {
-					}else{
-						$("#beforeJSON").html( JSON.stringify(data, null, "    ") );
-						var jsonData = getTreeModel( JSON.parse(data.coreJson), '999',{
-			            	id: "itemId",
-			            	parentId: "parentId",
-                            order: ["label","desc"]
-						});
-						$("#afterJSON").html( JSON.stringify(jsonData, null, "    ") );
-						$(".verticalTree").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-						$(".horizontalTree").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-						$(".horizontalTreeTop").zooTree(jsonData, {
-							forceCreate: true,
-							render: function(data) {
-								var $a = $("<a>").append(data.label);
-								return $a;
-							}
-						});
-					}
+			var departmentId;
+			var entranceYear;
+			$('#departmentId').on('change', function() {
+				departmentId = this.value;
+				//alert(departmentId);
+			});
+			$('#entranceYear').on('change', function() {
+				if(this.value == 2018){
+					alert("18학번은 학부로 조회해주시기 바랍니다.");
+				}
+			});
+			$(".verticalTree").zooTree([
+			    {
+			        "label": "핵심역량",
+			        "itemId": "root",
+			        "parentId": "999",
+			        "children": [
+			            {
+			                "label": "가치역량",
+			                "itemId": "role1",
+			                "parentId": "root",
+			                "children": [
+			                    {
+			                        "label": "인간·인권",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+			                    {
+			                        "label": "생명·평화",
+			                        "itemId": "role12",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+													{
+			                        "label": "민주시민",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    }
+			                ]
+			            },
+			            {
+			                "label": "대안역량",
+			                "itemId": "role2",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "융·복합적 사고",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "조사·분석·정보활용",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "대안제시·문제해결",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            },
+			            {
+			                "label": "실천역량",
+			                "itemId": "role3",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "민주적 소통",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "연대와 공동체적 실천",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            }
+			        ]
+			    }
+			], {
+				forceCreate: true,
+				render: function(data) {
+					var $a = $("<a>").append(data.label);
+					return $a;
 				}
 			});
 		});
@@ -385,7 +346,7 @@ select.form-control.w200 {
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation"><a
-									href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
+									href="${R}guest/graduationRule">졸업요건</a></li>
 								<li role="presentation" class="dropdown"><a
 									href="${R}guest/login">졸업관리</a>
 									<div class="dropdown-content">
@@ -454,7 +415,7 @@ select.form-control.w200 {
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학과</p>
-					<select name="departmentId" class="form-controls w200">
+					<select name="departmentId" class="form-controls w200" id="departmentId">
 						<option value="99">선택</option>
 						<c:forEach var="department" items="${departments}">
 							<option value="${department.id}"
@@ -465,7 +426,7 @@ select.form-control.w200 {
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학번</p>
-					<select name="entranceYear" class="form-controls w200">
+					<select name="entranceYear" class="form-controls w200" id="entranceYear">
 						<option value="99">선택</option>
 						<c:forEach var="year" items="${years}">
 							<option value="${year.year}"
@@ -473,8 +434,8 @@ select.form-control.w200 {
 						</c:forEach>
 					</select>
 				</div>
-				<button type="submit" class="btn-submit"
-					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;">조회</button>
+				<button type="submit" class="btn-submit" id="selectRule"
+					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;" onclick="">조회</button>
 			</div>
 		</form>
 		<c:if test="${departmentId < 99 && entranceYear >= 2016}">
@@ -497,8 +458,62 @@ select.form-control.w200 {
 				</p>
 			</div>
 		</c:if>
-		<c:if test="${entranceYear == 2016}">
-			<div class="verticalTree"></div>
+		<c:if test="${entranceYear == 2018}">
+			<div class="form-group" style="margin-left: 40px;">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font25">역량 필수</p>
+					<input type="number" value="18"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">학점 이상 이수</p>
+				</div>
+				
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;"><small>- 각 역량에서 6학점 이상 이수</small></p>
+				</div>
+				<br/><br/>
+				<div class="verticalTree"></div>
+			</div>
+			<br/>
+			<div class="form-group" style="margin-left: 40px;">
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font25" style="margin-bottom: 0px;">전공 탐색</p>
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">총</p>
+					<input type="number" value="7"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2">과목</p>
+					<input type="number" value="19"
+						class="form-control"
+						style="width: 43px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"
+						readonly />
+				</div>
+				<div class="form-group" style="float: left; margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">학점 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 1학기(1과목) : 소속 학부 내에서 1과목 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 2학기~3학기(5과목) : 반드시 타 학부 전탐 1과목 포함 총 5 과목 이상 이수</p>
+				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-left:20px;margin-bottom: 0px;">
+					<p class="font2" style="margin-bottom: 0px;">▶ 전공탐색세미나 : 3학기 이후부터 신청 가능</p>
+				</div>
+				<br/><br/>
+			</div>
 		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear < 2016}">
 			<div style="margin-top: 90px"></div>
@@ -653,10 +668,11 @@ select.form-control.w200 {
 				</c:forEach>
 			</div>
 		</c:if>
-
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
+	
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed -->

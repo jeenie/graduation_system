@@ -123,6 +123,11 @@ input.form-control.w300 {
 	color: black;
 }
 </style>
+	<script>
+		function alertGuest() {
+			alert("로그인 후 이용해주세요.");
+		}
+	</script>
 </head>
 <body onload="initialize()">
 	<header>

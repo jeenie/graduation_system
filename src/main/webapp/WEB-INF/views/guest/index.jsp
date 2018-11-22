@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+<link href="${R}res/css/custom.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -73,54 +74,7 @@
 	display: block;
 }
 
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 140px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
@@ -254,6 +208,7 @@
 								<li role="presentation"><a
 									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
 								<li role="presentation"><a href="${R}guest/login">Login</a></li>
+								<li role="presentation" style="display:none"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
 							</ul>
 						</div>
 					</div>
@@ -357,15 +312,15 @@
 			<div class="loginmodal-container">
 				<h1>로그인</h1>
 				<br>
-				<form>
-					<input type="text" name="user" placeholder="ID"> <input
-						type="password" name="pass" placeholder="Password"> <input
-						type="submit" name="login" class="login loginmodal-submit"
+				<form method="post" action="login_processing">
+					<input type="text" name="loginId" placeholder="ID"> 
+					<input type="password" name="passwd" placeholder="Password"> 
+					<input type="submit" name="login" class="login loginmodal-submit"
 						value="Login">
 				</form>
 
 				<div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password?</a>
+					<a href="${R}guest/sign">Register</a> - <a href="${R}guest/findPw">Forgot Password?</a>
 				</div>
 			</div>
 		</div>

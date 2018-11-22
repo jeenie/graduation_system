@@ -28,7 +28,7 @@
 		NOT IN (SELECT abolitionSubject from substitution_subject_list)		
 	</select>
 	<select id="findSubstiStatus" resultType="SubstitutionSubject">
-		SELECT d.departmentName, sub1.name abolitionSubjectName, sub2.name substitutionSubjectName
+		SELECT d.departmentName, sub1.name abolitionSubjectName, sub2.name substitutionSubjectName, sss.abolitionCode abolitionSubject
 		FROM student_substitution_subject sss 
 		LEFT JOIN substitution_subject_list list ON sss.abolitionCode = list.abolitionSubject 
 		LEFT JOIN department d ON list.departmentId = d.id
@@ -37,12 +37,31 @@
 		LEFT JOIN subject sub2 ON sss.substitutionCode = sub2.id
 		WHERE sss.studentId= #{userNumber}
 	</select>
-	<insert id="insert">
-		INSERT student_substitution_subject (studentId, abolitionCode, substitutionCode)
-		VALUES (#{userNumber}, #{abolitionId}, #{substitutionId})
+	<select id="findStatusByAbosub" resultType="SubstitutionSubject">
+		SELECT sss.*
+		FROM student_substitution_subject sss
+		WHERE studentId=#{userNumber} AND abolitionCode=#{abolitionId}
+	</select>
+	<select id="findAboliInfo" resultType="SubstitutionSubject">
+		SELECT ssg.yearOfClass abolitionYear, ssg.yearOfSemester abolitionSemester, ssg.grade abolitionGrade
+		FROM student_subject_grade ssg
+		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
+	</select>
+	<insert id="insertStatus">
+		INSERT student_substitution_subject (studentId, abolitionCode, substitutionCode, abolitionYear, abolitionSemester, abolitionGrade, substitutionGrade, abolitionType)
+		VALUES (#{userNumber}, #{abolitionId}, #{substitutionId}, #{abolitionYear}, #{abolitionSemester}, #{abolitionGrade}, #{substitutionGrade}, #{abolitionType})
 	</insert>
+	<insert id="insert">
+		INSERT student_subject_grade (id, yearOfClass, yearOfSemester, subjectId, completeType, grade)
+		VALUES (#{userNumber},#{abolitionYear},#{abolitionSemester},#{abolitionId},#{abolitionType},#{abolitionGrade})
+	</insert>
+	<delete id="deleteStatus">
+		DELETE FROM student_substitution_subject
+		WHERE studentId=#{userNumber} AND abolitionCode=#{abolitionId} 
+	</delete>
 	<delete id="delete">
 		DELETE FROM student_subject_grade
 		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
 	</delete>
+	
 </mapper>
