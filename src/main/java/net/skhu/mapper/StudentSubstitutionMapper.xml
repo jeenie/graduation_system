@@ -43,7 +43,7 @@
 		WHERE studentId=#{userNumber} AND abolitionCode=#{abolitionId}
 	</select>
 	<select id="findAboliInfo" resultType="SubstitutionSubject">
-		SELECT ssg.yearOfClass abolitionYear, ssg.yearOfSemester abolitionSemester, ssg.grade abolitionGrade
+		SELECT ssg.yearOfClass abolitionYear, ssg.yearOfSemester abolitionSemester, ssg.grade abolitionGrade, ssg.completeType abolitionType
 		FROM student_subject_grade ssg
 		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
 	</select>

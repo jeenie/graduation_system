@@ -26,15 +26,18 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-
+	
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
-	function button_event(value) {
-		if(confirm("삭제하시겠습니까?")==true) {
-			location.href="substitute/delete?abolitionId="+value;
-		}else{
-			return;
-		}
-	}
+$('#btn-delete-row').click(function() {
+    $('#mytable > tbody:last > tr:last').remove();
+    $
+  });
+
+
+function rowDelete(value){
+	location.href="substidelete?abolitionId="+value;
+}
 </script>
 
 <style>
@@ -292,21 +295,25 @@ td {
 			대체 과목 현황 <a href="${R}student/substitute/abolition"> <span
 				style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span>
 			</a>
-		</p>
-		<table class="table table-hover">
+		</p> 
+		<table class="table table-hover" id="mytable">
 			<thead>
 				<tr>
+					
 					<th scope="col" class="text-center">담당 학과</th>
 					<th scope="col" class="text-center">폐지과목명</th>
 					<th scope="col" class="text-center">대체과목명</th>
+					<th scope="col" class="text-center"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="substitutionStatus" items="${ substiStatus }">
-					<tr onclick="button_event(${ substitutionStatus.abolitionSubject });">
+					<tr>
 						<td>${ substitutionStatus.departmentName }</td>
 						<td>${ substitutionStatus.abolitionSubjectName }</td>
 						<td>${ substitutionStatus.substitutionSubjectName }</td>
+						<td><a href="<c:url value="substidelete?abolitionId=${substitutionStatus.abolitionSubject}" />" 
+				onclick="if(!confirm('삭제 하시겠습니까?')){return false;}">x</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

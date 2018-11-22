@@ -82,8 +82,8 @@ public class StudentSubstitutionController {
         return "redirect:/student/status";
     }
 
-    @RequestMapping(value="substitute/delete", method=RequestMethod.GET)
-    public String substiDelete(Model model, @RequestParam("abolitionId") String abolitionId) {
+    @RequestMapping(value="substidelete", method=RequestMethod.GET)
+    public String substiDelete(@RequestParam("abolitionId") String abolitionId) {
     	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         int userNumber=Integer.parseInt(authentication.getName());
         SubstitutionSubject abosubInfo =studentSubstitutionMapper.findStatusByAbosub(userNumber, abolitionId);	//현황 테이블에서 삭제하려는 row 찾기
@@ -93,7 +93,7 @@ public class StudentSubstitutionController {
         String abolitionType=abosubInfo.getAbolitionType();
     	studentSubstitutionMapper.insert(userNumber,abolitionYear,abolitionSemester,abolitionId,abolitionType,abolitionGrade);
     	studentSubstitutionMapper.deleteStatus(userNumber, abolitionId);
-    	return "redirct:/student/status";
+    	return "redirect:/student/status";
     }
 
 }
