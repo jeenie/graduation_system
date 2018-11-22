@@ -258,6 +258,10 @@
 }
 	
 </style>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> 
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="${R}res/js/zooTree.js"></script> 
+
 <script>
 	$(document).ready(function(){
 		var subjectId;
@@ -303,7 +307,7 @@
     	
     	<div class="fillInfo">
     	<p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">자동완성 버튼 클릭시 해당 과목에 대한 정보가 아래 채워집니다</p>
-            <a href="fillData?subjectId="+${ subjectId } class="btn btn-info">자동완성</a>     
+            <a href="fillData?subjectId=${ subjectId }" class="btn btn-info">자동완성</a>     
          <hr>
     	</div>
     	
