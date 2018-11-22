@@ -9,13 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import net.skhu.dto.Department;
 import net.skhu.dto.OtherMajor;
 import net.skhu.dto.OtherMajorType;
+import net.skhu.dto.Student;
+import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.OtherMajorMapper;
 import net.skhu.mapper.OtherMajorTypeMapper;
+import net.skhu.mapper.StudentMapper;
 
 @Controller
 @RequestMapping("student/")
@@ -24,6 +27,8 @@ public class OtherMajorController {
 	@Autowired OtherMajorMapper otherMajorMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired OtherMajorTypeMapper otherMajorTypeMapper;
+	@Autowired StudentMapper studentMapper;
+
 
 	@RequestMapping(value="otherMajor", method=RequestMethod.POST)	//submit 누르면 실행
     public String otherMajorInsert(Model model, OtherMajor otherMajor) {
@@ -37,12 +42,23 @@ public class OtherMajorController {
 
 	@RequestMapping("otherMajor")		//+버튼 누르면 edit페이지로 이동
 	public String selectOtherMajor(Model model) {
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+        Student student1=studentMapper.findOne(userNumber);
+
 		OtherMajor otherMajor = new OtherMajor();
-		List<Department> departments = departmentMapper.findItDept();
+		List<StudentSubjectGrade> anotherMajorList = otherMajorMapper.anotherMajorList(userNumber,student1.getDepartmentId());
+
 		List<OtherMajorType> types = otherMajorTypeMapper.otherMajorType();
 		model.addAttribute("otherMajor", otherMajor);
-		model.addAttribute("departments", departments);
+		model.addAttribute("anotherMajorList", anotherMajorList);
 		model.addAttribute("types", types);
+        return "student/otherMajorEdit";
+    }
+
+	@RequestMapping(value="fillData", method=RequestMethod.GET)		//+버튼 누르면 edit페이지로 이동
+	public String fillOtherMajorData(Model model,@RequestParam("subjectId") int subjectId) {
+
         return "student/otherMajorEdit";
     }
 

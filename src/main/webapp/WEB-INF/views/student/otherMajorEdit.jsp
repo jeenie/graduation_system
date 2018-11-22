@@ -21,10 +21,14 @@
 <link href="${R}res/css/style.css" rel="stylesheet" />
 
 <!-- font awesome-->
+<link rel="stylesheet" href="${R}res/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 
 <style>
 	.inquiry_btn {
@@ -254,6 +258,14 @@
 }
 	
 </style>
+<script>
+	$(document).ready(function(){
+		var subjectId;
+		$('#subjectId').on('change', function(){
+			subjectId=this.value;
+		});
+	});
+</script>
 <body>
 <%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
 	<div id="breadcrumb">
@@ -268,22 +280,43 @@
 	
 	<div class="container">
   	<div class="contents">
+  	
     
     <form:form method="post" modelAttribute="otherMajor">
     	<div class="form-group">
-    		<label>타 학과(공학계)</label> 
-    		<form:select path="departmentId" class="form-control"
-                   itemValue="id" itemLabel="departmentName" items="${ departments }" />
+    		
+    		<label>교과목명</label> 
+			 	
+    		<select name="subjectId" class="form-control" id="subjectId">
+    		<c:forEach var="anotherMajor" items="${ anotherMajorList }">
+    			<option value="${anotherMajor.subjectId }"
+    			${subjectId == anotherMajor.subjectId ? "selected" : "" }> ${anotherMajor.subjectName} </option>
+    			
+    		</c:forEach>
+    		</select>
+    		 
+    		 <!--  
+    		<form:select name="ss" path="otherMajorName" class="form-control"
+                   itemValue="subjectId" itemLabel="subjectName" items="${ anotherMajorList }" />
+             -->
     	</div>
+    	
+    	<div class="fillInfo">
+    	<p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">자동완성 버튼 클릭시 해당 과목에 대한 정보가 아래 채워집니다</p>
+            <a href="fillData?subjectId="+${ subjectId } class="btn btn-info">자동완성</a>     
+         <hr>
+    	</div>
+    	
     	<div class="form-group">
     		<label>과목코드</label> 
     		<form:input path="anotherMajorId" class="form-control" />
     	</div>
+    	
     	<div class="form-group">
-    		<label>교과목명</label> 
-    		<form:input path="otherMajorName" class="form-control" />
+    		<label>타 학과(공학계)</label> 
+    		<form:input path="departmentName" class="form-control" />
     	</div>
-	    
+    	
 	    <div class="form-group">
 	    	<label>학점</label> 
 	    	<form:input path="score" class="form-control" />
@@ -296,7 +329,8 @@
 		</div>
 		
 		<div class="form-group">
-	    <label>희망이수구분</label>
+	    <label>희망이수구분</label> 
+	    <p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">본인이 신청하고자 하는 이수구분을 직접 선택하세요</p>
 	      <form:select path="type" class="form-control"
                    itemValue="anotherMajorType" itemLabel="anotherMajorType" items="${ types }" />
 		</div>
