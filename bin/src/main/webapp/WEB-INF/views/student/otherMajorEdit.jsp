@@ -289,7 +289,7 @@
 					 	
 		    		<select name="subjectId" class="form-control" id="subjectId">
 		    		<c:forEach var="anotherMajor" items="${ anotherMajorList }">
-		    			<option value="AA00000">타전공과목</option>
+		    			<option value="AA00000">타전공 과목</option>
 		    			<option value="${anotherMajor.subjectId }"
 		    			${subjectId == anotherMajor.subjectId ? "selected" : "" }> ${anotherMajor.subjectName} </option>
 		    			

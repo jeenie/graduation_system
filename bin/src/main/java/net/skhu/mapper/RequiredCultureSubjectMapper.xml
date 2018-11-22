@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.RequiredCultureSubjectMapper">
+	<select id="findByYear" resultType="RequiredCultureSubject">
+		SELECT rcl.*, s.name
+		subjectName FROM requiredculture_list rcl LEFT JOIN subject s ON
+		rcl.subjectId = s.id WHERE entranceYear = #{entranceYear}
+	</select>
+	<select id="findByYear2" resultType="RequiredCultureSubject">
+		SELECT rcl.*, s.name
+		subjectName, s.subjectScore subjectScore FROM requiredculture_list rcl
+		LEFT JOIN subject s ON
+		rcl.subjectId = s.id WHERE entranceYear =
+		#{entranceYear}
+	</select>
+	<insert id="insert2016">
+		INSERT requiredculture_list (subjectId, entranceYear)
+		VALUES (#{subjectId}, 2016)
+	</insert>
+	<insert id="insert2017">
+		INSERT requiredculture_list (subjectId, entranceYear)
+		VALUES (#{subjectId}, 2017)
+	</insert>
+	<insert id="insert2018">
+		INSERT requiredculture_list (subjectId, entranceYear)
+		VALUES (#{subjectId}, 2018)
+	</insert>
+	<delete id="delete">
+		DELETE FROM requiredculture_list WHERE subjectId =
+		#{subjectId} and entranceYear= #{entranceYear}
+	</delete>
+</mapper>

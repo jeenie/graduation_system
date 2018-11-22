@@ -67,6 +67,9 @@ public class OtherMajorController {
 		model.addAttribute("otherMajor", otherMajorData);
 		model.addAttribute("anotherMajorList", anotherMajorList);
 		model.addAttribute("subjectId", subjectId);
+		
+		List<OtherMajorType> types = otherMajorTypeMapper.otherMajorType();
+		model.addAttribute("types", types);
         return "student/otherMajorEdit";
     }
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.OtherMajorMapper">
+	<select id="otherMajorStatus" resultType="OtherMajor">
+		SELECT m.anotherMajorId, m.score, m.year, m.semester, m.type, s.name otherMajorName, d.departmentName
+		FROM another_major m
+		LEFT JOIN subject s ON m.anotherMajorId=s.id
+		LEFT JOIN department d ON m.departmentId=d.id
+		WHERE m.studentId= #{userNumber};		
+	</select>
+	<insert id="insert">
+		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId)
+		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId});
+	</insert>
+	<update id="update">
+    	UPDATE student_subject_grade 
+    	SET completeType = #{type} 
+    	WHERE id = #{userNumber}
+  	</update>
+  	
+  	<select id="anotherMajorList" resultType="StudentSubjectGrade">
+  	SELECT ssg.*, sub.name subjectName, m.departmentId, d.departmentName
+  	FROM student_subject_grade ssg 
+  	JOIN student s ON ssg.id = s.id 
+	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+	RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
+	JOIN department d ON m.departmentId = d.id
+	WHERE ssg.id = #{userNumber} and m.departmentId NOT IN (#{departmentId})
+	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+  	</select>
+  	
+  	<select id="otherMajorData" resultType="OtherMajor">
+  	SELECT ssg.id studentId, ssg.yearOfClass year, ssg.yearOfSemester semester, ssg.subjectId anotherMajorId, 
+  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score
+  	FROM student_subject_grade ssg 
+  	JOIN student s ON ssg.id = s.id 
+	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+	RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
+	JOIN department d ON m.departmentId = d.id
+	WHERE ssg.id = #{userNumber} and ssg.subjectId = #{subjectId}
+	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+  	</select>
+</mapper>

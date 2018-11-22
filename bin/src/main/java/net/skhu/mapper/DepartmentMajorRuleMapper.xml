@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.DepartmentMajorRuleMapper">
+	<select id="findByDepartmentId" resultMap="departmentMajorRules">
+		SELECT
+		dmr.departmentId, d.departmentName, dmr.processId, sp.processName,
+		dmr.entranceYear, dmr.mustMajor, dmr.choiceMajor, dmr.mustPlusChoice
+		FROM department_major_rule dmr JOIN department d ON dmr.departmentId =
+		d.id JOIN special_process sp ON dmr.processId = sp.id WHERE
+		departmentId = #{departmentId} and (entranceYear = #{entranceYear} or
+		entranceYear = 0);
+	</select>
+	<select id="findFirst" resultType="DepartmentMajorRule">
+		select * from
+		department_major_rule where departmentId=#{departmentId} and
+		entranceYear=#{entranceYear} and processId = 1
+	</select>
+	<select id="findSecond" resultType="DepartmentMajorRule">
+		select * from
+		department_major_rule where departmentId=#{departmentId} and
+		entranceYear=#{entranceYear} and processId = 2
+	</select>
+	<select id="findTotalMajor" resultType="DepartmentMajorRule">
+		select * from
+		department_major_rule where departmentId=#{departmentId} and
+		(entranceYear=#{entranceYear} or entranceYear=0) and
+		processId=#{processId}
+	</select>
+	<update id="update">
+		UPDATE department_major_rule SET mustMajor =
+		#{mustMajor}, choiceMajor = #{choiceMajor}, mustPlusChoice =
+		#{mustPlusChoice} WHERE departmentId = #{departmentId} and
+		entranceYear=#{entranceYear} and processId = #{processId}
+	</update>
+
+	<update id="updateList" parameterType="java.util.List">
+		
+		<foreach collection="list" item="item" separator=";">
+			update department_major_rule set mustMajor=#{item.mustMajor}, choiceMajor=#{item.choiceMajor}, mustPlusChoice = #{item.mustPlusChoice} 
+			WHERE departmentId=#{item.departmentId} and entranceYear=#{item.entranceYear} and processId=#{item.processId}
+		</foreach>
+	</update>
+
+	<resultMap id="departmentMajorRules"
+		type="net.skhu.dto.DepartmentMajorRule">
+		<id property="departmentId" column="departmentId" />
+		<id property="processId" column="processId" />
+		<id property="entranceYear" column="entranceYear" />
+		<result property="departmentName" column="departmentName" />
+		<result property="processName" column="processName" />
+		<result property="mustMajor" column="mustMajor" />
+		<result property="choiceMajor" column="choiceMajor" />
+		<result property="mustPlusChoice" column="mustPlusChoice" />
+	</resultMap>
+</mapper>

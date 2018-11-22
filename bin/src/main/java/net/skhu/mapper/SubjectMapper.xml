@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.SubjectMapper">
+	<select id="find" resultType="Subject">
+		SELECT * FROM subject
+	</select>
+	<select id="findById" resultType="Subject">
+		SELECT * FROM subject WHERE id = #{st}
+	</select>
+	<select id="findByName" resultType="Subject">
+		SELECT * FROM subject WHERE name = #{st}
+	</select>
+</mapper>

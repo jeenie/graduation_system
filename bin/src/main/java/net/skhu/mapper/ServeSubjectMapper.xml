@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.ServeSubjectMapper">
+	<select id="findAll" resultType="ServeSubject">
+		SELECT * FROM servesubject
+	</select>
+	<select id="findById" resultType="Integer">
+		SELECT count(*) FROM
+		servesubject s join student_subject_grade
+		ssg on s.idservesubject =
+		ssg.subjectId where ssg.id = #{id} and not grade = 'N';
+	</select>
+</mapper>

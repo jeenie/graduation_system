@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentSubstitutionMapper">
+	<select id="findLowGradeAbosub" resultType="SubstitutionSubject">
+		SELECT d.departmentName,sublist.abolitionSubject,s.name abolitionSubjectName,ssg.grade
+		FROM substitution_subject_list sublist
+		LEFT JOIN student_subject_grade ssg ON sublist.abolitionSubject = ssg.subjectId
+		LEFT JOIN subject s ON sublist.abolitionSubject = s.id 
+		LEFT JOIN grade g ON ssg.grade = g.gradeLevel
+		LEFT JOIN department d ON sublist.departmentId = d.id
+		WHERE (g.score BETWEEN 1.1 AND 2.5) AND ssg.id= #{userNumber}
+	</select>
+	<select id="findSubstiByAbosub" resultType="SubstitutionSubject">
+		SELECT DISTINCT substitution.id substitutionSubject, sublist.abolitionSubject, s.name abolitionSubjectName, substitution.name substitutionSubjectName, d.departmentName
+		FROM substitution_subject_list sublist
+		LEFT JOIN subject s
+		ON sublist.abolitionSubject = s.id
+		LEFT JOIN major_list major
+		ON sublist.abolitionSubject = major.majorSubjectId
+		LEFT JOIN department d
+		ON major.departmentId = d.id
+		RIGHT JOIN major_list majorList
+		ON major.departmentId = majorList.departmentId
+		LEFT JOIN subject substitution
+		ON majorList.majorSubjectId = substitution.id
+		WHERE sublist.abolitionSubject = #{subjectId} AND substitution.completeType = '전공선택' AND majorList.majorSubjectId 
+		NOT IN (SELECT abolitionSubject from substitution_subject_list)		
+	</select>
+	<select id="findSubstiStatus" resultType="SubstitutionSubject">
+		SELECT d.departmentName, sub1.name abolitionSubjectName, sub2.name substitutionSubjectName, sss.abolitionCode abolitionSubject
+		FROM student_substitution_subject sss 
+		LEFT JOIN substitution_subject_list list ON sss.abolitionCode = list.abolitionSubject 
+		LEFT JOIN department d ON list.departmentId = d.id
+		LEFT JOIN student s ON sss.studentId = s.id
+		LEFT JOIN subject sub1 ON sss.abolitionCode = sub1.id 
+		LEFT JOIN subject sub2 ON sss.substitutionCode = sub2.id
+		WHERE sss.studentId= #{userNumber}
+	</select>
+	<select id="findStatusByAbosub" resultType="SubstitutionSubject">
+		SELECT sss.*
+		FROM student_substitution_subject sss
+		WHERE studentId=#{userNumber} AND abolitionCode=#{abolitionId}
+	</select>
+	<select id="findAboliInfo" resultType="SubstitutionSubject">
+		SELECT ssg.yearOfClass abolitionYear, ssg.yearOfSemester abolitionSemester, ssg.grade abolitionGrade, ssg.completeType abolitionType
+		FROM student_subject_grade ssg
+		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
+	</select>
+	<insert id="insertStatus">
+		INSERT student_substitution_subject (studentId, abolitionCode, substitutionCode, abolitionYear, abolitionSemester, abolitionGrade, substitutionGrade, abolitionType)
+		VALUES (#{userNumber}, #{abolitionId}, #{substitutionId}, #{abolitionYear}, #{abolitionSemester}, #{abolitionGrade}, #{substitutionGrade}, #{abolitionType})
+	</insert>
+	<insert id="insert">
+		INSERT student_subject_grade (id, yearOfClass, yearOfSemester, subjectId, completeType, grade)
+		VALUES (#{userNumber},#{abolitionYear},#{abolitionSemester},#{abolitionId},#{abolitionType},#{abolitionGrade})
+	</insert>
+	<delete id="deleteStatus">
+		DELETE FROM student_substitution_subject
+		WHERE studentId=#{userNumber} AND abolitionCode=#{abolitionId} 
+	</delete>
+	<delete id="delete">
+		DELETE FROM student_subject_grade
+		WHERE id=#{userNumber} AND subjectId=#{abolitionId}
+	</delete>
+	
+</mapper>

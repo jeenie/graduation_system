@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.MajorMapper">
+	<select id="findMustMajor" resultType="Major">
+		SELECT m.*, s.name
+		majorName, d.departmentName FROM major_list m LEFT JOIN
+		department d ON
+		m.departmentId = d.id LEFT JOIN subject s ON
+		m.majorSubjectId = s.id
+		where m.departmentId = #{departmentId} and
+		s.completeType = '전공필수';
+	</select>
+	<select id="findSoft2013MustMajor" resultType="Major">
+		SELECT m.*, s.name
+		majorName, d.departmentName
+		FROM major_list m
+		LEFT JOIN department d ON
+		m.departmentId = d.id
+		LEFT JOIN subject s ON m.majorSubjectId = s.id
+		WHERE m.departmentId = 32 and (m.entranceYear = 0 OR m.entranceYear =
+		'2013' and m.entranceYear NOT IN ('2014')) and m.completeType = '필수'
+	</select>
+	<select id="findSoft2014MustMajor" resultType="Major">
+		SELECT m.*, s.name
+		majorName, d.departmentName
+		FROM major_list m
+		LEFT JOIN department d ON
+		m.departmentId = d.id
+		LEFT JOIN subject s ON m.majorSubjectId = s.id
+		WHERE m.departmentId = 32 and (m.entranceYear = 0 OR m.entranceYear =
+		'2014' and m.entranceYear NOT IN ('2013')) and m.completeType = '필수'
+	</select>
+	<select id="findMustMajorByUser" resultType="Major">
+		select m.*,
+		s.name majorName, s.subjectScore subjectScore
+		from
+		major_list m join subject s on m.majorSubjectId
+		= s.id
+		where
+		m.departmentId = 32 and
+		(m.entranceYear = 0 or
+		m.entranceYear = 2012)
+		and
+		m.completeType = '필수'
+	</select>
+	<delete id="delete">
+		DELETE FROM major_list WHERE departmentId =#{departmentId} and majorSubjectId = #{majorSubjectId} and entranceYear= #{entranceYear}
+	</delete>
+</mapper>
+             
+             
