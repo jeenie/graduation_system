@@ -29,4 +29,16 @@
 	WHERE ssg.id = #{userNumber} and m.departmentId NOT IN (#{departmentId})
 	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
   	</select>
+  	
+  	<select id="otherMajorData" resultType="OtherMajor">
+  	SELECT ssg.id studentId, ssg.yearOfClass year, ssg.yearOfSemester semester, ssg.subjectId anotherMajorId, 
+  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score
+  	FROM student_subject_grade ssg 
+  	JOIN student s ON ssg.id = s.id 
+	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+	RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
+	JOIN department d ON m.departmentId = d.id
+	WHERE ssg.id = #{userNumber} and ssg.subjectId = #{subjectId}
+	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+  	</select>
 </mapper>

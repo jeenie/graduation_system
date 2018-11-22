@@ -57,8 +57,16 @@ public class OtherMajorController {
     }
 
 	@RequestMapping(value="fillData", method=RequestMethod.GET)		//+버튼 누르면 edit페이지로 이동
-	public String fillOtherMajorData(Model model,@RequestParam("subjectId") int subjectId) {
-
+	public String fillOtherMajorData(Model model,@RequestParam("subjectId") String subjectId) {
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+        Student stu = studentMapper.findById(userNumber);
+        int departmentId = stu.getDepartmentId();
+        List<StudentSubjectGrade> anotherMajorList = otherMajorMapper.anotherMajorList(userNumber,stu.getDepartmentId());
+		OtherMajor otherMajorData = otherMajorMapper.otherMajorData(userNumber, subjectId);
+		model.addAttribute("otherMajor", otherMajorData);
+		model.addAttribute("anotherMajorList", anotherMajorList);
+		model.addAttribute("subjectId", subjectId);
         return "student/otherMajorEdit";
     }
 

@@ -7,8 +7,10 @@ public class StudentSubjectGrade {
 	int subjectScore;
 	String grade;
 	String completeType;
+	int departmentId;
+	String departmentName;
 	int yearOfClass;
-	int yearOfSemester;
+	String yearOfSemester;
 	/***
 	List <StudentSubjectGrade> grades;
 
@@ -56,16 +58,28 @@ public class StudentSubjectGrade {
 	public void setCompleteType(String completeType) {
 		this.completeType = completeType;
 	}
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
 	public int getYearOfClass() {
 		return yearOfClass;
 	}
 	public void setYearOfClass(int yearOfClass) {
 		this.yearOfClass = yearOfClass;
 	}
-	public int getYearOfSemester() {
+	public String getYearOfSemester() {
 		return yearOfSemester;
 	}
-	public void setYearOfSemester(int yearOfSemester) {
+	public void setYearOfSemester(String yearOfSemester) {
 		this.yearOfSemester = yearOfSemester;
 	}
 }

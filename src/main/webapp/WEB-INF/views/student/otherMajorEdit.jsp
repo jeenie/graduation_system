@@ -263,12 +263,7 @@
 <script src="${R}res/js/zooTree.js"></script> 
 
 <script>
-	$(document).ready(function(){
-		var subjectId;
-		$('#subjectId').on('change', function(){
-			subjectId=this.value;
-		});
-	});
+	
 </script>
 <body>
 <%@ include file="/WEB-INF/views/include/studentNavibar.jsp" %>
@@ -286,60 +281,60 @@
   	<div class="contents">
   	
     
-    <form:form method="post" modelAttribute="otherMajor">
-    	<div class="form-group">
-    		
-    		<label>교과목명</label> 
-			 	
-    		<select name="subjectId" class="form-control" id="subjectId">
-    		<c:forEach var="anotherMajor" items="${ anotherMajorList }">
-    			<option value="${anotherMajor.subjectId }"
-    			${subjectId == anotherMajor.subjectId ? "selected" : "" }> ${anotherMajor.subjectName} </option>
-    			
-    		</c:forEach>
-    		</select>
-    		 
-    		 <!--  
-    		<form:select name="ss" path="otherMajorName" class="form-control"
-                   itemValue="subjectId" itemLabel="subjectName" items="${ anotherMajorList }" />
-             -->
-    	</div>
-    	
-    	<div class="fillInfo">
-    	<p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">자동완성 버튼 클릭시 해당 과목에 대한 정보가 아래 채워집니다</p>
-            <a href="fillData?subjectId=${ subjectId }" class="btn btn-info">자동완성</a>     
-         <hr>
-    	</div>
-    	
-    	<div class="form-group">
-    		<label>과목코드</label> 
-    		<form:input path="anotherMajorId" class="form-control" />
-    	</div>
-    	
-    	<div class="form-group">
-    		<label>타 학과(공학계)</label> 
-    		<form:input path="departmentName" class="form-control" />
-    	</div>
-    	
-	    <div class="form-group">
-	    	<label>학점</label> 
-	    	<form:input path="score" class="form-control" />
-		</div>
-		    
-	    <div class="form-group">
-	    	<label>수강일시</label></br>	
-	       	<form:input path="year" class="form-control" style="display: inline; width: 200px;" />년도
-	        <form:input path="semester" class="form-control" style="display: inline; width: 200px;" />학기
-		</div>
-		
-		<div class="form-group">
-	    <label>희망이수구분</label> 
-	    <p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">본인이 신청하고자 하는 이수구분을 직접 선택하세요</p>
-	      <form:select path="type" class="form-control"
-                   itemValue="anotherMajorType" itemLabel="anotherMajorType" items="${ types }" />
-		</div>
-	      <button type="submit" class="btn btn-submit">등록</button>
-	</form:form>
+   
+	    	<form action="fillData" method="GET">
+		    	<div class="form-group">
+		    		
+		    		<label>교과목명</label> 
+					 	
+		    		<select name="subjectId" class="form-control" id="subjectId">
+		    		<c:forEach var="anotherMajor" items="${ anotherMajorList }">
+		    			<option value="AA00000">타전공 과목</option>
+		    			<option value="${anotherMajor.subjectId }"
+		    			${subjectId == anotherMajor.subjectId ? "selected" : "" }> ${anotherMajor.subjectName} </option>
+		    			
+		    		</c:forEach>
+		    		</select>
+		    		 
+		    		 
+		    	</div>
+	    	
+		    	<div class="fillInfo">
+		    	<p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">자동완성 버튼 클릭시 해당 과목에 대한 정보가 아래 채워집니다</p>
+		            <button type="submit" class="btn btn-info">자동완성 </button>     
+		         <hr>
+		    	</div>
+		    </form>
+	    	<form:form method="post" modelAttribute="otherMajor">
+		    	<div class="form-group">
+		    		<label>과목코드</label> 
+		    		<form:input path="anotherMajorId" class="form-control" />
+		    	</div>
+		    	
+		    	<div class="form-group">
+		    		<label>타 학과(공학계)</label> 
+		    		<form:input path="departmentName" class="form-control" />
+		    	</div>
+		    	
+			    <div class="form-group">
+			    	<label>학점</label> 
+			    	<form:input path="score" class="form-control" />
+				</div>
+				    
+			    <div class="form-group">
+			    	<label>수강일시</label></br>	
+			       	<form:input path="year" class="form-control" style="display: inline; width: 200px;" />년도
+			        <form:input path="semester" class="form-control" style="display: inline; width: 200px;" />학기
+				</div>
+				
+				<div class="form-group">
+				    <label>희망이수구분</label> 
+				    <p style="font-size: 11px; float: right; color: #5BC0DE; font-weight: bold; margin-top: 8px;">본인이 신청하고자 하는 이수구분을 직접 선택하세요</p>
+				      <form:select path="type" class="form-control"
+			                   itemValue="anotherMajorType" itemLabel="anotherMajorType" items="${ types }" />
+				</div>
+		      	<button type="submit" class="btn btn-submit">등록</button>
+		</form:form>
 	 
   	</div> <!-- contents -->  
     </div> <!-- container -->

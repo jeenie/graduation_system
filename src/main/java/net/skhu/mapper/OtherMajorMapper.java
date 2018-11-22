@@ -13,5 +13,6 @@ public interface OtherMajorMapper {
 	void insert(OtherMajor othermajor);
 	void update(int userNumber, String type);
 	List<StudentSubjectGrade> anotherMajorList(int userNumber, int departmentId);
+	OtherMajor otherMajorData(int userNumber, String subjectId);
 }
 
