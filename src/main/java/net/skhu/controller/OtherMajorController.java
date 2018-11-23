@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.OtherMajor;
 import net.skhu.dto.OtherMajorType;
 import net.skhu.dto.Student;
-import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.OtherMajorMapper;
 import net.skhu.mapper.OtherMajorTypeMapper;
@@ -48,7 +47,7 @@ public class OtherMajorController {
 		otherMajor.setStudentId(userNumber);
 
 		otherMajorMapper.insert(otherMajor);
-		otherMajorMapper.update(userNumber, otherMajor.getType());
+		otherMajorMapper.update(userNumber, otherMajor.getType(), otherMajor.getAnotherMajorId());
 		return "redirect:/student/status";
 	}
 
@@ -100,7 +99,7 @@ public class OtherMajorController {
 		model.addAttribute("types", types);
         return "student/otherMajorEdit2";
 	}
-	
+
 	@RequestMapping(value="fillData", method=RequestMethod.POST)
 	public String otherMajorInsert2(Model model, OtherMajor otherMajor) {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -112,9 +111,20 @@ public class OtherMajorController {
 		System.out.println(otherMajor.getStudentId());
 		System.out.println(otherMajor.getAnotherMajorId());
 		System.out.println(otherMajor.getDepartmentId());
-		
+		String type = otherMajor.getType();
+		String subjectId = otherMajor.getAnotherMajorId();
         otherMajorMapper.insert(otherMajor);
-		otherMajorMapper.update(userNumber, otherMajor.getType());
+		otherMajorMapper.update(userNumber, type, subjectId);
 		return "redirect:/student/status";
+    }
+
+	@RequestMapping(value="majordelete", method=RequestMethod.GET)
+    public String substiDelete(@RequestParam("subjectId") String subjectId) {
+    	Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        int userNumber=Integer.parseInt(authentication.getName());
+        String type = otherMajorMapper.findBeforeType(userNumber, subjectId);
+        otherMajorMapper.update(userNumber, type, subjectId);
+        otherMajorMapper.delete(userNumber, subjectId);
+    	return "redirect:/student/status";
     }
 }

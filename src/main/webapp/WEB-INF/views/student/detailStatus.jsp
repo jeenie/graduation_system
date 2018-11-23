@@ -336,6 +336,7 @@ td {
 					<th scope="col" class="text-center">학점</th>
 					<th scope="col" class="text-center">수강일시</th>
 					<th scope="col" class="text-center">이수구분</th>
+					<th scope="col" class="text-center"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -347,6 +348,8 @@ td {
 						<td>${ otherMajorStatus.score }</td>
 						<td>${ otherMajorStatus.year }년${ otherMajorStatus.semester }학기</td>
 						<td>${ otherMajorStatus.type }</td>
+						<td><a href="<c:url value="majordelete?subjectId=${ otherMajorStatus.anotherMajorId }" />" 
+				onclick="if(!confirm('삭제 하시겠습니까?')){return false;}">x</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

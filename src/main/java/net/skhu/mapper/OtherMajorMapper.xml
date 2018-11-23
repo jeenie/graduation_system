@@ -9,43 +9,43 @@
 		LEFT JOIN department d ON m.departmentId=d.id
 		WHERE m.studentId= #{userNumber};		
 	</select>
-	
 	<insert id="insert">
 		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId,beforeType)
 		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId},#{beforeType});
 	</insert>
-	
 	<update id="update">
     	UPDATE student_subject_grade 
     	SET completeType = #{type} 
-    	WHERE id = #{userNumber}
+    	WHERE id = #{userNumber} AND subjectId= #{subjectId}
   	</update>
-  	
+  	<delete id="delete">
+  		DELETE FROM another_major
+  		WHERE studentId=#{userNumber} AND anotherMajorId=#{subjectId}
+  	</delete>
   	<select id="anotherMajorList" resultType="OtherMajor">
-  	SELECT ssg.subjectId anotherMajorId, sub.name otherMajorName
-  	FROM student_subject_grade ssg 
-  	JOIN student s ON ssg.id = s.id 
-	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
-	RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
-	JOIN department d ON m.departmentId = d.id
-	WHERE ssg.id = #{userNumber} and m.departmentId NOT IN (#{departmentId})
-	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
-  	</select>
-  	
+	  	SELECT ssg.subjectId anotherMajorId, sub.name otherMajorName
+	  	FROM student_subject_grade ssg 
+	  	JOIN student s ON ssg.id = s.id 
+		LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+		RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
+		JOIN department d ON m.departmentId = d.id
+		WHERE ssg.id = #{userNumber} and m.departmentId NOT IN (#{departmentId})
+		ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+	 </select>
   	<select id="otherMajorData" resultType="OtherMajor">
-  	SELECT ssg.id studentId, ssg.yearOfClass year, ssg.yearOfSemester semester, ssg.subjectId anotherMajorId, 
-  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score, ssg.completeType beforeType
-  	FROM student_subject_grade ssg 
-  	JOIN student s ON ssg.id = s.id 
-	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
-	RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
-	JOIN department d ON m.departmentId = d.id
-	WHERE ssg.id = #{userNumber} and ssg.subjectId = #{subjectId}
-	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+	  	SELECT ssg.id studentId, ssg.yearOfClass year, ssg.yearOfSemester semester, ssg.subjectId anotherMajorId, 
+	  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score, ssg.completeType beforeType
+	  	FROM student_subject_grade ssg 
+	  	JOIN student s ON ssg.id = s.id 
+		LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+		RIGHT JOIN major_list m ON m.majorSubjectId = ssg.subjectId
+		JOIN department d ON m.departmentId = d.id
+		WHERE ssg.id = #{userNumber} and ssg.subjectId = #{subjectId}
+		ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
   	</select>
-  	
-  	<select id="findBeforeType" resultType="OtherMajor">
-  	SELECT subjectId, completeType FROM graduation_system.student_subject_grade 
-  	where id=#{userNumber} and subjectId=#{subjectId}
+  	<select id="findBeforeType" resultType="String">
+	  	SELECT am.beforeType
+		FROM another_major am
+		WHERE studentId=#{userNumber} AND anotherMajorId=#{subjectId}
   	</select>
 </mapper>
