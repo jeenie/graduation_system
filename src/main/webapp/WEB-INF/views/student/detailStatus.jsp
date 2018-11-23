@@ -323,6 +323,9 @@ td {
 			타전공 인정 현황 <a href="${R}student/otherMajor"> <span
 				style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span>
 			</a>
+			 <a href="${R}student/otherMajor2"> <span
+				style="float: right; font-size: 25px; font-weight: bold; margin-right: 20px">+</span>
+			</a>
 		</p>
 		<table class="table table-hover">
 			<thead>
