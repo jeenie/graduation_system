@@ -8,11 +8,11 @@
 
 <script>
 	$(function() {
-		$('#password').keyup(function() {
+		$('#password1').keyup(function() {
 			$('font[name=check]').text('');
 		}); //#user_pass.keyup
 		$('#password2').keyup(function() {
-			if ($('#password').val() != $('#password2').val()) {
+			if ($('#password1').val() != $('#password2').val()) {
 				$('font[name=check]').text('');
 				$('font[name=check]').html("암호틀림");
 			} else {
@@ -21,7 +21,7 @@
 			}
 		}); //#chpass.keyup
 	});
-
+	</script>
 	<script type="text/javascript">
 	window.onload = function() {
 
@@ -33,7 +33,7 @@
 
 		}
 	}
-</script>
+
 </script>
 
 <!DOCTYPE html>
@@ -174,32 +174,39 @@ input.form-control.w300 {
 					</div>
 					<div class="form-group">
 						<label>학과</label>
-						<form:select path="departmentId" class="form-control w300"
+						<form:select path="departmentId" class="form-control"
 							itemValue="id" itemLabel="departmentName"
-							items="${ departments }" />
+							items="${ departments }" style="width:230px"/>
 					</div>
 					<div class="form-group">
 						<label>입학구분</label>
-						<form:input path="entranceType" class="form-control w300" />
+						<br/>
+						<label class="radio-inline"><form:radiobutton path="entranceType" value="신입학" label="신입학"/></label>
+						<label class="radio-inline"><form:radiobutton path="entranceType" value="편입학" label="편입학"/></label>
 					</div>
 					<div class="form-group">
 						<label>학년</label>
-						<form:input path="grade" type="number" class="form-control w300" />
+						<br/>
+						<label class="radio-inline"><form:radiobutton path="grade" value="1" label="1"/></label>
+						<label class="radio-inline"><form:radiobutton path="grade" value="2" label="2"/></label>
+						<label class="radio-inline"><form:radiobutton path="grade" value="3" label="3"/></label>
+						<label class="radio-inline"><form:radiobutton path="grade" value="4" label="4"/></label>
 					</div>
 					<div class="form-group">
 						<label>비밀번호</label>
 						<form:input path="password" type="password"
-							class="form-control w300" />
+							class="form-control w300" id="password1"/>
 					</div>
 					<div class="form-group">
 						<label>비밀번호 재입력</label>
 						<form:input path="password2" type="password"
-							class="form-control w300" />
+							class="form-control w300" id="password2"/>
 					</div>
+					<font name="check" size="2" color="red"></font>
 					<div class="form-group">
 						<label>비밀번호 찾기 질문</label>
 						<form:select path="passwordQuestion" class="form-control w200"
-							itemValue="quizCode" itemLabel="quizContent" items="${ quizs }" />
+							itemValue="quizCode" itemLabel="quizContent" items="${ quizs }" style="width:300px"/>
 					</div>
 					<div class="form-group">
 						<label>비밀번호 찾기 답변</label>
