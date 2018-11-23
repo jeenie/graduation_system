@@ -10,8 +10,8 @@
 		WHERE m.studentId= #{userNumber};		
 	</select>
 	<insert id="insert">
-		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId)
-		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId});
+		INSERT another_major(studentId,anotherMajorId,score,year,semester,type,departmentId,beforeType)
+		VALUES (#{studentId},#{anotherMajorId},#{score},#{year},#{semester},#{type},#{departmentId},#{beforeType});
 	</insert>
 	<update id="update">
     	UPDATE student_subject_grade 
@@ -19,8 +19,8 @@
     	WHERE id = #{userNumber}
   	</update>
   	
-  	<select id="anotherMajorList" resultType="StudentSubjectGrade">
-  	SELECT ssg.*, sub.name subjectName, m.departmentId, d.departmentName
+  	<select id="anotherMajorList" resultType="OtherMajor">
+  	SELECT ssg.subjectId anotherMajorId, sub.name otherMajorName
   	FROM student_subject_grade ssg 
   	JOIN student s ON ssg.id = s.id 
 	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
@@ -32,7 +32,7 @@
   	
   	<select id="otherMajorData" resultType="OtherMajor">
   	SELECT ssg.id studentId, ssg.yearOfClass year, ssg.yearOfSemester semester, ssg.subjectId anotherMajorId, 
-  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score
+  	sub.name otherMajorName, m.departmentId, d.departmentName, sub.subjectScore score, ssg.completeType beforeType
   	FROM student_subject_grade ssg 
   	JOIN student s ON ssg.id = s.id 
 	LEFT JOIN subject sub ON ssg.subjectId = sub.id 
@@ -40,5 +40,10 @@
 	JOIN department d ON m.departmentId = d.id
 	WHERE ssg.id = #{userNumber} and ssg.subjectId = #{subjectId}
 	ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+  	</select>
+  	
+  	<select id="findBeforeType" resultType="OtherMajor">
+  	SELECT subjectId, completeType FROM graduation_system.student_subject_grade 
+  	where id=#{userNumber} and subjectId=#{subjectId}
   	</select>
 </mapper>

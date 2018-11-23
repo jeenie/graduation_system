@@ -10,7 +10,14 @@ public class OtherMajor {
 	String type;
 	int departmentId;
 	String departmentName;
+	String beforeType;
 
+	public String getBeforeType() {
+		return beforeType;
+	}
+	public void setBeforeType(String beforeType) {
+		this.beforeType = beforeType;
+	}
 	public int getStudentId() {
 		return studentId;
 	}

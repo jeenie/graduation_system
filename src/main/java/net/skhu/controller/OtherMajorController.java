@@ -9,12 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.OtherMajor;
 import net.skhu.dto.OtherMajorType;
 import net.skhu.dto.Student;
-import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.OtherMajorMapper;
 import net.skhu.mapper.OtherMajorTypeMapper;
@@ -34,7 +32,17 @@ public class OtherMajorController {
     public String otherMajorInsert(Model model, OtherMajor otherMajor) {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         int userNumber=Integer.parseInt(authentication.getName());
+
+
+        OtherMajor omt = otherMajorMapper.otherMajorData(userNumber, otherMajor.getAnotherMajorId());
+
+        otherMajor.setDepartmentId(omt.getDepartmentId());
+        otherMajor.setBeforeType(omt.getBeforeType());
+        otherMajor.setScore(omt.getScore());
+        otherMajor.setSemester(omt.getSemester());
+        otherMajor.setYear(omt.getYear());
 		otherMajor.setStudentId(userNumber);
+
         otherMajorMapper.insert(otherMajor);
         otherMajorMapper.update(userNumber,otherMajor.getType());
         return "redirect:/student/status";
@@ -47,7 +55,7 @@ public class OtherMajorController {
         Student student1=studentMapper.findOne(userNumber);
 
 		OtherMajor otherMajor = new OtherMajor();
-		List<StudentSubjectGrade> anotherMajorList = otherMajorMapper.anotherMajorList(userNumber,student1.getDepartmentId());
+		List<OtherMajor> anotherMajorList = otherMajorMapper.anotherMajorList(userNumber,student1.getDepartmentId());
 
 		List<OtherMajorType> types = otherMajorTypeMapper.otherMajorType();
 		model.addAttribute("otherMajor", otherMajor);
@@ -56,21 +64,5 @@ public class OtherMajorController {
         return "student/otherMajorEdit";
     }
 
-	@RequestMapping(value="fillData", method=RequestMethod.GET)		//+버튼 누르면 edit페이지로 이동
-	public String fillOtherMajorData(Model model,@RequestParam("subjectId") String subjectId) {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        int userNumber=Integer.parseInt(authentication.getName());
-        Student stu = studentMapper.findById(userNumber);
-        int departmentId = stu.getDepartmentId();
-        List<StudentSubjectGrade> anotherMajorList = otherMajorMapper.anotherMajorList(userNumber,stu.getDepartmentId());
-		OtherMajor otherMajorData = otherMajorMapper.otherMajorData(userNumber, subjectId);
-		model.addAttribute("otherMajor", otherMajorData);
-		model.addAttribute("anotherMajorList", anotherMajorList);
-		model.addAttribute("subjectId", subjectId);
-		
-		List<OtherMajorType> types = otherMajorTypeMapper.otherMajorType();
-		model.addAttribute("types", types);
-        return "student/otherMajorEdit";
-    }
 
 }
