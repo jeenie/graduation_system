@@ -316,7 +316,7 @@ select.form-control.w200 {
 			], {
 				forceCreate: true,
 				render: function(data) {
-					var $a = $("<a>").append(data.label);
+					var $a = $("<a>").addClass(data.itemId).append(data.label);
 					return $a;
 				}
 			});
