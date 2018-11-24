@@ -27,235 +27,256 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
-<style>
-.inquiry_btn {
-	border: none;
-	/* Remove borders */
-	border-radius: 2.5px;
-	color: white;
-	/* Add a text color */
-	padding: 4px 10px;
-	/*14px 28px;  Add some padding */
-	width: 50px;
-	height: 30px;
-	cursor: pointer;
-	/* Add a pointer cursor on mouse-over */
-}
-
-.body_btn {
-	border: none;
-	/* Remove borders */
-	border-radius: 2.5px;
-	color: white;
-	/* Add a text color */
-	padding: 4px 10px;
-	/*14px 28px;  Add some padding */
-	width: 50px;
-	height: 25px;
-	cursor: pointer;
-	/* Add a pointer cursor on mouse-over */
-}
-
-.btn-statement3 {
-	/*열람가능여부 yes*/
-	border: none;
-	/* Remove borders */
-	border-radius: 2.5px;
-	color: white;
-	/* Add a text color */
-	padding: 4px 5px;
-	/*14px 28px;  Add some padding */
-	width: 50px;
-	height: 25px;
-	cursor: pointer;
-	/* Add a pointer cursor on mouse-over */
-	background-color: grey;
-}
-
-.btn-statement4 {
-	/*열람가능여부 no*/
-	border: none;
-	/* Remove borders */
-	border-radius: 2.5px;
-	color: white;
-	/* Add a text color */
-	padding: 4px 5px;
-	/*14px 28px;  Add some padding */
-	width: 50px;
-	cursor: pointer;
-	/* Add a pointer cursor on mouse-over */
-	background-color: rgb(80, 153, 92);
-}
-
-.warning {
-	background-color: #ff9800;
-}
-
-/* Orange */
-.warning:hover {
-	background: #e68a00;
-}
-
-/*pagination*/
-.pagination {
-	justify-content: center;
-	text-align: center;
-}
-
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-	transition: background-color .3s;
-}
-
-.pagination a.active {
-	background-color: dodgerblue;
-	color: white;
-}
-
-td {
-	text-align: center;
-	vertical-align: middle;
-}
-
-.table-info {
-	width: 400px;
-}
-
-.contents {
-	margin-top: 5px;
-	margin-right: 100px;
-	margin-left: 140px;
-	margin-bottom: 100px;
-}
-
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
-
-/*input class 변경*/
-.form-controls {
-	width: 160px;
-	height: 35px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-
-.modalGreen {
-	width: 100%;
-	height: 35px;
-	background-color: rgb(22, 105, 22);
-	color: white;
-	font-weight: normal;
-	padding-top: 7px;
-	padding-left: 7px;
-}
-
-.btn-submit {
-	padding: 6px 15px;
-	background: #1BBD36;
-	color: #fff;
-	border-radius: 4px;
-	border: none;
-	margin-top: 0;
-}
-
-.aboutus {
-	margin-right: 30%;
-}
-
-/*progress 서식*/
-.progressbar {
-	width: 600px;
-	height: 16px;
-	margin: 0 auto 20px auto;
-	padding: 0px;
-	background: #cfcfcf;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #aaa #bbb #fff #bbb;
-	box-shadow: inset 0px 2px 3px #bbb;
-}
-
-.progressbar, .progressbar-inner {
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-o-border-radius: 4px;
-}
-
-.progressbar-inner {
-	width: 77%; /* Change to actual percentage */
-	height: 100%;
-	background: #999;
-	background-size: 18px 18px;
-	background-color: #ac0;
-	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2)
-		25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
-		rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-	box-shadow: inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px
-		0px rgba(0, 0, 0, .2);
-}
-
-.progressbar-green .progressbar-inner {
-	background-color: #ac0;
-}
-</style>
+	<style>
+	.inquiry_btn {
+		border: none;
+		/* Remove borders */
+		border-radius: 2.5px;
+		color: white;
+		/* Add a text color */
+		padding: 4px 10px;
+		/*14px 28px;  Add some padding */
+		width: 50px;
+		height: 30px;
+		cursor: pointer;
+		/* Add a pointer cursor on mouse-over */
+	}
+	
+	.body_btn {
+		border: none;
+		/* Remove borders */
+		border-radius: 2.5px;
+		color: white;
+		/* Add a text color */
+		padding: 4px 10px;
+		/*14px 28px;  Add some padding */
+		width: 50px;
+		height: 25px;
+		cursor: pointer;
+		/* Add a pointer cursor on mouse-over */
+	}
+	
+	.btn-statement3 {
+		/*열람가능여부 yes*/
+		border: none;
+		/* Remove borders */
+		border-radius: 2.5px;
+		color: white;
+		/* Add a text color */
+		padding: 4px 5px;
+		/*14px 28px;  Add some padding */
+		width: 50px;
+		height: 25px;
+		cursor: pointer;
+		/* Add a pointer cursor on mouse-over */
+		background-color: grey;
+	}
+	
+	.btn-statement4 {
+		/*열람가능여부 no*/
+		border: none;
+		/* Remove borders */
+		border-radius: 2.5px;
+		color: white;
+		/* Add a text color */
+		padding: 4px 5px;
+		/*14px 28px;  Add some padding */
+		width: 50px;
+		cursor: pointer;
+		/* Add a pointer cursor on mouse-over */
+		background-color: rgb(80, 153, 92);
+	}
+	
+	.warning {
+		background-color: #ff9800;
+	}
+	
+	/* Orange */
+	.warning:hover {
+		background: #e68a00;
+	}
+	
+	td {
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.table-info {
+		width: 400px;
+	}
+	
+	.contents {
+		margin-top: 5px;
+		margin-right: 100px;
+		margin-left: 140px;
+		margin-bottom: 100px;
+	}
+	
+	/*input class 변경*/
+	.form-controls {
+		width: 160px;
+		height: 35px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	}
+	
+	.modalGreen {
+		width: 100%;
+		height: 35px;
+		background-color: rgb(22, 105, 22);
+		color: white;
+		font-weight: normal;
+		padding-top: 7px;
+		padding-left: 7px;
+	}
+	
+	.btn-submit {
+		padding: 6px 15px;
+		background: #1BBD36;
+		color: #fff;
+		border-radius: 4px;
+		border: none;
+		margin-top: 0;
+	}
+	
+	.aboutus {
+		margin-right: 30%;
+	}
+	
+	/*progress 서식*/
+	.progressbar {
+		width: 600px;
+		height: 16px;
+		margin: 0 auto 20px auto;
+		padding: 0px;
+		background: #cfcfcf;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #aaa #bbb #fff #bbb;
+		box-shadow: inset 0px 2px 3px #bbb;
+	}
+	
+	.progressbar, .progressbar-inner {
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	}
+	
+	.progressbar-inner {
+		width: 77%; /* Change to actual percentage */
+		height: 100%;
+		background: #999;
+		background-size: 18px 18px;
+		background-color: #ac0;
+		background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2)
+			25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
+			rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+		box-shadow: inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px
+			0px rgba(0, 0, 0, .2);
+	}
+	
+	.progressbar-green .progressbar-inner {
+		background-color: #ac0;
+	}
+	</style>
+	
+	<script>
+		$(document).ready(function(){
+			$(".verticalTree").zooTree([
+			    {
+			        "label": "핵심역량",
+			        "itemId": "root",
+			        "parentId": "999",
+			        "children": [
+			            {
+			                "label": "가치역량",
+			                "itemId": "role1",
+			                "parentId": "root",
+			                "children": [
+			                    {
+			                        "label": "인간·인권",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+			                    {
+			                        "label": "생명·평화",
+			                        "itemId": "role12",
+			                        "parentId": "role1",
+			                        "children": []
+			                    },
+													{
+			                        "label": "민주시민",
+			                        "itemId": "role11",
+			                        "parentId": "role1",
+			                        "children": []
+			                    }
+			                ]
+			            },
+			            {
+			                "label": "대안역량",
+			                "itemId": "role2",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "융·복합적 사고",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "조사·분석·정보활용",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "대안제시·문제해결",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            },
+			            {
+			                "label": "실천역량",
+			                "itemId": "role3",
+			                "parentId": "root",
+			                "children": [
+												{
+														"label": "민주적 소통",
+														"itemId": "role12",
+														"parentId": "role1",
+														"children": []
+												},
+												{
+														"label": "연대와 공동체적 실천",
+														"itemId": "role11",
+														"parentId": "role1",
+														"children": []
+												}
+											]
+			            }
+			        ]
+			    }
+			], {
+				forceCreate: true,
+				render: function(data) {
+					var $a = $("<a>").addClass(data.itemId).append(data.label);
+					return $a;
+				}
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -340,7 +361,7 @@ td {
 					style="width:${((studentGradefile.totalUnit/total)*100)>100 ? "100" : (studentGradefile.totalUnit/total)*100}%"></div>
 			</div>
 		</div>
-		<br> <br> <br> <br> <br>
+		<br> <br> <br> <br>
 
 		<div class="progress-wrap">
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
@@ -349,46 +370,82 @@ td {
 				<div class="progressbar-inner"
 					style="width:${((studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100)>100 ? "100" : (studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100}%"></div>
 			</div>
-			<br> <br>
-			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
-			<p
-				style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
-				과목은 색으로 표시됩니다</p>
-			<div style="margin-right: 200px">
-				<table class="table">
-					<thead>
-						<tr style="height: 30px;">
-							<th scope="col" class="text-center">과목명</th>
-							<th scope="col" class="text-center">학점</th>
-							<th scope="col" class="text-center">성적</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="major" items="${ mustmajor2 }">
-							<c:set var="loop_flag" value="false" />
-							<c:set var="check" value="false" />
-							<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
-								<c:if test="${not loop_flag }">
-									<c:set var="color" value="#FFFFFF" />
-									<c:if
-										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
-										<c:set var="color" value="#E1F5A9" />
-										<c:set var="loop_flag" value="true" />
-										<c:set var="check" value="true" />
-										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
-									</c:if>
-								</c:if>
-							</c:forEach>
-							<tr style="background-color:${color}">
-								<td>${ major.majorName }</td>
-								<td>${ major.subjectScore }</td>
-								<td>${ check.equals("true") ? grade : "" }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
 		</div>
+		<c:if test="${entranceYear == 2018}">
+			<br> <br>
+			<div class="progress-wrap">
+				<p style="font-size: 18px; font-weight: bold;">>&nbsp 전탐
+					${studentGradefile.majorexUnit}/${explorationGrade}</p>
+				<div class="progressbar progressbar-green" style="float: left">
+					<div class="progressbar-inner"
+						style="width:${((studentGradefile.majorexUnit/explorationGrade)*100)>100 ? "100" : (studentGradefile.majorexUnit/explorationGrade)*100}%"></div>
+				</div>
+			</div>
+		</c:if>
+			<br> <br>
+			<c:if test="${entranceYear != 2018}">
+				<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
+				<p
+					style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
+					과목은 색으로 표시됩니다</p>
+				<div style="margin-right: 200px">
+					<table class="table">
+						<thead>
+							<tr style="height: 30px;">
+								<th scope="col" class="text-center">과목명</th>
+								<th scope="col" class="text-center">학점</th>
+								<th scope="col" class="text-center">성적</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="major" items="${ mustmajor2 }">
+								<c:set var="loop_flag" value="false" />
+								<c:set var="check" value="false" />
+								<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+									<c:if test="${not loop_flag }">
+										<c:set var="color" value="#FFFFFF" />
+										<c:if
+											test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+											<c:set var="color" value="#E1F5A9" />
+											<c:set var="loop_flag" value="true" />
+											<c:set var="check" value="true" />
+											<c:set var="grade" value="${ studentSubjectGrade.grade }" />
+										</c:if>
+									</c:if>
+								</c:forEach>
+								<tr style="background-color:${color}">
+									<td>${ major.majorName }</td>
+									<td>${ major.subjectScore }</td>
+									<td>${ check.equals("true") ? grade : "" }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
+			<c:if test="${entranceYear == 2018}">
+				<p style="font-size: 16px; font-weight: bold;">＊ 전공 탐색</p>
+				<div style="margin-right: 200px">
+					<table class="table">
+						<thead>
+							<tr style="height: 30px;">
+								<th scope="col" class="text-center">과목명</th>
+								<th scope="col" class="text-center">학점</th>
+								<th scope="col" class="text-center">성적</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="major" items="${ major2018 }">
+								<tr style="background-color:${color}">
+									<td>${ major.majorName }</td>
+									<td>${ major.subjectScore }</td>
+									<td>${ major.grade }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
 
 		<br> <br>
 
@@ -477,6 +534,9 @@ td {
 					</table>
 				</c:if>
 			</div>
+			<c:if test="${ entranceYear == 2018 }">
+				<div class="verticalTree"></div>
+			</c:if>
 		</div>
 	</div>
 	<br>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
+import net.skhu.dto.Exploration;
 import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
 import net.skhu.dto.RequiredCultureSubject;
@@ -27,6 +28,7 @@ import net.skhu.mapper.ChapelSubjectMapper;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.ExplorationMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.PasswordQuizMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
@@ -71,7 +73,9 @@ public class StudentController {
 	ChapelSubjectMapper chapelSubjectMapper;
 	@Autowired
 	RequiredCultureSubjectMapper requiredCultureSubjectMapper;
-
+	@Autowired
+	ExplorationMapper explorationMapper;
+	
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
 		List<Student> students = studentMapper.findAll();
@@ -128,6 +132,12 @@ public class StudentController {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
 		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
+		List<Major> major2018 = null;
+		Exploration exploration = explorationMapper.find();
+		int explorationGrade = exploration.getExploration();
+		if(entranceYear == 2018) {
+			major2018 = majorMapper.findMajorList2018(userNumber);
+		}
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		int serveSubject = serveSubjectMapper.findById(userNumber);
 		int chapelSubject = chapelSubjectMapper.findById(userNumber);
@@ -148,6 +158,9 @@ public class StudentController {
 		model.addAttribute("processId", processId);
 		model.addAttribute("requiredCultureSubject", requiredCultureSubject);
 		model.addAttribute("entranceYear", entranceYear);
+		model.addAttribute("mustMajor", mustMajor);
+		model.addAttribute("major2018", major2018);
+		model.addAttribute("explorationGrade", explorationGrade);
 		return "student/graduationStatus";
 	}
 }

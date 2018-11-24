@@ -46,8 +46,15 @@
 		m.completeType = '필수'
 	</select>
 	<delete id="delete">
-		DELETE FROM major_list WHERE departmentId =#{departmentId} and majorSubjectId = #{majorSubjectId} and entranceYear= #{entranceYear}
+		DELETE FROM major_list 
+		WHERE departmentId =#{departmentId} and majorSubjectId = #{majorSubjectId} and entranceYear= #{entranceYear}
 	</delete>
+	<select id="findMajorList2018" resultType="Major">
+		SELECT ssg.*, s.name majorName, s.subjectScore 
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId=s.id
+		WHERE ssg.id=#{userNumber} and ssg.completeType='전탐';
+	</select>
 </mapper>
              
              
