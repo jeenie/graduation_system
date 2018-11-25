@@ -223,19 +223,19 @@
 			                "children": [
 			                    {
 			                        "label": "인간·인권",
-			                        "itemId": "role11",
+			                        "itemId": "c101",
 			                        "parentId": "role1",
 			                        "children": []
 			                    },
 			                    {
 			                        "label": "생명·평화",
-			                        "itemId": "role12",
+			                        "itemId": "c102",
 			                        "parentId": "role1",
 			                        "children": []
 			                    },
 													{
 			                        "label": "민주시민",
-			                        "itemId": "role11",
+			                        "itemId": "c103",
 			                        "parentId": "role1",
 			                        "children": []
 			                    }
@@ -248,19 +248,19 @@
 			                "children": [
 												{
 														"label": "융·복합적 사고",
-														"itemId": "role11",
+														"itemId": "c201",
 														"parentId": "role1",
 														"children": []
 												},
 												{
 														"label": "조사·분석·정보활용",
-														"itemId": "role12",
+														"itemId": "c202",
 														"parentId": "role1",
 														"children": []
 												},
 												{
 														"label": "대안제시·문제해결",
-														"itemId": "role11",
+														"itemId": "c203",
 														"parentId": "role1",
 														"children": []
 												}
@@ -273,13 +273,13 @@
 			                "children": [
 												{
 														"label": "민주적 소통",
-														"itemId": "role12",
+														"itemId": "c301",
 														"parentId": "role1",
 														"children": []
 												},
 												{
 														"label": "연대와 공동체적 실천",
-														"itemId": "role11",
+														"itemId": "c302",
 														"parentId": "role1",
 														"children": []
 												}
@@ -294,6 +294,22 @@
 					return $a;
 				}
 			});
+			if(${c101Total} >= 3) 
+				$('.c101').css('background-color', '#E1F5A9');
+			if(${c102Total} >= 3) 
+				$('.c102').css('background-color', '#E1F5A9');
+			if(${c103Total} >= 3) 
+				$('.c103').css('background-color', '#E1F5A9');
+			if(${c201Total} >= 3) 
+				$('.c103').css('background-color', '#E1F5A9');
+			if(${c202Total} >= 3) 
+				$('.c103').css('background-color', '#E1F5A9');
+			if(${c203Total} >= 3) 
+				$('.c103').css('background-color', '#E1F5A9');
+			if(${c301Total} >= 3) 
+				$('.c301').css('background-color', '#E1F5A9');
+			if(${c302Total} >= 3) 
+				$('.c103').css('background-color', '#E1F5A9');
 		});
 	</script>
 </head>
@@ -556,8 +572,6 @@
 			<c:if test="${ entranceYear == 2018 }">
 				<p style="font-size: 18px; font-weight: bold;">>&nbsp 핵심역량
 				${coreTotal}/18</p>
-				<p style="font-size: 18px; font-weight: bold;">>&nbsp 민주적 소통
-				${c301Total}</p>
 				<div class="verticalTree"></div>
 			</c:if>
 		</div>
