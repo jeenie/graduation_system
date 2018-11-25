@@ -294,6 +294,15 @@
 					return $a;
 				}
 			});
+			if(${c1Total} >= 6) {
+				$('.role1').css('background-color', '#E1F5A9');
+			}
+			if(${c2Total} >= 6) {
+				$('.role2').css('background-color', '#E1F5A9');
+			}
+			if(${c3Total} >= 6) {
+				$('.role3').css('background-color', '#E1F5A9');
+			}
 			if(${c101Total} >= 3) 
 				$('.c101').css('background-color', '#E1F5A9');
 			if(${c102Total} >= 3) 
@@ -301,15 +310,16 @@
 			if(${c103Total} >= 3) 
 				$('.c103').css('background-color', '#E1F5A9');
 			if(${c201Total} >= 3) 
-				$('.c103').css('background-color', '#E1F5A9');
+				$('.c201').css('background-color', '#E1F5A9');
 			if(${c202Total} >= 3) 
-				$('.c103').css('background-color', '#E1F5A9');
+				$('.c202').css('background-color', '#E1F5A9');
 			if(${c203Total} >= 3) 
-				$('.c103').css('background-color', '#E1F5A9');
+				$('.c203').css('background-color', '#E1F5A9');
 			if(${c301Total} >= 3) 
 				$('.c301').css('background-color', '#E1F5A9');
-			if(${c302Total} >= 3) 
-				$('.c103').css('background-color', '#E1F5A9');
+			if(${c302Total} >= 3) {
+				$('.c302').css('background-color', '#E1F5A9');
+			}
 		});
 	</script>
 </head>

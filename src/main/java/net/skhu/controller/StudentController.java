@@ -150,6 +150,9 @@ public class StudentController {
 		int c203Total = 0;
 		int c301Total = 0;
 		int c302Total = 0;
+		int c1Total = 0;
+		int c2Total = 0;
+		int c3Total = 0;
 		if(entranceYear == 2018) {
 			major2018 = majorMapper.findMajorList2018(userNumber);
 			allcores = coreSubjectMapper.findAllCoreSubject(userNumber);
@@ -178,9 +181,12 @@ public class StudentController {
 				else if(cs.getCoreCode().equals("c302"))
 					c302Total += cs.getSubjectScore();
 			}
-			
+			c1Total = c101Total + c102Total + c103Total;
+			c2Total = c201Total + c202Total + c203Total;
+			c3Total = c301Total + c302Total;
 		}
 		System.out.println(coreTotal);
+		System.out.println(c201Total);
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		int serveSubject = serveSubjectMapper.findById(userNumber);
 		int chapelSubject = chapelSubjectMapper.findById(userNumber);
@@ -208,6 +214,7 @@ public class StudentController {
 		model.addAttribute("c101Total", c101Total); model.addAttribute("c102Total", c102Total); model.addAttribute("c103Total", c103Total);
 		model.addAttribute("c201Total", c201Total); model.addAttribute("c202Total", c202Total); model.addAttribute("c203Total", c203Total);
 		model.addAttribute("c301Total", c301Total); model.addAttribute("c302Total", c302Total);
+		model.addAttribute("c1Total", c1Total); model.addAttribute("c2Total", c2Total); model.addAttribute("c3Total", c3Total);
 		return "student/graduationStatus";
 	}
 }

@@ -23,7 +23,7 @@
 		student_subject_grade.subjectid =
 		subject.id where
 		student_subject_grade.id = #{id} and
-		student_subject_grade.completeType = '전공필수';
+		(student_subject_grade.completeType = '전공필수' OR student_subject_grade.completeType = '전필');
 	</select>
 	<select id="findByIdMustCulture"
 		resultType="StudentSubjectGrade">
@@ -34,7 +34,7 @@
 		student_subject_grade ssg JOIN subject s ON
 		ssg.subjectid = s.id where
 		ssg.id = #{id} and
-		ssg.completeType = '교양필수';
+		(ssg.completeType = '교양필수' OR ssg.completeType= '교필');
 	</select>
 
 </mapper>
