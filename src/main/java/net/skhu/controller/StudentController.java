@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.skhu.dto.CoreSubject;
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
 import net.skhu.dto.DepartmentMajorRule;
@@ -25,6 +26,7 @@ import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.dto.Subject;
 import net.skhu.dto.Total;
 import net.skhu.mapper.ChapelSubjectMapper;
+import net.skhu.mapper.CoreSubjectMapper;
 import net.skhu.mapper.CultureMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
@@ -75,6 +77,8 @@ public class StudentController {
 	RequiredCultureSubjectMapper requiredCultureSubjectMapper;
 	@Autowired
 	ExplorationMapper explorationMapper;
+	@Autowired
+	CoreSubjectMapper coreSubjectMapper;
 	
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -132,12 +136,51 @@ public class StudentController {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
 		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
+		
 		List<Major> major2018 = null;
+		List<CoreSubject> allcores = null;
 		Exploration exploration = explorationMapper.find();
 		int explorationGrade = exploration.getExploration();
+		int coreTotal = 0;
+		int c101Total = 0;
+		int c102Total = 0;
+		int c103Total = 0;
+		int c201Total = 0;
+		int c202Total = 0;
+		int c203Total = 0;
+		int c301Total = 0;
+		int c302Total = 0;
 		if(entranceYear == 2018) {
 			major2018 = majorMapper.findMajorList2018(userNumber);
+			allcores = coreSubjectMapper.findAllCoreSubject(userNumber);
+			for (CoreSubject cs : allcores) {
+				coreTotal += cs.getSubjectScore();
+				if(cs.getCoreCode().equals("c101"))
+					c101Total += cs.getSubjectScore();
+				else if(cs.getCoreCode().equals("c102"))
+					c102Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c103"))
+					c103Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c201"))
+					c201Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c202"))
+					c202Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c203"))
+					c203Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c301"))
+					c301Total += cs.getSubjectScore();
+
+				else if(cs.getCoreCode().equals("c302"))
+					c302Total += cs.getSubjectScore();
+			}
+			
 		}
+		System.out.println(coreTotal);
 		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
 		int serveSubject = serveSubjectMapper.findById(userNumber);
 		int chapelSubject = chapelSubjectMapper.findById(userNumber);
@@ -161,6 +204,10 @@ public class StudentController {
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("major2018", major2018);
 		model.addAttribute("explorationGrade", explorationGrade);
+		model.addAttribute("coreTotal", coreTotal);
+		model.addAttribute("c101Total", c101Total); model.addAttribute("c102Total", c102Total); model.addAttribute("c103Total", c103Total);
+		model.addAttribute("c201Total", c201Total); model.addAttribute("c202Total", c202Total); model.addAttribute("c203Total", c203Total);
+		model.addAttribute("c301Total", c301Total); model.addAttribute("c302Total", c302Total);
 		return "student/graduationStatus";
 	}
 }

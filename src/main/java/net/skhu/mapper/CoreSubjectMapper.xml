@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.CoreSubjectMapper">
+	<select id="findAllCoreSubject" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=#{userNumber} AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL;
+	</select>
+	<select id="findc101" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc102" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc103" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc201" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc202" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc203" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc301" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+	<select id="findc302" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL AND cs.coreCode = 'c101';
+	</select>
+</mapper>

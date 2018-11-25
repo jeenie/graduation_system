@@ -21,6 +21,14 @@
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
 
+<link rel="stylesheet" href="${R}res/css/prism.css">
+<link href="${R}res/css/zooTree.css" rel="stylesheet" />
+
+
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="${R}res/js/zooTree.js"></script>
+  
 <!-- font awesome-->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -191,6 +199,17 @@
 	
 	<script>
 		$(document).ready(function(){
+			var departmentId;
+			var entranceYear;
+			$('#departmentId').on('change', function() {
+				departmentId = this.value;
+				//alert(departmentId);
+			});
+			$('#entranceYear').on('change', function() {
+				if(this.value == 2018){
+					alert("18학번은 학부로 조회해주시기 바랍니다.");
+				}
+			});
 			$(".verticalTree").zooTree([
 			    {
 			        "label": "핵심역량",
@@ -535,6 +554,10 @@
 				</c:if>
 			</div>
 			<c:if test="${ entranceYear == 2018 }">
+				<p style="font-size: 18px; font-weight: bold;">>&nbsp 핵심역량
+				${coreTotal}/18</p>
+				<p style="font-size: 18px; font-weight: bold;">>&nbsp 민주적 소통
+				${c301Total}</p>
 				<div class="verticalTree"></div>
 			</c:if>
 		</div>
