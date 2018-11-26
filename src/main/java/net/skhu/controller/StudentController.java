@@ -79,7 +79,7 @@ public class StudentController {
 	ExplorationMapper explorationMapper;
 	@Autowired
 	CoreSubjectMapper coreSubjectMapper;
-	
+
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
 		List<Student> students = studentMapper.findAll();
@@ -87,6 +87,15 @@ public class StudentController {
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);
 		return "user/studentListForAdmin";
+	}
+
+	@RequestMapping("user/studentListForProfessor")
+	public String list2(Model model) {
+		List<Student> students = studentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
+		model.addAttribute("students", students);
+		model.addAttribute("departments", departments);
+		return "user/studentListForProfessor";
 	}
 
 	@RequestMapping(value = "user/studentSearch", method = RequestMethod.GET)
@@ -136,9 +145,9 @@ public class StudentController {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
 		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
-		if(entranceYear == 2013)
+		if (entranceYear == 2013)
 			mustmajor2 = majorMapper.findMustMajorBy2013User(departmentId, entranceYear);
-		
+
 		List<Major> major2018 = null;
 		List<CoreSubject> allcores = null;
 		Exploration exploration = explorationMapper.find();
@@ -155,32 +164,32 @@ public class StudentController {
 		int c1Total = 0;
 		int c2Total = 0;
 		int c3Total = 0;
-		if(entranceYear == 2018) {
+		if (entranceYear == 2018) {
 			major2018 = majorMapper.findMajorList2018(userNumber);
 			allcores = coreSubjectMapper.findAllCoreSubject(userNumber);
 			for (CoreSubject cs : allcores) {
 				coreTotal += cs.getSubjectScore();
-				if(cs.getCoreCode().equals("c101"))
+				if (cs.getCoreCode().equals("c101"))
 					c101Total += cs.getSubjectScore();
-				else if(cs.getCoreCode().equals("c102"))
+				else if (cs.getCoreCode().equals("c102"))
 					c102Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c103"))
+				else if (cs.getCoreCode().equals("c103"))
 					c103Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c201"))
+				else if (cs.getCoreCode().equals("c201"))
 					c201Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c202"))
+				else if (cs.getCoreCode().equals("c202"))
 					c202Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c203"))
+				else if (cs.getCoreCode().equals("c203"))
 					c203Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c301"))
+				else if (cs.getCoreCode().equals("c301"))
 					c301Total += cs.getSubjectScore();
 
-				else if(cs.getCoreCode().equals("c302"))
+				else if (cs.getCoreCode().equals("c302"))
 					c302Total += cs.getSubjectScore();
 			}
 			c1Total = c101Total + c102Total + c103Total;
@@ -213,10 +222,17 @@ public class StudentController {
 		model.addAttribute("major2018", major2018);
 		model.addAttribute("explorationGrade", explorationGrade);
 		model.addAttribute("coreTotal", coreTotal);
-		model.addAttribute("c101Total", c101Total); model.addAttribute("c102Total", c102Total); model.addAttribute("c103Total", c103Total);
-		model.addAttribute("c201Total", c201Total); model.addAttribute("c202Total", c202Total); model.addAttribute("c203Total", c203Total);
-		model.addAttribute("c301Total", c301Total); model.addAttribute("c302Total", c302Total);
-		model.addAttribute("c1Total", c1Total); model.addAttribute("c2Total", c2Total); model.addAttribute("c3Total", c3Total);
+		model.addAttribute("c101Total", c101Total);
+		model.addAttribute("c102Total", c102Total);
+		model.addAttribute("c103Total", c103Total);
+		model.addAttribute("c201Total", c201Total);
+		model.addAttribute("c202Total", c202Total);
+		model.addAttribute("c203Total", c203Total);
+		model.addAttribute("c301Total", c301Total);
+		model.addAttribute("c302Total", c302Total);
+		model.addAttribute("c1Total", c1Total);
+		model.addAttribute("c2Total", c2Total);
+		model.addAttribute("c3Total", c3Total);
 		return "student/graduationStatus";
 	}
 }
