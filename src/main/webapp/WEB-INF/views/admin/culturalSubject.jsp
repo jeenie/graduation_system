@@ -21,54 +21,10 @@
 	  <link href="${R}res/css/style.css" rel="stylesheet" />
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	  
-	  <style>
-	  	/* Style The Dropdown Button */
-	    .dropbtn {
-	          background-color: #4CAF50;
-	          color: white;
-	          padding: 16px;
-	          font-size: 16px;
-	          border: none;
-	          cursor: pointer;
-	      }
-	
-	      /* The container <div> - needed to position the dropdown content */
-	      .dropdown {
-	          position: relative;
-	          display: inline-block;
-	      }
-	
-	      /* Dropdown Content (Hidden by Default) */
-	      .dropdown-content {
-	          display: none;
-	          position: absolute;
-	          background-color :  #4CAF50;
-	          min-width: 160px;
-	          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	          z-index: 1;
-	      }
-	
-	      /* Links inside the dropdown */
-	      .dropdown-content a {
-	          color: white;
-	          padding: 12px 16px;
-	          text-decoration: none;
-	          display: block;
-	      }
-	
-	      /* Change color of dropdown links on hover */
-	      .dropdown-content a:hover {background-color: rgb(96, 185, 96)}
-	
-	      /* Show the dropdown menu on hover */
-	      .dropdown:hover .dropdown-content {
-	          display: block;
-	      }
-	
-	      /* Change the background color of the dropdown button when the dropdown content is shown */
-	      .dropdown:hover .dropbtn {
-	          background-color: #3e8e41;
-	      }
-	      
+	  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	  
+	  <style>	      
 	      /*input class 변경*/
 	    .form-controls {
 	    width: 160px;
@@ -140,44 +96,6 @@
 	      margin-bottom: 350px;
 	    }
 	
-	    .divide {
-	      margin-top: 20px;
-	      margin-left: 60px;
-	      margin-right: 60px;
-	      height: 520px;
-	
-	    }
-	    
-	
-	    .myLavel {
-	      margin: 0;
-	      font-weight: bold;
-	      font-size: 22px;
-	    }
-	
-	    .selectSpan{
-	      overflow:hidden;
-	      width:25px;
-	    }
-	
-	    .selectSpan:before{
-	      content:'';
-	      height:20px;
-	      width:20px;
-	      display:block;
-	      border:5px solid #333;
-	      border-left-width:0;
-	      border-top-width:0;
-	      transform:rotate(-45deg);
-	      -webkit-transform:rotate(-45deg);
-	      -moz-transform:rotate(-45deg);
-	      -o-transform:rotate(-45deg);
-	      -ms-transform:rotate(-45deg);
-	      position:absolute;
-	      top:7px;
-	      right:7px;
-	    }
-	
 	    select.form-control.w200 {
 	      width: 200px;
 	      float: left;
@@ -202,34 +120,6 @@
 	      font-weight: bold;
 	      font-size:14px;
 	      margin: 0;
-	    }
-	
-	    .plusCircle{
-	      border-radius:50px;
-	      -webkit-border-radius:50px;
-	      -moz-border-radius:50px;
-	      width:30px;
-	      height:30px;
-	      background-color: #fff;
-	      color: #BDBDBD;
-	    }
-	
-	    .plusCircle:before, .plusCircle:after{
-	      content:'';
-	      height:3px;
-	      width:20px;
-	      display:block;
-	      background:#fff;
-	      border-radius:10px;
-	      -webkit-border-radius:10px;
-	      -moz-border-radius:10px;
-	      position:absolute;
-	      top:11px;
-	      left:3px;
-	    }
-	
-	    .plusCircle:after{
-	      height:20px; width:3px; top:3px; left:11px;
 	    }
 	    
 	    .inputNumber {

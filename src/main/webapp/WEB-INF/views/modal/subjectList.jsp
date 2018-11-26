@@ -176,12 +176,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="subject" items="${ subjects }">
-									<tr>
-											<td style="text-align:center;">${subject.id}</td>
-											<td style="text-align:center;">${subject.name}</td>
+									<tr  v-for="subject in subjects">
+											<td style="text-align:center;">{{subject.id}}</td>
+											<td style="text-align:center;">{{subject.name}}</td>
 									</tr>
-								</c:forEach>
 							</tbody>
 						</table>
 					</c:if>

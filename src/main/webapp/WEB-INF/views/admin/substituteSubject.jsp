@@ -26,7 +26,9 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <style>
 	.inquiry_btn {
 		border: none;
@@ -96,45 +98,7 @@
 		background: #e68a00;
 	}
 	
-	/*pagination*/
-	.pagination {
-		justify-content: center;
-		text-align: center;
-	}
 	
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-		transition: background-color .3s;
-	}
-	
-	.pagination a.active {
-		background-color: dodgerblue;
-		color: white;
-	}
-	
-	/* Add a grey background color on mouse-over */
-	.pagination
-	 
-	a
-	:hover
-	:not
-	 
-	(
-	.active
-	 
-	)
-	{
-	background-color
-	:
-	 
-	#ddd
-	;
-	
-	
-	}
 	td {
 		text-align: center;
 		vertical-align: middle;
@@ -146,55 +110,6 @@
 	
 	.contents {
 		width: 1000px;
-	}
-	
-	/* Style The Dropdown Button */
-	.dropbtn {
-		background-color: #4CAF50;
-		color: white;
-		padding: 16px;
-		font-size: 16px;
-		border: none;
-		cursor: pointer;
-	}
-	
-	/* The container <div> - needed to position the dropdown content */
-	.dropdown {
-		position: relative;
-		display: inline-block;
-	}
-	
-	/* Dropdown Content (Hidden by Default) */
-	.dropdown-content {
-		display: none;
-		position: absolute;
-		background-color: #4CAF50;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 1;
-	}
-	
-	/* Links inside the dropdown */
-	.dropdown-content a {
-		color: white;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-	}
-	
-	/* Change color of dropdown links on hover */
-	.dropdown-content a:hover {
-		background-color: rgb(96, 185, 96)
-	}
-	
-	/* Show the dropdown menu on hover */
-	.dropdown:hover .dropdown-content {
-		display: block;
-	}
-	
-	/* Change the background color of the dropdown button when the dropdown content is shown */
-	.dropdown:hover .dropbtn {
-		background-color: #3e8e41;
 	}
 	
 	/*input class 변경*/
@@ -232,31 +147,7 @@
 	margin-top: 0;
 	}
 </style>
-	<script type="text/javascript" language="javascript">
-		var params = { st: $("input[name=st]").val(), ss: $("select > option:selected").val()};
-		var url = 'popup?ss=' + params.ss + '&st=' + params.st;
-		var auto_refresh = setInterval(
-				function() {
-					$('#result').load(url).fadeIn('slow');
-				}, 5000		
-		);
-		
-		$(document).ready(function(){
-	        $.ajax({
-	             
-	            type : "GET",
-	            url : "popup?ss=0&st=",
-	            dataType : "text",
-	            error : function(){
-	                alert('통신실패!!');
-	            },
-	            success : function(data){
-	                $("#result").html(data) ;
-	            }
-	             
-	        });
-	    });
-	</script>
+	
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp" %>
@@ -270,6 +161,7 @@
 			<hr>
 		</div>
 	</div>
+<div id="app">
 	<div class="aboutus">
 		<div class="container">
 			<div style="margin-top: 30px">
@@ -354,7 +246,7 @@
 	</div>
 	
 	<div class="modal fade" id="find" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
 					<h4>
@@ -365,22 +257,35 @@
 						</h4>
 				</div>
 				<div class="modal-body">
-					<form action="SubstitutionSubject/popup" id="searchSubject">
+					<form id="searchSubject">
 						<div class="form-group">
 							<select class="form-control" name="ss" style="float:left; margin-right:5px; width:110px">
 								<option value="0">과목코드</option>
 								<option value="1">과목명</option>
 							</select>
-							<input type="text" name="st" value="${st}" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20">
+							<input type="text" v-model="st" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20">
 						</div>
-						<button type="submit" class="btn btn-submit" onclick="searchSubject();">조회</button>
+						<button type="button" class="btn btn-submit" v-on:click="findSubjectData">조회</button>
 					</form>
-					<div id="result">
-					</div>
+					<table class="table table-bordered mt5" style="margin-top:10px;">
+						<thead>
+								<tr>
+									<th style="text-align:center;">과목코드</th>
+									<th style="text-align:center;">과목명</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="hover" v-for="subject in subjects"> 
+									<td>{{subject.id}}</td> 
+									<td>{{subject.name}}</td> 
+								</tr>
+							</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
@@ -398,13 +303,24 @@
 			alert("정상적으로 대체과목이 등록되었습니다.");
 		}
 	</script>
-	<script>
-	//	function searchSubject() {
-			//alert("함수실행ok");
-	//		var params = { st: $("input[name=st]").val(), ss: $("select > option:selected").val()};
-	//		console.log(params);
-	//		$("#result").load("searchSubject", params);
-	//	}
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				ss: '',
+				st: '',
+				subjects: [],
+			},
+			methods: {
+					findSubjectData: function() {
+					let url = '/api/findSubject?ss=' + this.ss + '&st=' + this.st;
+					axios.get(url)
+						.then(response=> {
+							this.subjects = response.data;
+						});
+				}
+			}
+		});
 	</script>
 
 </body>
