@@ -94,9 +94,9 @@
         	<hr>
     	</div>
 	</div>
-	<div style="margin-top:80px;margin-left:350px; margin-bottom:130px;">
-		<p>회원가입이 성공적으로 완료되었습니다.</p>
-		<p>로그인을 해주세요.</p>
+	<div style="margin-top:80px;margin-left:100px; margin-bottom:130px;">
+		<p style="text-align:center; ">회원가입이 성공적으로 완료되었습니다.</p>
+		<p style="text-align:center; ">로그인을 해주세요.</p>
 		<a href="${R}guest/login">로그인</a>
 	</div>
 	<footer>
