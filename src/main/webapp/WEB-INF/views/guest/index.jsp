@@ -74,8 +74,6 @@
 	display: block;
 }
 
-
-
 /****** LOGIN MODAL ******/
 .loginmodal-container {
 	padding: 30px;
@@ -208,7 +206,8 @@
 								<li role="presentation"><a
 									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
 								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-								<li role="presentation" style="display:none"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
+								<li role="presentation" style="display: none"><a
+									data-toggle="modal" href="#loginModal">LoginModal</a></li>
 							</ul>
 						</div>
 					</div>
@@ -231,7 +230,7 @@
 									</h2>
 									<p class="animation animated-item-2"></p>
 									&nbsp;&nbsp; <a class="btn-slide animation animated-item-3"
-										href="#">이용안내</a>
+										href="#guide" data-toggle="modal">이용안내</a>
 								</div>
 							</div>
 
@@ -313,14 +312,54 @@
 				<h1>로그인</h1>
 				<br>
 				<form method="post" action="login_processing">
-					<input type="text" name="loginId" placeholder="ID"> 
-					<input type="password" name="passwd" placeholder="Password"> 
-					<input type="submit" name="login" class="login loginmodal-submit"
+					<input type="text" name="loginId" placeholder="ID"> <input
+						type="password" name="passwd" placeholder="Password"> <input
+						type="submit" name="login" class="login loginmodal-submit"
 						value="Login">
 				</form>
 
 				<div class="login-help">
-					<a href="${R}guest/sign">Register</a> - <a href="${R}guest/findPw">Forgot Password?</a>
+					<a href="${R}guest/sign">Register</a> - <a href="${R}guest/findPw">Forgot
+						Password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="guide" tabindex="-1" role="dialog"
+		aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>SKHU졸업관리시스템 이용안내</b>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+						</button>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p style="font-size: 16px; font-weight: bold;">성공회대 학생들을 위해 보다
+						편한 졸업관리시스템</p>
+					<p style="font-size: 14px; font-weight: bold;">&nbsp -
+						&nbsp나의 졸업현황을 한 번에 볼 수 있고 자신에게 맞는 특별과정을 찾아보세요</p>
+					<hr>
+					<p style="font-size: 14px; font-weight: bold;">성적파일 업로드 준비과정</p>
+					<p>① 성공회대학교 종합정보시스템 https://forest.skhu.ac.kr/ 접속하기</p>
+					<img src="${R}res/img/guide1.png" width="550px" height="400px">
+					<br> <br>
+					<p>② 성적관리 - 학내 제출용 성적증명서 출력</p>
+					<img src="${R}res/img/guide2.png" width="550px" height="400px">
+					<br> <br>
+					<p>③ 자신의 성적을 맨 위에 행부터 쫘악 드래그하기</p>
+					<img src="${R}res/img/guide3.png" width="550px" height="400px">
+					<br> <br>
+					<p>④ Excel에 붙여넣기 한 후 과목에 해당하는 행 이외에는 모두 지우기</p>
+					<img src="${R}res/img/guide4.png" width="550px" height="300px">
+					<br> <br>
+					<p>그럼 성적파일 완사앙 - ☆</p>
+					<p style="color: red; font-size: 12px;">※ Excel에 불필요한 내용이나 빈 셀이
+						포함된 경우 올바른 결과가 나오지 않을 수 있습니다.</p>
 				</div>
 			</div>
 		</div>
