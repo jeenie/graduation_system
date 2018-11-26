@@ -34,12 +34,6 @@
 		}
 	}
 	
-	function total(value) {
-		if(value >= 130) {
-			return "충족"; //충족
-		}
-		return "미충족"; //미충족
-	}
 </script>
 <style>
 .inquiry_btn {
@@ -458,33 +452,10 @@ textarea {
 									<td>${ student.id }</td>
 									<td>${ student.completeSemester}학기</td>
 									<td>
-										<!-- total(${student.totalUnit}) -->
-
-										<button type="button" class="btn-m2">
-											전공
-											<script>
-											var test1 = ${ student.departmentName };
-											alert(test1);
-										</script>
-										</button>
-										<button type="button" class="btn-m2">교양</button>
-
-
-									</td>
-								</tr>
-								<!--<tr data-toggle="modal" data-id="studentInfo"
-									data-target="#studentInfo">
-									<td>${ student.departmentName }</td>
-									<td>${ student.name }</td>
-									<td>${ student.id }</td>
-									<td>${ student.completeSemester}학기</td>
-									<td>
-
 										<button type="button" class="btn-m2">전공</button>
 										<button type="button" class="btn-m2">교양</button>
-
 									</td>
-								</tr>-->
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
