@@ -172,7 +172,7 @@
 							<button type="submit" class="inquiry_btn warning">조회</button>
 							<!--<a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>-->
 							<a data-toggle="modal" href="#addSubject" class="btn btn-submit">추가</a>
-
+							<a data-toggle="modal" href="#find" class="btn btn-submit">추가</a>
 						</form>
 
 					</div>
@@ -259,11 +259,14 @@
 				<div class="modal-body">
 					<form id="searchSubject">
 						<div class="form-group">
-							<select class="form-control" name="ss" style="float:left; margin-right:5px; width:110px">
+						<!--  
+							<select class="form-control" v-model="ss" style="float:left; margin-right:5px; width:110px">
+								<option disabled value="">검색조건</option>
 								<option value="0">과목코드</option>
 								<option value="1">과목명</option>
 							</select>
-							<input type="text" v-model="st" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20">
+						-->
+							<input type="text" v-model="st" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20"/>
 						</div>
 						<button type="button" class="btn btn-submit" v-on:click="findSubjectData">조회</button>
 					</form>
@@ -307,15 +310,13 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
-				ss: '',
 				st: '',
-				subjects: [],
+				subjects: []
 			},
 			methods: {
-					findSubjectData: function() {
-					let url = '/api/findSubject?ss=' + this.ss + '&st=' + this.st;
-					axios.get(url)
-						.then(response=> {
+				findSubjectData: function() {
+					let url = '/api/findSubject?st=' + this.st;
+					axios.get(url).then(response => {
 							this.subjects = response.data;
 						});
 				}

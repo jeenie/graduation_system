@@ -9,6 +9,6 @@
 		SELECT * FROM subject WHERE id = #{st}
 	</select>
 	<select id="findByName" resultType="Subject">
-		SELECT * FROM subject WHERE name = #{st}
+		SELECT * FROM subject WHERE name LIKE CONCAT('%', #{st}, '%')
 	</select>
 </mapper>
