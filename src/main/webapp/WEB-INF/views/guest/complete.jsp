@@ -95,8 +95,9 @@
     	</div>
 	</div>
 	<div style="margin-top:80px;margin-left:350px; margin-bottom:130px;">
-		<a href="findStudentPw" class="btn btn-student" style="margin-right:40px"><i class="fas fa-user-graduate"></i>학생</a>
-		<a href="findProfessorPw" class="btn btn-professor"><i class="fas fa-chalkboard-teacher"></i>교수</a>
+		<p>회원가입이 성공적으로 완료되었습니다.</p>
+		<p>로그인을 해주세요.</p>
+		<a href="${R}guest/login">로그인</a>
 	</div>
 	<footer>
       <div class="footer">

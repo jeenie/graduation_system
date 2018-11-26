@@ -179,7 +179,7 @@ public class SignCotroller {
 		
 		workbook.close();
 		
-		return "redirect:login";
+		return "guest/complete";
 	}
 
 	@RequestMapping(value="adminsign", method = RequestMethod.GET)

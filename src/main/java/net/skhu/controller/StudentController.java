@@ -136,6 +136,8 @@ public class StudentController {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(userNumber);
 		List<Subject> subjects = SubjectMapper.find();
 		List<Major> mustmajor2 = majorMapper.findMustMajorByUser(departmentId, entranceYear);
+		if(entranceYear == 2013)
+			mustmajor2 = majorMapper.findMustMajorBy2013User(departmentId, entranceYear);
 		
 		List<Major> major2018 = null;
 		List<CoreSubject> allcores = null;
