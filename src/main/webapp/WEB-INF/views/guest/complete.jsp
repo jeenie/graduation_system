@@ -52,7 +52,7 @@
             	<li>
             	</li>
             	<li style="font-size: 20px; margin-left: -5px;">
-                	비밀번호 찾기
+                	회원가입 완료
             	</li>
         	</div>
         	<hr>
