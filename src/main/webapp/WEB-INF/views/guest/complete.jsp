@@ -32,47 +32,20 @@
       border:none;
       margin-top: 10px;
     }
+    .myfont {
+    	text-align:center; 
+    	font-weight: bold; 
+    	font-size: 15px;
+    }
 </style>
+<script>
+	function alertGuest() {
+		alert("로그인 후 이용해주세요.");
+	}
+</script>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-										<a href="">대체/타전공 현황</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/views/include/guestNavibar.jsp"%>
 	<div id="breadcrumb">
     	<div class="container">
         	<div class="breadcrumb">
@@ -86,8 +59,8 @@
     	</div>
 	</div>
 	<div style="margin-top:80px;margin-left:-20px; margin-bottom:130px;">
-		<p style="text-align:center; font-weight: bold; font-size: 15px;">회원가입이 성공적으로 완료되었습니다.</p>
-		<p style="text-align:center; font-weight: bold; font-size: 15px;">로그인을 해주세요.</p>
+		<p class="myfont">회원가입이 성공적으로 완료되었습니다.</p>
+		<p class="myfont">로그인을 해주세요.</p>
 		<p style="text-align:center;"><a href="${R}guest/login" class="btn btn-login"><i class="fas fa-child"></i>로그인</a></p>
 	</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

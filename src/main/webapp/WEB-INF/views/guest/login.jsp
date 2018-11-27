@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="${R}res/css/animate.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="${R}res/css/custom.css">
 
 <!--style-->
 
@@ -212,16 +213,8 @@ input.form-control.w300 {
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="footer">
-			<div class="container">
-				문의:test123@naver.com<br> 152-716 서울시 구로구 연동로320<br>
-				Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-
-
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->

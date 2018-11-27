@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="${R}res/css/animate.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="${R}res/css/custom.css">
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -26,103 +27,18 @@
 	crossorigin="anonymous">
 
 <style>
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 140px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
-
 input.form-control.w300 {
 	width: 300px;
 }
 </style>
+ <script>
+	function alertGuest() {
+		alert("로그인 후 이용해주세요.");
+	}
+</script>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}guest/graduationRule">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a
-									href="${R}guest/login">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> <a
-											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
-											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-								<li role="presentation" style="display: none"><a
-									data-toggle="modal" href="#loginModal">LoginModal</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/views/include/guestNavibar.jsp"%>
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
@@ -166,16 +82,8 @@ input.form-control.w300 {
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="footer">
-			<div class="container">
-				문의:test123@naver.com<br> 152-716 서울시 구로구 연동로320<br>
-				Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-
-
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
