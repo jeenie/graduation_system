@@ -167,37 +167,6 @@ select.form-control.w200 {
 	font-size: 14px;
 }
 
-.plusCircle {
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	width: 30px;
-	height: 30px;
-	background-color: #fff;
-	color: #BDBDBD;
-}
-
-.plusCircle:before, .plusCircle:after {
-	content: '';
-	height: 3px;
-	width: 20px;
-	display: block;
-	background: #fff;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	position: absolute;
-	top: 11px;
-	left: 3px;
-}
-
-.plusCircle:after {
-	height: 20px;
-	width: 3px;
-	top: 3px;
-	left: 11px;
-}
-
 .inputNumber {
 	width: 60px;
 	margin-right: 0;

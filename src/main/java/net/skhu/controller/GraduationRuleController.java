@@ -67,7 +67,7 @@ public class GraduationRuleController {
 		model.addAttribute("serveCount", requiredCultureCount.getServeCount());
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("years", years);
-		return "guest/graduationRule";
+		return "guest/graduationRule_first";
 	}
 
 	@RequestMapping(value = "guest/select", method = RequestMethod.GET)

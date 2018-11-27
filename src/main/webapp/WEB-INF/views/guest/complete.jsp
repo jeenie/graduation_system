@@ -23,20 +23,11 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <style>
-	.btn-student {
+	.btn-login {
       padding: 8px 20px;
       background: #04B404;
       color: #fff;
-      font-size: 70px;
-      border-radius: 4px;
-      border:none;
-      margin-top: 10px;
-    }
-    .btn-professor {
-      padding: 8px 20px;
-      background: #0174DF;
-      color: #fff;
-      font-size: 70px;
+      font-size: 15px;
       border-radius: 4px;
       border:none;
       margin-top: 10px;
@@ -94,21 +85,11 @@
         	<hr>
     	</div>
 	</div>
-	<div style="margin-top:80px;margin-left:100px; margin-bottom:130px;">
-		<p style="text-align:center; ">회원가입이 성공적으로 완료되었습니다.</p>
-		<p style="text-align:center; ">로그인을 해주세요.</p>
-		<a href="${R}guest/login">로그인</a>
+	<div style="margin-top:80px;margin-left:-20px; margin-bottom:130px;">
+		<p style="text-align:center; font-weight: bold; font-size: 15px;">회원가입이 성공적으로 완료되었습니다.</p>
+		<p style="text-align:center; font-weight: bold; font-size: 15px;">로그인을 해주세요.</p>
+		<p style="text-align:center;"><a href="${R}guest/login" class="btn btn-login"><i class="fas fa-child"></i>로그인</a></p>
 	</div>
-	<footer>
-      <div class="footer">
-        <div class="container">
-          문의:test123@naver.com<br>
-          152-716 서울시 구로구 연동로320<br>
-          Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-
-
-        </div>
-      </div>
-  </footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
