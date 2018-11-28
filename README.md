@@ -13,3 +13,9 @@
 - 이영 [2zero0](https://github.com/2zero0) : 프로세스 설계, 프론트 엔드 개발 
 - 장예지 [yejijang](https://github.com/yejijang) : 디자인 총괄, 물리 DB 모델링, 프론트 엔드 개발
 - 정자영 [JUNGJAYOUNG](https://github.com/JUNGJAYOUNG) : 팀장, 프로세스 설계, 프론트 엔드 개발
+
+프로젝트 진행 일정
+-------------
+
+추가계획
+-------------
