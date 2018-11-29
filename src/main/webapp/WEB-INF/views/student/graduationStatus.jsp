@@ -195,6 +195,10 @@
 	.progressbar-green .progressbar-inner {
 		background-color: #ac0;
 	}
+	
+	.selctDept {
+		display: none;
+	}
 	</style>
 	
 	<script>
@@ -207,9 +211,10 @@
 			});
 			$('#selectProcess').on('change', function() {
 				if(this.value == 3){
-					alert(this.value)
-					$('#selectProcess').css('display', 'inline');
-				}
+					$('.selctDept').show();
+					alert("함께 복수전공할 학과를 선택한 후, 조회해주세요.");
+				} else
+					$('.selctDept').hide();
 			});
 			$(".verticalTree").zooTree([
 			    {
@@ -389,20 +394,17 @@
 								<option value="${specialProcess.id}"
 									${processId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
 							</c:forEach>
-						</select>&nbsp &nbsp &nbsp
+						</select>&nbsp
+						
+							<select class="form-controls w200 selctDept">
+									<option value="0">학과 선택</option>
+							</select>
+						
 						<button type="submit" class="btn-submit"
 							style="margin-left: 0; margin-top: 0; padding: 5px 20px; font-size: 16px;">조회</button>
 					</p>
 
-				</div>
-				
-					<div class="selctDept" style="float: left; display:none;" >
-						<select class="form-controls w200">
-								<option value="0">학과 선택</option>
-								
-						</select>
-					</div>
-				
+				</div>				
 			</div>
 		</form>
 		<br> <br> <br> <br>
