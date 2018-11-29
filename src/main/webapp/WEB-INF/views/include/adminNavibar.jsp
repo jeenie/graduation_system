@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script type="text/javascript">
+	function successLogout() {
+		alert("정상적으로 로그아웃되었습니다.");
+	}
+</script>
 <header>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navigation">
@@ -38,7 +43,7 @@
 										href="${R}user/studentListForAdmin">학생조회</a>
 
 								</div></li>
-							<li role="presentation"><a href="${R}user/logout_processing">Logout</a></li>
+							<li role="presentation"><a href="${R}user/logout_processing" onclick="successLogout()">Logout</a></li>
 							<li>
 								<div style="margin-top: 28px; margin-left: 1.5px;">
 									<a href="${R}user/adminEdit"> <i

@@ -213,6 +213,11 @@ input.form-control.w300 {
 			</div>
 		</div>
 	</div>
+	<c:if test="${param.error !=null }">
+		<script>
+			alert("로그인을 실패했습니다.")
+		</script>
+	</c:if>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
