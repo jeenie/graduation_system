@@ -205,9 +205,10 @@
 				departmentId = this.value;
 				//alert(departmentId);
 			});
-			$('#entranceYear').on('change', function() {
-				if(this.value == 2018){
-					alert("18학번은 학부로 조회해주시기 바랍니다.");
+			$('#selectProcess').on('change', function() {
+				if(this.value == 3){
+					alert(this.value)
+					$('#selectProcess').css('display', 'inline');
 				}
 			});
 			$(".verticalTree").zooTree([
@@ -382,7 +383,7 @@
 				<div style="float: left">
 					<p style="font-size: 18px; font-weight: bold;">
 						>&nbsp ${ student.name }님에 맞는 &nbsp <select name="processId"
-							class="form-controls w200">
+							class="form-controls w200" id="selectProcess">
 							<option value="0">특별과정</option>
 							<c:forEach var="specialProcess" items="${specialProcess}">
 								<option value="${specialProcess.id}"
@@ -394,6 +395,14 @@
 					</p>
 
 				</div>
+				
+					<div class="selctDept" style="float: left; display:none;" >
+						<select class="form-controls w200">
+								<option value="0">학과 선택</option>
+								
+						</select>
+					</div>
+				
 			</div>
 		</form>
 		<br> <br> <br> <br>
