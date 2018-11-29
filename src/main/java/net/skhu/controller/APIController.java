@@ -4,15 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.skhu.dto.Subject;
+import net.skhu.dto.Student;
+import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.SubjectMapper;
 
 @RestController
 public class APIController {
 	@Autowired SubjectMapper subjectMapper;
+	@Autowired StudentMapper studentMapper;
 	
 	@RequestMapping("/api/findSubject")
 	public List<Subject> subjectList(@RequestParam("st") String st) {
@@ -23,4 +27,14 @@ public class APIController {
 		subjects = subjectMapper.findByName(st);;
 		return subjects;
 	}
+
+	//http://localhost:8080/graduation_system/please?id=203032002
+	@RequestMapping("please")
+	public Student studentInfo(@RequestParam("id") int id) {
+		System.out.println("id파라미터로 받기 성공");
+		Student student = studentMapper.findById2(id);
+		System.out.println("해당id에 대한 정보 가져오기 성공");
+		return student;
+	}
+	
 }

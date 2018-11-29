@@ -24,7 +24,7 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-
+<!-- 
 <script type="text/javascript">
 	function button_event(value) {
 		if(confirm("해당 학생의 정보를 삭제하시겠습니까?")==true) {
@@ -35,6 +35,7 @@
 	}
 	
 </script>
+-->
 <style>
 .inquiry_btn {
 	border: none;
@@ -367,12 +368,14 @@ input[type="submit"] {
 
 /*학생정보*/
 .td-s {
+	width: 100px;
+	height: 36px;
 	border: 1px solid #8a8a8a;
 	text-align: center;
 }
 
 .th-s {
-	width: 100px;
+	width: 70px;
 	height: 36px;
 	border: 1px solid #8a8a8a;
 	text-align: center;
@@ -395,6 +398,7 @@ textarea {
 </style>
 </head>
 <body>
+<div id="stuModal">
 
 	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
 
@@ -413,9 +417,9 @@ textarea {
 				<div class="contents" style="text-align: center;">
 					<div>
 
-						<input type="text" class="form-controls btn-m1"
-							style="width: 665px;"> &nbsp;<input type="submit"
-							value="검색"> <a data-toggle="modal" href="#search">
+						<input type="text" class="form-controls btn-m1" style="width: 665px;"> &nbsp;
+						<button type="submit" class="btn-statement4" style="width:60px; height:33px; ">검색</button>
+						<a data-toggle="modal" href="#search">
 							<h5 style="color: rgb(104, 97, 97)">
 								<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -434,7 +438,25 @@ textarea {
 
 					</div>
 					<br> <br>
-					<table class="table table-hover">
+					<!-- 연습
+					<div id="app">
+					<p>왜 안먹냐고......하.......</p>
+					<button type="button" v-on:click="studentById(203032002)">얘는되겠찌</button>
+					<table border=1>
+						<tr>
+							<th>이름</th>
+							<th>성적</th>
+						</tr>
+				
+						<tr v-on:click="studentById(203032002)">
+							<td>{{selectedStudent.name}}</td>
+							<td>{{selectedStudent.grade}}</td>
+						</tr>
+					
+					</table>
+					</div> 
+					-->
+					<table class="table table-hover"> 
 						<thead>
 							<tr>
 								<th scope="col" class="text-center">학과</th>
@@ -445,8 +467,9 @@ textarea {
 							</tr>
 						</thead>
 						<tbody>
+						
 							<c:forEach var="student" items="${students}">
-								<tr onclick="button_event(${student.id});">
+								<tr v-on:click="studentById(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
 									<td>${ student.departmentName }</td>
 									<td>${ student.name }</td>
 									<td>${ student.id }</td>
@@ -457,6 +480,7 @@ textarea {
 									</td>
 								</tr>
 							</c:forEach>
+						
 						</tbody>
 					</table>
 					<!--pagination-->
@@ -464,6 +488,7 @@ textarea {
 						<a href="#">&laquo;</a> <a href="#">1</a> <a href="#">2</a> <a
 							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">&raquo;</a>
 					</div>
+					
 				</div>
 
 			</div>
@@ -554,16 +579,133 @@ textarea {
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="studentInfo" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-bottom:1.5px;">
+    
+                        <h4><b>학생정보</b>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        </h4>
+    
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <table class="table-s" border=1>
+                                <tr>
+                                    <th class="th-s">학번</th>
+                                    <td class="td-s">{{selectedStudent.id}} </td>
+                                    <th class="th-s">성명</th>
+                                    <td class="td-s">{{selectedStudent.name}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="th-s">학부(과)</th>
+                                    <td class="td-s">{{selectedStudent.departmentName}}</td>
+                                    <th class="th-s">학년</th>
+                                    <td class="td-s">{{selectedStudent.grade}}학년</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="th-s">입학구분</th>
+                                    <td class="td-s">{{selectedStudent.entranceType}}</td>
+                                    <th class="th-s">이수학기</th>
+                                    <td class="td-s">{{selectedStudent.completeSemester}}학기</td>
+                                </tr>
+                            </table>
+                            <div>
+                                <br>
+                                &nbsp;OOO 학생은 <i class="fas fa-lock"></i>&nbsp;
+                                <select name="special course">
+                                    <option value="">특별과정선택</option>
+                                    <option value="전공기초과정" selected="selected">전공기초과정</option>
+                                    <option value="전공심화과정">전공심화과정</option>
+                                    <option value="타과복수전공과정">타과복수전공과정</option>
+                                    <option value="타과부전공과정">타과부전공과정</option>
+                                </select>&nbsp을 이수하고 있습니다.
+                                       
+                            </div> 
+                        </div>
+                        <div>
+                            <div class="skill">
+                                <div class="progress-wrap" style="width:350px;">
+                                    <br>
+                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                            <span class="bar-width">67%</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="progress-wrap" style="width:350px;">
+                                    <b>＞전공</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
+                                    <div class="progress">
+                                        <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="bar-width">78%</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <img src="images/abouti/maj.png" width="100%">
+                                <div class="progress-wrap" style="width:350px;">
+                                    <b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
+                                    <div class="progress">
+                                        <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                            <span class="bar-width">90%</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <img src="images/abouti/ref.png" width="100%">
+                            </div>
+                            
+
+                        </div>
+                        
+                           
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+	
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="${R}res/js/bootstrap.min.js"></script>
-	<script src="${R}res/js/jquery.prettyPhoto.js"></script>
-	<script src="${R}res/js/jquery.isotope.min.js"></script>
-	<script src="${R}res/js/wow.min.js"></script>
-	<script src="${R}res/js/functions.js"></script>
+	<!--   -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	
+	<script type="text/javascript">
+			var app = new Vue({
+				el : '#stuModal',
+				data : {
+					selectedStudent : {}
+				},
+				methods : {
+					studentById: function(studentId) {
+						
+						let url = '/graduation_system/please?id=' + studentId;
+						axios.get(url)
+						.then(response => {
+							this.selectedStudent = response.data;
+						});
+					}
+				}
+			})
+		</script>
+		
+
 </body>
 </html>
