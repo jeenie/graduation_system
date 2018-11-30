@@ -426,12 +426,14 @@
 
 		<div class="progress-wrap">
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
-				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}</p>
+				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice} 
+				<c:if test="${processId == 3}"><small><${ student.departmentName }></small></c:if></p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
 					style="width:${((studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100)>100 ? "100" : (studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100}%"></div>
 			</div>
 		</div>
+		
 		<c:if test="${entranceYear == 2018}">
 			<br> <br>
 			<div class="progress-wrap">
@@ -484,6 +486,18 @@
 					</table>
 				</div>
 			</c:if>
+			
+			<c:if test="${processId == 3}">
+			<div class="progress-wrap">
+				<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
+					${anotherTotal}/${anotherProcess.mustPlusChoice} 
+					<c:if test="${processId == 3}"><small><${ anotherDept.departmentName }></small></c:if></p>
+				<div class="progressbar progressbar-green" style="float: left">
+					<div class="progressbar-inner"
+						style="width:${((anotherTotal/anotherProcess.mustPlusChoice)*100)>100 ? "100" : (anotherTotal/anotherProcess.mustPlusChoice)*100}%"></div>
+				</div>
+			</div>
+		</c:if>
 			<c:if test="${entranceYear == 2018}">
 				<p style="font-size: 16px; font-weight: bold;">＊ 전공 탐색</p>
 				<div style="margin-right: 200px">

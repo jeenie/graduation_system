@@ -12,4 +12,6 @@ public interface DepartmentMapper {
 	List<Department> findRealDept();
 	List<Department> findItDept();
 	List<Department> findLiberal();
+	
+	Department findById(int departmentId);
 }

@@ -20,6 +20,11 @@
       WHERE id BETWEEN 22 AND 29 
   	</select>
   	
+  	<select id="findById" resultType="Department">
+      SELECT * FROM Department
+      WHERE id = #{departmentId}
+  	</select>
+  	
   	<!-- 
   	<select id="findAllWithStudents" resultMap="resultMap1">
 		SELECT sub.name subjectName, ssg.subjectId, ssg.id studentId, s.name sutdentName, s.completeSemester, d.departmentName, s.grade

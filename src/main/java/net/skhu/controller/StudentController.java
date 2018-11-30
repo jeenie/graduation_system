@@ -42,6 +42,7 @@ import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.StudentSubjectGradeMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.TotalMapper;
+import net.skhu.service.StudentGradeService;
 
 @Controller
 public class StudentController {
@@ -79,6 +80,8 @@ public class StudentController {
 	ExplorationMapper explorationMapper;
 	@Autowired
 	CoreSubjectMapper coreSubjectMapper;
+	@Autowired
+	StudentGradeService studentGradeService;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -130,6 +133,10 @@ public class StudentController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
 		Student student = studentMapper.findById2(userNumber);
+		//복수전공 학과 데이터
+		Department anotherDept = departmentMapper.findById(deptId);
+		DepartmentMajorRule anotherProcess = departmentMajorRuleMapper.findTotalMajor(deptId, 0, 6);
+		
 		//인문학과 목록
 		List<Department> depts =  departmentMapper.findLiberal();
 		
@@ -207,11 +214,14 @@ public class StudentController {
 		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
+		model.addAttribute("anotherDept", anotherDept);
 		model.addAttribute("deptId", deptId);
 		model.addAttribute("depts", depts);
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
+		model.addAttribute("anotherTotal", studentGradeService.addAnotherMajorGrade(userNumber));
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
+		model.addAttribute("anotherProcess", anotherProcess); //복수전공 학과의 7번 과정 데이터
 		model.addAttribute("culture", cultureGrade);
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("mustCulture", mustCulture);
