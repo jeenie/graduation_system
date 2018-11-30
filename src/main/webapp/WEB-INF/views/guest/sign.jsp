@@ -5,37 +5,6 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <c:url var="R" value="/" />
-
-<script>
-	$(function() {
-		$('#password1').keyup(function() {
-			$('font[name=check]').text('');
-		}); //#user_pass.keyup
-		$('#password2').keyup(function() {
-			if ($('#password1').val() != $('#password2').val()) {
-				$('font[name=check]').text('');
-				$('font[name=check]').html("암호틀림");
-			} else {
-				$('font[name=check]').text('');
-				$('font[name=check]').html("암호맞음");
-			}
-		}); //#chpass.keyup
-	});
-	</script>
-	<script type="text/javascript">
-	window.onload = function() {
-
-		document.getElementById('signForm').onsubmit = function() {
-			if ($('#password').val() != $('#password2').val()) {
-				alert('다시입력');
-				return false;
-			}
-
-		}
-	}
-
-</script>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,47 +75,23 @@ input.form-control.w300 {
 </style>
 </head>
 <body onload="initialize()">
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}guest/graduationRule">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a
-									href="${R}guest/login">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="${R}guest/login" onclick="alertGuest()">나의 졸업현황</a> <a
-											href="${R}guest/login" onclick="alertGuest()">성적조회</a> <a
-											href="${R}guest/login" onclick="alertGuest()">대체/타전공 현황</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-								<li role="presentation"><a data-toggle="modal" href="#loginModal">LoginModal</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/views/include/guestNavibar.jsp"%>
+	
+	<c:if test="${pwError}">
+		<script>
+			alert("비밀번호가 일치하지 않습니다. 다시입력해주세요.");
+		</script>
+	</c:if>
+	<c:if test="${blankError}">
+		<script>
+			alert("채워지지 않은 항목들이 있습니다. 다시 입력해주세요.");
+		</script>
+	</c:if>
+	<c:if test="${fileError}">
+		<script>
+			alert("첨부 파일이 존재하지 않습니다. 파일을 첨부해주세요.");
+		</script>
+	</c:if>
 	
 	<div id="breadcrumb">
 		<div class="container">
