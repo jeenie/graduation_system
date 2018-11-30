@@ -15,7 +15,10 @@
       SELECT * FROM Department
       WHERE id BETWEEN 31 AND 34 
   	</select>
-  	
+  	<select id="findLiberal" resultType="Department">
+      SELECT * FROM Department
+      WHERE id BETWEEN 22 AND 29 
+  	</select>
   	
   	<!-- 
   	<select id="findAllWithStudents" resultMap="resultMap1">

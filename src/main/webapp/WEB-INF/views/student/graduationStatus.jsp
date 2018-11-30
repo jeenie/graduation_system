@@ -216,6 +216,8 @@
 				} else
 					$('.selctDept').hide();
 			});
+			if(${processId} == 3)
+				$('.selctDept').show();
 			$(".verticalTree").zooTree([
 			    {
 			        "label": "핵심역량",
@@ -396,8 +398,11 @@
 							</c:forEach>
 						</select>&nbsp
 						
-							<select class="form-controls w200 selctDept">
+							<select name="deptId" class="form-controls w200 selctDept">
 									<option value="0">학과 선택</option>
+									<c:forEach var="department" items="${depts}">
+										<option value="${department.id}" ${deptId == department.id ? "selected" : ""}>${department.departmentName}</option>
+									</c:forEach>
 							</select>
 						
 						<button type="submit" class="btn-submit"

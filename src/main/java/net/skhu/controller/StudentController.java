@@ -126,10 +126,13 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "student/graduationStatus", method = RequestMethod.GET)
-	public String graduationStatus(Model model, @RequestParam("processId") int processId) {
+	public String graduationStatus(Model model, @RequestParam("processId") int processId, @RequestParam("deptId") int deptId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
 		Student student = studentMapper.findById2(userNumber);
+		//인문학과 목록
+		List<Department> depts =  departmentMapper.findLiberal();
+		
 		Culture culture = cultureMapper.find();
 		List<SpecialProcess> specialProcess = specialProcessMapper.findAll();
 		StudentGradefile studentGradefile = studentGradefileMapper.findById(userNumber);
@@ -204,6 +207,8 @@ public class StudentController {
 		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
+		model.addAttribute("deptId", deptId);
+		model.addAttribute("depts", depts);
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
