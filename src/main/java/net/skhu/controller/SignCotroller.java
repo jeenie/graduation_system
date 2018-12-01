@@ -106,7 +106,7 @@ public class SignCotroller {
 			model.addAttribute("departments", departments);
 			model.addAttribute("quizs", quizs);
 			return "guest/sign";
-		}else if (student.getFile() == null) { 
+		}else if (student.getFile().isEmpty()) { 
 			boolean fileError = true;
 			List<Department> departments = departmentMapper.findRealDept();
 			List<PasswordQuiz> quizs = passwordQuizMapper.findAll();
