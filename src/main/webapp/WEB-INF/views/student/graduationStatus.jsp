@@ -491,12 +491,51 @@
 			<div class="progress-wrap">
 				<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
 					${anotherTotal}/${anotherProcess.mustPlusChoice} 
-					<c:if test="${processId == 3}"><small><${ anotherDept.departmentName }></small></c:if></p>
+				<small><${ anotherDept.departmentName }></small></p>
 				<div class="progressbar progressbar-green" style="float: left">
 					<div class="progressbar-inner"
 						style="width:${((anotherTotal/anotherProcess.mustPlusChoice)*100)>100 ? "100" : (anotherTotal/anotherProcess.mustPlusChoice)*100}%"></div>
 				</div>
 			</div>
+			<br /><br />
+			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
+				<p
+					style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
+					과목은 색으로 표시됩니다</p>
+				<div style="margin-right: 200px">
+					<table class="table">
+						<thead>
+							<tr style="height: 30px;">
+								<th scope="col" class="text-center">과목명</th>
+								<th scope="col" class="text-center">학점</th>
+								<th scope="col" class="text-center">성적</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="major" items="${ anotherMajorSubjects }">
+								<c:set var="loop_flag" value="false" />
+								<c:set var="check" value="false" />
+								<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+									<c:if test="${not loop_flag }">
+										<c:set var="color" value="#FFFFFF" />
+										<c:if
+											test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+											<c:set var="color" value="#E1F5A9" />
+											<c:set var="loop_flag" value="true" />
+											<c:set var="check" value="true" />
+											<c:set var="grade" value="${ studentSubjectGrade.grade }" />
+										</c:if>
+									</c:if>
+								</c:forEach>
+								<tr style="background-color:${color}">
+									<td>${ major.majorName }</td>
+									<td>${ major.subjectScore }</td>
+									<td>${ check.equals("true") ? grade : "" }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 		</c:if>
 			<c:if test="${entranceYear == 2018}">
 				<p style="font-size: 16px; font-weight: bold;">＊ 전공 탐색</p>

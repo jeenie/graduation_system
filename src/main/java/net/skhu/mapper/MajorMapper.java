@@ -21,4 +21,7 @@ public interface MajorMapper {
 	void delete(int departmentId, String majorSubjectId, int entranceYear);
 	
 	List<Major> findMajorList2018(int userNumber);
+	
+	//특정학과의 전공필수과목 목록
+	List<Major> findMajorMustSubject(int departmentId);
 }

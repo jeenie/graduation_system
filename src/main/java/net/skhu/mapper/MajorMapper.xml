@@ -68,6 +68,14 @@
 		LEFT JOIN subject s ON ssg.subjectId=s.id
 		WHERE ssg.id=#{userNumber} and ssg.completeType='전탐';
 	</select>
+	
+	<select id="findMajorMustSubject" resultType="Major">
+		SELECT m.*, s.name majorName, d.departmentName, s.subjectScore subjectScore
+		FROM major_list m 
+		LEFT JOIN department d ON m.departmentId = d.id 
+		LEFT JOIN subject s ON m.majorSubjectId = s.id 
+		WHERE m.departmentId = #{departmentId} and m.completeType = '필수';
+	</select>
 </mapper>
              
              

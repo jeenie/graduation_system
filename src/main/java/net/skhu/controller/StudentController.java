@@ -215,13 +215,14 @@ public class StudentController {
 		model.addAttribute("student", student);
 		model.addAttribute("specialProcess", specialProcess);
 		model.addAttribute("anotherDept", anotherDept);
-		model.addAttribute("deptId", deptId);
+		model.addAttribute("deptId", deptId); //복수전공 학과
 		model.addAttribute("depts", depts);
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("anotherTotal", studentGradeService.addAnotherMajorGrade(userNumber));
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
 		model.addAttribute("anotherProcess", anotherProcess); //복수전공 학과의 7번 과정 데이터
+		model.addAttribute("anotherMajorSubjects", studentGradeService.anotherMajorSubjects(deptId));
 		model.addAttribute("culture", cultureGrade);
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("mustCulture", mustCulture);
