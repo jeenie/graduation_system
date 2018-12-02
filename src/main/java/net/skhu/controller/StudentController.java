@@ -220,6 +220,7 @@ public class StudentController {
 		model.addAttribute("studentGradefile", studentGradefile);
 		model.addAttribute("total", totalGrade);
 		model.addAttribute("anotherTotal", studentGradeService.addAnotherMajorGrade(userNumber));
+		model.addAttribute("anoterMustMajorList", studentGradeService.anotherMustMajorList(userNumber)); //학생이 수강한 복수전공 복필 목록
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
 		model.addAttribute("anotherProcess", anotherProcess); //복수전공 학과의 7번 과정 데이터
 		model.addAttribute("anotherMajorSubjects", studentGradeService.anotherMajorSubjects(deptId));

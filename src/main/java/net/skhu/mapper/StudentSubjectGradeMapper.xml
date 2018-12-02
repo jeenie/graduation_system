@@ -38,11 +38,19 @@
 	</select>
 	
 	<select id="findAnotherMajor" resultType="StudentSubjectGrade">
-		SELECT ssg.id 학번, ssg.yearOfClass, ssg.yearOfSemester, ssg.subjectId, sub.subjectScore, ssg.grade, ssg.completeType
+		SELECT ssg.id, ssg.yearOfClass, ssg.yearOfSemester, ssg.subjectId, sub.subjectScore, ssg.grade, ssg.completeType
 		FROM student_subject_grade ssg 
 		LEFT JOIN student s ON ssg.id = s.id 
 		LEFT JOIN subject sub ON ssg.subjectId = sub.id 
-		WHERE ssg.id = 201532002 and ssg.completeType LIKE CONCAT('복', '%')
+		WHERE ssg.id = #{id} and ssg.completeType LIKE CONCAT('복', '%')
+		ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
+	</select>
+	<select id="findAnotherMustMajor" resultType="StudentSubjectGrade">
+		SELECT ssg.id, ssg.yearOfClass, ssg.yearOfSemester, ssg.subjectId, sub.subjectScore, ssg.grade, ssg.completeType
+		FROM student_subject_grade ssg 
+		LEFT JOIN student s ON ssg.id = s.id 
+		LEFT JOIN subject sub ON ssg.subjectId = sub.id 
+		WHERE ssg.id = #{id} and ssg.completeType ='복필'
 		ORDER BY ssg.yearOfClass, ssg.yearOfSemester;
 	</select>
 

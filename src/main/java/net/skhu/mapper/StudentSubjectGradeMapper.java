@@ -15,4 +15,6 @@ public interface StudentSubjectGradeMapper {
 	
 	//특정학생이 들은 복수전공 데이터
 	List<StudentSubjectGrade> findAnotherMajor(int id);
+	//특정학생이 들은 복수전공 데이터 (복필)
+	List<StudentSubjectGrade> findAnotherMustMajor(int id);
 }

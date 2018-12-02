@@ -515,7 +515,7 @@
 							<c:forEach var="major" items="${ anotherMajorSubjects }">
 								<c:set var="loop_flag" value="false" />
 								<c:set var="check" value="false" />
-								<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+								<c:forEach var="studentSubjectGrade" items="${ anoterMustMajorList }">
 									<c:if test="${not loop_flag }">
 										<c:set var="color" value="#FFFFFF" />
 										<c:if

@@ -21,11 +21,16 @@ public class StudentGradeService {
 		int anotherTotal = 0;
 		for(StudentSubjectGrade ssg : anotherData) 
 			anotherTotal += ssg.getSubjectScore();
+		System.out.println(anotherTotal);
 		return anotherTotal;
 	}
 	
 	public List<Major> anotherMajorSubjects(int deptId) {
 		List<Major> subjects = majorMapper.findMajorMustSubject(deptId);
 		return subjects;
+	}
+	
+	public List<StudentSubjectGrade> anotherMustMajorList (int id) {
+		return studentSubjectGradeMapper.findAnotherMustMajor(id);
 	}
 }
