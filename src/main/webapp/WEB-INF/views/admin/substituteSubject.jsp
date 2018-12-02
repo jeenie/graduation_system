@@ -146,6 +146,7 @@
 	border: none;
 	margin-top: 0;
 	}
+	
 </style>
 	
 </head>
@@ -257,33 +258,35 @@
 						</h4>
 				</div>
 				<div class="modal-body">
+					
 					<form id="searchSubject">
 						<div class="form-group">
-						<!--  
 							<select class="form-control" v-model="ss" style="float:left; margin-right:5px; width:110px">
 								<option disabled value="">검색조건</option>
 								<option value="0">과목코드</option>
 								<option value="1">과목명</option>
 							</select>
-						-->
 							<input type="text" v-model="st" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20"/>
 						</div>
 						<button type="button" class="btn btn-submit" v-on:click="findSubjectData">조회</button>
 					</form>
-					<table class="table table-bordered mt5" style="margin-top:10px;">
-						<thead>
-								<tr>
-									<th style="text-align:center;">과목코드</th>
-									<th style="text-align:center;">과목명</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="hover" v-for="subject in subjects"> 
-									<td>{{subject.id}}</td> 
-									<td>{{subject.name}}</td> 
-								</tr>
-							</tbody>
-					</table>
+					
+						<table class="table table-bordered mt5" style="margin-top:10px;">
+							<thead>
+									<tr>
+										<th style="text-align:center;">과목코드</th>
+										<th style="text-align:center;">과목명</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr class="hover" v-for="subject in subjects"> 
+										<td>{{subject.id}}</td> 
+										<td>{{subject.name}}</td> 
+									</tr>
+								</tbody>
+						</table>
+							
 				</div>
 			</div>
 		</div>
@@ -310,12 +313,13 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
+				ss: '',
 				st: '',
 				subjects: []
 			},
 			methods: {
 				findSubjectData: function() {
-					let url = '/api/findSubject?st=' + this.st;
+					let url = '/graduation_system/findSubject?ss='+ this.ss +'&st=' + this.st;
 					axios.get(url).then(response => {
 							this.subjects = response.data;
 						});

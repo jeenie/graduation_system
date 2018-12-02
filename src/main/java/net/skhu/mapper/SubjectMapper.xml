@@ -6,7 +6,7 @@
 		SELECT * FROM subject
 	</select>
 	<select id="findById" resultType="Subject">
-		SELECT * FROM subject WHERE id = #{st}
+		SELECT * FROM subject WHERE id LIKE CONCAT(#{st}, '%')
 	</select>
 	<select id="findByName" resultType="Subject">
 		SELECT * FROM subject WHERE name LIKE CONCAT('%', #{st}, '%')

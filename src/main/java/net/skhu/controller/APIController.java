@@ -18,13 +18,15 @@ public class APIController {
 	@Autowired SubjectMapper subjectMapper;
 	@Autowired StudentMapper studentMapper;
 	
-	@RequestMapping("/api/findSubject")
-	public List<Subject> subjectList(@RequestParam("st") String st) {
+	@RequestMapping("findSubject")
+	public List<Subject> subjectList(@RequestParam("ss") String ss, @RequestParam("st") String st) {
 		List<Subject> subjects = null;
-		//if(ss.equals("0"))  
-		//	subjects = subjectMapper.findById(st);
-		//else if(ss.equals("1")) 
-		subjects = subjectMapper.findByName(st);;
+		System.out.println(ss);
+		System.out.println(st);
+		if(ss.equals("0"))  
+			subjects = subjectMapper.findById(st);
+		else if(ss.equals("1")) 
+			subjects = subjectMapper.findByName(st);;
 		return subjects;
 	}
 
