@@ -189,9 +189,10 @@
 						</thead>
 						<tbody>
 							<c:forEach var="substitutionSubject" items="${ substitutionSubjectList }">
-
-								<!--<tr data-toggle="modal" data-id="professorDelete" data-target="#professorDelete">-->
-								<tr>
+								<script>
+									var id = '';
+								</script>
+								<tr v-on:click="subjectById('${ substitutionSubject.abolitionSubject}')" data-toggle="modal" data-id="subjectInfo" data-target="#subjectInfo">
 									<td>${ substitutionSubject.departmentName }</td>
 									<td>${ substitutionSubject.abolitionSubjectName }</td>
 									<td>${ substitutionSubject.substitutionSubjectName}</td>
@@ -251,6 +252,41 @@
 		</div>
 	</div>
 	
+	<div class="modal fade" id="subjectInfo" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>대체 과목 정보</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="addSubject" modelAttribute="substitutionSubject">
+						<div class="form-group">
+							<label>담당학과</label>
+							<input type="text" class="form-control w505" v-model="subjectData.departmentName" readonly/>
+						</div>
+						<div class="form-group">
+							<label>폐지과목</label>
+							<input type="text" class="form-control w505" v-model="subjectData.abolitionSubjectName" readonly/>
+						</div>
+						<div class="form-group">
+							<label>대체과목</label>
+							<input type="text" class="form-control w505" v-model="subjectData.substitutionSubjectName" readonly/>
+						</div>
+						<button type="submit" class="btn btn-submit" onclick="success()">수정</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
 	<div class="modal fade" id="find" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -290,6 +326,7 @@
 									</tr>
 								</tbody>
 						</table>
+						<p>영역 대체를 원하는 경우, <b>[과목명] 대체</b>라고 검색해주세요.</p>
 				</div>
 			</div>
 		</div>
@@ -333,6 +370,7 @@
 									</tr>
 								</tbody>
 						</table>
+						<p>영역 대체를 원하는 경우, <b>[과목명] 대체</b>라고 검색해주세요.</p>
 				</div>
 			</div>
 		</div>
@@ -366,7 +404,8 @@
 				subjects: [],
 				subjects2: [],
 				selectedSubject: {},
-				selectedSubject2: {}
+				selectedSubject2: {},
+				subjectData: {}
 			},
 			methods: {
 				findSubjectData: function() {
@@ -388,6 +427,13 @@
 				selectSubject2: function(subject) {
 					this.selectedSubject2 = subject;
 					$('#find2').modal('hide');
+				},
+				subjectById: function(subject) {
+					console.log(subject);
+					let url = '/graduation_system/subjectData?subjectId=' + subject;
+					axios.get(url).then(response => {
+						this.subjectData = response.data;
+					});
 				}
 			}
 		});

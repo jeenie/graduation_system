@@ -4,19 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.skhu.dto.Subject;
 import net.skhu.dto.Student;
+import net.skhu.dto.Subject;
+import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.SubjectMapper;
+import net.skhu.mapper.SubstitutionSubjectMapper;
 
 @RestController
 public class APIController {
 	@Autowired SubjectMapper subjectMapper;
 	@Autowired StudentMapper studentMapper;
+	@Autowired SubstitutionSubjectMapper substitutionSubjectMapper;
 	
 	@RequestMapping("findSubject")
 	public List<Subject> subjectList(@RequestParam("ss") String ss, @RequestParam("st") String st) {
@@ -40,6 +42,13 @@ public class APIController {
 		else if(ss2.equals("1")) 
 			subjects = subjectMapper.findByName(st2);;
 		return subjects;
+	}
+	
+	@RequestMapping("subjectData")
+	public SubstitutionSubject subjectList2(@RequestParam("subjectId") String subjectId) {
+		System.out.println(subjectId);
+		SubstitutionSubject subject = substitutionSubjectMapper.findBySubjectId(subjectId);
+		return subject;
 	}
 
 	//http://localhost:8080/graduation_system/please?id=203032002

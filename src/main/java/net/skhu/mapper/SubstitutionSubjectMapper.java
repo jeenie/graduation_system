@@ -10,5 +10,6 @@ import net.skhu.dto.SubstitutionSubject;
 public interface SubstitutionSubjectMapper {
 	List<SubstitutionSubject> findAll();
 	List<SubstitutionSubject> findBySubject(String subject);
+	SubstitutionSubject findBySubjectId(String subjectId);
 	void insert(SubstitutionSubject subject);
 }

@@ -3,7 +3,7 @@
 
 <mapper namespace="net.skhu.mapper.SubstitutionSubjectMapper">
 	<select id="findAll" resultType="SubstitutionSubject">
-		SELECT abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
+		SELECT subsubject.abolitionSubject , abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
 		FROM substitution_subject_list subsubject 
 		LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id 
 		LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id 
@@ -18,6 +18,14 @@
 		LEFT JOIN department d ON subsubject.departmentId = d.id
 		WHERE (#{subject} IS NULL OR #{subject}="" OR #{subject}=abosub.name OR abosub.name LIKE CONCAT('%',#{subject},'%') OR #{subject}=substi.name OR substi.name LIKE CONCAT('%',#{subject},'%'))
 		ORDER BY subsubject.departmentId
+	</select>
+	<select id="findBySubjectId" resultType="SubstitutionSubject">
+		SELECT abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
+		FROM substitution_subject_list subsubject 
+		LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id 
+		LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id 
+		LEFT JOIN department d ON subsubject.departmentId = d.id
+		WHERE subsubject.abolitionSubject = #{subjectId}
 	</select>
 	<insert id="insert">
 		INSERT substitution_subject_list (departmentId, abolitionSubject, substitutionSubject) VALUES (#{departmentId}, #{abolitionSubject}, #{substitutionSubject})
