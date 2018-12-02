@@ -171,9 +171,9 @@
 						<form action="findSubject" autocomplete=off>
 							&nbsp; 과목명 :&nbsp;<input type="text" name="subject" value="${subject}">&nbsp;
 							<button type="submit" class="inquiry_btn warning">조회</button>
-							<!--<a data-toggle="modal" href="#professorAdd"><button type="button" class="btn-statement4">추가</button></a>-->
+							
 							<a data-toggle="modal" href="#addSubject" class="btn btn-submit">추가</a>
-							<a data-toggle="modal" href="#find" class="btn btn-submit">추가</a>
+
 						</form>
 
 					</div>
@@ -223,24 +223,29 @@
 						</h4>
 				</div>
 				<div class="modal-body">
-					<form:form method="post" action="addSubject" modelAttribute="substitutionSubject">
+					<form method="post" action="addSubject" modelAttribute="substitutionSubject">
 						<div class="form-group">
 							<label>담당학과</label>
-							<form:select path="departmentId" class="form-control w200" itemValue="id" itemLabel="departmentName" items="${departments}"/>
+							<select name="departmentId" class="form-control w505" id="departmentId">
+						<option value="99">선택</option>
+						<c:forEach var="department" items="${departments}">
+							<option value="${department.id}">${department.departmentName}</option>
+						</c:forEach>
+					</select>
 						</div>
 						<div class="form-group">
 							<label>폐지과목</label>
-							<form:input path="abolitionSubject" class="form-control w505"/>
+							<input type="text" name="abolitionSubject" class="form-control w505" v-model="selectedSubject.id"/>
 							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
 						<div class="form-group">
 							<label>대체과목</label>
-							<form:input path="substitutionSubject" class="form-control w505"/>
-							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+							<input type="text" name="substitutionSubject" class="form-control w505" v-model="selectedSubject2.id"/>
+							<a data-toggle="modal" href="#find2" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
 						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
 						<button type="button" class="btn" data-dismiss="modal">취소</button>
-					</form:form>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -270,7 +275,6 @@
 						</div>
 						<button type="button" class="btn btn-submit" v-on:click="findSubjectData">조회</button>
 					</form>
-					
 						<table class="table table-bordered mt5" style="margin-top:10px;">
 							<thead>
 									<tr>
@@ -280,13 +284,55 @@
 								</thead>
 								
 								<tbody>
-									<tr class="hover" v-for="subject in subjects"> 
+									<tr class="hover" v-for="subject in subjects" v-on:click="selectSubject(subject)"> 
 										<td>{{subject.id}}</td> 
 										<td>{{subject.name}}</td> 
 									</tr>
 								</tbody>
 						</table>
-							
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="find2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>과목 찾기</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
+				<div class="modal-body">
+					
+					<form id="searchSubject">
+						<div class="form-group">
+							<select class="form-control" v-model="ss2" style="float:left; margin-right:5px; width:110px">
+								<option disabled value="">검색조건</option>
+								<option value="0">과목코드</option>
+								<option value="1">과목명</option>
+							</select>
+							<input type="text" v-model="st2" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20"/>
+						</div>
+						<button type="button" class="btn btn-submit" v-on:click="findSubjectData2">조회</button>
+					</form>
+						<table class="table table-bordered mt5" style="margin-top:10px;">
+							<thead>
+									<tr>
+										<th style="text-align:center;">과목코드</th>
+										<th style="text-align:center;">과목명</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr class="hover" v-for="subject in subjects2" v-on:click="selectSubject2(subject)"> 
+										<td>{{subject.id}}</td> 
+										<td>{{subject.name}}</td> 
+									</tr>
+								</tbody>
+						</table>
 				</div>
 			</div>
 		</div>
@@ -315,7 +361,12 @@
 			data: {
 				ss: '',
 				st: '',
-				subjects: []
+				ss2: '',
+				st2: '',
+				subjects: [],
+				subjects2: [],
+				selectedSubject: {},
+				selectedSubject2: {}
 			},
 			methods: {
 				findSubjectData: function() {
@@ -323,6 +374,20 @@
 					axios.get(url).then(response => {
 							this.subjects = response.data;
 						});
+				},
+				findSubjectData2: function() {
+					let url = '/graduation_system/findSubject2?ss2='+ this.ss2 +'&st2=' + this.st2;
+					axios.get(url).then(response => {
+							this.subjects2 = response.data;
+						});
+				},
+				selectSubject: function(subject) {
+					this.selectedSubject = subject;
+					$('#find').modal('hide');
+				},
+				selectSubject2: function(subject) {
+					this.selectedSubject2 = subject;
+					$('#find2').modal('hide');
 				}
 			}
 		});

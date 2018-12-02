@@ -29,6 +29,18 @@ public class APIController {
 			subjects = subjectMapper.findByName(st);;
 		return subjects;
 	}
+	
+	@RequestMapping("findSubject2")
+	public List<Subject> subjectList2(@RequestParam("ss2") String ss2, @RequestParam("st2") String st2) {
+		List<Subject> subjects = null;
+		System.out.println(ss2);
+		System.out.println(st2);
+		if(ss2.equals("0"))  
+			subjects = subjectMapper.findById(st2);
+		else if(ss2.equals("1")) 
+			subjects = subjectMapper.findByName(st2);;
+		return subjects;
+	}
 
 	//http://localhost:8080/graduation_system/please?id=203032002
 	@RequestMapping("please")

@@ -43,8 +43,12 @@ public class SubstitutionSubjectController {
 	*/
 	
 	@RequestMapping(value="addSubject", method=RequestMethod.POST)
-	public String addSubject(Model model, SubstitutionSubject substitutionSubject) {
-		substitutionSubjectMapper.insert(substitutionSubject);
+	public String addSubject(Model model, @RequestParam(value="departmentId") int departmentId, @RequestParam(value="abolitionSubject") String abolitionSubject, @RequestParam(value="substitutionSubject") String substitutionSubject) {
+		SubstitutionSubject subSubject = new SubstitutionSubject();
+		subSubject.setDepartmentId(departmentId);
+		subSubject.setAbolitionSubject(abolitionSubject);
+		subSubject.setSubstitutionSubject(substitutionSubject);
+		substitutionSubjectMapper.insert(subSubject);
 		return "redirect:SubstitutionSubject";
 	}
 	
@@ -53,7 +57,7 @@ public class SubstitutionSubjectController {
 		List<SubstitutionSubject> subjects = substitutionSubjectMapper.findBySubject(subject);
 		model.addAttribute("subject", subject);
 		model.addAttribute("substitutionSubjectList", subjects);
-		
+		model.addAttribute("departments", departmentMapper.findAll());
 		return "admin/substituteSubject";
 	}
 }
