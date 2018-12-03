@@ -3,7 +3,7 @@
 
 <mapper namespace="net.skhu.mapper.SubstitutionSubjectMapper">
 	<select id="findAll" resultType="SubstitutionSubject">
-		SELECT subsubject.abolitionSubject , abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
+		SELECT subsubject.abolitionSubject , abosub.name abolitionSubjectName, substi.name substitutionSubjectName, subsubject.departmentId, d.departmentName 
 		FROM substitution_subject_list subsubject 
 		LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id 
 		LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id 
@@ -11,7 +11,7 @@
 		ORDER BY subsubject.departmentId
 	</select>
 	<select id="findBySubject" resultType="SubstitutionSubject">
-		SELECT abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
+		SELECT subsubject.abolitionSubject, abosub.name abolitionSubjectName, substi.name substitutionSubjectName, subsubject.departmentId, d.departmentName 
 		FROM substitution_subject_list subsubject 
 		LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id 
 		LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id 
@@ -20,7 +20,7 @@
 		ORDER BY subsubject.departmentId
 	</select>
 	<select id="findBySubjectId" resultType="SubstitutionSubject">
-		SELECT abosub.name abolitionSubjectName, substi.name substitutionSubjectName, d.departmentName 
+		SELECT subsubject.abolitionSubject, abosub.name abolitionSubjectName, substi.name substitutionSubjectName, subsubject.departmentId, d.departmentName 
 		FROM substitution_subject_list subsubject 
 		LEFT JOIN subject abosub ON subsubject.abolitionSubject = abosub.id 
 		LEFT JOIN subject substi ON subsubject.substitutionSubject =  substi.id 

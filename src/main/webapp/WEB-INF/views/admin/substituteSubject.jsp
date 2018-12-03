@@ -253,7 +253,7 @@
 	</div>
 	
 	<div class="modal fade" id="subjectInfo" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style="width:500px">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
 					<h4>
@@ -263,21 +263,75 @@
 							</button>
 						</h4>
 				</div>
+				<div class="modal-body" style="text-align:center">
+					<div style="display: inline-block;">
+						<div class="form-group">
+							<label style="float:left">담당학과</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.departmentId" style="margin-top:-17px" readonly/>
+						</div>
+						<div class="form-group">
+							<label style="float:left">담당학과</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.departmentName" style="margin-top:-17px" readonly/>
+						</div>
+						<div class="form-group">
+							<label style="float:left">폐지과목</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.abolitionSubject" style="margin-top:-17px" readonly/>
+						</div>
+						<div class="form-group">
+							<label style="float:left">폐지과목</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.abolitionSubjectName" style="margin-top:-17px" readonly/>
+						</div>
+						<div class="form-group">
+							<label style="float:left">대체과목</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.substitutionSubjectName" style="margin-top:-17px" readonly/>
+						</div>
+						
+						<a data-toggle="modal" href="#edit" class="btn btn-submit" data-dismiss="modal" style="float:right" v-on:click="editSubject(subjectData.abolitionSubject)">수정</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>대체 과목 수정</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
 				<div class="modal-body">
 					<form method="post" action="addSubject" modelAttribute="substitutionSubject">
 						<div class="form-group">
 							<label>담당학과</label>
-							<input type="text" class="form-control w505" v-model="subjectData.departmentName" readonly/>
+							<select name="departmentId" class="form-control w505" id="departmentId">
+						<option value="99">선택</option>
+						<c:forEach var="department" items="${departments}">
+							<option value="${department.id}" ${department.id == subjectData.departmentId ? "selected":""}>${department.departmentName}</option>
+						</c:forEach>
+					</select>
 						</div>
 						<div class="form-group">
 							<label>폐지과목</label>
-							<input type="text" class="form-control w505" v-model="subjectData.abolitionSubjectName" readonly/>
+							<input type="text" name="abolitionSubject" class="form-control w505" v-model="selectedSubject.id"/>
+							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
 						<div class="form-group">
 							<label>대체과목</label>
-							<input type="text" class="form-control w505" v-model="subjectData.substitutionSubjectName" readonly/>
+							<input type="text" name="substitutionSubject" class="form-control w505" v-model="selectedSubject2.id"/>
+							<a data-toggle="modal" href="#find2" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
-						<button type="submit" class="btn btn-submit" onclick="success()">수정</button>
+						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
 					</form>
 				</div>
 			</div>
@@ -434,7 +488,14 @@
 					axios.get(url).then(response => {
 						this.subjectData = response.data;
 					});
-				}
+				}, 
+				editSubject: function(subject) {
+					console.log(subject);
+					let url = '/graduation_system/subjectData?subjectId=' + subject;
+					axios.get(url).then(response => {
+						this.subjectData = response.data;
+					});
+				}, 
 			}
 		});
 	</script>
