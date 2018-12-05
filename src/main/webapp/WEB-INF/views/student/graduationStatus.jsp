@@ -25,183 +25,183 @@
 <link href="${R}res/css/zooTree.css" rel="stylesheet" />
 
 
-  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script src="${R}res/js/zooTree.js"></script>
-  
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="${R}res/js/zooTree.js"></script>
+
 <!-- font awesome-->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
-	<style>
-	.inquiry_btn {
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 10px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 30px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-	}
-	
-	.body_btn {
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 10px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 25px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-	}
-	
-	.btn-statement3 {
-		/*열람가능여부 yes*/
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 5px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		height: 25px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-		background-color: grey;
-	}
-	
-	.btn-statement4 {
-		/*열람가능여부 no*/
-		border: none;
-		/* Remove borders */
-		border-radius: 2.5px;
-		color: white;
-		/* Add a text color */
-		padding: 4px 5px;
-		/*14px 28px;  Add some padding */
-		width: 50px;
-		cursor: pointer;
-		/* Add a pointer cursor on mouse-over */
-		background-color: rgb(80, 153, 92);
-	}
-	
-	.warning {
-		background-color: #ff9800;
-	}
-	
-	/* Orange */
-	.warning:hover {
-		background: #e68a00;
-	}
-	
-	td {
-		text-align: center;
-		vertical-align: middle;
-	}
-	
-	.table-info {
-		width: 400px;
-	}
-	
-	.contents {
-		margin-top: 5px;
-		margin-right: 100px;
-		margin-left: 140px;
-		margin-bottom: 100px;
-	}
-	
-	/*input class 변경*/
-	.form-controls {
-		width: 160px;
-		height: 35px;
-		padding: 6px 12px;
-		font-size: 14px;
-		line-height: 1.42857143;
-		color: #555;
-		background-color: #fff;
-		background-image: none;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	}
-	
-	.modalGreen {
-		width: 100%;
-		height: 35px;
-		background-color: rgb(22, 105, 22);
-		color: white;
-		font-weight: normal;
-		padding-top: 7px;
-		padding-left: 7px;
-	}
-	
-	.btn-submit {
-		padding: 6px 15px;
-		background: #1BBD36;
-		color: #fff;
-		border-radius: 4px;
-		border: none;
-		margin-top: 0;
-	}
-	
-	.aboutus {
-		margin-right: 30%;
-	}
-	
-	/*progress 서식*/
-	.progressbar {
-		width: 600px;
-		height: 16px;
-		margin: 0 auto 20px auto;
-		padding: 0px;
-		background: #cfcfcf;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #aaa #bbb #fff #bbb;
-		box-shadow: inset 0px 2px 3px #bbb;
-	}
-	
-	.progressbar, .progressbar-inner {
-		border-radius: 4px;
-		-moz-border-radius: 4px;
-		-webkit-border-radius: 4px;
-		-o-border-radius: 4px;
-	}
-	
-	.progressbar-inner {
-		width: 77%; /* Change to actual percentage */
-		height: 100%;
-		background: #999;
-		background-size: 18px 18px;
-		background-color: #ac0;
-		background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2)
-			25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
-			rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-		box-shadow: inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px
-			0px rgba(0, 0, 0, .2);
-	}
-	
-	.progressbar-green .progressbar-inner {
-		background-color: #ac0;
-	}
-	
-	.selctDept {
-		display: none;
-	}
-	</style>
-	
-	<script>
+<style>
+.inquiry_btn {
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 10px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 30px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+}
+
+.body_btn {
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 10px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+}
+
+.btn-statement3 {
+	/*열람가능여부 yes*/
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 5px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+	background-color: grey;
+}
+
+.btn-statement4 {
+	/*열람가능여부 no*/
+	border: none;
+	/* Remove borders */
+	border-radius: 2.5px;
+	color: white;
+	/* Add a text color */
+	padding: 4px 5px;
+	/*14px 28px;  Add some padding */
+	width: 50px;
+	cursor: pointer;
+	/* Add a pointer cursor on mouse-over */
+	background-color: rgb(80, 153, 92);
+}
+
+.warning {
+	background-color: #ff9800;
+}
+
+/* Orange */
+.warning:hover {
+	background: #e68a00;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table-info {
+	width: 400px;
+}
+
+.contents {
+	margin-top: 5px;
+	margin-right: 100px;
+	margin-left: 140px;
+	margin-bottom: 100px;
+}
+
+/*input class 변경*/
+.form-controls {
+	width: 160px;
+	height: 35px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.modalGreen {
+	width: 100%;
+	height: 35px;
+	background-color: rgb(22, 105, 22);
+	color: white;
+	font-weight: normal;
+	padding-top: 7px;
+	padding-left: 7px;
+}
+
+.btn-submit {
+	padding: 6px 15px;
+	background: #1BBD36;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin-top: 0;
+}
+
+.aboutus {
+	margin-right: 30%;
+}
+
+/*progress 서식*/
+.progressbar {
+	width: 600px;
+	height: 16px;
+	margin: 0 auto 20px auto;
+	padding: 0px;
+	background: #cfcfcf;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #aaa #bbb #fff #bbb;
+	box-shadow: inset 0px 2px 3px #bbb;
+}
+
+.progressbar, .progressbar-inner {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+
+.progressbar-inner {
+	width: 77%; /* Change to actual percentage */
+	height: 100%;
+	background: #999;
+	background-size: 18px 18px;
+	background-color: #ac0;
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2)
+		25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
+		rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	box-shadow: inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px
+		0px rgba(0, 0, 0, .2);
+}
+
+.progressbar-green .progressbar-inner {
+	background-color: #ac0;
+}
+
+.selctDept {
+	display: none;
+}
+</style>
+
+<script>
 		$(document).ready(function(){
 			var departmentId;
 			var entranceYear;
@@ -344,9 +344,14 @@
 			<hr>
 		</div>
 	</div>
-
+	<p style="float: right; margin-right: 200px; margin-bottom: 20px;">
+		<a style="color: #ac0; font-weight: bold; text-decoration: underline;"
+			href="${R}user/select?departmentId=${ student.departmentId }&entranceYear=${ entranceYear }">콕
+			! 내게 맞는 졸업요건</a>
+	</p>
 	<div class="contents">
-		<div style="float: left; margin-left: 70px; margin-right: 100px;">
+		<div
+			style="float: left; margin-left: 70px; margin-right: 100px; margin-top: 30px;">
 			<img src="${R}res/images/abouti/student.png" width="150px"
 				height="170px">
 		</div>
@@ -377,14 +382,8 @@
 		</div>
 	</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="margin-right: 100px; margin-left: 100px;">
+	<div
+		style="margin-right: 100px; margin-left: 100px; margin-top: 300px;">
 		<form>
 			<div>
 				<div style="float: left">
@@ -396,20 +395,19 @@
 								<option value="${specialProcess.id}"
 									${processId == specialProcess.id ? "selected" : ""}>${specialProcess.processName}</option>
 							</c:forEach>
-						</select>&nbsp
-						
-							<select name="deptId" class="form-controls w200 selctDept">
-									<option value="0">학과 선택</option>
-									<c:forEach var="department" items="${depts}">
-										<option value="${department.id}" ${deptId == department.id ? "selected" : ""}>${department.departmentName}</option>
-									</c:forEach>
-							</select>
-						
+						</select>&nbsp <select name="deptId" class="form-controls w200 selctDept">
+							<option value="0">학과 선택</option>
+							<c:forEach var="department" items="${depts}">
+								<option value="${department.id}"
+									${deptId == department.id ? "selected" : ""}>${department.departmentName}</option>
+							</c:forEach>
+						</select>
+
 						<button type="submit" class="btn-submit"
 							style="margin-left: 0; margin-top: 0; padding: 5px 20px; font-size: 16px;">조회</button>
 					</p>
 
-				</div>				
+				</div>
 			</div>
 		</form>
 		<br> <br> <br> <br>
@@ -425,17 +423,22 @@
 		<br> <br> <br> <br>
 
 		<div class="progress-wrap">
-			<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
-				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice} 
-				<c:if test="${processId == 3}"><small><${ student.departmentName }></small></c:if></p>
+			<p style="font-size: 18px; font-weight: bold;">
+				>&nbsp 전공
+				${studentGradefile.majorUnit}/${departmentMajorRule.mustPlusChoice}
+				<c:if test="${processId == 3}">
+					<small><${ student.departmentName }></small>
+				</c:if>
+			</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
 					style="width:${((studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100)>100 ? "100" : (studentGradefile.majorUnit/departmentMajorRule.mustPlusChoice)*100}%"></div>
 			</div>
 		</div>
-		
+
 		<c:if test="${entranceYear == 2018}">
-			<br> <br>
+			<br>
+			<br>
 			<div class="progress-wrap">
 				<p style="font-size: 18px; font-weight: bold;">>&nbsp 전탐
 					${studentGradefile.majorexUnit}/${explorationGrade}</p>
@@ -445,121 +448,124 @@
 				</div>
 			</div>
 		</c:if>
-			<br> <br>
-			<c:if test="${entranceYear != 2018}">
-				<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
-				<p
-					style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
-					과목은 색으로 표시됩니다</p>
-				<div style="margin-right: 200px">
-					<table class="table">
-						<thead>
-							<tr style="height: 30px;">
-								<th scope="col" class="text-center">과목명</th>
-								<th scope="col" class="text-center">학점</th>
-								<th scope="col" class="text-center">성적</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="major" items="${ mustmajor2 }">
-								<c:set var="loop_flag" value="false" />
-								<c:set var="check" value="false" />
-								<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
-									<c:if test="${not loop_flag }">
-										<c:set var="color" value="#FFFFFF" />
-										<c:if
-											test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
-											<c:set var="color" value="#E1F5A9" />
-											<c:set var="loop_flag" value="true" />
-											<c:set var="check" value="true" />
-											<c:set var="grade" value="${ studentSubjectGrade.grade }" />
-										</c:if>
+		<br> <br>
+		<c:if test="${entranceYear != 2018}">
+			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
+			<p
+				style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
+				과목은 색으로 표시됩니다</p>
+			<div style="margin-right: 200px">
+				<table class="table">
+					<thead>
+						<tr style="height: 30px;">
+							<th scope="col" class="text-center">과목명</th>
+							<th scope="col" class="text-center">학점</th>
+							<th scope="col" class="text-center">성적</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="major" items="${ mustmajor2 }">
+							<c:set var="loop_flag" value="false" />
+							<c:set var="check" value="false" />
+							<c:forEach var="studentSubjectGrade" items="${ mustMajor }">
+								<c:if test="${not loop_flag }">
+									<c:set var="color" value="#FFFFFF" />
+									<c:if
+										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+										<c:set var="color" value="#E1F5A9" />
+										<c:set var="loop_flag" value="true" />
+										<c:set var="check" value="true" />
+										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
 									</c:if>
-								</c:forEach>
-								<tr style="background-color:${color}">
-									<td>${ major.majorName }</td>
-									<td>${ major.subjectScore }</td>
-									<td>${ check.equals("true") ? grade : "" }</td>
-								</tr>
+								</c:if>
 							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</c:if>
-			
-			<c:if test="${processId == 3}">
+							<tr style="background-color:${color}">
+								<td>${ major.majorName }</td>
+								<td>${ major.subjectScore }</td>
+								<td>${ check.equals("true") ? grade : "" }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:if>
+
+		<c:if test="${processId == 3}">
 			<div class="progress-wrap">
-				<p style="font-size: 18px; font-weight: bold;">>&nbsp 전공
-					${anotherTotal}/${anotherProcess.mustPlusChoice} 
-				<small><${ anotherDept.departmentName }></small></p>
+				<p style="font-size: 18px; font-weight: bold;">
+					>&nbsp 전공 ${anotherTotal}/${anotherProcess.mustPlusChoice} <small><${
+						anotherDept.departmentName }></small>
+				</p>
 				<div class="progressbar progressbar-green" style="float: left">
 					<div class="progressbar-inner"
 						style="width:${((anotherTotal/anotherProcess.mustPlusChoice)*100)>100 ? "100" : (anotherTotal/anotherProcess.mustPlusChoice)*100}%"></div>
 				</div>
 			</div>
-			<br /><br />
+			<br />
+			<br />
 			<p style="font-size: 16px; font-weight: bold;">＊ 전공 필수</p>
-				<p
-					style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
-					과목은 색으로 표시됩니다</p>
-				<div style="margin-right: 200px">
-					<table class="table">
-						<thead>
-							<tr style="height: 30px;">
-								<th scope="col" class="text-center">과목명</th>
-								<th scope="col" class="text-center">학점</th>
-								<th scope="col" class="text-center">성적</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="major" items="${ anotherMajorSubjects }">
-								<c:set var="loop_flag" value="false" />
-								<c:set var="check" value="false" />
-								<c:forEach var="studentSubjectGrade" items="${ anoterMustMajorList }">
-									<c:if test="${not loop_flag }">
-										<c:set var="color" value="#FFFFFF" />
-										<c:if
-											test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
-											<c:set var="color" value="#E1F5A9" />
-											<c:set var="loop_flag" value="true" />
-											<c:set var="check" value="true" />
-											<c:set var="grade" value="${ studentSubjectGrade.grade }" />
-										</c:if>
+			<p
+				style="font-size: 12px; float: right; margin-right: 200px; color: #ac0; font-weight: bold;">수강한
+				과목은 색으로 표시됩니다</p>
+			<div style="margin-right: 200px">
+				<table class="table">
+					<thead>
+						<tr style="height: 30px;">
+							<th scope="col" class="text-center">과목명</th>
+							<th scope="col" class="text-center">학점</th>
+							<th scope="col" class="text-center">성적</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="major" items="${ anotherMajorSubjects }">
+							<c:set var="loop_flag" value="false" />
+							<c:set var="check" value="false" />
+							<c:forEach var="studentSubjectGrade"
+								items="${ anoterMustMajorList }">
+								<c:if test="${not loop_flag }">
+									<c:set var="color" value="#FFFFFF" />
+									<c:if
+										test="${ major.majorSubjectId == studentSubjectGrade.subjectId}">
+										<c:set var="color" value="#E1F5A9" />
+										<c:set var="loop_flag" value="true" />
+										<c:set var="check" value="true" />
+										<c:set var="grade" value="${ studentSubjectGrade.grade }" />
 									</c:if>
-								</c:forEach>
-								<tr style="background-color:${color}">
-									<td>${ major.majorName }</td>
-									<td>${ major.subjectScore }</td>
-									<td>${ check.equals("true") ? grade : "" }</td>
-								</tr>
+								</c:if>
 							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-		</c:if>
-			<c:if test="${entranceYear == 2018}">
-				<p style="font-size: 16px; font-weight: bold;">＊ 전공 탐색</p>
-				<div style="margin-right: 200px">
-					<table class="table">
-						<thead>
-							<tr style="height: 30px;">
-								<th scope="col" class="text-center">과목명</th>
-								<th scope="col" class="text-center">학점</th>
-								<th scope="col" class="text-center">성적</th>
+							<tr style="background-color:${color}">
+								<td>${ major.majorName }</td>
+								<td>${ major.subjectScore }</td>
+								<td>${ check.equals("true") ? grade : "" }</td>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="major" items="${ major2018 }">
-								<tr style="background-color:${color}">
-									<td>${ major.majorName }</td>
-									<td>${ major.subjectScore }</td>
-									<td>${ major.grade }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</c:if>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:if>
+		<c:if test="${entranceYear == 2018}">
+			<p style="font-size: 16px; font-weight: bold;">＊ 전공 탐색</p>
+			<div style="margin-right: 200px">
+				<table class="table">
+					<thead>
+						<tr style="height: 30px;">
+							<th scope="col" class="text-center">과목명</th>
+							<th scope="col" class="text-center">학점</th>
+							<th scope="col" class="text-center">성적</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="major" items="${ major2018 }">
+							<tr style="background-color:${color}">
+								<td>${ major.majorName }</td>
+								<td>${ major.subjectScore }</td>
+								<td>${ major.grade }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:if>
 
 		<br> <br>
 
@@ -650,7 +656,7 @@
 			</div>
 			<c:if test="${ entranceYear == 2018 }">
 				<p style="font-size: 18px; font-weight: bold;">>&nbsp 핵심역량
-				${coreTotal}/18</p>
+					${coreTotal}/18</p>
 				<div class="verticalTree"></div>
 			</c:if>
 		</div>
