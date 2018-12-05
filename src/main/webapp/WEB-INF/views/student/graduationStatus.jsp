@@ -352,7 +352,7 @@ td {
 	<div class="contents">
 		<div
 			style="float: left; margin-left: 70px; margin-right: 100px; margin-top: 30px;">
-			<img src="${R}res/images/abouti/student.png" width="150px"
+			<img src="${R}res/images/abouti/student1.png" width="150px"
 				height="170px">
 		</div>
 
