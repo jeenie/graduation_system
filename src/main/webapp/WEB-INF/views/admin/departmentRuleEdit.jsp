@@ -22,7 +22,13 @@
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	  
 	  <style>
-	      
+	      .contents {
+	      margin-top: 5px;
+	      margin-right: 100px;
+	      margin-left: 140px;
+	      margin-bottom: 90px;
+	   	 }
+	    
 	      /*input class 변경*/
 	    .form-controls {
 	    width: 160px;
@@ -87,63 +93,11 @@
 	      overflow:  scroll;
 	    }
 	
-	    .contents {
-	      margin-top: 5px;
-	      margin-right: 100px;
-	      margin-left: 140px;
-	      margin-bottom: 150px;
-	    }
-	
-	    .divide {
-	      margin-top: 20px;
-	      margin-left: 60px;
-	      margin-right: 60px;
-	      height: 520px;
-	
-	    }
-	    .left_sec {
-	      margin-left: 60px;
-	      float: left;
-	      width: 300px;
-	      height: 520px;
-	    }
-	
-	    .abolish_list {
-	      margin-top: 40px;
-	      float: left;
-	      border: 2px solid #1BBD36;
-	      width: 300px;
-	      height: 400px;
-	    }
-	
-	    .right_sec {
-	      margin-right: 60px;
-	      float: right;
-	      width: 300px;
-	      height: 520px;
-	    }
-	
-	    .alternative_list {
-	      margin-top: 40px;
-	      float: right;
-	      border: 2px solid #1BBD36;
-	      width: 300px;
-	      height: 400px;
-	    }
-	
-	    .myLavel {
-	      margin: 0;
-	      font-weight: bold;
-	      font-size: 22px;
-	    }
-	
 	    
 	
-	    .divide_top {
-	      width: 100%;
-	      height: 40px;
-	      display: block;
-	    }
+	   
+	
+	   
 	
 	    .divide_top input[type="button"] {
 	      float: right;
@@ -155,62 +109,54 @@
 	      float: left;
 	    }
 	
-	    .font1 {
-	      margin-top : 6px;
-	      margin-right: 5px;
-	      float: left;
-	      font-weight: bold;
-	      font-size:17px;
-	    }
+	   .font1 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.font2 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.font25 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
+.font3 {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.font4 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.font5 {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.font6 {
+	font-weight: bold;
+	font-size: 14px;
+}
 	
-	    .font2 {
-	      margin-top : 6px;
-	      margin-right: 5px;
-	      float: left;
-	      font-weight: bold;
-	      font-size:14px;
-	    }
-	    .font3 {
-	      font-weight: bold;
-	      font-size:14px;
-	      margin: 0;
-	    }
-	    
-	    .font4 {
-			margin-top: 6px;
-			margin-right: 5px;
-			float: left;
-			font-weight: bold;
-			font-size: 16px;
-		}
-	
-	    .plusCircle{
-	      border-radius:50px;
-	      -webkit-border-radius:50px;
-	      -moz-border-radius:50px;
-	      width:30px;
-	      height:30px;
-	      background-color: #fff;
-	      color: #BDBDBD;
-	    }
-	
-	    .plusCircle:before, .plusCircle:after{
-	      content:'';
-	      height:3px;
-	      width:20px;
-	      display:block;
-	      background:#fff;
-	      border-radius:10px;
-	      -webkit-border-radius:10px;
-	      -moz-border-radius:10px;
-	      position:absolute;
-	      top:11px;
-	      left:3px;
-	    }
-	
-	    .plusCircle:after{
-	      height:20px; width:3px; top:3px; left:11px;
-	    }
 	    
 	    .inputNumber {
 	    	width:60px; 
@@ -287,7 +233,7 @@
          	<div>
             <div class="form-group" style="float:left">
                 <div style="width:330px;">
-                  <p class="font3">전공필수과목 <a data-toggle="modal" href="#addMajorSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
+                  <p class="font5">전공필수과목 <a data-toggle="modal" href="#addMajorSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
                 </div>
                 <div class="list-group majorlist"
 							style="width: 330px; margin-top: 10px; margin-left: -5px;">
@@ -300,7 +246,7 @@
             </div>
             <div class="form-group" style="float:left; margin-left:50px;">
                 <div style="width:330px;">
-                  <p class="font3">학과지정교양 <a data-toggle="modal" href="#addMajorLiberal"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
+                  <p class="font5">학과지정교양 <a data-toggle="modal" href="#addMajorLiberal"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
                 </div>
                 <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
                   <a href="#" class="list-group-item list-group-item-action">
@@ -314,17 +260,17 @@
           </div>
 	  	</div>
 	  	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <div style="margin-left:20px">
+        <div style="margin-left:20px; margin-top:-40px">
         	<p>
               <div class="form-group" style="float:left; margin-bottom:0px;">
-                  <p class="font2">전공과정</p>
+                  <p class="font5">전공과정</p>
               </div>
             </p>
             <br/><br/>
             <form:form method="post">
 	            <c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
-	            	<div style="margin-left:40px">
-		            	<p class="font3">▶${departmentMajorRule.processName} </p>
+	            	<div style="margin-left:40px;">
+		            	<p class="font6">▶${departmentMajorRule.processName} </p>
 		                	<div style="margin-left:30px">
 		                  		<div class="form-group" style="float:left; margin-bottom:0px;">
 		                			<p class="font2">전필</p>
@@ -346,25 +292,22 @@
 		              <br/>
 		              <br/>
 		        </c:forEach>
-		        <button type="submit" class="btn btn-submit">
+		        <button type="submit" class="btn btn-submit" style="float:right; margin-right:380px">
 				    <span class="glyphicon glyphicon-ok"></span> 저장
 				</button>
+				<a href="deptRuleEdit?departmentId=${departmentId}&entranceYear=${entranceYear}" class="btn btn-cancle" style="float:right; margin-right:-170px">원래대로</a>
 	        </form:form>
         </div>
+	  </c:if>
+	  <c:if test="${departmentId == 99}">
+	  	<div style="margin-bottom:278px"></div>
 	  </c:if>
 	  
   </div>
 
 
-  <footer>
-  	<div class="footer">
-        <div class="container">
-          문의:test123@naver.com<br>
-          152-716 서울시 구로구 연동로320<br>
-          Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-        </div>
-      </div>
-  </footer>
+  <%@ include file="/WEB-INF/views/include/footer.jsp"%>
+  
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="${R}res/js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -373,7 +316,7 @@
   <script src="${R}res/js/jquery.isotope.min.js"></script>
   <script src="${R}res/js/wow.min.js"></script>
   <script src="${R}res/js/functions.js"></script>
-  <script src="${R}res/js/commons.js"></script>
+  <script src="${R}res/js/common.js"></script>
   
   <script>
 		function deleteSubject() {

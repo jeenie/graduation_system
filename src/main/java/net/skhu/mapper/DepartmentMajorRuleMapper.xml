@@ -27,7 +27,8 @@
 		(entranceYear=#{entranceYear} or entranceYear=0) and
 		processId=#{processId}
 	</select>
-	<update id="update">
+	
+	<update id="update" parameterType="DepartmentMajorRule">
 		UPDATE department_major_rule SET mustMajor =
 		#{mustMajor}, choiceMajor = #{choiceMajor}, mustPlusChoice =
 		#{mustPlusChoice} WHERE departmentId = #{departmentId} and

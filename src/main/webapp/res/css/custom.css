@@ -41,6 +41,54 @@ input.form-control.w505 {
 	font-size: 18px;
 }
 
+.font1 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.font2 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.font25 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
+.font3 {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.font4 {
+	margin-top: 6px;
+	margin-right: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.font5 {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.font6 {
+	font-weight: bold;
+	font-size: 14px;
+}
+
 /* Style The Dropdown Button */
 .dropbtn {
 	background-color: #4CAF50;

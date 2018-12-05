@@ -243,11 +243,11 @@ public class GraduationRuleController {
 			System.out.println(rule.getMustMajor());
 			rule.setChoiceMajor(choiceMajors[i]); System.out.println(rule.getChoiceMajor());
 			rule.setMustPlusChoice(mustPlusChoices[i]); System.out.println(rule.getMustPlusChoice());
-			rules.add(rule);
+			departmentMajorRuleMapper.update(rule);
 		}
 		System.out.println(rules.size());
-		departmentMajorRuleMapper.updateList(rules);
-		return "admin/departmentRuleEdit";
+		//departmentMajorRuleMapper.updateList(rules);
+		return "redirect:deptRuleEdit?departmentId=" + departmentId + "&entranceYear=" + entranceYear;
 	}
 
 	// 교양 필수 과목 수정
