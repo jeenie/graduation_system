@@ -568,7 +568,7 @@ textarea {
 						
 						<div class="modalGreen">
 							<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
-								type="checkbox" name="checkbox">&nbsp;&nbsp;
+								type="checkbox" name="checkbox" value="check">&nbsp;&nbsp;
 						</div>
                         
 					</div>
