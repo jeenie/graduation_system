@@ -15,38 +15,45 @@ import net.skhu.utils.Encryption;
 
 @Service
 public class UserService {
-	@Autowired UserMapper userMapper;
-	@Autowired StudentMapper studentMapper;
-	@Autowired ProfessorMapper professorMapper;
-	@Autowired MasterMapper masterMapper;
+	@Autowired
+	UserMapper userMapper;
+	@Autowired
+	StudentMapper studentMapper;
+	@Autowired
+	ProfessorMapper professorMapper;
+	@Autowired
+	MasterMapper masterMapper;
 
 	public User login(String userId, String password) {
-		int loginId = Integer.parseInt(userId);
-		if(studentMapper.findById(loginId) != null) {
-			Student student = studentMapper.findById(loginId);
-			System.out.println(student.getName());
-			User studentUser = userMapper.findOne(student.getId());
-			String pw = Encryption.encrypt(password, Encryption.MD5);
-			System.out.println(pw+" "+studentUser.getPassword());
-			if(studentUser.getPassword().equals(pw)==false) return null;
-			return studentUser;
-		} else if(professorMapper.findById(loginId) != null) {
-			Professor professor = professorMapper.findById(loginId);
-			System.out.println(professor.getName());
-			User professorUser = userMapper.findOne(professor.getId());
-			String pw = Encryption.encrypt(password, Encryption.MD5);
-			System.out.println(pw+" "+professorUser.getPassword());
-			if(professorUser.getPassword().equals(pw)==false) return null;
-			return professorUser;
-		} else if(masterMapper.findById(loginId) != null) {
-			Master master = masterMapper.findById(loginId);
+		if(userId.equals("master")) {
+			Master master = masterMapper.findById(932188);
 			System.out.println(master.getId());
 			User masterUser = userMapper.findOne(master.getId());
 			String pw = Encryption.encrypt(password, Encryption.MD5);
 			System.out.println(pw+" "+masterUser.getPassword());
 			if(masterUser.getPassword().equals(pw) == false) return null;
 			return masterUser;
+		} else {
+			int loginId = Integer.parseInt(userId);
+			if(studentMapper.findById(loginId) != null) {
+				Student student = studentMapper.findById(loginId);
+				System.out.println(student.getName());
+				User studentUser = userMapper.findOne(student.getId());
+				String pw = Encryption.encrypt(password, Encryption.MD5);
+				System.out.println(pw+" "+studentUser.getPassword());
+				if(studentUser.getPassword().equals(pw)==false) return null;
+				return studentUser;
+			} else if(professorMapper.findById(loginId) != null) {
+				Professor professor = professorMapper.findById(loginId);
+				System.out.println(professor.getName());
+				User professorUser = userMapper.findOne(professor.getId());
+				String pw = Encryption.encrypt(password, Encryption.MD5);
+				System.out.println(pw+" "+professorUser.getPassword());
+				if(professorUser.getPassword().equals(pw)==false) return null;
+				return professorUser;
+			} 
+			else return null;
 		}
-		else return null;
+		
 	}
 }

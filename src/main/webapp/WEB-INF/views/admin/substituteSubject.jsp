@@ -312,22 +312,28 @@
 				<div class="modal-body">
 					<form method="post" action="addSubject" modelAttribute="substitutionSubject">
 						<div class="form-group">
+							<label style="float:left">담당학과</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.departmentId" style="margin-top:-17px" readonly/>
+						</div>
+						<div class="form-group">
 							<label>담당학과</label>
+							<script>console.log(data.subjectDeptId)</script>
 							<select name="departmentId" class="form-control w505" id="departmentId">
-						<option value="99">선택</option>
-						<c:forEach var="department" items="${departments}">
-							<option value="${department.id}" ${department.id == subjectData.departmentId ? "selected":""}>${department.departmentName}</option>
-						</c:forEach>
-					</select>
+								<option value="99">선택</option>
+								<c:forEach var="department" items="${departments}">
+									<option value="${department.id}" ${department.id == data.subjectDeptId ? "selected":""}>${department.departmentName}</option>
+								</c:forEach>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>폐지과목</label>
-							<input type="text" name="abolitionSubject" class="form-control w505" v-model="selectedSubject.id"/>
+							<input type="text" name="abolitionSubject" class="form-control w505" v-model="subjectData.abolitionSubjectName"/>
 							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
 						<div class="form-group">
 							<label>대체과목</label>
-							<input type="text" name="substitutionSubject" class="form-control w505" v-model="selectedSubject2.id"/>
+							<input type="text" name="substitutionSubject" class="form-control w505" v-model="subjectData.substitutionSubjectName"/>
 							<a data-toggle="modal" href="#find2" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
 						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
@@ -459,7 +465,8 @@
 				subjects2: [],
 				selectedSubject: {},
 				selectedSubject2: {},
-				subjectData: {}
+				subjectData: {},
+				subjectDeptId: '',
 			},
 			methods: {
 				findSubjectData: function() {
@@ -494,11 +501,11 @@
 					let url = '/graduation_system/subjectData?subjectId=' + subject;
 					axios.get(url).then(response => {
 						this.subjectData = response.data;
+						this.subjectDeptId = this.subjectData.departmentId;
 					});
 				}, 
 			}
 		});
 	</script>
-
 </body>
 </html>
