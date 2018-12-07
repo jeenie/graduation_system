@@ -7,6 +7,16 @@
 	margin-top: 0px;
 }
 
+.btn-cancel {
+	      padding: 6px 15px;
+	      background-color: #BDBDBD;
+	      border-color: #eea236;
+	      color: #fff;
+	      border-radius: 4px;
+	      border:none;
+	      margin-top: 0;
+}
+
 input.form-control.w110 {
 	width: 110px;
 }

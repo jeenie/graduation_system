@@ -47,6 +47,18 @@ public class APIController {
 		return subjects;
 	}
 	
+	@RequestMapping("findSubject3")
+	public List<Subject> subjectList3(@RequestParam("ss3") String ss3, @RequestParam("st3") String st3) {
+		List<Subject> subjects = null;
+		System.out.println(ss3);
+		System.out.println(st3);
+		if(ss3.equals("0"))  
+			subjects = subjectMapper.findById(st3);
+		else if(ss3.equals("1")) 
+			subjects = subjectMapper.findByName(st3);;
+		return subjects;
+	}
+	
 	@RequestMapping("subjectData")
 	public SubstitutionSubject subjectList2(@RequestParam("subjectId") String subjectId) {
 		System.out.println(subjectId);

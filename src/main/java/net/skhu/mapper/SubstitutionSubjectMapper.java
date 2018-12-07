@@ -12,5 +12,6 @@ public interface SubstitutionSubjectMapper {
 	List<SubstitutionSubject> findBySubject(String subject);
 	SubstitutionSubject findBySubjectId(String subjectId);
 	void insert(SubstitutionSubject subject);
+	void update(SubstitutionSubject subject);
 	void delete(SubstitutionSubject subject);
 }

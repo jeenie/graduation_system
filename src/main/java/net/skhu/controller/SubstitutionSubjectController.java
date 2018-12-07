@@ -31,7 +31,7 @@ public class SubstitutionSubjectController {
 		return "admin/substituteSubject";
 	}
 	
-	
+	//대체과목 추가
 	@RequestMapping(value="addSubject", method=RequestMethod.POST)
 	public String addSubject(Model model, @RequestParam(value="departmentId") int departmentId, @RequestParam(value="abolitionSubject") String abolitionSubject, @RequestParam(value="substitutionSubject") String substitutionSubject) {
 		SubstitutionSubject subSubject = new SubstitutionSubject();
@@ -41,6 +41,17 @@ public class SubstitutionSubjectController {
 		substitutionSubjectMapper.insert(subSubject);
 		return "redirect:SubstitutionSubject";
 	}
+	
+	//대체과목 수정
+		@RequestMapping(value="editSubject", method=RequestMethod.POST)
+		public String editSubject(Model model, @RequestParam(value="abolitionSubject") String abolitionSubject, @RequestParam(value="substitutionSubject") String substitutionSubject) {
+			System.out.println(abolitionSubject);
+			System.out.println(substitutionSubject);
+			SubstitutionSubject subSubject = substitutionSubjectMapper.findBySubjectId(abolitionSubject);
+			subSubject.setSubstitutionSubject(substitutionSubject);
+			substitutionSubjectMapper.update(subSubject);
+			return "redirect:SubstitutionSubject";
+		}
 	
 	@RequestMapping(value="findSubject", method=RequestMethod.GET)
 	public String searchSubject(Model model, @RequestParam(value="subject") String subject, SubstitutionSubject substitutionSubject) {

@@ -147,6 +147,25 @@
 	margin-top: 0;
 	}
 	
+	.btn-cancel {
+	      padding: 6px 15px;
+	      background-color: #BDBDBD;
+	      border-color: #eea236;
+	      color: #fff;
+	      border-radius: 4px;
+	      border:none;
+	      margin-top: 0;
+	 }
+	 
+	 .btn-delete {
+	      padding: 6px 15px;
+	      background-color: #FA5858;
+	      border-color: #eea236;
+	      color: #fff;
+	      border-radius: 4px;
+	      border:none;
+	      margin-top: 0;
+	 }
 </style>
 	
 </head>
@@ -268,17 +287,7 @@
 						<div class="form-group">
 							<label style="float:left">담당학과</label>
 							<br/><br/>
-							<input type="text" class="form-control w400" v-model="subjectData.departmentId" style="margin-top:-17px" readonly/>
-						</div>
-						<div class="form-group">
-							<label style="float:left">담당학과</label>
-							<br/><br/>
 							<input type="text" class="form-control w400" v-model="subjectData.departmentName" style="margin-top:-17px" readonly/>
-						</div>
-						<div class="form-group">
-							<label style="float:left">폐지과목</label>
-							<br/><br/>
-							<input type="text" class="form-control w400" v-model="subjectData.abolitionSubject" style="margin-top:-17px" readonly/>
 						</div>
 						<div class="form-group">
 							<label style="float:left">폐지과목</label>
@@ -291,8 +300,8 @@
 							<input type="text" class="form-control w400" v-model="subjectData.substitutionSubjectName" style="margin-top:-17px" readonly/>
 						</div>
 						
-						<a data-toggle="modal" href="#edit" class="btn btn-submit" data-dismiss="modal" style="float:right" v-on:click="editSubject(subjectData.abolitionSubject)">수정</a>
-						<a href="#delete" class="btn btn-cancle" style="float:right" v-on:click="deleteSubject(subjectData.abolitionSubject)">수정</a>
+						<a data-toggle="modal" href="#edit" class="btn btn-submit" data-dismiss="modal" style="float:right; margin-right:60px" v-on:click="editSubject(subjectData.abolitionSubject)">수정</a>
+						<a href="#delete" class="btn btn-delete" style="float:right; margin-right:-120px" v-on:click="deleteSubject(subjectData.abolitionSubject)">삭제</a>
 					</div>
 				</div>
 			</div>
@@ -300,7 +309,7 @@
 	</div>
 	
 	<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style="width:495px;">
 			<div class="modal-content">
 				<div class="modal-header" style="padding-bottom: 1.5px;">
 					<h4>
@@ -310,35 +319,30 @@
 							</button>
 						</h4>
 				</div>
-				<div class="modal-body">
-					<form method="post" action="addSubject" modelAttribute="substitutionSubject">
+				<div class="modal-body" style="margin-bottom:30px">
+					<form method="post" action="editSubject" modelAttribute="substitutionSubject">
 						<div class="form-group">
 							<label style="float:left">담당학과</label>
 							<br/><br/>
-							<input type="text" class="form-control w400" v-model="subjectData.departmentId" style="margin-top:-17px" readonly/>
+							<input type="text" class="form-control w400" v-model="subjectData.departmentName" style="margin-top:-17px" readonly/>
 						</div>
 						<div class="form-group">
-							<label>담당학과</label>
-							
-							<select name="departmentId" class="form-control w505" id="departmentId">
-								<option value="99">선택</option>
-								<c:forEach var="department" items="${departments}">
-									<option value="${department.id}" {{department.id == data.subjectDeptId ? "selected":""}}>${department.departmentName}</option>
-								</c:forEach>
-							</select>
+							<label style="float:left">폐지과목</label>
+							<br/><br/>
+							<input type="text"  class="form-control w400" v-model="subjectData.abolitionSubjectName" style="margin-top:-17px" readonly/>
 						</div>
+						<input type="hidden" name="abolitionSubject" v-model="subjectData.abolitionSubject">
+						<input type="hidden" name="substitutionSubject" v-model="subjectData.substitutionSubject">
 						<div class="form-group">
-							<label>폐지과목</label>
-							<input type="text" name="abolitionSubject" class="form-control w505" v-model="subjectData.abolitionSubjectName"/>
-							<a data-toggle="modal" href="#find" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
+							<label style="float:left">대체과목</label>
+							<br/><br/>
+							<input type="text" class="form-control w400" v-model="subjectData.substitutionSubjectName" style="margin-top:-17px"/>
+							<a data-toggle="modal" href="#find3" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
 						</div>
-						<div class="form-group">
-							<label>대체과목</label>
-							<input type="text" name="substitutionSubject" class="form-control w505" v-model="subjectData.substitutionSubjectName"/>
-							<a data-toggle="modal" href="#find2" class="btn btn-submit" style="float:right; margin-top:-33px">찾기</a>
-						</div>
-						<button type="submit" class="btn btn-submit" onclick="success()">추가</button>
-						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						
+						<button type="submit" class="btn btn-submit" onclick="alert('정상적으로 수정되었습니다.')" style="float:right; margin-right:60px">수정</button>
+						<button type="button" class="btn" data-dismiss="modal" style="float:right; margin-right:-120px">취소</button>
+						
 					</form>
 				</div>
 			</div>
@@ -436,6 +440,50 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="find3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom: 1.5px;">
+					<h4>
+						<b>과목 찾기</b>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+							</button>
+						</h4>
+				</div>
+				<div class="modal-body">
+					
+					<form id="searchSubject">
+						<div class="form-group">
+							<select class="form-control" v-model="ss3" style="float:left; margin-right:5px; width:110px">
+								<option disabled value="">검색조건</option>
+								<option value="0">과목코드</option>
+								<option value="1">과목명</option>
+							</select>
+							<input type="text" v-model="st3" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20"/>
+						</div>
+						<button type="button" class="btn btn-submit" v-on:click="findSubjectData3">조회</button>
+					</form>
+						<table class="table table-bordered mt5" style="margin-top:10px;">
+							<thead>
+									<tr>
+										<th style="text-align:center;">과목코드</th>
+										<th style="text-align:center;">과목명</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr class="hover" v-for="subject in subjects3" v-on:click="selectSubject3(subject)"> 
+										<td>{{subject.id}}</td> 
+										<td>{{subject.name}}</td> 
+									</tr>
+								</tbody>
+						</table>
+						<p>영역 대체를 원하는 경우, <b>[과목명] 대체</b>라고 검색해주세요.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
@@ -462,10 +510,14 @@
 				st: '',
 				ss2: '',
 				st2: '',
+				ss3: '',
+				st3: '',
 				subjects: [],
 				subjects2: [],
+				subjects3: [],
 				selectedSubject: {},
 				selectedSubject2: {},
+				selectedSubject3: {},
 				subjectData: {},
 				subjectDeptId: '',
 			},
@@ -482,6 +534,12 @@
 							this.subjects2 = response.data;
 						});
 				},
+				findSubjectData3: function() {
+					let url = '/graduation_system/findSubject3?ss3='+ this.ss3 +'&st3=' + this.st3;
+					axios.get(url).then(response => {
+							this.subjects3 = response.data;
+						});
+				},
 				selectSubject: function(subject) {
 					this.selectedSubject = subject;
 					$('#find').modal('hide');
@@ -489,6 +547,11 @@
 				selectSubject2: function(subject) {
 					this.selectedSubject2 = subject;
 					$('#find2').modal('hide');
+				},
+				selectSubject3: function(subject) {
+					this.subjectData.substitutionSubject = subject.id;
+					this.subjectData.substitutionSubjectName = subject.name;
+					$('#find3').modal('hide');
 				},
 				subjectById: function(subject) {
 					console.log(subject);
@@ -502,7 +565,6 @@
 					let url = '/graduation_system/subjectData?subjectId=' + subject;
 					axios.get(url).then(response => {
 						this.subjectData = response.data;
-						this.subjectDeptId = this.subjectData.departmentId;
 					});
 				}, 
 				deleteSubject:function(subject) {
