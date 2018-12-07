@@ -469,7 +469,7 @@ textarea {
 						<tbody>
 						
 							<c:forEach var="student" items="${students}">
-								<tr v-on:click="studentById(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
+								<tr v-on:click="info(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
 									<td>${ student.departmentName }</td>
 									<td>${ student.name }</td>
 									<td>${ student.id }</td>
@@ -599,22 +599,22 @@ textarea {
                             <table class="table-s" border=1>
                                 <tr>
                                     <th class="th-s">학번</th>
-                                    <td class="td-s">{{selectedStudent.id}} </td>
+                                    <td class="td-s">{{stu.student.id}} </td>
                                     <th class="th-s">성명</th>
-                                    <td class="td-s">{{selectedStudent.name}}</td>
+                                    <td class="td-s">{{stu.student.name}}</td>
                                 </tr>
                                 <tr>
                                     <th class="th-s">학부(과)</th>
-                                    <td class="td-s">{{selectedStudent.departmentName}}</td>
+                                    <td class="td-s">{{stu.student.departmentName}}</td>
                                     <th class="th-s">학년</th>
-                                    <td class="td-s">{{selectedStudent.grade}}학년</td>
+                                    <td class="td-s">{{stu.student.grade}}학년</td>
 
                                 </tr>
                                 <tr>
                                     <th class="th-s">입학구분</th>
-                                    <td class="td-s">{{selectedStudent.entranceType}}</td>
+                                    <td class="td-s">{{stu.student.entranceType}}</td>
                                     <th class="th-s">이수학기</th>
-                                    <td class="td-s">{{selectedStudent.completeSemester}}학기</td>
+                                    <td class="td-s">{{stu.student.completeSemester}}학기</td>
                                 </tr>
                             </table>
                             <div>
@@ -634,7 +634,7 @@ textarea {
                             <div class="skill">
                                 <div class="progress-wrap" style="width:350px;">
                                     <br>
-                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
+                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/{{stu.total.total}}</h4>
                                     <div class="progress">
                                         <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
                                             <span class="bar-width">67%</span>
@@ -650,7 +650,7 @@ textarea {
                                     </div>
                                     
                                 </div>
-                                <img src="images/abouti/maj.png" width="100%">
+                                
                                 <div class="progress-wrap" style="width:350px;">
                                     <b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
                                     <div class="progress">
@@ -660,7 +660,7 @@ textarea {
                                     </div>
                                     
                                 </div>
-                                <img src="images/abouti/ref.png" width="100%">
+                               
                             </div>
                             
 
@@ -692,7 +692,8 @@ textarea {
 			var app = new Vue({
 				el : '#stuModal',
 				data : {
-					selectedStudent : {}
+					selectedStudent : {},
+					stu: {}
 				},
 				methods : {
 					studentById: function(studentId) {
@@ -702,6 +703,13 @@ textarea {
 						.then(response => {
 							this.selectedStudent = response.data;
 						});
+					},
+					info: function(id) {
+						let url = '/graduation_system/info?id=' + id;
+						axios.get(url)
+						.then(response => {
+							this.stu = response.data;
+						})
 					}
 				}
 			})
