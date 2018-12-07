@@ -599,22 +599,22 @@ textarea {
                             <table class="table-s" border=1>
                                 <tr>
                                     <th class="th-s">학번</th>
-                                    <td class="td-s">{{stu.student.id}} </td>
+                               	    <td class="td-s">{{student.id}} </td>
                                     <th class="th-s">성명</th>
-                                    <td class="td-s">{{stu.student.name}}</td>
+                                    <td class="td-s">{{student.name}}</td>
                                 </tr>
                                 <tr>
                                     <th class="th-s">학부(과)</th>
-                                    <td class="td-s">{{stu.student.departmentName}}</td>
+                                    <td class="td-s">{{student.departmentName}}</td>
                                     <th class="th-s">학년</th>
-                                    <td class="td-s">{{stu.student.grade}}학년</td>
+                                    <td class="td-s">{{student.grade}}학년</td>
 
                                 </tr>
                                 <tr>
                                     <th class="th-s">입학구분</th>
-                                    <td class="td-s">{{stu.student.entranceType}}</td>
+                                    <td class="td-s">{{student.entranceType}}</td>
                                     <th class="th-s">이수학기</th>
-                                    <td class="td-s">{{stu.student.completeSemester}}학기</td>
+                                    <td class="td-s">{{student.completeSemester}}학기</td>
                                 </tr>
                             </table>
                             <div>
@@ -634,7 +634,7 @@ textarea {
                             <div class="skill">
                                 <div class="progress-wrap" style="width:350px;">
                                     <br>
-                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/{{stu.total.total}}</h4>
+                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/{{total.grade}}</h4>
                                     <div class="progress">
                                         <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
                                             <span class="bar-width">67%</span>
@@ -693,7 +693,9 @@ textarea {
 				el : '#stuModal',
 				data : {
 					selectedStudent : {},
-					stu: {}
+					stu: {},
+					student: {},
+					total:{}
 				},
 				methods : {
 					studentById: function(studentId) {
@@ -704,11 +706,13 @@ textarea {
 							this.selectedStudent = response.data;
 						});
 					},
-					info: function(id) {
-						let url = '/graduation_system/info?id=' + id;
+					info: function(studentId) {
+						let url = '/graduation_system/info?id=' + studentId;
 						axios.get(url)
 						.then(response => {
 							this.stu = response.data;
+							this.student = this.stu.student;
+							this.total = this.stu.total;
 						})
 					}
 				}

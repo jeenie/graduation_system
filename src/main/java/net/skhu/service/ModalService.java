@@ -19,12 +19,17 @@ public class ModalService {
 	@Autowired TotalMapper totalMapper;
 	
 	public StudentVO fillData(int id) {
+		System.out.println(id);
 		StudentVO stu = new StudentVO();
 		Student student = studentMapper.findById2(id);
+		stu.setStudent(student);
 		String year = String.valueOf(id).substring(0, 4);
 		int entranceYear = Integer.parseInt(year);
+		System.out.println(entranceYear);
+		System.out.println(stu.getStudent().getDepartmentId());
+		
 		List<DepartmentMajorRule> rules = departmentMajorMapper.findByDepartmentId(stu.getStudent().getDepartmentId(), entranceYear);
-		stu.setStudent(student);
+		
 		stu.setRules(rules);
 		stu.setTotal(totalMapper.find());
 		

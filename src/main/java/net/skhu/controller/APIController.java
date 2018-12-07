@@ -87,9 +87,7 @@ public class APIController {
 	
 	@RequestMapping("info")
 	public StudentVO info(@RequestParam("id") int id) {
-		System.out.println("id파라미터로 받기 성공");
 		StudentVO student = modal.fillData(id);
-		System.out.println("해당id에 대한 정보 가져오기 성공");
 		return student;
 	}
 	
