@@ -35,7 +35,10 @@
 				<p>⑤ 수강년도 학기 과목코드 과목명 이수구분 학점 성적등급 순으로 엑셀파일 저장하기</p>
 				<img src="${R}res/img/guide5.png" width="550px" height="300px">
 				<br> <br>
-				<p>그럼 성적파일 완사앙 - ☆ - ☆ - ☆ - ☆ - ☆</p>
+				<p>⑥ 첨부할 때 파일이 안 보인다면 파일의 형식을 '모든 파일'로 변경하기</p>
+				<img src="${R}res/img/guide6.png" width="550px" height="300px">
+				<br> <br>
+				<p>그럼 성적파일 업로드 완사앙 - ☆ - ☆ - ☆ - ☆ - ☆</p>
 				<p style="color: red; font-size: 12px;">※ Excel에 불필요한 내용이나 빈 셀이
 					포함된 경우 올바른 결과가 나오지 않을 수 있습니다.</p>
 			</div>

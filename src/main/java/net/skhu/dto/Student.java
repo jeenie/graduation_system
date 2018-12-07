@@ -19,7 +19,12 @@ public class Student {
 	int completeSemester;
 	int processId;
 	int mustPlusChoice;
+	int majorUnit;
+	int cultureUnit;
+	String mColor;
+	String cColor;
 	MultipartFile file;
+	
 
 	
 	public int getId() {
@@ -158,6 +163,39 @@ public class Student {
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+	
+	public int getMajorUnit() {
+		return majorUnit;
+	}
+
+	public void setMajorUnit(int majorUnit) {
+		this.majorUnit = majorUnit;
+	}
+
+	public int getCultureUnit() {
+		return cultureUnit;
+	}
+
+	public void setCultureUnit(int cultureUnit) {
+		this.cultureUnit = cultureUnit;
+	}
+	
+	
+	public String getmColor() {
+		return mColor;
+	}
+
+	public void setmColor(String mColor) {
+		this.mColor = mColor;
+	}
+
+	public String getcColor() {
+		return cColor;
+	}
+
+	public void setcColor(String cColor) {
+		this.cColor = cColor;
 	}
 
 

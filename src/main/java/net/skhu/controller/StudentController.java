@@ -43,11 +43,14 @@ import net.skhu.mapper.StudentSubjectGradeMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.TotalMapper;
 import net.skhu.service.StudentGradeService;
+import net.skhu.service.StudentService;
 
 @Controller
 public class StudentController {
 	@Autowired
 	StudentMapper studentMapper;
+	@Autowired
+	StudentService studentService;
 	@Autowired
 	DepartmentMapper departmentMapper;
 	@Autowired
@@ -85,7 +88,7 @@ public class StudentController {
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
-		List<Student> students = studentMapper.findAll();
+		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);
@@ -94,28 +97,24 @@ public class StudentController {
 
 	@RequestMapping("user/studentListForProfessor")
 	public String list2(Model model) {
-		List<Student> students = studentMapper.findAll();
+		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);
 		return "user/studentListForProfessor";
 	}
 
-	@RequestMapping(value = "user/studentSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "user/studentSearch", method = RequestMethod.GET) 
 	public String studentSearch(Model model,
 			@RequestParam(value = "departmentName", required = false) String departmentName,
 			@RequestParam(value = "grade", required = false) Integer grade,
+			@RequestParam(value = "allId", required = false) Integer allId,
 			@RequestParam(value = "subjectName", required = false) String subjectName,
 			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "id", required = false) Integer id) {
-
-		List<Student> students = studentMapper.findByStudentInquiry(departmentName, grade, subjectName, name, id);
-		/*
-		 * List<Student> studentsFilter = new ArrayList<Student>(); for(int i=0;
-		 * i<students.size(); i++) { Student st = students.get(i); for(int j=0;
-		 * j<studentsFilter.size(); j++) { if(st.getId() !=
-		 * studentsFilter.get(j).getId()) { studentsFilter.add(st); } } }
-		 */
+			@RequestParam(value = "id", required = false) Integer id,
+			@RequestParam(value = "checkbox", required = false) String checkbox) {
+		
+		List<Student> students = studentMapper.findByStudentInquiry(departmentName, grade, allId, subjectName, name, id, checkbox);
 		model.addAttribute("departments", departmentMapper.findRealDept());
 		model.addAttribute("students", students);
 		return "user/studentListForAdmin";
