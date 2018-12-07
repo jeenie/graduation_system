@@ -19,14 +19,17 @@
 		SELECT s.*, pq.quizContent from student s LEFT JOIN passwordquiz pq ON s.passwordQuestion = pq.quizCode WHERE id=#{id}
 	</select>
 	<select id="findByStudentInquiry" resultType="Student">
-		SELECT s.id, s.name, s.completeSemester, s.grade, s.departmentId, d.departmentName, ssg.subjectId, sub.name subjectName
-		FROM ((student s LEFT JOIN department d ON s.departmentId = d.id) LEFT JOIN student_subject_grade ssg ON s.id = ssg.id) LEFT JOIN subject sub ON ssg.subjectId = sub.id
+		SELECT s.id, s.name, s.completeSemester, s.grade, s.departmentId, d.departmentName, ssg.subjectId, sub.name subjectName, file.majorUnit, file.cultureUnit
+		FROM (((student s LEFT JOIN department d ON s.departmentId = d.id) LEFT JOIN student_subject_grade ssg ON s.id = ssg.id) LEFT JOIN subject sub ON ssg.subjectId = sub.id)
+			LEFT JOIN student_gradefile file ON s.id = file.id
 		
 		WHERE (#{departmentName} IS NULL OR #{departmentName}="전체" OR #{departmentName}=d.departmentName)
 		AND (#{grade} IS NULL OR #{grade}="" OR #{grade}=s.grade)
+		AND (#{allId} IS NULL OR #{allId}="" OR s.id LIKE CONCAT(#{allId}, '%'))
 		AND (#{subjectName} IS NULL OR #{subjectName}="" OR #{subjectName}=sub.name OR sub.name LIKE CONCAT('%',#{subjectName},'%'))
 		AND (#{name} IS NULL OR #{name}="" OR  #{name}=s.name)
 		AND (#{id} IS NULL OR #{id}="" OR #{id}=s.id)
+		AND (#{checkbox} IS NULL OR #{checkbox}="" OR #{checkbox} IS NOT NULL)
 		GROUP BY s.id
 		
 		<!--<where>

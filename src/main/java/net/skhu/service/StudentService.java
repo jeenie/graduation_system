@@ -14,6 +14,7 @@ import net.skhu.utils.Encryption;
 @Service
 public class StudentService {
 	@Autowired StudentMapper studentMapper;
+
 	
 	int majorUnit, cultureUnit;
 	public List<Student> list() {
@@ -42,4 +43,6 @@ public class StudentService {
 		}
 		return students;
 	}
+	
+	
 }

@@ -529,23 +529,24 @@ textarea {
 								type="text" class="form-controls" style="width: 100px;"
 								name="grade" value="${grade}">
 						</div>
-						<!--  
+						
 						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학번&nbsp; <select
+							<i class="fas fa-caret-right"></i>&nbsp;학번(전체)&nbsp; 
+							<select name="allId"
 								class="form-controls" style="width: 100px; height: 30.5px;">
-								<option selected>=학번=</option>
-								<option>2018학번</option>
-								<option>2017학번</option>
-								<option>2016학번</option>
-								<option>2015학번</option>
-								<option>2014학번</option>
-								<option>2013학번</option>
-								<option>2012학번</option>
-								<option>2011학번</option>
-								<option>2010학번</option>
+								<option value=0000 selected>=학번=</option>
+								<option value=2018>2018</option>
+								<option value=2017>2017</option>
+								<option value=2016>2016</option>
+								<option value=2015>2015</option>
+								<option value=2014>2014</option>
+								<option value=2013>2013</option>
+								<option value=2012>2012</option>
+								<option value=2011>2011</option>
+								<option value=2010>2010</option>
 							</select>
 						</div>
-                        -->
+                        
 
 						<div class="modalGreen">
 							<i class="fas fa-caret-right"></i>&nbsp;수강과목&nbsp; <input
@@ -564,12 +565,12 @@ textarea {
 								type="text" class="form-controls" name="id" value="${id}"
 								style="width: 100px;">
 						</div>
-						<!--
+						
 						<div class="modalGreen">
 							<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
-								type="checkbox">&nbsp;&nbsp;
+								type="checkbox" name="checkbox">&nbsp;&nbsp;
 						</div>
-                        -->
+                        
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn-statement4"
