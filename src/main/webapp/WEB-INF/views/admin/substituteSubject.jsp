@@ -292,6 +292,7 @@
 						</div>
 						
 						<a data-toggle="modal" href="#edit" class="btn btn-submit" data-dismiss="modal" style="float:right" v-on:click="editSubject(subjectData.abolitionSubject)">수정</a>
+						<a href="#delete" class="btn btn-cancle" style="float:right" v-on:click="deleteSubject(subjectData.abolitionSubject)">수정</a>
 					</div>
 				</div>
 			</div>
@@ -318,11 +319,11 @@
 						</div>
 						<div class="form-group">
 							<label>담당학과</label>
-							<script>console.log(data.subjectDeptId)</script>
+							
 							<select name="departmentId" class="form-control w505" id="departmentId">
 								<option value="99">선택</option>
 								<c:forEach var="department" items="${departments}">
-									<option value="${department.id}" ${department.id == data.subjectDeptId ? "selected":""}>${department.departmentName}</option>
+									<option value="${department.id}" {{department.id == data.subjectDeptId ? "selected":""}}>${department.departmentName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -504,6 +505,16 @@
 						this.subjectDeptId = this.subjectData.departmentId;
 					});
 				}, 
+				deleteSubject:function(subject) {
+					let url = '/graduation_system/deleteSubject?subjectId=' + subject;
+					var ok = confirm("선택한 폐지과목에 대한 정보를 삭제하시겠습니까?");
+					console.log(ok);
+					if(ok) {
+						axios.get(url).then();
+						alert("정상적으로 삭제되었습니다.");
+						location.href = 'SubstitutionSubject';
+					}
+				}
 			}
 		});
 	</script>

@@ -4,19 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.skhu.dto.Department;
 import net.skhu.dto.Student;
 import net.skhu.dto.Subject;
 import net.skhu.dto.SubstitutionSubject;
+import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.SubstitutionSubjectMapper;
 
 @RestController
 public class APIController {
+	@Autowired DepartmentMapper departmentMapper;
 	@Autowired SubjectMapper subjectMapper;
 	@Autowired StudentMapper studentMapper;
 	@Autowired SubstitutionSubjectMapper substitutionSubjectMapper;
@@ -51,8 +53,14 @@ public class APIController {
 		SubstitutionSubject subject = substitutionSubjectMapper.findBySubjectId(subjectId);
 		return subject;
 	}
-	
-	
+		
+	@RequestMapping("deleteSubject")
+	public void deleteSubject(@RequestParam("subjectId") String subjectId) {
+		SubstitutionSubject subject = substitutionSubjectMapper.findBySubjectId(subjectId);
+		System.out.println("삭제할 데이터 코드 : ");
+		System.out.println(subject.getAbolitionSubject());
+		substitutionSubjectMapper.delete(subject);;
+	}
 
 	//http://localhost:8080/graduation_system/please?id=203032002
 	@RequestMapping("please")

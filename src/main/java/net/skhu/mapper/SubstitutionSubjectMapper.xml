@@ -30,4 +30,7 @@
 	<insert id="insert">
 		INSERT substitution_subject_list (departmentId, abolitionSubject, substitutionSubject) VALUES (#{departmentId}, #{abolitionSubject}, #{substitutionSubject})
 	</insert>
+	<delete id="delete">
+		DELETE FROM substitution_subject_list WHERE abolitionSubject = #{abolitionSubject}
+	</delete>
 </mapper>
