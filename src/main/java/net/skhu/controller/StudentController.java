@@ -43,11 +43,14 @@ import net.skhu.mapper.StudentSubjectGradeMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.TotalMapper;
 import net.skhu.service.StudentGradeService;
+import net.skhu.service.StudentService;
 
 @Controller
 public class StudentController {
 	@Autowired
 	StudentMapper studentMapper;
+	@Autowired
+	StudentService studentService;
 	@Autowired
 	DepartmentMapper departmentMapper;
 	@Autowired
@@ -85,7 +88,7 @@ public class StudentController {
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
-		List<Student> students = studentMapper.findAll();
+		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);
@@ -94,7 +97,7 @@ public class StudentController {
 
 	@RequestMapping("user/studentListForProfessor")
 	public String list2(Model model) {
-		List<Student> students = studentMapper.findAll();
+		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);

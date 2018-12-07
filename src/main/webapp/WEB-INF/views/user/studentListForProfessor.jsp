@@ -611,8 +611,8 @@ textarea {
 										<td>${ student.id }</td>
 										<td>${ student.completeSemester}학기</td>
 										<td>
-											<button type="button" class="btn-m2">전공</button>
-											<button type="button" class="btn-m2">교양</button>
+										<button type="button" class="${student.mColor}">전공</button>
+										<button type="button" class="${student.cColor}">교양</button>
 										</td>
 									</tr>
 								</c:forEach>
