@@ -395,6 +395,42 @@ textarea {
 	font-size: 13px;
 	border-radius: 1px;
 }
+/*progress 서식*/
+.progressbar {
+	width: 600px;
+	height: 16px;
+	margin: 0 auto 20px auto;
+	padding: 0px;
+	background: #cfcfcf;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #aaa #bbb #fff #bbb;
+	box-shadow: inset 0px 2px 3px #bbb;
+}
+
+.progressbar, .progressbar-inner {
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+
+.progressbar-inner {
+	width: 77%; /* Change to actual percentage */
+	height: 100%;
+	background: #999;
+	background-size: 18px 18px;
+	background-color: #ac0;
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2)
+		25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
+		rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	box-shadow: inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px
+		0px rgba(0, 0, 0, .2);
+}
+
+.progressbar-green .progressbar-inner {
+	background-color: #ac0;
+}
 </style>
 </head>
 <body>
@@ -469,7 +505,7 @@ textarea {
 						<tbody>
 						
 							<c:forEach var="student" items="${students}">
-								<tr v-on:click="studentById(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
+								<tr v-on:click="info(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
 									<td>${ student.departmentName }</td>
 									<td>${ student.name }</td>
 									<td>${ student.id }</td>
@@ -583,7 +619,7 @@ textarea {
 	
 	<div class="modal fade" id="studentInfo" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="width: 700px;">
                     <div class="modal-header" style="padding-bottom:1.5px;">
     
                         <h4><b>학생정보</b>
@@ -599,27 +635,27 @@ textarea {
                             <table class="table-s" border=1>
                                 <tr>
                                     <th class="th-s">학번</th>
-                                    <td class="td-s">{{selectedStudent.id}} </td>
+                               	    <td class="td-s">{{student.id}} </td>
                                     <th class="th-s">성명</th>
-                                    <td class="td-s">{{selectedStudent.name}}</td>
+                                    <td class="td-s">{{student.name}}</td>
                                 </tr>
                                 <tr>
                                     <th class="th-s">학부(과)</th>
-                                    <td class="td-s">{{selectedStudent.departmentName}}</td>
+                                    <td class="td-s">{{student.departmentName}}</td>
                                     <th class="th-s">학년</th>
-                                    <td class="td-s">{{selectedStudent.grade}}학년</td>
+                                    <td class="td-s">{{student.grade}}학년</td>
 
                                 </tr>
                                 <tr>
                                     <th class="th-s">입학구분</th>
-                                    <td class="td-s">{{selectedStudent.entranceType}}</td>
+                                    <td class="td-s">{{student.entranceType}}</td>
                                     <th class="th-s">이수학기</th>
-                                    <td class="td-s">{{selectedStudent.completeSemester}}학기</td>
+                                    <td class="td-s">{{student.completeSemester}}학기</td>
                                 </tr>
                             </table>
                             <div>
                                 <br>
-                                &nbsp;OOO 학생은 <i class="fas fa-lock"></i>&nbsp;
+                                &nbsp;{{student.name}} 님에게 맞는  &nbsp;
                                 <select name="special course">
                                     <option value="">특별과정선택</option>
                                     <option value="전공기초과정" selected="selected">전공기초과정</option>
@@ -632,35 +668,46 @@ textarea {
                         </div>
                         <div>
                             <div class="skill">
-                                <div class="progress-wrap" style="width:350px;">
-                                    <br>
-                                    <b>＞총 학점</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130</h4>
-                                    <div class="progress">
-                                        <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                                            <span class="bar-width">67%</span>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div class="progress-wrap" style="width:350px;">
-                                    <b>＞전공</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp88/130
-                                    <div class="progress">
-                                        <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="bar-width">78%</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <img src="images/abouti/maj.png" width="100%">
-                                <div class="progress-wrap" style="width:350px;">
-                                    <b>＞ 교양</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41/47
-                                    <div class="progress">
-                                        <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                            <span class="bar-width">90%</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <img src="images/abouti/ref.png" width="100%">
+                            	<div style="float: left;">
+									<p style="font-size: 16px; font-weight: bold;">>&nbsp 총 학점
+										{{studentfile.totalUnit}}/{{total.grade}}</p>
+									<div class="progressbar progressbar-green">
+									 	
+										<div class="progressbar-inner total"
+											style=""></div>
+											<p>{{stuTotal}}%</p>
+									</div>
+								</div>
+								<br> <br> <br> <br>
+								
+                               <div class="progress-wrap" style="margin-top:-20px">
+									<p style="font-size: 16px; font-weight: bold;">
+										>&nbsp 전공
+										{{studentfile.majorUnit}}/60
+										<c:if test="${processId == 3}">
+											<small><${ student.departmentName }></small>
+										</c:if>
+									</p>
+									<div class="progressbar progressbar-green" style="float: left">
+										<div class="progressbar-inner"
+											style="width:{{stuMajor}}"></div>
+									</div>
+								</div>
+								<br> <br> <br> <br>
+								
+								<div class="progress-wrap" style="margin-top:-20px">
+									<p style="font-size: 16px; font-weight: bold;">
+										>&nbsp 교양
+										{{studentfile.cultureUnit}}/32
+									</p>
+									<div class="progressbar progressbar-green" style="float: left">
+										<div class="progressbar-inner"
+											style="width:{{}}%"></div>
+									</div>
+								</div>
+                               
+                                
+                               
                             </div>
                             
 
@@ -692,7 +739,13 @@ textarea {
 			var app = new Vue({
 				el : '#stuModal',
 				data : {
-					selectedStudent : {}
+					selectedStudent : {},
+					stu: {},
+					student: {},
+					studentfile: {},
+					total:{},
+					stuTotal: '',
+					stuMajor: ''
 				},
 				methods : {
 					studentById: function(studentId) {
@@ -702,6 +755,28 @@ textarea {
 						.then(response => {
 							this.selectedStudent = response.data;
 						});
+					},
+					info: function(studentId) {
+						let url = '/graduation_system/info?id=' + studentId;
+						axios.get(url)
+						.then(response => {
+							this.stu = response.data;
+							this.student = this.stu.student;
+							this.studentfile = this.stu.fileData;
+							this.total = this.stu.total;
+							var total =  this.studentfile.totalUnit / this.total.grade * 100;
+							var major = this.studentfile.majorUnit / 60 * 100;
+							if(total < 100) {
+								this.stuTotal = total;
+							} else {
+								this.stuTotal =  100;
+							}
+							if(major < 100) {
+								this.stuMajor = major;
+							} else {
+								this.stuMajor =  100;
+							}
+						})
 					}
 				}
 			})
