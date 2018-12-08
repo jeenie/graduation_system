@@ -114,7 +114,7 @@ public class StudentController {
 			@RequestParam(value = "id", required = false) Integer id,
 			@RequestParam(value = "checkbox", required = false) String checkbox) {
 		
-		List<Student> students = studentMapper.findByStudentInquiry(departmentName, grade, allId, subjectName, name, id, checkbox);
+		List<Student> students = studentService.searchList(departmentName, grade, allId, subjectName, name, id, checkbox);
 		model.addAttribute("departments", departmentMapper.findRealDept());
 		model.addAttribute("students", students);
 		return "user/studentListForAdmin";
