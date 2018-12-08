@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,8 @@ public class FindPasswordController {
 	@Autowired ProfessorMapper professorMapper;
 	@Autowired UserMapper userMapper;
 	@Autowired GuestService guestService;
+	
+	static String certificationNumber = null;
 	
 	@RequestMapping("findPw")
 	public String findPw() {
@@ -113,6 +116,8 @@ public class FindPasswordController {
 		}
 	}
 	
+	
+	//교수 비밀번호 찾기 
 	@RequestMapping(value="findProfessorPw", method=RequestMethod.GET)
 	public String findProfessorPw(Model model) {
 		Professor professor = new Professor();
@@ -129,9 +134,32 @@ public class FindPasswordController {
 			if(pro.getEmail().equals(professor.getEmail())) {
 				success = true;
 				guestService.sendEmail(professor.getEmail());
-				return "redirect:sendEmail?success=true";
+				System.out.println(guestService.save);
+				certificationNumber = guestService.save;
+				return "redirect:certification";
 			}
+			
+			
 		}
+		model.addAttribute("error", true);
 		return "guest/professorPw";
+	}
+	
+	@RequestMapping("certification")
+	public String certification() {
+		return "guest/certification";
+	}
+	
+	@RequestMapping(value="certificationNumber", method=RequestMethod.GET)
+	public String certification(Model model, @RequestParam("cn") String cn) {
+		
+		System.out.println(certificationNumber);
+		System.out.println(cn);
+		if(cn.equals(certificationNumber)) {
+			return "guest/changePw";
+		} else {
+			model.addAttribute("error", true);
+			return "guest/certification";
+		}
 	}
 }

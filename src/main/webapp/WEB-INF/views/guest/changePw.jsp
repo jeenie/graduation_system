@@ -55,7 +55,7 @@ input.form-control.w300 {
 	</c:if>
 	<c:if test="${error}">
 		<script>
-			alert("입력하신 비밀번호가 일차하지 않습니다. 다시 입력해주세요.");
+			alert("입력하신 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		</script>
 	</c:if>
 	<c:if test="${success}">

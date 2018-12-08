@@ -93,24 +93,24 @@
 	</div>
 	<c:if test="${error}">
 		<script>
-			alert("입력하신 정보가 맞지 않습니다. 다시 입력해주세요.");
+			alert("인증 번호를 잘못입력하셨습니다. 다시 입력해주세요.");
+		</script>
+	</c:if>
+	<c:if test="${!error}">
+		<script>
+			alert("입력하신 이메일로 인증번호를 발송했습니다. 확인 후 입력해주세요.");
 		</script>
 	</c:if>
 	<div class="aboutus">
         <div class="container" style="margin-left:230px; margin-top:50px; margin-bottom:70px">
             <div style="width:132px; height:158px;margin-right:0; border-radius:5px; padding-right:20px; font-size: 150px;"><i class="fas fa-chalkboard-teacher"></i></div>
-	            <div style="float:right;margin-left:140px; margin-right:285px; margin-top:-150px">
-		            <form:form method="post" modelAttribute="professor" style="margin-right:350px;">
+	            <div style="float:right;margin-left:140px; margin-right:630px; margin-top:-150px">
+		            <form action="certificationNumber">
 		            	<div>
 			    			<div class="form-group">
-			      				<label>사번</label>
-			      				<form:input type="number" path="id" class="form-control w300" />
+			      				<label>인증번호</label>
+			      				<input type="text" name="cn" class="form-control w300" />
 			    			</div>
-			    			<div class="form-group">
-			      				<label>Email</label>
-			      				<form:input type="email" path="email" class="form-control w300" />
-			    			</div>
-			    			
 			    		</div>
 		    			<hr />
 		    			<div>
@@ -118,21 +118,12 @@
 		        				<span class="glyphicon glyphicon-ok"></span> 인증
 		        			</button>
 		    			</div>
-		  			</form:form>
+		  			</form>
 		  		</div>
         </div>
     </div>
-  	<footer>
-      <div class="footer">
-        <div class="container">
-          문의:test123@naver.com<br>
-          152-716 서울시 구로구 연동로320<br>
-          Copyright&copy; 2018SKHU Software Engineering All Rights Reserved<br>
-
-
-        </div>
-      </div>
-  </footer>
+  	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+  	
   	  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	  <script src="${R}res/js/jquery-2.1.1.min.js"></script>
 	  <!-- Include all compiled plugins (below), or include individual files as needed -->
