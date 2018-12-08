@@ -11,6 +11,8 @@ public class CoreSubject {
 	int subjectScore;
 	String coreCode;
 	String coreDetailName;
+	String coreName;
+	
 	public int getId() {
 		return id;
 	}
@@ -70,5 +72,12 @@ public class CoreSubject {
 	}
 	public void setCoreDetailName(String coreDetailName) {
 		this.coreDetailName = coreDetailName;
+	}
+	
+	public String getCoreName() {
+		return coreName;
+	}
+	public void setCoreName(String coreName) {
+		this.coreName = coreName;
 	}
 }

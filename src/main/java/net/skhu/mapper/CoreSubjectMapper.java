@@ -9,4 +9,5 @@ import net.skhu.dto.CoreSubject;
 @Mapper
 public interface CoreSubjectMapper {
 	List<CoreSubject> findAllCoreSubject(int userNumber);
+	List<CoreSubject> studentCoreSubjectData(int userNumber);
 }

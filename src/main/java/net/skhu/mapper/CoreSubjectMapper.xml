@@ -10,4 +10,15 @@
 		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
 		WHERE ssg.id=#{userNumber} AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL;
 	</select>
+	
+	<select id="studentCoreSubjectData" resultType="CoreSubject">
+		SELECT ssg.*,  s.name, s.subjectScore, cs.coreCode, cd.coreDetailName, cc.coreName
+		FROM student_subject_grade ssg
+		LEFT JOIN subject s ON ssg.subjectId = s.id
+		LEFT JOIN core_subject cs ON ssg.subjectId = cs.subjectId
+		LEFT JOIN core_detail cd ON cs.coreCode = cd.coreCode
+		LEFT JOIN core_category cc ON cc.coreId = cd.coreId
+		WHERE ssg.id=201838009 AND ssg.completeType = '교선' AND cs.coreCode IS NOT NULL
+		ORDER BY cc.coreId, cs.coreCode;
+	</select>
 </mapper>

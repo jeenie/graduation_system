@@ -658,6 +658,32 @@ td {
 				<p style="font-size: 18px; font-weight: bold;">>&nbsp 핵심역량
 					${coreTotal}/18</p>
 				<div class="verticalTree"></div>
+				<br/>
+				<div style="margin-right: 200px">
+				<table class="table">
+					<thead>
+						<tr style="height: 30px;">
+							<th scope="col" class="text-center">핵심역량</th>
+							<th scope="col" class="text-center">세부영역</th>
+							<th scope="col" class="text-center">과목명</th>
+							<th scope="col" class="text-center">학점</th>
+							<th scope="col" class="text-center">성적</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="coreSubject" items="${ coreSubjectList }">
+							<tr>
+								<td>${ coreSubject.coreName }</td>
+								<td>${ coreSubject.coreDetailName }</td>
+								<td>${ coreSubject.name }</td>
+								<td>${ coreSubject.subjectScore }</td>
+								<td>${ coreSubject.grade }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+				
 			</c:if>
 		</div>
 	</div>

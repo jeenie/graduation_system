@@ -237,6 +237,7 @@ public class StudentController {
 		model.addAttribute("mustMajor", mustMajor);
 		model.addAttribute("major2018", major2018);
 		model.addAttribute("explorationGrade", explorationGrade);
+		model.addAttribute("coreSubjectList", studentGradeService.coreSubjectList(userNumber));
 		model.addAttribute("coreTotal", coreTotal);
 		model.addAttribute("c101Total", c101Total);
 		model.addAttribute("c102Total", c102Total);
