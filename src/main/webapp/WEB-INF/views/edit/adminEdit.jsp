@@ -136,7 +136,8 @@ select option:checked, select option:hover {
 			<div class="edit">
 				<div class="form-group">
 					<label>아이디</label>
-					<form:input path="id" class="form-control w300" />
+					<input type="text" value="master" class="form-control w300" readonly>
+					<form:input type="hidden" path="id" class="form-control w300" />
 				</div>
 				<div class="form-group">
 					<label>이메일</label>
