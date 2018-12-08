@@ -21,6 +21,9 @@
 	  <link rel="stylesheet" href="${R}res/css/custom.css">
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	  
+	  <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	
 	  <style>
 	      .contents {
 	      margin-top: 5px;
@@ -181,130 +184,174 @@
       		</div>
     	</div>
   	</div>
-
-  	<div class="contents">
-    	<form>
-      		<div>
-		        <div class="form-group"
-					style="float: left; margin-right: 20px; margin-bottom: 5px;">
-					<p class="font4">학과</p>
-					<select name="departmentId" class="form-controls w200">
-						<option value="99">선택</option>
-						<c:forEach var="department" items="${departments}">
-							<option value="${department.id}"
-								${departmentId == department.id ? "selected" : ""}>${department.departmentName}</option>
-						</c:forEach>
-					</select>
-				</div>
-	        	<div class="form-group"
-					style="float: left; margin-right: 20px; margin-bottom: 5px;">
-					<p class="font4">학번</p>
-					<select name="entranceYear" class="form-controls w200">
-						<option value="99">선택</option>
-						<c:forEach var="year" items="${years}">
-							<option value="${year.year}"
-								${entranceYear == year.year ? "selected" : ""}>${year.year}</option>
-						</c:forEach>
-					</select>
-				</div>
-        		<button type="submit" class="btn-submit" style="margin-left: 0; margin-top:0; padding: 5px 20px; float:left;">조회</button>
-      		</div>
-      	</form>
-      <br/>
-      <br/>
-	  <c:if test="${departmentId == 32}">
-	  	<div style="margin-top:10px; margin-left:20px;">
-	  		<p style="">
-	            <div class="form-group" style="float:left; margin-bottom:0px;">
-	                <p class="font2">전필</p>
-	                <input type="number" value="${firstRule.mustMajor}" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
-	            </div>
-	            <div class="form-group" style="float:left; margin-bottom:0px;">
-	                <p class="font2">학점을 포함하여 전공</p>
-	                <input type="number" value="${firstRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"
-	                 />
-	            </div>
-	            <div class="form-group" style="float:left; margin-bottom:0px;">
-	                <p class="font2" style="margin-bottom:0px;">학점</p>
-	            </div>
-            </p>
-            <br/>
-         	<br/>
-         	<div>
-            <div class="form-group" style="float:left">
-                <div style="width:330px;">
-                  <p class="font5">전공필수과목 <a data-toggle="modal" href="#addMajorSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
-                </div>
-                <div class="list-group majorlist"
-							style="width: 330px; margin-top: 10px; margin-left: -5px;">
-							<c:forEach var="major" items="${majors}">
-								<a href="deleteMajor?departmentId=${major.departmentId}&majorSubjectId=${major.majorSubjectId}&entranceYear=${major.entranceYear}" class="list-group-item list-group-item-action" data-confirm-delete>${major.majorName}
-								<span style="float:right;">&times;</span>
-								</a>
+	<div id="app">
+	  	<div class="contents">
+	    	<form>
+	      		<div>
+			        <div class="form-group"
+						style="float: left; margin-right: 20px; margin-bottom: 5px;">
+						<p class="font4">학과</p>
+						<select name="departmentId" class="form-controls w200">
+							<option value="99">선택</option>
+							<c:forEach var="department" items="${departments}">
+								<option value="${department.id}"
+									${departmentId == department.id ? "selected" : ""}>${department.departmentName}</option>
 							</c:forEach>
-						</div>
-            </div>
-            <div class="form-group" style="float:left; margin-left:50px;">
-                <div style="width:330px;">
-                  <p class="font5">학과지정교양 <a data-toggle="modal" href="#addMajorLiberal"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
-                </div>
-                <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
-                  <a href="#" class="list-group-item list-group-item-action">
-                    이산수학 <span style="float:right;">&times;</span>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action">정보사회론 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">대학수학 <span style="float:right;">&times;</span></a>
-                  <a href="#" class="list-group-item list-group-item-action">컴퓨터활용 <span style="float:right;">&times;</span></a>
-                </div>
-            </div>
-          </div>
-	  	</div>
-	  	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <div style="margin-left:20px; margin-top:-40px">
-        	<p>
-              <div class="form-group" style="float:left; margin-bottom:0px;">
-                  <p class="font5">전공과정</p>
-              </div>
-            </p>
-            <br/><br/>
-            <form:form method="post">
-	            <c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
-	            	<div style="margin-left:40px;">
-		            	<p class="font6">▶${departmentMajorRule.processName} </p>
-		                	<div style="margin-left:30px">
-		                  		<div class="form-group" style="float:left; margin-bottom:0px;">
-		                			<p class="font2">전필</p>
-		                			<input type="number" name="mustMajor" value="${departmentMajorRule.mustMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
-		            	  		</div>
-		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
-		                			<p class="font2">학점과 전선</p>
-		               				<input type="number" name="choiceMajor" value="${departmentMajorRule.choiceMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
-		            	  		</div>
-		            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
-		                			<p class="font2">학점을 포함하여 전공</p>
-		               				<input type="number" name="mustPlusChoice" value="${departmentMajorRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
-		            	  		</div>
-			              		<div class="form-group" style="float:left; margin-bottom:0px;">
-			                		<p class="font2" style="margin-bottom:0px;">학점</p>
-			              		</div>
-		                	</div>
+						</select>
+					</div>
+		        	<div class="form-group"
+						style="float: left; margin-right: 20px; margin-bottom: 5px;">
+						<p class="font4">학번</p>
+						<select name="entranceYear" class="form-controls w200">
+							<option value="99">선택</option>
+							<c:forEach var="year" items="${years}">
+								<option value="${year.year}"
+									${entranceYear == year.year ? "selected" : ""}>${year.year}</option>
+							</c:forEach>
+						</select>
+					</div>
+	        		<button type="submit" class="btn-submit" style="margin-left: 0; margin-top:0; padding: 5px 20px; float:left;">조회</button>
+	      		</div>
+	      	</form>
+	      <br/>
+	      <br/>
+		  <c:if test="${departmentId == 32}">
+		  	<div style="margin-top:10px; margin-left:20px;">
+		  		<p style="">
+		            <div class="form-group" style="float:left; margin-bottom:0px;">
+		                <p class="font2">전필</p>
+		                <input type="number" value="${firstRule.mustMajor}" class="form-control" style="width: 40px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
 		            </div>
-		              <br/>
-		              <br/>
-		        </c:forEach>
-		        <button type="submit" class="btn btn-submit" style="float:right; margin-right:380px">
-				    <span class="glyphicon glyphicon-ok"></span> 저장
-				</button>
-				<a href="deptRuleEdit?departmentId=${departmentId}&entranceYear=${entranceYear}" class="btn btn-cancle" style="float:right; margin-right:-170px">원래대로</a>
-	        </form:form>
-        </div>
-	  </c:if>
-	  <c:if test="${departmentId == 99}">
-	  	<div style="margin-bottom:278px"></div>
-	  </c:if>
-	  
-  </div>
-
+		            <div class="form-group" style="float:left; margin-bottom:0px;">
+		                <p class="font2">학점을 포함하여 전공</p>
+		                <input type="number" value="${firstRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"
+		                 />
+		            </div>
+		            <div class="form-group" style="float:left; margin-bottom:0px;">
+		                <p class="font2" style="margin-bottom:0px;">학점</p>
+		            </div>
+	            </p>
+	            <br/>
+	         	<br/>
+	         	<div>
+	            <div class="form-group" style="float:left">
+	                <div style="width:330px;">
+	                  <p class="font5">전공필수과목 <a data-toggle="modal" href="#addMajorSubject"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
+	                </div>
+	                <div class="list-group majorlist"
+								style="width: 330px; margin-top: 10px; margin-left: -5px;">
+								<c:forEach var="major" items="${majors}">
+									<a href="deleteMajor?departmentId=${major.departmentId}&majorSubjectId=${major.majorSubjectId}&entranceYear=${major.entranceYear}" class="list-group-item list-group-item-action" data-confirm-delete>${major.majorName}
+									<span style="float:right;">&times;</span>
+									</a>
+								</c:forEach>
+							</div>
+	            </div>
+	            <div class="form-group" style="float:left; margin-left:50px;">
+	                <div style="width:330px;">
+	                  <p class="font5">학과지정교양 <a data-toggle="modal" href="#addMajorLiberal"><span style="float:right; font-size: 25px; font-weight:bold; margin-right:20px">+</span></a></p>
+	                </div>
+	                <div class="list-group" style="width:330px; margin-top: 10px; margin-left:-5px;">
+	                  <a href="#" class="list-group-item list-group-item-action">
+	                    이산수학 <span style="float:right;">&times;</span>
+	                  </a>
+	                  <a href="#" class="list-group-item list-group-item-action">정보사회론 <span style="float:right;">&times;</span></a>
+	                  <a href="#" class="list-group-item list-group-item-action">대학수학 <span style="float:right;">&times;</span></a>
+	                  <a href="#" class="list-group-item list-group-item-action">컴퓨터활용 <span style="float:right;">&times;</span></a>
+	                </div>
+	            </div>
+	          </div>
+		  	</div>
+		  	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	        <div style="margin-left:20px; margin-top:-40px">
+	        	<p>
+	              <div class="form-group" style="float:left; margin-bottom:0px;">
+	                  <p class="font5">전공과정</p>
+	              </div>
+	            </p>
+	            <br/><br/>
+	            <form:form method="post">
+		            <c:forEach var="departmentMajorRule" items="${departmentMajorRules}">
+		            	<div style="margin-left:40px;">
+			            	<p class="font6">▶${departmentMajorRule.processName} </p>
+			                	<div style="margin-left:30px">
+			                  		<div class="form-group" style="float:left; margin-bottom:0px;">
+			                			<p class="font2">전필</p>
+			                			<input type="number" name="mustMajor" value="${departmentMajorRule.mustMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px;"/>
+			            	  		</div>
+			            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
+			                			<p class="font2">학점과 전선</p>
+			               				<input type="number" name="choiceMajor" value="${departmentMajorRule.choiceMajor}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+			            	  		</div>
+			            	  		<div class="form-group" style="float:left; margin-bottom:0px;">
+			                			<p class="font2">학점을 포함하여 전공</p>
+			               				<input type="number" name="mustPlusChoice" value="${departmentMajorRule.mustPlusChoice}" class="form-control" style="width: 45px; padding-top: 2px; padding-left: 10px; padding-right: 0px; margin-right:0;"/>
+			            	  		</div>
+				              		<div class="form-group" style="float:left; margin-bottom:0px;">
+				                		<p class="font2" style="margin-bottom:0px;">학점</p>
+				              		</div>
+			                	</div>
+			            </div>
+			              <br/>
+			              <br/>
+			        </c:forEach>
+			        <button type="submit" class="btn btn-submit" style="float:right; margin-right:380px">
+					    <span class="glyphicon glyphicon-ok"></span> 저장
+					</button>
+					<a href="deptRuleEdit?departmentId=${departmentId}&entranceYear=${entranceYear}" class="btn btn-cancle" style="float:right; margin-right:-170px">원래대로</a>
+		        </form:form>
+	        </div>
+		  </c:if>
+		  <c:if test="${departmentId == 99}">
+		  	<div style="margin-bottom:278px"></div>
+		  </c:if>
+		  
+	  </div>
+	  <div class="modal fade" id="addMajorSubject" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="padding-bottom: 1.5px;">
+						<h4>
+							<b>전공 필수 과목 추가</b>
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+								</button>
+							</h4>
+					</div>
+					<div class="modal-body">
+						
+						<form id="searchSubject">
+							<div class="form-group">
+								<select class="form-control" v-model="ss" style="float:left; margin-right:5px; width:110px">
+									<option disabled value="">검색조건</option>
+									<option value="0">과목코드</option>
+									<option value="1">과목명</option>
+								</select>
+								<input type="text" v-model="st" class="form-control w250" style="display:inline; float:left; margin-right:5px" maxlength="20"/>
+							</div>
+							<button type="button" class="btn btn-submit" v-on:click="findSubjectData">조회</button>
+						</form>
+							<table class="table table-bordered mt5" style="margin-top:10px;">
+								<thead>
+										<tr>
+											<th style="text-align:center;">과목코드</th>
+											<th style="text-align:center;">과목명</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<tr class="hover" v-for="subject in subjects" v-on:click="selectSubject(subject)"> 
+											<td>{{subject.id}}</td> 
+											<td>{{subject.name}}</td> 
+										</tr>
+									</tbody>
+							</table>
+							<p>영역 대체를 원하는 경우, <b>[과목명] 대체</b>라고 검색해주세요.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
   <%@ include file="/WEB-INF/views/include/footer.jsp"%>
   
@@ -322,6 +369,95 @@
 		function deleteSubject() {
 			confirm("과목을 삭제하시겠습니까?");
 		}
+	</script>
+	<script type="text/javascript">
+	var app = new Vue({
+		el: '#app',
+		data: {
+			ss: '',
+			st: '',
+			ss2: '',
+			st2: '',
+			ss3: '',
+			st3: '',
+			subjects: [],
+			subjects2: [],
+			subjects3: [],
+			selectedSubject: {},
+			selectedSubjectId: '',
+			selectedSubjectName: '',
+			selectedSubject2: {},
+			selectedSubject3: {},
+			subjectData: {},
+			subjectDeptId: '',
+		},
+		methods: {
+			findSubjectData: function() {
+				let url = '/graduation_system/findSubject?ss='+ this.ss +'&st=' + this.st;
+				axios.get(url).then(response => {
+						this.subjects = response.data;
+					});
+			},
+			findSubjectData2: function() {
+				let url = '/graduation_system/findSubject2?ss2='+ this.ss2 +'&st2=' + this.st2;
+				axios.get(url).then(response => {
+						this.subjects2 = response.data;
+					});
+			},
+			findSubjectData3: function() {
+				let url = '/graduation_system/findSubject3?ss3='+ this.ss3 +'&st3=' + this.st3;
+				axios.get(url).then(response => {
+						this.subjects3 = response.data;
+					});
+			},
+			selectSubject: function(subject) {
+				
+				this.selectedSubject = subject;
+				this.selectedSubjectId = this.selectedSubject.id;
+				this.selectedSubjectName = this.selectedSubject.name;
+				var ok = confirm(this.selectedSubjectName + "을 전공 필수 과목으로 등록하시겠습니까?");
+				if(ok) {
+					let url = '/graduation_system/addMajorSubject?subjectId=' + this.selectedSubjectId + '&departmentId=' + ${departmentId} + '&entranceYear=' + ${entranceYear};
+					axios.get(url).then();
+					alert("정상적으로 등록되었습니다.");
+					location.reload();
+				}
+			},
+			selectSubject2: function(subject) {
+				this.selectedSubject2 = subject;
+				$('#find2').modal('hide');
+			},
+			selectSubject3: function(subject) {
+				this.subjectData.substitutionSubject = subject.id;
+				this.subjectData.substitutionSubjectName = subject.name;
+				$('#find3').modal('hide');
+			},
+			subjectById: function(subject) {
+				console.log(subject);
+				let url = '/graduation_system/subjectData?subjectId=' + subject;
+				axios.get(url).then(response => {
+					this.subjectData = response.data;
+				});
+			}, 
+			editSubject: function(subject) {
+				console.log(subject);
+				let url = '/graduation_system/subjectData?subjectId=' + subject;
+				axios.get(url).then(response => {
+					this.subjectData = response.data;
+				});
+			}, 
+			deleteSubject:function(subject) {
+				let url = '/graduation_system/deleteSubject?subjectId=' + subject;
+				var ok = confirm("선택한 폐지과목에 대한 정보를 삭제하시겠습니까?");
+				console.log(ok);
+				if(ok) {
+					axios.get(url).then();
+					alert("정상적으로 삭제되었습니다.");
+					location.href = 'SubstitutionSubject';
+				}
+			}
+		}
+	});
 	</script>
 </body>
 </html>

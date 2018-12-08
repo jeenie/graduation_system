@@ -129,14 +129,15 @@ select option:checked, select option:hover {
 			<div class="group">
 				<h4>
 					<img src="${R}res/images/abouti/manager.png" width="80px">&nbsp&nbsp&nbsp<font
-						color="#DF4D4D">${master.getId()}</font> 님은 [<b> 관리자 </b>] 회원입니다.
+						color="#DF4D4D">master</font> 님은 [<b> 관리자 </b>] 회원입니다.
 				</h4>
 				<hr>
 			</div>
 			<div class="edit">
 				<div class="form-group">
 					<label>아이디</label>
-					<form:input path="id" class="form-control w300" />
+					<input type="text" value="master" class="form-control w300" readonly>
+					<form:input type="hidden" path="id" class="form-control w300" />
 				</div>
 				<div class="form-group">
 					<label>이메일</label>

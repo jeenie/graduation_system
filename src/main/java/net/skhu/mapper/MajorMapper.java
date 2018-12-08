@@ -24,4 +24,7 @@ public interface MajorMapper {
 	
 	//특정학과의 전공필수과목 목록
 	List<Major> findMajorMustSubject(int departmentId);
+	
+	//전공 필수 과목 등록
+	void insert(Major major);
 }

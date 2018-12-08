@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.skhu.dto.Major;
 import net.skhu.dto.Student;
 import net.skhu.dto.Subject;
 import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.SubstitutionSubjectMapper;
@@ -20,6 +22,7 @@ import net.skhu.service.ModalService;
 @RestController
 public class APIController {
 	@Autowired DepartmentMapper departmentMapper;
+	@Autowired MajorMapper majorMapper;
 	@Autowired SubjectMapper subjectMapper;
 	@Autowired StudentMapper studentMapper;
 	@Autowired SubstitutionSubjectMapper substitutionSubjectMapper;
@@ -76,6 +79,21 @@ public class APIController {
 		substitutionSubjectMapper.delete(subject);;
 	}
 
+	// 학과별 졸업요건 수정
+	@RequestMapping("addMajorSubject")
+	public void addMajorSubject(@RequestParam("subjectId") String subjectId, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
+		Major major = new Major();
+		major.setDepartmentId(departmentId);
+		major.setMajorSubjectId(subjectId);
+		if(entranceYear > 2013)
+			major.setEntranceYear(2014);
+		else
+			major.setEntranceYear(2013);
+		major.setCompleteType("필수");
+		
+		majorMapper.insert(major);
+	}
+	
 	//http://localhost:8080/graduation_system/please?id=203032002
 	@RequestMapping("please")
 	public Student studentInfo(@RequestParam("id") int id) {

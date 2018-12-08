@@ -221,10 +221,9 @@ public class EditController {
 
 	@RequestMapping(value="adminEdit", method=RequestMethod.GET)
 	public String adminEdit(Model model) {
-		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		int userNumber=Integer.parseInt(authentication.getName());
+		
 
-		Master master = masterMapper.findById(userNumber);
+		Master master = masterMapper.findById(932188);
 		model.addAttribute("master", master);
 		return "edit/adminEdit";
 	}
