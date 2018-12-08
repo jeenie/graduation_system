@@ -129,7 +129,7 @@ select option:checked, select option:hover {
 			<div class="group">
 				<h4>
 					<img src="${R}res/images/abouti/manager.png" width="80px">&nbsp&nbsp&nbsp<font
-						color="#DF4D4D">${master.getId()}</font> 님은 [<b> 관리자 </b>] 회원입니다.
+						color="#DF4D4D">master</font> 님은 [<b> 관리자 </b>] 회원입니다.
 				</h4>
 				<hr>
 			</div>

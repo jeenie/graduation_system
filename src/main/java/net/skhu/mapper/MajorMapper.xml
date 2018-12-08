@@ -41,7 +41,7 @@
 		where
 		m.departmentId = #{departmentId} and
 		(m.entranceYear = 0 or
-		m.entranceYear = 2012)
+		m.entranceYear = 2014)
 		and
 		m.completeType = '필수'
 	</select>
@@ -76,6 +76,11 @@
 		LEFT JOIN subject s ON m.majorSubjectId = s.id 
 		WHERE m.departmentId = #{departmentId} and m.completeType = '필수';
 	</select>
+	
+	<insert id="insert" parameterType="Major">
+		INSERT major_list (departmentId, majorSubjectId, entranceYear, completeType)
+		VALUES (#{departmentId}, #{majorSubjectId}, #{entranceYear}, #{completeType})
+	</insert>
 </mapper>
              
              
