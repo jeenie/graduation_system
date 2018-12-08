@@ -26,12 +26,12 @@ public class StudentService {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m2");
 			}
-			else if((majorUnit < 60) && (cultureUnit > 70)) {
+			else if((majorUnit < 60) && (cultureUnit >= 70)) {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m1");
 				
 			}
-			else if((majorUnit > 60) && (cultureUnit < 70)) {
+			else if((majorUnit >= 60) && (cultureUnit < 70)) {
 				student.setmColor("btn-m1");
 				student.setcColor("btn-m2");
 			}
@@ -53,12 +53,12 @@ public class StudentService {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m2");
 			}
-			else if((majorUnit < 60) && (cultureUnit > 70)) {
+			else if((majorUnit < 60) && (cultureUnit >= 70)) {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m1");
 				
 			}
-			else if((majorUnit > 60) && (cultureUnit < 70)) {
+			else if((majorUnit >= 60) && (cultureUnit < 70)) {
 				student.setmColor("btn-m1");
 				student.setcColor("btn-m2");
 			}
