@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GuestService {
 	
-	static String save = null;
+	public static String save = null;
 	
 	public void sendEmail(String email) throws IOException {
 		Properties mailAdmistrator = new Properties();

@@ -69,21 +69,21 @@ input.form-control.w300 {
 			style="margin-left: 230px; margin-top: 50px; margin-bottom: 70px">
 			<div
 				style="width: 132px; height: 158px; margin-right: 0; border-radius: 5px; padding-right: 20px; font-size: 150px;">
-				<i class="fas fa-user-graduate"></i>
+				<i class="fas fa-chalkboard-teacher"></i>
 			</div>
 			<div
-				style="float: right; margin-left: 140px; margin-right: 300px; margin-top: -150px">
-				<form:form method="post" modelAttribute="student"
+				style="float: right; margin-left: 140px; margin-right: 285px; margin-top: -150px">
+				<form method="post"
 					style="margin-right:350px;">
 					<div>
 						<div class="form-group">
 							<label>새 비밀번호 입력</label>
-							<form:input type="password" path="password"
+							<input type="password" name="password"
 								class="form-control w300" />
 						</div>
 						<div class="form-group">
 							<label>새 비밀번호 재입력</label>
-							<form:input type="password" path="password2"
+							<input type="password" name="password2"
 								class="form-control w300" />
 						</div>
 					</div>
@@ -94,7 +94,7 @@ input.form-control.w300 {
 							<span class="glyphicon glyphicon-ok"></span> 인증
 						</button>
 					</div>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

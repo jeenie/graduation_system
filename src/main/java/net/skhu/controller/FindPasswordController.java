@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,8 @@ public class FindPasswordController {
 	@Autowired ProfessorMapper professorMapper;
 	@Autowired UserMapper userMapper;
 	@Autowired GuestService guestService;
+	
+	static String certificationNumber = null;
 	
 	@RequestMapping("findPw")
 	public String findPw() {
@@ -113,6 +116,8 @@ public class FindPasswordController {
 		}
 	}
 	
+	
+	//교수 비밀번호 찾기 
 	@RequestMapping(value="findProfessorPw", method=RequestMethod.GET)
 	public String findProfessorPw(Model model) {
 		Professor professor = new Professor();
@@ -129,9 +134,88 @@ public class FindPasswordController {
 			if(pro.getEmail().equals(professor.getEmail())) {
 				success = true;
 				guestService.sendEmail(professor.getEmail());
-				return "redirect:sendEmail?success=true";
+				System.out.println(guestService.save);
+				certificationNumber = guestService.save;
+				return "redirect:certification?id=" + pro.getId();
 			}
+			
+			
 		}
+		model.addAttribute("error", true);
 		return "guest/professorPw";
 	}
+	
+	@RequestMapping(value="certification", method=RequestMethod.GET)
+	public String certification(Model model, @RequestParam("id") int id) {
+		model.addAttribute("id", id);
+		return "guest/certification";
+	}
+	
+	@RequestMapping(value="certificationNumber", method=RequestMethod.GET)
+	public String certification(Model model, @RequestParam("id") int id, @RequestParam("cn") String cn) {
+		
+		System.out.println(certificationNumber);
+		System.out.println(cn);
+		if(cn.equals(certificationNumber)) {
+			return "redirect:changePw?id=" + id;
+		} else {
+			model.addAttribute("error", true);
+			return "guest/certification";
+		}
+	}
+	
+	@RequestMapping(value="changePw", method=RequestMethod.GET)
+	public String changePw (Model model, @RequestParam("id") int id) {
+		Professor pro = professorMapper.findById(id);
+		model.addAttribute("er", true);
+		model.addAttribute("id", id);
+		return "guest/changePw2";
+	}
+	
+	@RequestMapping(value="changePw", method=RequestMethod.POST)
+	public String changePw (Model model, @RequestParam("id") int id, @RequestParam("password") String password, @RequestParam("password2") String password2) {
+		System.out.println(password);
+		System.out.println(password2);
+		if(password.equals(password2)) {
+			Professor pro = professorMapper.findById(id);
+			User user = userMapper.findOne(id);
+			String pw = Encryption.encrypt(password, Encryption.MD5);
+			pro.setPassword(pw);
+			user.setPassword(pw);
+			professorMapper.update(pro);
+			userMapper.update(user);
+			model.addAttribute("er", false);
+			model.addAttribute("success", true);
+			return "guest/changePw2";
+		}
+		else {
+			model.addAttribute("er", false);
+			model.addAttribute("error", true);
+			return "guest/changePw2";
+		}
+	}
+	/*
+	@RequestMapping(value="changePassword", method=RequestMethod.POST)
+	public String changePassword (Model model, Student student) {
+		if(student.getPassword().equals(student.getPassword2())) {
+			Student stu = studentMapper.findOne(student.getId());
+			User user = userMapper.findOne(student.getId());
+			String password = Encryption.encrypt(student.getPassword(), Encryption.MD5);
+			stu.setPassword(password);
+			stu.setPassword2(password);
+			user.setPassword(password);
+			userMapper.update(user);
+			studentMapper.updatePassword(student);
+			boolean success = true;
+			model.addAttribute("er", false);
+			model.addAttribute("success", success);
+			return "guest/changePw";
+		} else {
+			boolean error = true;
+			model.addAttribute("er", false);
+			model.addAttribute("error", error);
+			return "guest/changePw";
+		}
+	}
+	*/
 }
