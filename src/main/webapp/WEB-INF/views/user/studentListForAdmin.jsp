@@ -163,6 +163,13 @@
 
 
 
+
+
+
+
+
+
+
  
 
 
@@ -170,7 +177,28 @@
 
 
 
+
+
+
+
+
+
+
 a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,6 +224,20 @@ a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -203,7 +245,21 @@ a
 
 
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 
 
@@ -218,7 +274,21 @@ a
 
 
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 
 
@@ -240,7 +310,28 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
 
 
@@ -254,7 +345,28 @@ background-color
 
 
 
+
+
+
+
+
+
+
 #ddd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -434,47 +546,49 @@ textarea {
 </style>
 </head>
 <body>
-<div id="stuModal">
+	<div id="stuModal">
 
-	<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
+		<%@ include file="/WEB-INF/views/include/adminNavibar.jsp"%>
 
-	<div id="breadcrumb">
-		<div class="container">
-			<div class="breadcrumb">
-				<li></li>
-				<li style="font-size: 20px; margin-left: -5px;">학생 조회</li>
+		<div id="breadcrumb">
+			<div class="container">
+				<div class="breadcrumb">
+					<li></li>
+					<li style="font-size: 20px; margin-left: -5px;">학생 조회</li>
+				</div>
+				<hr>
 			</div>
-			<hr>
 		</div>
-	</div>
-	<div class="aboutus">
-		<div class="container">
-			<div style="margin-top: 30px">
-				<div class="contents" style="text-align: center;">
-					<div>
+		<div class="aboutus">
+			<div class="container">
+				<div style="margin-top: 30px">
+					<div class="contents" style="text-align: center;">
+						<div>
 
-						<input type="text" class="form-controls btn-m1" style="width: 665px;"> &nbsp;
-						<button type="submit" class="btn-statement4" style="width:60px; height:33px; ">검색</button>
-						<a data-toggle="modal" href="#search">
-							<h5 style="color: rgb(104, 97, 97)">
-								<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-									&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u>검색대상설정</u> <i
-									class="fas fa-angle-down fa-lg"></i>
-								</b>
-							</h5>
-						</a>
+							<input type="text" class="form-controls btn-m1"
+								style="width: 665px;"> &nbsp;
+							<button type="submit" class="btn-statement4"
+								style="width: 60px; height: 33px;">검색</button>
+							<a data-toggle="modal" href="#search">
+								<h5 style="color: rgb(104, 97, 97)">
+									<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u>검색대상설정</u> <i
+										class="fas fa-angle-down fa-lg"></i>
+									</b>
+								</h5>
+							</a>
 
-					</div>
-					<br> <br>
-					<!-- 연습
+						</div>
+						<br> <br>
+						<!-- 연습
 					<div id="app">
 					<p>왜 안먹냐고......하.......</p>
 					<button type="button" v-on:click="studentById(203032002)">얘는되겠찌</button>
@@ -492,56 +606,140 @@ textarea {
 					</table>
 					</div> 
 					-->
-					<table class="table table-hover"> 
-						<thead>
-							<tr>
-								<th scope="col" class="text-center">학과</th>
-								<th scope="col" class="text-center">이름</th>
-								<th scope="col" class="text-center">학번</th>
-								<th scope="col" class="text-center">이수학기</th>
-								<th scope="col" class="text-center">졸업요건충족여부</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-							<c:forEach var="student" items="${students}">
-								<tr v-on:click="info(${student.id})"  data-toggle="modal" data-id="studentInfo" data-target="#studentInfo">
-									<td>${ student.departmentName }</td>
-									<td>${ student.name }</td>
-									<td>${ student.id }</td>
-									<td>${ student.completeSemester}학기</td>
-									<td>
-										<button type="button" class="${student.mColor}">전공</button>
-										<button type="button" class="${student.cColor}">교양</button>
-									</td>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col" class="text-center">학과</th>
+									<th scope="col" class="text-center">이름</th>
+									<th scope="col" class="text-center">학번</th>
+									<th scope="col" class="text-center">이수학기</th>
+									<th scope="col" class="text-center">졸업요건충족여부</th>
 								</tr>
-							</c:forEach>
-						
-						</tbody>
-					</table>
-					<!--pagination-->
-					<div class="pagination">
-						<a href="#">&laquo;</a> <a href="#">1</a> <a href="#">2</a> <a
-							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">&raquo;</a>
+							</thead>
+							<tbody>
+
+								<c:forEach var="student" items="${students}">
+									<tr v-on:click="info(${student.id})" data-toggle="modal"
+										data-id="studentInfo" data-target="#studentInfo">
+										<td>${ student.departmentName }</td>
+										<td>${ student.name }</td>
+										<td>${ student.id }</td>
+										<td>${ student.completeSemester}학기</td>
+										<td>
+											<button type="button" class="${student.mColor}">전공</button>
+											<button type="button" class="${student.cColor}">교양</button>
+										</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+						<!--pagination-->
+						<div class="pagination">
+							<a href="#">&laquo;</a> <a href="#">1</a> <a href="#">2</a> <a
+								href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">&raquo;</a>
+						</div>
+
 					</div>
-					
+
 				</div>
 
 			</div>
 
 		</div>
+		<div class="modal fade" id="search" tabinex="-1" role="dialog"
+			aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
 
-	</div>
-	<div class="modal fade" id="search" tabinex="-1" role="dialog"
-		aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+					<form action="studentSearch" autocomplete="off">
+						<div class="modal-header" style="padding-bottom: 1.5px;">
 
-				<form action="studentSearch" autocomplete="off">
+							<h4>
+								<b>검색대상설정</b>
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+								</button>
+							</h4>
+
+						</div>
+						<div class="modal-body">
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;학과&nbsp; <select
+									name="departmentName" class="form-controls"
+									style="height: 32px;">
+									<c:forEach var="department" items="${departments}">
+										<option value="${department.departmentName}">${department.departmentName}</option>
+									</c:forEach>
+								</select>
+							</div>
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;학년&nbsp; <input
+									type="text" class="form-controls" style="width: 100px;"
+									name="grade" value="${grade}">
+							</div>
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;학번(전체)&nbsp; <select
+									name="allId" class="form-controls"
+									style="width: 100px; height: 30.5px;">
+									<option value=0000 selected>=학번=</option>
+									<option value=2018>2018</option>
+									<option value=2017>2017</option>
+									<option value=2016>2016</option>
+									<option value=2015>2015</option>
+									<option value=2014>2014</option>
+									<option value=2013>2013</option>
+									<option value=2012>2012</option>
+									<option value=2011>2011</option>
+									<option value=2010>2010</option>
+								</select>
+							</div>
+
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;수강과목&nbsp; <input
+									type="text" class="form-controls" name="subjectName"
+									value="${subjectName}">
+							</div>
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;이름 &nbsp; <input
+									type="text" class="form-controls" name="name" value="${name}"
+									style="width: 100px;">
+							</div>
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;학번 &nbsp; <input
+									type="text" class="form-controls" name="id" value="${id}"
+									style="width: 100px;">
+							</div>
+
+							<div class="modalGreen">
+								<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
+									type="checkbox" name="checkbox" value="check">&nbsp;&nbsp;
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn-statement4"
+								style="width: 60px; height: 35px">검색</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="studentInfo" tabinex="-1" role="dialog"
+			aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width: 700px;">
 					<div class="modal-header" style="padding-bottom: 1.5px;">
 
 						<h4>
-							<b>검색대상설정</b>
+							<b>학생정보</b>
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
 							</button>
@@ -549,110 +747,29 @@ textarea {
 
 					</div>
 					<div class="modal-body">
+						<div>
+							<table class="table-s" border=1>
+								<tr>
+									<th class="th-s">학번</th>
+									<td class="td-s">{{student.id}}</td>
+									<th class="th-s">성명</th>
+									<td class="td-s">{{student.name}}</td>
+								</tr>
+								<tr>
+									<th class="th-s">학부(과)</th>
+									<td class="td-s">{{student.departmentName}}</td>
+									<th class="th-s">학년</th>
+									<td class="td-s">{{student.grade}}학년</td>
 
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학과&nbsp; <select
-								name="departmentName" class="form-controls"
-								style="height: 32px;">
-								<c:forEach var="department" items="${departments}">
-									<option value="${department.departmentName}">${department.departmentName}</option>
-								</c:forEach>
-							</select>
-						</div>
-
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학년&nbsp; <input
-								type="text" class="form-controls" style="width: 100px;"
-								name="grade" value="${grade}">
-						</div>
-						
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학번(전체)&nbsp; 
-							<select name="allId"
-								class="form-controls" style="width: 100px; height: 30.5px;">
-								<option value=0000 selected>=학번=</option>
-								<option value=2018>2018</option>
-								<option value=2017>2017</option>
-								<option value=2016>2016</option>
-								<option value=2015>2015</option>
-								<option value=2014>2014</option>
-								<option value=2013>2013</option>
-								<option value=2012>2012</option>
-								<option value=2011>2011</option>
-								<option value=2010>2010</option>
-							</select>
-						</div>
-                        
-
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;수강과목&nbsp; <input
-								type="text" class="form-controls" name="subjectName"
-								value="${subjectName}">
-						</div>
-
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;이름 &nbsp; <input
-								type="text" class="form-controls" name="name" value="${name}"
-								style="width: 100px;">
-						</div>
-
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;학번 &nbsp; <input
-								type="text" class="form-controls" name="id" value="${id}"
-								style="width: 100px;">
-						</div>
-						
-						<div class="modalGreen">
-							<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
-								type="checkbox" name="checkbox" value="check">&nbsp;&nbsp;
-						</div>
-                        
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn-statement4"
-							style="width: 60px; height: 35px">검색</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal fade" id="studentInfo" tabinex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width: 700px;">
-                    <div class="modal-header" style="padding-bottom:1.5px;">
-    
-                        <h4><b>학생정보</b>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">×</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        </h4>
-    
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <table class="table-s" border=1>
-                                <tr>
-                                    <th class="th-s">학번</th>
-                               	    <td class="td-s">{{student.id}} </td>
-                                    <th class="th-s">성명</th>
-                                    <td class="td-s">{{student.name}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="th-s">학부(과)</th>
-                                    <td class="td-s">{{student.departmentName}}</td>
-                                    <th class="th-s">학년</th>
-                                    <td class="td-s">{{student.grade}}학년</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="th-s">입학구분</th>
-                                    <td class="td-s">{{student.entranceType}}</td>
-                                    <th class="th-s">이수학기</th>
-                                    <td class="td-s">{{student.completeSemester}}학기</td>
-                                </tr>
-                            </table>
+								</tr>
+								<tr>
+									<th class="th-s">입학구분</th>
+									<td class="td-s">{{student.entranceType}}</td>
+									<th class="th-s">이수학기</th>
+									<td class="td-s">{{student.completeSemester}}학기</td>
+								</tr>
+							</table>
+							<!--
                             <div>
                                 <br>
                                 &nbsp;{{student.name}} 님에게 맞는  &nbsp;
@@ -665,76 +782,190 @@ textarea {
                                 </select>&nbsp을 이수하고 있습니다.
                                        
                             </div> 
-                        </div>
-                        <div>
-                            <div class="skill">
-                            	<div style="float: left;">
-									<p style="font-size: 16px; font-weight: bold;">>&nbsp 총 학점
-										{{studentfile.totalUnit}}/{{total.grade}}</p>
-									<div class="progressbar progressbar-green">
-									 	
-										<div class="progressbar-inner total"
-											style=""></div>
-											<p>{{stuTotal}}%</p>
+                            -->
+
+						</div>
+						<div>
+							<br>
+							<div class="skill">
+								<div style="float: left;">
+									<p style="font-size: 14.5px; font-weight: bold;">>&nbsp 총
+										학점 {{studentfile.totalUnit}}/{{total.grade}}</p>
+									<div class="progressbar progressbar-green"
+										style="width: 500px;">
+
+										<div class="progressbar-inner total" style=""></div>
+										<!--<p>{{stuTotal}}%</p>-->
 									</div>
 								</div>
 								<br> <br> <br> <br>
-								
-                               <div class="progress-wrap" style="margin-top:-20px">
-									<p style="font-size: 16px; font-weight: bold;">
-										>&nbsp 전공
-										{{studentfile.majorUnit}}/60
+
+								<div class="progress-wrap" style="margin-top: -20px">
+									<p style="font-size: 14.5px; font-weight: bold;">
+										>&nbsp 전공 {{studentfile.majorUnit}}/60
+										<!-- 
 										<c:if test="${processId == 3}">
 											<small><${ student.departmentName }></small>
 										</c:if>
+										-->
 									</p>
-									<div class="progressbar progressbar-green" style="float: left">
-										<div class="progressbar-inner"
-											style="width:{{stuMajor}}"></div>
+									<div class="progressbar progressbar-green"
+										style="float: left; width: 500px;">
+										<div class="progressbar-inner" style="width: {{stuMajor"></div>
 									</div>
 								</div>
-								<br> <br> <br> <br>
+								<br> <br>
+								<!--<c:if test="${entranceYear != 2018}"> -->
+								<p style="font-size: 14px; font-weight: bold;">＊(수강) 전필 과목</p>
+
+								<div style="margin-right: 200px">
+									<table class="table" style="width: 600px;">
+										<thead>
+											<tr style="height: 30px;">
+												<th scope="col" class="text-center">과목명</th>
+												<th scope="col" class="text-center">학점</th>
+												<th scope="col" class="text-center">성적</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="major in listen">
+												<td>{{ major.subjectName }}</td>
+												<td>{{ major.subjectScore }}</td>
+												<td>{{ major.grade}}</td>
+											</tr>
+
+
+
+										</tbody>
+									</table>
+								</div>
+								<!--</c:if>-->
+								<br>
+								<p style="font-size: 14px; font-weight: bold;">＊(미수강) 전필 과목</p>
+
+								<div style="margin-right: 200px">
+									<table class="table" style="width: 600px;">
+										<thead>
+											<tr style="height: 30px;">
+												<th scope="col" class="text-center">과목명</th>
+												<th scope="col" class="text-center">학점</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="major in unlisten">
+												<td>{{ major.majorName }}</td>
+												<td>{{ major.subjectScore }}</td>
+
+											</tr>
+
+
+
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<div class="progress-wrap" style="margin-top: -20px">
+									<p style="font-size: 14.5px; font-weight:bold;">>&nbsp 교양
+										{{studentfile.cultureUnit}}/70 (
+												
+									<span
+									style="color: Green; font-size: 14px; ">
+									{{chapelSubject}}</span>
+								<span style="font-size: 14px;">&nbsp/
+									{{requiredCultureCount.chapelCount}} 회, 사회봉사 </span>
+								<span
+									style="color: Green; font-size: 14px; ">&nbsp
+									{{serveSubject}}</span>
+								<span style="font-size: 14px;">&nbsp/
+									{{requiredCultureCount.serveCount}} 회</span>
 								
-								<div class="progress-wrap" style="margin-top:-20px">
-									<p style="font-size: 16px; font-weight: bold;">
-										>&nbsp 교양
-										{{studentfile.cultureUnit}}/70
-									</p>
-									<div class="progressbar progressbar-green" style="float: left">
-										<div class="progressbar-inner"
-											style="width:{{}}%"></div>
+									)</p>
+								
+									<div class="progressbar progressbar-green"
+										style="float: left; width: 500px;">
+										<div class="progressbar-inner" style="width: {{"></div>
 									</div>
 								</div>
-                               
-                                
-                               
-                            </div>
-                            
+								
+								
+						
+								
+								<br> <br>
+								<p style="font-size: 14px; float:left; font-weight: bold;">*(수강) 교필 과목</p>
+								<div style="margin-right: 200px">
+									<table class="table" style="width: 600px;">
+										<thead>
+											<tr style="height: 30px;">
+												<th scope="col" class="text-center">과목명</th>
+												<th scope="col" class="text-center">학점</th>
+												<th scope="col" class="text-center">성적</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="must in mustCulture">
+												<td>{{ must.subjectName }}</td>
+												<td>{{ must.subjectScore }}</td>
+												<td>{{ must.grade}}</td>
+											</tr>
 
-                        </div>
-                        
-                           
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-	
 
-	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-</div>
+
+										</tbody>
+									</table>
+								</div>
+								<br><br>
+								<p style="font-size: 14px; float:left; font-weight: bold;">*(미수강) 교필 과목</p>
+								<div style="margin-right: 200px">
+									<table class="table" style="width: 600px;">
+										<thead>
+											<tr style="height: 30px;">
+												<th scope="col" class="text-center">과목코드</th>
+												<th scope="col" class="text-center">과목명</th>
+												<th scope="col" class="text-center">학점</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="s22 in s2">
+												<td>{{ s22.subjectId }}</td>
+												<td>{{ s22.subjectName }}</td>
+												<td>{{ s22.subjectScore}}</td>
+											</tr>
+
+
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="${R}res/js/jquery-2.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="${R}res/js/bootstrap.min.js"></script>
 	<!--   -->
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>  
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-	
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
 	<script type="text/javascript">
 			var app = new Vue({
 				el : '#stuModal',
@@ -745,7 +976,15 @@ textarea {
 					studentfile: {},
 					total:{},
 					stuTotal: '',
-					stuMajor: ''
+					stuMajor: '',
+					entranceYear: 0000, 
+					unlisten:[],
+					listen:[],
+					requiredCultureCount : {},
+					serveSubject : 0,
+					chapelSubject : 0,
+					mustCulture : [],
+					s2 : []
 				},
 				methods : {
 					studentById: function(studentId) {
@@ -761,9 +1000,18 @@ textarea {
 						axios.get(url)
 						.then(response => {
 							this.stu = response.data;
-							this.student = this.stu.student;
-							this.studentfile = this.stu.fileData;
-							this.total = this.stu.total;
+							this.student = this.stu.student; //Student객체
+							this.studentfile = this.stu.fileData; //StudentGradefile객체
+							this.total = this.stu.total; //Total 객체
+							this.entranceYear = this.stu.entranceYear;
+							this.unlisten = this.stu.unlisten;
+							this.listen = this.stu.listen;
+							this.requiredCultureCount = this.stu.requiredCultureCount;
+							this.serveSubject = this.stu.serveSubject;
+							this.chapelSubject = this.stu.chapelSubject;
+							this.mustCulture = this.stu.mustCulture;
+							this.s2 = this.stu.s2;
+							
 							var total =  this.studentfile.totalUnit / this.total.grade * 100;
 							var major = this.studentfile.majorUnit / 60 * 100;
 							if(total < 100) {
@@ -781,7 +1029,7 @@ textarea {
 				}
 			})
 		</script>
-		
+
 
 </body>
 </html>
