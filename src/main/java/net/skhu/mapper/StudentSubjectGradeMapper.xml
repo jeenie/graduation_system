@@ -18,7 +18,7 @@
 	<select id="findByIdMustMajor" resultType="StudentSubjectGrade">
 		SELECT
 		student_subject_grade.*,
-		subject.name subjectName FROM
+		subject.name subjectName, subject.subjectScore FROM
 		student_subject_grade JOIN subject ON
 		student_subject_grade.subjectid =
 		subject.id where
