@@ -107,8 +107,10 @@
 	            <div style="float:right;margin-left:140px; margin-right:630px; margin-top:-150px">
 		            <form action="certificationNumber">
 		            	<div>
+		            		
 			    			<div class="form-group">
 			      				<label>인증번호</label>
+			      				<input type="hidden" name="id" value="${id}" class="form-control w300" />
 			      				<input type="text" name="cn" class="form-control w300" />
 			    			</div>
 			    		</div>
