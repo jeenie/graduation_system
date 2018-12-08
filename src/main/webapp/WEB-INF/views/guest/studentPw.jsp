@@ -78,44 +78,7 @@
 </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand">
-							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
-								</h1></a>
-						</div>
-					</div>
-
-					<div class="navbar-collapse collapse">
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="${R}guest/graduationRule?departmentId=99&entranceYear=99">졸업요건</a></li>
-								<li role="presentation" class="dropdown"><a href="">졸업관리</a>
-									<div class="dropdown-content">
-										<a href="about.html">마이페이지</a> <a href="checkGrades.html">성적조회</a>
-										<a href="">대체/타전공 현황</a>
-									</div></li>
-								<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
-								<li role="presentation"><a
-									href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
-								<li role="presentation"><a href="${R}guest/login">Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/views/include/guestNavibar.jsp"%>
 	<div id="breadcrumb">
     	<div class="container">
         	<div class="breadcrumb">
@@ -128,6 +91,11 @@
         	<hr>
     	</div>
 	</div>
+	<c:if test="${error}">
+		<script>
+			alert("정보가 일치 하지 않습니다. 다시 입력해주세요.")
+		</script>
+	</c:if>
 	<div class="aboutus">
         <div class="container" style="margin-left:230px; margin-top:50px; margin-bottom:70px">
             <div style="width:132px; height:158px;margin-right:0; border-radius:5px; padding-right:20px; font-size: 150px;"><i class="fas fa-user-graduate"></i></div>

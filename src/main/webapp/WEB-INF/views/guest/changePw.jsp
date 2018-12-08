@@ -48,6 +48,22 @@ input.form-control.w300 {
 			<hr>
 		</div>
 	</div>
+	<c:if test="${er}">
+		<script>
+			alert("본인 인증 절차가 끝났습니다. 비밀번호를 변경해주세요.");
+		</script>
+	</c:if>
+	<c:if test="${error}">
+		<script>
+			alert("입력하신 비밀번호가 일차하지 않습니다. 다시 입력해주세요.");
+		</script>
+	</c:if>
+	<c:if test="${success}">
+		<script>
+			alert("비밀번호가 성공적으로 변경되었습니다. 로그인을 해주세요.");
+			location.href = 'login';
+		</script>
+	</c:if>
 	<div class="aboutus">
 		<div class="container"
 			style="margin-left: 230px; margin-top: 50px; margin-bottom: 70px">

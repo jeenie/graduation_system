@@ -48,14 +48,17 @@ public class FindPasswordController {
 			
 			if(stu.getEmail().equals(student.getEmail())) {
 				success = true;
-				return "redirect:pwQuiz?success=true&id=" + stu.getId();
+				model.addAttribute("success", success);
+				return "redirect:pwQuiz?id=" + stu.getId();
 			}
 		}
+		boolean error = true;
+		model.addAttribute("error", error);
 		return "guest/studentPw";
 	}
 	
 	@RequestMapping(value="pwQuiz", method=RequestMethod.GET)
-	public String pwQuiz(Model model, @RequestParam("success") boolean success, @RequestParam("id") int id) {
+	public String pwQuiz(Model model, @RequestParam("id") int id) {
 		Student student = studentMapper.findWithQuiz(id);
 		model.addAttribute("student", student);
 		return "guest/pwQuiz";
@@ -69,6 +72,11 @@ public class FindPasswordController {
 		
 		if(stu.getPasswordAnswer().equals(answer))
 			return "redirect:changePassword?id=" + id;
+		
+		boolean error = true;
+		model.addAttribute("error", error);
+		Student student = studentMapper.findWithQuiz(id);
+		model.addAttribute("student", student);
 		return "guest/pwQuiz";
 	}
 	
@@ -78,20 +86,31 @@ public class FindPasswordController {
 		student.setPassword("");
 		student.setPassword2("");
 		model.addAttribute("student", student);
+		model.addAttribute("er", true);
 		return "guest/changePw";
 	}
 	
 	@RequestMapping(value="changePassword", method=RequestMethod.POST)
 	public String changePassword (Model model, Student student) {
-		Student stu = studentMapper.findOne(student.getId());
-		User user = userMapper.findOne(student.getId());
-		String password = Encryption.encrypt(student.getPassword(), Encryption.MD5);
-		stu.setPassword(password);
-		stu.setPassword2(password);
-		user.setPassword(password);
-		userMapper.update(user);
-		studentMapper.updatePassword(student);
-		return "redirect:login";
+		if(student.getPassword().equals(student.getPassword2())) {
+			Student stu = studentMapper.findOne(student.getId());
+			User user = userMapper.findOne(student.getId());
+			String password = Encryption.encrypt(student.getPassword(), Encryption.MD5);
+			stu.setPassword(password);
+			stu.setPassword2(password);
+			user.setPassword(password);
+			userMapper.update(user);
+			studentMapper.updatePassword(student);
+			boolean success = true;
+			model.addAttribute("er", false);
+			model.addAttribute("success", success);
+			return "guest/changePw";
+		} else {
+			boolean error = true;
+			model.addAttribute("er", false);
+			model.addAttribute("error", error);
+			return "guest/changePw";
+		}
 	}
 	
 	@RequestMapping(value="findProfessorPw", method=RequestMethod.GET)
