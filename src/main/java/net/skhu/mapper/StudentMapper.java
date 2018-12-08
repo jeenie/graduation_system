@@ -11,6 +11,7 @@ public interface StudentMapper {
 	List<Student> findAll();
 	List<Student> findByDepartment(int departmentId);
 	List<Student> findByStudentInquiry(String departmentName, Integer grade, Integer allId, String subjectName, String name, Integer id, String checkbox);
+	List<Student> searchAll(String searchAll);
 	Student findById(int id);
 	Student findById2(int studentId);
 	Student findOne(int id);

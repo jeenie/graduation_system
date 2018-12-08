@@ -71,5 +71,31 @@ public class StudentService {
 		return students;
 	}
 	
+	public List<Student> searchAll (String searchAll) {
+		List<Student> students = studentMapper.searchAll(searchAll);
+		for(Student student : students) {
+			majorUnit = student.getMajorUnit();
+			cultureUnit = student.getCultureUnit();
+			if((majorUnit < 60) && (cultureUnit < 70)) {
+				student.setmColor("btn-m2");
+				student.setcColor("btn-m2");
+			}
+			else if((majorUnit < 60) && (cultureUnit >= 70)) {
+				student.setmColor("btn-m2");
+				student.setcColor("btn-m1");
+				
+			}
+			else if((majorUnit >= 60) && (cultureUnit < 70)) {
+				student.setmColor("btn-m1");
+				student.setcColor("btn-m2");
+			}
+			else {
+				student.setmColor("btn-m1");
+				student.setcColor("btn-m1");
+			}
+		}
+		return students;
+	}
+	
 	
 }

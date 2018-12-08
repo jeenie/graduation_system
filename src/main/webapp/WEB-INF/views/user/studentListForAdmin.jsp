@@ -564,11 +564,12 @@ textarea {
 				<div style="margin-top: 30px">
 					<div class="contents" style="text-align: center;">
 						<div>
-
-							<input type="text" class="form-controls btn-m1"
+							<form action="searchAll">
+							<input type="text" name="searchAll" class="form-controls btn-m1"
 								style="width: 665px;"> &nbsp;
 							<button type="submit" class="btn-statement4"
 								style="width: 60px; height: 33px;">검색</button>
+							</form>
 							<a data-toggle="modal" href="#search">
 								<h5 style="color: rgb(104, 97, 97)">
 									<b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -945,8 +946,10 @@ textarea {
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary"
-							onclick="alert('해당학생의 정보를 정말 삭제하시겠습니까?')">삭제</button>
+						<form action="studentDelete">
+						<input type="hidden" name="id" v-model="student.id" />
+						<button type="submit"  class="btn btn-primary">삭제</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -984,7 +987,9 @@ textarea {
 					serveSubject : 0,
 					chapelSubject : 0,
 					mustCulture : [],
-					s2 : []
+					s2 : [],
+					stuId : 00
+					
 				},
 				methods : {
 					studentById: function(studentId) {
@@ -1026,6 +1031,11 @@ textarea {
 							}
 						})
 					}
+					
+					
+					
+					
+					
 				}
 			})
 		</script>

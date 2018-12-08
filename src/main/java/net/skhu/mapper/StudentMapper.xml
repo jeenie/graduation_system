@@ -62,7 +62,18 @@
 		</where>
 	-->
 	</select>
-	
+	<select id="searchAll" resultType="Student">
+		SELECT s.id, s.name, s.completeSemester, s.grade, s.departmentId, d.departmentName, ssg.subjectId, sub.name subjectName, file.majorUnit, file.cultureUnit
+		FROM (((student s LEFT JOIN department d ON s.departmentId = d.id) LEFT JOIN student_subject_grade ssg ON s.id = ssg.id) LEFT JOIN subject sub ON ssg.subjectId = sub.id)
+			LEFT JOIN student_gradefile file ON s.id = file.id
+		WHERE (#{searchAll} IS NULL OR #{searchAll}="" OR (d.departmentName LIKE CONCAT('%', #{searchAll}, '%' ))
+		OR (s.grade LIKE CONCAT(#{searchAll}, '%')) OR (s.id LIKE CONCAT(#{searchAll},'%')) OR
+		(sub.name LIKE CONCAT('%',#{searchAll},'%')) OR (s.name LIKE CONCAT('%',#{searchAll},'%')) OR
+		(s.id LIKE CONCAT('%',#{searchAll},'%'))) 
+		GROUP BY s.id
+
+		
+	</select>
 	<insert id="insert" parameterType="Student">
     	INSERT Student (id, name, departmentId, grade, entranceType, password, password2, passwordQuestion, passwordAnswer, email, completeSemester)
     	VALUES (#{id}, #{name}, #{departmentId}, #{grade}, #{entranceType}, #{password}, #{password2}, #{passwordQuestion}, #{passwordAnswer}, #{email}, #{completeSemester})
