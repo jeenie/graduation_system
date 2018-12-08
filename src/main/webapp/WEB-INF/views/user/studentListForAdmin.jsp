@@ -698,7 +698,7 @@ textarea {
 								<div class="progress-wrap" style="margin-top:-20px">
 									<p style="font-size: 16px; font-weight: bold;">
 										>&nbsp 교양
-										{{studentfile.cultureUnit}}/32
+										{{studentfile.cultureUnit}}/70
 									</p>
 									<div class="progressbar progressbar-green" style="float: left">
 										<div class="progressbar-inner"
