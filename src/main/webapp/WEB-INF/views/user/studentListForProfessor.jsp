@@ -1075,11 +1075,6 @@ textarea {
 						})
 					}
 					
-					temp : function() {
-						this.commentss : {updateDate : '2018-12-11', comment : '전공학점 부족'}
-					}
-					
-					
 				}
 			})
 		</script>
