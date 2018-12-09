@@ -954,19 +954,19 @@ textarea {
 											</tr>
 										</thead>
 										<tbody>
-											<tr v-for="comment in comments">
-												<td>{{ comment.updateDate }}</td>
-												<td>{{ comment.comment }}</td>
-
+											<c:forEach var="tem" items="${temp }">
+											<tr>
+												<td>${tem.dateWritten}</td> 
+												<td>${tem. comment }</td>
 											</tr>
-											
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
-						<form>
+						<form action="inputComment">
 						<textarea name="comment" placeholder="코멘트를 작성해주세요"></textarea>
-						<!-- <input type="hidden" name="studentId" value=201232001 /> -->
-						<button type="button" v-on:click="temp()" class="btn btn-primary" style="float:right;">저장</button>
+						<input type="hidden" name="studentId" value=201232001 /> <!-- 발표용... -->
+						<button type="submit"class="btn btn-primary" style="float:right;">저장</button>
 						</form>
 						<br><br>
 
