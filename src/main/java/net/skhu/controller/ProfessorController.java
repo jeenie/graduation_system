@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.Professor;
-<<<<<<< HEAD
+
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentAdmin;
 import net.skhu.dto.StudentAdmin2;
@@ -25,13 +25,12 @@ import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.ProfessorMapper;
 import net.skhu.mapper.StudentAdminMapper;
 import net.skhu.service.StudentService;
-=======
+
 import net.skhu.dto.User;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.ProfessorMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.utils.Encryption;
->>>>>>> ae18d6be6559399d0e827dcb3336696951a68a95
 
 @Controller
 @RequestMapping("/user")
@@ -41,14 +40,14 @@ public class ProfessorController {
 	ProfessorMapper professorMapper;
 	@Autowired
 	DepartmentMapper departmentMapper;
-<<<<<<< HEAD
+
 	@Autowired
 	StudentService studentService;
 	@Autowired
 	StudentAdminMapper studentAdminMapper;
-=======
+
 	@Autowired UserMapper userMapper;
->>>>>>> ae18d6be6559399d0e827dcb3336696951a68a95
+
 
 	@RequestMapping(value="professorInquiry", method=RequestMethod.GET) 
 	public String professorInquiry(Model model) {
