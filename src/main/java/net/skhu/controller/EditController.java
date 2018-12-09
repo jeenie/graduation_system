@@ -203,7 +203,12 @@ public class EditController {
 		int userNumber=Integer.parseInt(authentication.getName());
 
 		Professor professor = professorMapper.findById(userNumber);
-		List<Department> departments = departmentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
+		if(professor.getEmail().equals("설정 필요")) {
+			professor.setEmail("");
+			professor.setPassword("");
+			model.addAttribute("first", true);
+		}
 		model.addAttribute("professor", professor);
 		model.addAttribute("departments", departments);
 		return "edit/professorEdit";

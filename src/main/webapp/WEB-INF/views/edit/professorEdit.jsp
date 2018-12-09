@@ -112,7 +112,12 @@ select option:checked, select option:hover {
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/professorNavibar.jsp"%>
-
+	
+	<c:if test="${first}">
+		<script>
+			alert("처음 접속하셨습니다. 개인정보를 수정해주세요.");
+		</script>
+	</c:if>
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
@@ -136,11 +141,11 @@ select option:checked, select option:hover {
 			<div class="edit">
 				<div class="form-group">
 					<label>교번</label>
-					<form:input path="id" class="form-control w300" />
+					<form:input path="id" class="form-control w300" readonly="true"/>
 				</div>
 				<div class="form-group">
 					<label>이름</label>
-					<form:input path="name" class="form-control w300" />
+					<form:input path="name" class="form-control w300" readonly="true"/>
 				</div>
 				<div class="form-group">
 					<label>담당 학과</label>
