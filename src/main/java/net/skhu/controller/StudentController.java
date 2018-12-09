@@ -252,4 +252,22 @@ public class StudentController {
 		model.addAttribute("c3Total", c3Total);
 		return "student/graduationStatus";
 	}
+	
+	@RequestMapping(value="user/deleteStudent", method=RequestMethod.GET)
+		public String deleteStudent(@RequestParam("id") int id) {
+			studentMapper.delete(id);
+			return "user/studentListForAdmin";
+		}
+	
+	@RequestMapping(value="user/searchAll", method=RequestMethod.GET)
+	public String searchAll(Model model, @RequestParam("searchAll") String searchAll) {
+		
+		List<Student> students = studentService.searchAll(searchAll);
+		model.addAttribute("departments", departmentMapper.findRealDept());
+		model.addAttribute("students", students);
+		return "user/studentListForAdmin";
+		
+		
+	}
+	
 }
