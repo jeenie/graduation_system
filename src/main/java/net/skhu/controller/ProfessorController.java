@@ -12,13 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.Professor;
+<<<<<<< HEAD
 import net.skhu.dto.Student;
 import net.skhu.dto.StudentAdmin;
 import net.skhu.dto.StudentAdmin2;
@@ -26,6 +25,13 @@ import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.ProfessorMapper;
 import net.skhu.mapper.StudentAdminMapper;
 import net.skhu.service.StudentService;
+=======
+import net.skhu.dto.User;
+import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.ProfessorMapper;
+import net.skhu.mapper.UserMapper;
+import net.skhu.utils.Encryption;
+>>>>>>> ae18d6be6559399d0e827dcb3336696951a68a95
 
 @Controller
 @RequestMapping("/user")
@@ -35,10 +41,14 @@ public class ProfessorController {
 	ProfessorMapper professorMapper;
 	@Autowired
 	DepartmentMapper departmentMapper;
+<<<<<<< HEAD
 	@Autowired
 	StudentService studentService;
 	@Autowired
 	StudentAdminMapper studentAdminMapper;
+=======
+	@Autowired UserMapper userMapper;
+>>>>>>> ae18d6be6559399d0e827dcb3336696951a68a95
 
 	@RequestMapping(value="professorInquiry", method=RequestMethod.GET) 
 	public String professorInquiry(Model model) {
@@ -65,7 +75,7 @@ public class ProfessorController {
 	@RequestMapping(value = "professorAdd", method = RequestMethod.GET)
 	public String professorAdd(Model model) {
 		Professor professor = new Professor();
-		List<Department> departments = departmentMapper.findAll();
+		List<Department> departments = departmentMapper.findRealDept();
 		model.addAttribute("professor", professor);
 		model.addAttribute("departments", departments);
 		return "user/professorAdd";
@@ -75,9 +85,17 @@ public class ProfessorController {
 	public String professorAdd(Model model, Professor professor) {
 		int r1 = (int) (Math.random() * 1000);
 		String r2 = Integer.toString(r1);
-		professor.setEmail("default" + r2 + "@naver.com");// professor 테이블에서 not null처리가 되어있어서 임의로 값 대입
-		professor.setPassword(r2); // professor 테이블에서 not null처리가 되어있어서 임의로 값 대입
+		professor.setEmail("설정 필요");// professor 테이블에서 not null처리가 되어있어서 임의로 값 대입
+		professor.setPassword("test123");
+		professor.setPassword(Encryption.encrypt(professor.getPassword(), Encryption.MD5));
+		User user = new User();
+		user.setUserId(professor.getId());
+		System.out.println("교수테이블 비밀번호" + professor.getPassword());
+		user.setPassword(professor.getPassword());
+		System.out.println("사용자 테이블 비밀번호" + user.getPassword());
+		user.setUserType("교수");
 		professorMapper.insert(professor);
+		userMapper.insert(user);
 		return "redirect:professorInquiry";
 	}
 
