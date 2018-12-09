@@ -1,8 +1,16 @@
 package net.skhu.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,11 +20,14 @@ import net.skhu.dto.Major;
 import net.skhu.dto.Student;
 import net.skhu.dto.Subject;
 import net.skhu.dto.SubstitutionSubject;
+import net.skhu.dto.StudentAdmin;
+import net.skhu.dto.Result;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.SubjectMapper;
 import net.skhu.mapper.SubstitutionSubjectMapper;
+import net.skhu.mapper.StudentAdminMapper;
 import net.skhu.model.StudentVO;
 import net.skhu.service.ModalService;
 
@@ -28,6 +39,7 @@ public class APIController {
 	@Autowired StudentMapper studentMapper;
 	@Autowired SubstitutionSubjectMapper substitutionSubjectMapper;
 	@Autowired ModalService modal;
+	@Autowired StudentAdminMapper studentAdminMapper;
 	
 	@RequestMapping("findSubject")
 	public List<Subject> subjectList(@RequestParam("ss") String ss, @RequestParam("st") String st) {
@@ -108,6 +120,29 @@ public class APIController {
 	public StudentVO info(@RequestParam("id") int id) {
 		StudentVO student = modal.fillData(id);
 		return student;
+	}
+	
+	@RequestMapping("comment")
+	public Result inputComment(String comment, int stuId) throws ParseException {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		int userNumber = Integer.parseInt(authentication.getName());
+		
+		StudentAdmin studentAdmin = new StudentAdmin();
+		
+		Date myDate = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String strToday = sdf.format(myDate);
+		Date dt = sdf.parse(strToday);
+		
+		studentAdmin.setProfessorId(userNumber);
+		studentAdmin.setStudentId(stuId);
+		studentAdmin.setComment(comment);
+		studentAdmin.setDate(dt);
+		
+		studentAdminMapper.insert(studentAdmin);
+		
+		//if(error) return new Result(false,"fail");
+		return new Result(true,"success");
 	}
 	
 	

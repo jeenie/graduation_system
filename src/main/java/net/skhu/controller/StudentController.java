@@ -95,15 +95,7 @@ public class StudentController {
 		return "user/studentListForAdmin";
 	}
 
-	@RequestMapping("user/studentListForProfessor")
-	public String list2(Model model) {
-		List<Student> students = studentService.list();
-		List<Department> departments = departmentMapper.findRealDept();
-		model.addAttribute("students", students);
-		model.addAttribute("departments", departments);
-		return "user/studentListForProfessor";
-	}
-
+	
 	@RequestMapping(value = "user/studentSearch", method = RequestMethod.GET) 
 	public String studentSearch(Model model,
 			@RequestParam(value = "departmentName", required = false) String departmentName,

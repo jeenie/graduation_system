@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentAdminMapper">
+	<select id="findAll" resultType="StudentAdmin">
+		SELECT *
+		FROM student_administration
+	</select>
+	
+	<insert id="insert" parameterType="StudentAdmin" useGeneratedKeys="true" keyProperty="id">>
+    	INSERT student_administration (professorId, studentId, comment, dateWritten)
+    	VALUES (#{professorId}, #{studentId}, #{comment}, #{dateWritten}, #{entranceType})
+  	</insert>
+</mapper>

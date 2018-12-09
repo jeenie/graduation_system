@@ -100,8 +100,9 @@ public class ModalService {
 		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(id);
 		stu.setMustCulture(mustCulture);
 		
-		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
 		
+		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
+	
 		List<StudentSubjectGrade> s1 = new ArrayList<StudentSubjectGrade>();
 		List<RequiredCultureSubject> s2 = new ArrayList<RequiredCultureSubject>();
 		
@@ -109,6 +110,7 @@ public class ModalService {
 			String str1 = re.getSubjectId();
 			int count = 0;
 			for(StudentSubjectGrade ssg : mustCulture) {
+				
 				String str2 = ssg.getSubjectId();
 				if(str1.equals(str2)) { s1.add(ssg); break; }
 				++count;
