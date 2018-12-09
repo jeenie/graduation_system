@@ -137,7 +137,7 @@ public class APIController {
 		studentAdmin.setProfessorId(userNumber);
 		studentAdmin.setStudentId(stuId);
 		studentAdmin.setComment(comment);
-		studentAdmin.setDate(dt);
+		studentAdmin.setDateWritten(strToday);
 		
 		studentAdminMapper.insert(studentAdmin);
 		
