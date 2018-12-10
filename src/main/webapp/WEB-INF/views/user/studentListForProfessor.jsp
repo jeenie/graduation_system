@@ -676,7 +676,7 @@ textarea {
 							</div>
 
 							<div class="modalGreen">
-								<i class="fas fa-caret-right"></i>&nbsp;졸업요건 미충족&nbsp; <input
+								<i class="fas fa-caret-right"></i>&nbsp;8학기 이상 졸업요건 미충족&nbsp; <input
 									type="checkbox" name="checkbox" value="check">&nbsp;&nbsp;
 							</div>
 

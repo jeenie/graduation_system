@@ -15,7 +15,7 @@ import net.skhu.dto.Comment;
 import net.skhu.mapper.CommentMapper;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/professor")
 public class CommentController {
 	@Autowired CommentMapper commentMapper;
 	

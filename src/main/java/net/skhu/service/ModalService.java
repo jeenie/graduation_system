@@ -129,5 +129,83 @@ public class ModalService {
 	}
 	
 
+public StudentVO fillData2(int id) {
+		
+		StudentVO stu = new StudentVO();
+		stu.setStudent(studentMapper.findById2(id));
+		String year = String.valueOf(id).substring(0, 4);
+		String department = String.valueOf(id).substring(4,6);
+		int entranceYear = Integer.parseInt(year);
+		int departmentId = Integer.parseInt(department);
+		StudentGradefile file = fileMapper.findById(id);
+		
+		List<DepartmentMajorRule> rules = departmentMajorMapper.findByDepartmentId(stu.getStudent().getDepartmentId(), entranceYear);
+		
+		stu.setRules(rules);
+		stu.setFileData(file);
+		stu.setTotal(totalMapper.find());
+		
+		
+		stu.setEntranceYear(entranceYear);
+		
+		List<Major> majors = majorMapper.findMustMajorByUser(departmentId, entranceYear);
+		List<StudentSubjectGrade> ssgs = studentSubjectGradeMapper.findByIdMustMajor(id);
+		
+		List<Major> unlisten = new ArrayList<Major>();
+		List<StudentSubjectGrade> listen = new ArrayList<StudentSubjectGrade>();
+		
+		for (Major major : majors ) {
+			String str1 = major.getMajorSubjectId();
+			int count = 0;
+			for(StudentSubjectGrade ssg : ssgs ) {
+				String str2 = ssg.getSubjectId();
+				if(str1.equals(str2))  { listen.add(ssg); break; }
+				++ count;
+				
+			}
+			if(ssgs.size() == count) {
+				unlisten.add(major);
+			}
+		}
+		
+		stu.setListen(listen);
+		stu.setUnlisten(unlisten);
+		
+		//교양
+		RequiredCultureCount requiredCultureCount = requiredCultureCountMapper.find();
+		int serveSubject = serveSubjectMapper.findById(id);
+		int chapelSubject = chapelSubjectMapper.findById(id);
+		
+		stu.setRequiredCultureCount(requiredCultureCount);
+		stu.setServeSubject(serveSubject);
+		stu.setChapelSubject(chapelSubject);
+		
+		
+		List<StudentSubjectGrade> mustCulture = studentSubjectGradeMapper.findByIdMustCulture(id);
+		stu.setMustCulture(mustCulture);
+		
+		
+		List<RequiredCultureSubject> requiredCultureSubject = requiredCultureSubjectMapper.findByYear2(entranceYear);
 	
+		List<StudentSubjectGrade> s1 = new ArrayList<StudentSubjectGrade>();
+		List<RequiredCultureSubject> s2 = new ArrayList<RequiredCultureSubject>();
+		
+		for(RequiredCultureSubject re : requiredCultureSubject) {
+			String str1 = re.getSubjectId();
+			int count = 0;
+			for(StudentSubjectGrade ssg : mustCulture) {
+				
+				String str2 = ssg.getSubjectId();
+				if(str1.equals(str2)) { s1.add(ssg); break; }
+				++count;
+			}
+			if(mustCulture.size()==count) {
+				s2.add(re);
+			}
+		}
+		
+		stu.setS2(requiredCultureSubject);
+		
+		return stu;
+	}
 }

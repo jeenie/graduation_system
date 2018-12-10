@@ -29,8 +29,8 @@
 		AND (#{subjectName} IS NULL OR #{subjectName}="" OR #{subjectName}=sub.name OR sub.name LIKE CONCAT('%',#{subjectName},'%'))
 		AND (#{name} IS NULL OR #{name}="" OR  #{name}=s.name)
 		AND (#{id} IS NULL OR #{id}="" OR #{id}=s.id)
-		AND (#{checkbox} IS NULL OR #{checkbox}="" OR (#{checkbox}="check" AND (s.completeSemester > 7) AND (( 70 > file.cultureUnit ) OR (60 > file.majorUnit)) ))
-		GROUP BY s.id
+		AND (#{checkbox} IS NULL OR #{checkbox}="" OR (#{checkbox}="check" AND (s.completeSemester > 7)))
+		GROUP BY s.departmentId, s.id
 		
 		<!--<where>
 			<if test="subjectName != null">

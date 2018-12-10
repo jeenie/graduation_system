@@ -116,6 +116,12 @@ public class APIController {
 		return student;
 	}
 	
+	@RequestMapping("info2")
+	public StudentVO info2(@RequestParam("id") int id) {
+		StudentVO student = modal.fillData2(id);
+		return student;
+	}
+	
 	// 코멘트 삭제
 	@RequestMapping("deleteComment")
 	public void deleteComment(@RequestParam("commentId") int commentId) {

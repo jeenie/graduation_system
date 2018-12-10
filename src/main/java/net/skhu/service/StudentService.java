@@ -49,16 +49,16 @@ public class StudentService {
 		for(Student student : students) {
 			majorUnit = student.getMajorUnit();
 			cultureUnit = student.getCultureUnit();
-			if((majorUnit < 60) && (cultureUnit < 70)) {
+			if((majorUnit < 60) && (cultureUnit < 32)) {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m2");
 			}
-			else if((majorUnit < 60) && (cultureUnit >= 70)) {
+			else if((majorUnit < 60) && (cultureUnit >= 32)) {
 				student.setmColor("btn-m2");
 				student.setcColor("btn-m1");
 				
 			}
-			else if((majorUnit >= 60) && (cultureUnit < 70)) {
+			else if((majorUnit >= 60) && (cultureUnit < 32)) {
 				student.setmColor("btn-m1");
 				student.setcColor("btn-m2");
 			}

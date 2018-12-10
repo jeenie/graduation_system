@@ -1001,7 +1001,7 @@ textarea {
 						});
 					},
 					info: function(studentId) {
-						let url = '/graduation_system/info?id=' + studentId;
+						let url = '/graduation_system/info2?id=' + studentId;
 						axios.get(url)
 						.then(response => {
 							this.stu = response.data;
