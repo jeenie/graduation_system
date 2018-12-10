@@ -34,7 +34,6 @@ import net.skhu.mapper.UserMapper;
 import net.skhu.utils.Encryption;
 
 @Controller
-@RequestMapping("/user")
 public class ProfessorController {
 
 	@Autowired
@@ -50,14 +49,14 @@ public class ProfessorController {
 	@Autowired UserMapper userMapper;
 
 
-	@RequestMapping(value="professorInquiry", method=RequestMethod.GET) 
+	@RequestMapping(value="user/professorInquiry", method=RequestMethod.GET) 
 	public String professorInquiry(Model model) {
 		List<Professor> professors = professorMapper.findAll(); 
 		model.addAttribute("professors", professors);
 		return "user/professorInquiry";
 	}
 	
-	@RequestMapping(value="professorSearch", method=RequestMethod.GET)
+	@RequestMapping(value="user/professorSearch", method=RequestMethod.GET)
 	public String professorSearch(Model model,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "id", required = false) Integer id,
@@ -72,7 +71,7 @@ public class ProfessorController {
 		return "user/professorInquiry";
 	}
 
-	@RequestMapping(value = "professorAdd", method = RequestMethod.GET)
+	@RequestMapping(value = "user/professorAdd", method = RequestMethod.GET)
 	public String professorAdd(Model model) {
 		Professor professor = new Professor();
 		List<Department> departments = departmentMapper.findRealDept();
@@ -81,7 +80,7 @@ public class ProfessorController {
 		return "user/professorAdd";
 	}
 
-	@RequestMapping(value = "professorAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "user/professorAdd", method = RequestMethod.POST)
 	public String professorAdd(Model model, Professor professor) {
 		int r1 = (int) (Math.random() * 1000);
 		String r2 = Integer.toString(r1);
@@ -99,13 +98,13 @@ public class ProfessorController {
 		return "redirect:professorInquiry";
 	}
 
-	@RequestMapping("professorDelete")
+	@RequestMapping("user/professorDelete")
 	public String professorDelete(@RequestParam("id") int id) {
 		professorMapper.delete(id);
 		return "redirect:professorInquiry";
 	}
 	
-	@RequestMapping(value="studentListForProfessor", method=RequestMethod.GET)
+	@RequestMapping(value="professor/studentListForProfessor", method=RequestMethod.GET)
 	public String list2(Model model) {
 		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
@@ -117,7 +116,24 @@ public class ProfessorController {
 		return "user/studentListForProfessor";
 	}
 	
-	@RequestMapping(value="inputComment", method=RequestMethod.GET)
+	@RequestMapping(value = "professor/studentSearch", method = RequestMethod.GET) 
+	public String studentSearch(Model model,
+			@RequestParam(value = "departmentName", required = false) String departmentName,
+			@RequestParam(value = "grade", required = false) Integer grade,
+			@RequestParam(value = "allId", required = false) Integer allId,
+			@RequestParam(value = "subjectName", required = false) String subjectName,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "id", required = false) Integer id,
+			@RequestParam(value = "checkbox", required = false) String checkbox) {
+		
+		List<Student> students = studentService.searchList(departmentName, grade, allId, subjectName, name, id, checkbox);
+		model.addAttribute("departments", departmentMapper.findRealDept());
+		model.addAttribute("students", students);
+		return "user/studentListForProfessor";
+
+	}
+	
+	@RequestMapping(value="user/inputComment", method=RequestMethod.GET)
 	public String inputComment(Model model, @RequestParam("comment")String comment, @RequestParam("studentId") int studentId) throws ParseException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

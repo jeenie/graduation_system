@@ -22,7 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/admin/**").access("ROLE_ADMIN")
-			.antMatchers("/professor/**").access("ROLE_PROFESSOR")
 			.antMatchers("/grade_file_format.xlsx").permitAll()
 			.antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()

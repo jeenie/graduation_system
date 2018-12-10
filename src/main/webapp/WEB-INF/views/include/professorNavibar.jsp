@@ -28,7 +28,7 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a href="${R}user/graduationRule">졸업요건</a></li>
 							<li role="presentation"><a
-								href="${R}user/studentListForProfessor">학생조회</a></li>
+								href="${R}professor/studentListForProfessor">학생조회</a></li>
 							<li role="presentation"><a href="http://www.skhu.ac.kr">학교홈페이지</a></li>
 							<li role="presentation"><a href="https://forest.skhu.ac.kr/">종합정보시스템</a></li>
 							<li role="presentation"><a href="${R}user/logout_processing" onclick="successLogout()">Logout</a></li>
