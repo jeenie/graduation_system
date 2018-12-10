@@ -3,15 +3,16 @@ package net.skhu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.skhu.dto.Comment;
 import net.skhu.dto.Major;
 import net.skhu.dto.Student;
 import net.skhu.dto.Subject;
 import net.skhu.dto.SubstitutionSubject;
+import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.StudentMapper;
@@ -22,6 +23,7 @@ import net.skhu.service.ModalService;
 
 @RestController
 public class APIController {
+	@Autowired CommentMapper commentMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired MajorMapper majorMapper;
 	@Autowired SubjectMapper subjectMapper;
@@ -110,6 +112,11 @@ public class APIController {
 		return student;
 	}
 	
+	// 코멘트 삭제
+	@RequestMapping("deleteComment")
+	public void deleteComment(@RequestParam("commentId") int commentId) {
+		System.out.println("삭제할 코멘트 아이디 : " + commentId);
+		commentMapper.delete(commentId);
+	}
 	
-
 }

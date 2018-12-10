@@ -160,6 +160,7 @@
 
 
 
+
  
 
 
@@ -174,7 +175,10 @@
 
 
 
+
 a
+
+
 
 
 
@@ -228,6 +232,8 @@ a
 
 
 
+
+
 :not
 
 
@@ -242,7 +248,9 @@ a
 
 
 
+
  
+
 
 
 
@@ -271,7 +279,9 @@ a
 
 
 
+
  
+
 
 
 
@@ -314,6 +324,8 @@ background-color
 
 
 
+
+
 :
 
 
@@ -328,7 +340,9 @@ background-color
 
 
 
+
  
+
 
 
 
@@ -369,6 +383,8 @@ background-color
 
 
 
+
+
 ;
 }
 td {
@@ -383,8 +399,6 @@ td {
 .contents {
 	width: 1000px;
 }
-
-
 
 /*input class 변경*/
 .form-controls {
@@ -508,10 +522,10 @@ textarea {
 					<div class="contents" style="text-align: center;">
 						<div>
 							<form action="searchAll">
-							<input type="text" name="searchAll" class="form-controls btn-m1"
-								style="width: 665px;"> &nbsp;
-							<button type="submit" class="btn-statement4"
-								style="width: 60px; height: 33px;">검색</button>
+								<input type="text" name="searchAll" class="form-controls btn-m1"
+									style="width: 665px;"> &nbsp;
+								<button type="submit" class="btn-statement4"
+									style="width: 60px; height: 33px;">검색</button>
 							</form>
 							<a data-toggle="modal" href="#search">
 								<h5 style="color: rgb(104, 97, 97)">
@@ -738,7 +752,7 @@ textarea {
 									<div class="progressbar progressbar-green"
 										style="width: 500px;">
 
-										<div class="progressbar-inner total" style=""></div>
+										<div class="progressbar-inner total" style="width: 490px"></div>
 										<!--<p>{{stuTotal}}%</p>-->
 									</div>
 								</div>
@@ -810,31 +824,26 @@ textarea {
 								</div>
 								<br>
 								<div class="progress-wrap" style="margin-top: -20px">
-									<p style="font-size: 14.5px; font-weight:bold;">>&nbsp 교양
-										{{studentfile.cultureUnit}}/70 (
-												
-									<span
-									style="color: Green; font-size: 14px; ">
-									{{chapelSubject}}</span>
-								<span style="font-size: 14px;">&nbsp/
-									{{requiredCultureCount.chapelCount}} 회, 사회봉사 </span>
-								<span
-									style="color: Green; font-size: 14px; ">&nbsp
-									{{serveSubject}}</span>
-								<span style="font-size: 14px;">&nbsp/
-									{{requiredCultureCount.serveCount}} 회</span>
-								
-									)</p>
-								
+									<p style="font-size: 14.5px; font-weight: bold;">
+										>&nbsp 교양 {{studentfile.cultureUnit}}/70 ( <span
+											style="color: Green; font-size: 14px;">
+											{{chapelSubject}}</span> <span style="font-size: 14px;">&nbsp/
+											{{requiredCultureCount.chapelCount}} 회, 사회봉사 </span> <span
+											style="color: Green; font-size: 14px;">&nbsp
+											{{serveSubject}}</span> <span style="font-size: 14px;">&nbsp/
+											{{requiredCultureCount.serveCount}} 회</span> )
+									</p>
+
 									<div class="progressbar progressbar-green"
 										style="float: left; width: 500px;">
-										<div class="progressbar-inner" style="width: {{"></div>
+										<div class="progressbar-inner" style="width:"></div>
 									</div>
 								</div>
-								
-								
+
+
 								<br> <br>
-								<p style="font-size: 14px; float:left; font-weight: bold;">*(수강) 교필 과목</p>
+								<p style="font-size: 14px; float: left; font-weight: bold;">*(수강)
+									교필 과목</p>
 								<div style="margin-right: 200px">
 									<table class="table" style="width: 600px;">
 										<thead>
@@ -856,8 +865,10 @@ textarea {
 										</tbody>
 									</table>
 								</div>
-								<br><br>
-								<p style="font-size: 14px; float:left; font-weight: bold;">*(미수강) 교필 과목</p>
+								<br>
+								<br>
+								<p style="font-size: 14px; float: left; font-weight: bold;">*(미수강)
+									교필 과목</p>
 								<div style="margin-right: 200px">
 									<table class="table" style="width: 600px;">
 										<thead>
@@ -877,39 +888,43 @@ textarea {
 									</table>
 								</div>
 							</div>
-							
+
 
 						</div>
-						<br><br>
+						<br>
+						<br>
 						<p style="font-size: 14.5px; font-weight: bold;">> 조치사항 기록</p>
 						<div style="margin-right: 200px">
-									<table class="table" style="width: 600px;">
-										<thead>
-											<tr style="height: 30px;">
-												<th scope="col" class="text-center" >작성날짜</th>
-												<th scope="col" class="text-center">코멘트</th>
+							<table class="table" style="width: 600px;">
+								<thead>
+									<tr style="height: 30px;">
+										<th scope="col" class="text-center">작성날짜</th>
+										<th scope="col" class="text-center">코멘트</th>
 
-											</tr>
-										</thead>
-										<tbody>
-											
-											<tr v-for="comment in myComment">
-												<td>{{comment.dateWritten}}</td> 
-												<td>{{comment.comment}}</td>
-											</tr>
-											
-										</tbody>
-									</table>
-								</div>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr v-for="comment in myComment"
+										v-on:click="deleteComment(comment.student_administrationcol)">
+										<td>{{comment.dateWritten}}</td>
+										<td>{{comment.comment}}</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
 
 						<form action="addComment" method="post">
 							<textarea name="comment" placeholder="코멘트를 작성해주세요"></textarea>
 							<!-- <input type="hidden" name="studentId" value=201232001 /> -->
 							<input type="hidden" name="studentId" v-model="student.id">
-							<button type="submit" class="btn btn-primary" style="float:right;">저장</button>
+							<button type="submit" class="btn btn-primary"
+								style="float: right;">조치사항 등록</button>
 						</form>
-						
-						<br><br>
+
+						<br>
+						<br>
 
 					</div>
 				</div>
@@ -929,7 +944,7 @@ textarea {
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-	
+
 	<!--
 					inputComment : function() {
 						let url = '/graduation_system/comment';
@@ -941,8 +956,8 @@ textarea {
 							});
 					}
 	-->
-					
-	
+
+
 	<script type="text/javascript">
 			var app = new Vue({
 				el : '#stuModal',
@@ -1013,6 +1028,16 @@ textarea {
 								this.stuMajor =  100;
 							}
 						})
+					},
+					deleteComment: function(commentId) {
+						let url = '/graduation_system/deleteComment?commentId=' + commentId;
+						var ok = confirm("선택한 코멘트를 삭제하시겠습니까?");
+						console.log(commentId);
+						if(ok) {
+							axios.get(url).then();
+							alert("정상적으로 삭제되었습니다.");
+							location.href="studentListForProfessor";
+						}
 					}
 					
 				}

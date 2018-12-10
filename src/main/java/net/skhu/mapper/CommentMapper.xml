@@ -4,10 +4,16 @@
              
 <mapper namespace="net.skhu.mapper.CommentMapper">
 	<select id="findById" resultType="Comment">
+		SELECT * FROM student_administration WHERE student_administrationcol =#{id}
+	</select>
+	<select id="findByStudentId" resultType="Comment">
 		SELECT * FROM student_administration WHERE studentId =#{studentId}
 	</select>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="student_administrationcol">
 		INSERT student_administration (professorId, studentId, comment, dateWritten)
 		VALUES (#{professorId}, #{studentId}, #{comment}, #{dateWritten})
 	</insert>
+	<delete id="delete">
+		DELETE FROM student_administration WHERE student_administrationcol =#{id}
+	</delete>
 </mapper>

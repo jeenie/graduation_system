@@ -24,7 +24,6 @@ public class CommentController {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		int userNumber=Integer.parseInt(authentication.getName());
 		
-		SimpleDateFormat format1 = new SimpleDateFormat("yy-mm-dd");
 		Comment com = new Comment();
 		com.setProfessorId(userNumber);
 		com.setStudentId(studentId);

@@ -8,6 +8,10 @@ import net.skhu.dto.Comment;
 
 @Mapper
 public interface CommentMapper {
-	List<Comment> findById(int studentId);
+	Comment findById(int id);
+	
+	List<Comment> findByStudentId(int studentId);
+	
 	void insert(Comment comment);
+	void delete(int id);
 }

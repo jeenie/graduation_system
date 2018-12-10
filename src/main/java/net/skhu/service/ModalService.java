@@ -124,7 +124,7 @@ public class ModalService {
 		}
 		
 		stu.setS2(requiredCultureSubject);
-		stu.setComments(commentMapper.findById(id));
+		stu.setComments(commentMapper.findByStudentId(id));
 		return stu;
 	}
 	
