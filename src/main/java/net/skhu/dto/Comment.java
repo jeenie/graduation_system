@@ -7,7 +7,7 @@ public class Comment {
 	int professorId;
 	int studentId;
 	String comment;
-	Date dateWritten;
+	String dateWritten;
 	
 	public int getStudent_administrationcol() {
 		return student_administrationcol;
@@ -33,10 +33,10 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public Date getDateWritten() {
+	public String getDateWritten() {
 		return dateWritten;
 	}
-	public void setDateWritten(Date dateWritten) {
+	public void setDateWritten(String dateWritten) {
 		this.dateWritten = dateWritten;
 	}
 }

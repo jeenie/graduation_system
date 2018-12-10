@@ -1,5 +1,6 @@
 package net.skhu.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,12 @@ public class CommentController {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		int userNumber=Integer.parseInt(authentication.getName());
 		
-		
+		SimpleDateFormat format1 = new SimpleDateFormat("yy-mm-dd");
 		Comment com = new Comment();
 		com.setProfessorId(userNumber);
 		com.setStudentId(studentId);
 		com.setComment(comment);
-		com.setDateWritten(new Date());
+		com.setDateWritten(format1.format(new Date()));
 		
 		commentMapper.insert(com);
 		
