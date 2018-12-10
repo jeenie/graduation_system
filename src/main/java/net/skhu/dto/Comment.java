@@ -1,13 +1,13 @@
 package net.skhu.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Comment {
 	int student_administrationcol;
 	int professorId;
 	int studentId;
 	String comment;
-	String dateWritten;
+	Date dateWritten;
 	
 	public int getStudent_administrationcol() {
 		return student_administrationcol;
@@ -33,10 +33,10 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getDateWritten() {
+	public Date getDateWritten() {
 		return dateWritten;
 	}
-	public void setDateWritten(String dateWritten) {
+	public void setDateWritten(Date dateWritten) {
 		this.dateWritten = dateWritten;
 	}
 }

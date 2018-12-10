@@ -1,7 +1,6 @@
 package net.skhu.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,7 +29,8 @@ public class CommentController {
 		com.setProfessorId(userNumber);
 		com.setStudentId(studentId);
 		com.setComment(comment);
-		com.setDateWritten(format1.format(new Date()));
+		java.util.Date realDate = new java.util.Date(); 
+		com.setDateWritten(new java.sql.Date(realDate.getTime()));
 		
 		commentMapper.insert(com);
 		
