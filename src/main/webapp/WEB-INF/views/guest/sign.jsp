@@ -68,7 +68,6 @@
 	display: block;
 }
 
-
 input.form-control.w300 {
 	width: 300px;
 }
@@ -76,7 +75,7 @@ input.form-control.w300 {
 </head>
 <body onload="initialize()">
 	<%@ include file="/WEB-INF/views/include/guestNavibar.jsp"%>
-	
+
 	<c:if test="${pwError}">
 		<script>
 			alert("비밀번호가 일치하지 않습니다. 다시입력해주세요.");
@@ -92,7 +91,7 @@ input.form-control.w300 {
 			alert("첨부 파일이 존재하지 않습니다. 파일을 첨부해주세요.");
 		</script>
 	</c:if>
-	
+
 	<div id="breadcrumb">
 		<div class="container">
 			<div class="breadcrumb">
@@ -108,7 +107,8 @@ input.form-control.w300 {
 			<img src="${R}res/images/abouti/professor-1.png"
 				style="width: 250px; height: 250px; float: left; border-radius: 5px; padding-right: 20px;">
 			<div style="margin-left: 250px;">
-				<form:form method="post" modelAttribute="student"  id="signForm"  enctype="multipart/form-data">
+				<form:form method="post" modelAttribute="student" id="signForm"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label>학번</label>
 						<form:input path="id" class="form-control w300" />
@@ -121,37 +121,37 @@ input.form-control.w300 {
 						<label>학과</label>
 						<form:select path="departmentId" class="form-control"
 							itemValue="id" itemLabel="departmentName"
-							items="${ departments }" style="width:230px"/>
+							items="${ departments }" style="width:230px" />
 					</div>
 					<div class="form-group">
-						<label>입학구분</label>
-						<br/>
-						<label class="radio-inline"><form:radiobutton path="entranceType" value="신입학" label="신입학"/></label>
-						<label class="radio-inline"><form:radiobutton path="entranceType" value="편입학" label="편입학"/></label>
+						<label>입학구분</label> <br /> <label class="radio-inline"><form:radiobutton
+								path="entranceType" value="신입학" label="신입학" /></label> <label
+							class="radio-inline"><form:radiobutton
+								path="entranceType" value="편입학" label="편입학" /></label>
 					</div>
 					<div class="form-group">
-						<label>학년</label>
-						<br/>
-						<label class="radio-inline"><form:radiobutton path="grade" value="1" label="1"/></label>
-						<label class="radio-inline"><form:radiobutton path="grade" value="2" label="2"/></label>
-						<label class="radio-inline"><form:radiobutton path="grade" value="3" label="3"/></label>
-						<label class="radio-inline"><form:radiobutton path="grade" value="4" label="4"/></label>
+						<label>학년</label> <br /> <label class="radio-inline"><form:radiobutton
+								path="grade" value="1" label="1" /></label> <label class="radio-inline"><form:radiobutton
+								path="grade" value="2" label="2" /></label> <label class="radio-inline"><form:radiobutton
+								path="grade" value="3" label="3" /></label> <label class="radio-inline"><form:radiobutton
+								path="grade" value="4" label="4" /></label>
 					</div>
 					<div class="form-group">
 						<label>비밀번호</label>
 						<form:input path="password" type="password"
-							class="form-control w300" id="password1"/>
+							class="form-control w300" id="password1" />
 					</div>
 					<div class="form-group">
 						<label>비밀번호 재입력</label>
 						<form:input path="password2" type="password"
-							class="form-control w300" id="password2"/>
+							class="form-control w300" id="password2" />
 					</div>
 					<font name="check" size="2" color="red"></font>
 					<div class="form-group">
 						<label>비밀번호 찾기 질문</label>
 						<form:select path="passwordQuestion" class="form-control w200"
-							itemValue="quizCode" itemLabel="quizContent" items="${ quizs }" style="width:300px"/>
+							itemValue="quizCode" itemLabel="quizContent" items="${ quizs }"
+							style="width:300px" />
 					</div>
 					<div class="form-group">
 						<label>비밀번호 찾기 답변</label>
@@ -169,8 +169,16 @@ input.form-control.w300 {
 					
 					<div class="form-group">
 						<label>성적파일 업로드</label>
-						<form:input path="file" type="file" class="form-control w300" accept=".xls,xlsx"/>
+						<p style="margin-top:-27px; margin-left:120px; margin-bottom: 20px;">
+							<a
+								style="color: #ac0; font-weight: bold; text-decoration: underline;"
+								href="${R}grade_file_format.xlsx">성적 파일 엑셀 형식 다운로드</a>
+						</p>
+						<form:input path="file" type="file" class="form-control w300"
+							accept=".xls,xlsx" />
 					</div>
+					
+					
 					
 					<hr />
 					<div>

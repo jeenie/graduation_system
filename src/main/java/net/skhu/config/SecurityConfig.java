@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 			.antMatchers("/admin/**").access("ROLE_ADMIN")
 			.antMatchers("/professor/**").access("ROLE_PROFESSOR")
+			.antMatchers("/grade_file_format.xlsx").permitAll()
 			.antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/**").authenticated();
