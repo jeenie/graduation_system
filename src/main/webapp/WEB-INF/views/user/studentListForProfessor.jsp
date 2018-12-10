@@ -963,10 +963,11 @@ textarea {
 										</tbody>
 									</table>
 								</div>
-						<form>
-						<textarea name="comment" placeholder="코멘트를 작성해주세요"></textarea>
-						<!-- <input type="hidden" name="studentId" value=201232001 /> -->
-						<button type="button" v-on:click="temp()" class="btn btn-primary" style="float:right;">저장</button>
+						<form action="addComment" method="post">
+							<textarea name="comment" placeholder="코멘트를 작성해주세요"></textarea>
+							<!-- <input type="hidden" name="studentId" value=201232001 /> -->
+							<input type="text" v-model="student.id">
+							<button type="submit" class="btn btn-primary" style="float:right;">저장</button>
 						</form>
 						<br><br>
 

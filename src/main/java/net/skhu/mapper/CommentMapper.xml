@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+             
+<mapper namespace="net.skhu.mapper.CommentMapper">
+	<insert id="insert" parameterType="Comment">
+		INSERT student_administration (student_administrationcol, professortId, studentId, comment, dateWritten)
+		VALUES (#{student_administrationcol}, #{professortId}, #{studentId}, #{comment}, #{dateWritten})
+	</insert>
+</mapper>
