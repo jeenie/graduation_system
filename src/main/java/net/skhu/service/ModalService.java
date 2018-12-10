@@ -13,6 +13,7 @@ import net.skhu.dto.RequiredCultureSubject;
 import net.skhu.dto.StudentGradefile;
 import net.skhu.dto.StudentSubjectGrade;
 import net.skhu.mapper.ChapelSubjectMapper;
+import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.RequiredCultureCountMapper;
@@ -43,6 +44,8 @@ public class ModalService {
 	ServeSubjectMapper serveSubjectMapper;
 	@Autowired
 	RequiredCultureSubjectMapper requiredCultureSubjectMapper;
+	@Autowired
+	CommentMapper commentMapper;
 	
 	
 	public StudentVO fillData(int id) {
@@ -121,7 +124,7 @@ public class ModalService {
 		}
 		
 		stu.setS2(requiredCultureSubject);
-			
+		stu.setComments(commentMapper.findById(id));
 		return stu;
 	}
 	

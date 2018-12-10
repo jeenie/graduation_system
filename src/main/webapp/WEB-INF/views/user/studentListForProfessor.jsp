@@ -18,24 +18,14 @@
 <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 <link href="${R}res/css/prettyPhoto.css" rel="stylesheet">
 <link href="${R}res/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="${R}res/css/custom.css">
 
 <!-- font awesome-->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-<!-- 
-<script type="text/javascript">
-	function button_event(value) {
-		if(confirm("해당 학생의 정보를 삭제하시겠습니까?")==true) {
-			location.href="studentDelete?id="+value;
-		}else{
-			return;
-		}
-	}
-	
-</script>
--->
+
 <style>
 .inquiry_btn {
 	border: none;
@@ -394,54 +384,7 @@ td {
 	width: 1000px;
 }
 
-/* Style The Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #4CAF50;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: rgb(96, 185, 96)
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 
 /*input class 변경*/
 .form-controls {
@@ -890,8 +833,6 @@ textarea {
 								</div>
 								
 								
-						
-								
 								<br> <br>
 								<p style="font-size: 14px; float:left; font-weight: bold;">*(수강) 교필 과목</p>
 								<div style="margin-right: 200px">
@@ -932,9 +873,6 @@ textarea {
 												<td>{{ s22.subjectName }}</td>
 												<td>{{ s22.subjectScore}}</td>
 											</tr>
-
-
-
 										</tbody>
 									</table>
 								</div>
@@ -954,26 +892,25 @@ textarea {
 											</tr>
 										</thead>
 										<tbody>
-											<tr v-for="comment in comments">
-												<td>{{ comment.updateDate }}</td>
-												<td>{{ comment.comment }}</td>
-
+											
+											<tr v-for="comment in myComment">
+												<td>{{comment.dateWritten}}</td> 
+												<td>{{comment.comment}}</td>
 											</tr>
 											
 										</tbody>
 									</table>
 								</div>
+
 						<form action="addComment" method="post">
 							<textarea name="comment" placeholder="코멘트를 작성해주세요"></textarea>
 							<!-- <input type="hidden" name="studentId" value=201232001 /> -->
-							<input type="text" v-model="student.id">
+							<input type="hidden" name="studentId" v-model="student.id">
 							<button type="submit" class="btn btn-primary" style="float:right;">저장</button>
 						</form>
+						
 						<br><br>
 
-					</div>
-					<div class="modal-footer">
-					
 					</div>
 				</div>
 			</div>
@@ -1030,7 +967,8 @@ textarea {
 					comment : '',
 					comments : [{updateDate : '2018-12-09', comment : '지도교수 면담 신청'},
 						{updateDate : '2018-12-10', comment : '휴학계 신청 관련 면담'}],
-					commentss : {}
+					commentss : {},
+					myComment : []
 					
 				},
 				methods : {
@@ -1060,6 +998,7 @@ textarea {
 							this.mustCulture = this.stu.mustCulture;
 							this.s2 = this.stu.s2;
 							this.stuId = this.stu.student.id;
+							this.myComment = this.stu.comments;
 							
 							var total =  this.studentfile.totalUnit / this.total.grade * 100;
 							var major = this.studentfile.majorUnit / 60 * 100;

@@ -3,8 +3,11 @@
              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
              
 <mapper namespace="net.skhu.mapper.CommentMapper">
-	<insert id="insert" parameterType="Comment">
-		INSERT student_administration (student_administrationcol, professortId, studentId, comment, dateWritten)
-		VALUES (#{student_administrationcol}, #{professortId}, #{studentId}, #{comment}, #{dateWritten})
+	<select id="findById" resultType="Comment">
+		SELECT * FROM student_administration WHERE studentId =#{studentId}
+	</select>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="student_administrationcol">
+		INSERT student_administration (professorId, studentId, comment, dateWritten)
+		VALUES (#{professorId}, #{studentId}, #{comment}, #{dateWritten})
 	</insert>
 </mapper>

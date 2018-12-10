@@ -9,5 +9,5 @@ import net.skhu.dto.StudentAdmin;
 @Mapper
 public interface  StudentAdminMapper {
 	void insert(StudentAdmin studentAdmin);
-	List<StudentAdmin> findAll();
+	List<StudentAdmin> findById();
 }

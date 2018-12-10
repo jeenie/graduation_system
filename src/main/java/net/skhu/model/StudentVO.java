@@ -1,8 +1,8 @@
 package net.skhu.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import net.skhu.dto.Comment;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
@@ -40,7 +40,10 @@ public class StudentVO {
 	List<StudentSubjectGrade> s1;
 	List<RequiredCultureSubject> s2;
 	
+	List<Comment> comments;
 	
+	
+
 	public Student getStudent() {
 		return student;
 	}
@@ -146,8 +149,11 @@ public class StudentVO {
 		return s1;
 	}
 
-	
+	public List<Comment> getComments() {
+		return comments;
+	}
 
-
-
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 }

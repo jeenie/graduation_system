@@ -1,6 +1,7 @@
 package net.skhu.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.text.ParseException;
@@ -108,29 +109,39 @@ public class ProfessorController {
 	public String list2(Model model) {
 		List<Student> students = studentService.list();
 		List<Department> departments = departmentMapper.findRealDept();
-		StudentAdmin2 studentAdmin = new StudentAdmin2();
+		
 		model.addAttribute("students", students);
 		model.addAttribute("departments", departments);
-		model.addAttribute("studentAdmin", studentAdmin);
+	
+		model.addAttribute("temp", studentAdminMapper.findById());
 		return "user/studentListForProfessor";
 	}
 	
-	@RequestMapping(value="studentListForAdmin", method=RequestMethod.POST)
-	public String inputComment(StudentAdmin2 studentAdmin) throws ParseException {
+	@RequestMapping(value="inputComment", method=RequestMethod.GET)
+	public String inputComment(Model model, @RequestParam("comment")String comment, @RequestParam("studentId") int studentId) throws ParseException {
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userNumber = Integer.parseInt(authentication.getName());
-		System.out.println("문제-1");
-		// StudentAdmin stu = studentAdmin;
-		////stu.setProfessorId(userNumber);
+		System.out.println("check");
+		
+		StudentAdmin stu = new StudentAdmin();
+		stu.setProfessorId(userNumber);
+		System.out.println("check-2");
 		
 		Date myDate = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String strToday = sdf.format(myDate);
 		Date dt = sdf.parse(strToday);
 		
-		//stu.setDate(dt);
+		stu.setDateWritten(strToday);
+		System.out.println(strToday);
 		
-		//studentAdminMapper.insert(stu);
+		stu.setComment(comment);
+		stu.setStudentId(studentId);
+		
+		studentAdminMapper.insert(stu);
+		model.addAttribute("comment", comment);
+		model.addAttribute("strToday", strToday);
 		
 		System.out.println("성공");
 		return "redirect:studentListForProfessor";
