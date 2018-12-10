@@ -11,6 +11,7 @@ public interface CommentMapper {
 	Comment findById(int id);
 	
 	List<Comment> findByStudentId(int studentId);
+	List<Comment> findByStuPro(int studentId, int professorId);
 	
 	void insert(Comment comment);
 	void delete(int id);

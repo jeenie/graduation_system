@@ -48,7 +48,7 @@ public class ModalService {
 	CommentMapper commentMapper;
 	
 	
-	public StudentVO fillData(int id) {
+	public StudentVO fillData(int id, int professorId) {
 		
 		StudentVO stu = new StudentVO();
 		stu.setStudent(studentMapper.findById2(id));
@@ -124,7 +124,7 @@ public class ModalService {
 		}
 		
 		stu.setS2(requiredCultureSubject);
-		stu.setComments(commentMapper.findByStudentId(id));
+		stu.setComments(commentMapper.findByStuPro(id, professorId));
 		return stu;
 	}
 	

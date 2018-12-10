@@ -9,6 +9,9 @@
 	<select id="findByStudentId" resultType="Comment">
 		SELECT * FROM student_administration WHERE studentId =#{studentId}
 	</select>
+	<select id="findByStuPro" resultType="Comment">
+		SELECT * FROM student_administration WHERE studentId =#{studentId} and professorId = #{professorId}
+	</select>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="student_administrationcol">
 		INSERT student_administration (professorId, studentId, comment, dateWritten)
 		VALUES (#{professorId}, #{studentId}, #{comment}, #{dateWritten})
