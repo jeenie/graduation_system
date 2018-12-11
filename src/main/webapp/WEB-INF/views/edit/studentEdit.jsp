@@ -128,7 +128,7 @@ select option:checked, select option:hover {
 			enctype="multipart/form-data">
 			<div class="group">
 				<h4>
-					<img src="${R}res/images/abouti/student.png" width="80px">&nbsp&nbsp&nbsp<font
+					<img src="${R}res/images/abouti/student1.png" width="80px">&nbsp&nbsp&nbsp<font
 						color="#41AF39">${student.getName()}</font> 님은 [<b> 학생 </b>]
 					회원입니다.
 				</h4>
