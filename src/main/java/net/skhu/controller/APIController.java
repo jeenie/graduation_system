@@ -99,6 +99,13 @@ public class APIController {
 		majorMapper.insert(major);
 	}
 	
+	@RequestMapping("deleteMajor")
+	public void deleteMajor(@RequestParam("majorSubjectId") String subjectId, @RequestParam("departmentId") int departmentId, @RequestParam("entranceYear") int entranceYear) {
+		System.out.println("삭제할 데이터 코드 : ");
+		System.out.println(subjectId);
+		majorMapper.delete(departmentId, subjectId, entranceYear);
+	}
+	
 	//http://localhost:8080/graduation_system/please?id=203032002
 	@RequestMapping("please")
 	public Student studentInfo(@RequestParam("id") int id) {
