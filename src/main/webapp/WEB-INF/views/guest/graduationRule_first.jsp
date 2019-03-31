@@ -316,7 +316,7 @@ select.form-control.w200 {
 					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;" onclick="">조회</button>
 			</div>
 		</form>
-		
+		<div class="blank" style="margin-bottom:400px"></div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

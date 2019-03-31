@@ -407,6 +407,9 @@ select.form-control.w200 {
 					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;" onclick="">조회</button>
 			</div>
 		</form>
+		<c:if test="${departmentId == 99}">
+			<div class="blank" style="margin-bottom:400px"></div>
+		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear >= 2016}">
 			<div style="margin-top: 0px; margin-left: 40px;">
 				<br /> <br />

@@ -347,7 +347,7 @@ select.form-control.w200 {
 				</div>
 			</c:if>
 			<c:if test="${departmentId == 99}">
-				<div style="margin-bottom: 278px"></div>
+				<div class="blank" style="margin-bottom: 410px"></div>
 			</c:if>
 
 		</div>
