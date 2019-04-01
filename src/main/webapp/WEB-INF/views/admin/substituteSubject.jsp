@@ -219,12 +219,6 @@
 							</c:forEach>
 						</tbody>
 					</table>
-
-					<!--pagination-->
-					<div class="pagination">
-						<a href="#">&laquo;</a> <a href="#">1</a> <a href="#">2</a> <a
-							href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">&raquo;</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -485,6 +479,7 @@
 		</div>
 	</div>
 </div>
+	<div style="margin-bottom: 100px;"></div>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
@@ -523,19 +518,19 @@
 			},
 			methods: {
 				findSubjectData: function() {
-					let url = '/graduation_system/findSubject?ss='+ this.ss +'&st=' + this.st;
+					let url = '/findSubject?ss='+ this.ss +'&st=' + this.st;
 					axios.get(url).then(response => {
 							this.subjects = response.data;
 						});
 				},
 				findSubjectData2: function() {
-					let url = '/graduation_system/findSubject2?ss2='+ this.ss2 +'&st2=' + this.st2;
+					let url = '/findSubject2?ss2='+ this.ss2 +'&st2=' + this.st2;
 					axios.get(url).then(response => {
 							this.subjects2 = response.data;
 						});
 				},
 				findSubjectData3: function() {
-					let url = '/graduation_system/findSubject3?ss3='+ this.ss3 +'&st3=' + this.st3;
+					let url = '/findSubject3?ss3='+ this.ss3 +'&st3=' + this.st3;
 					axios.get(url).then(response => {
 							this.subjects3 = response.data;
 						});
@@ -555,26 +550,26 @@
 				},
 				subjectById: function(subject) {
 					console.log(subject);
-					let url = '/graduation_system/subjectData?subjectId=' + subject;
+					let url = '/subjectData?subjectId=' + subject;
 					axios.get(url).then(response => {
 						this.subjectData = response.data;
 					});
 				}, 
 				editSubject: function(subject) {
 					console.log(subject);
-					let url = '/graduation_system/subjectData?subjectId=' + subject;
+					let url = '/subjectData?subjectId=' + subject;
 					axios.get(url).then(response => {
 						this.subjectData = response.data;
 					});
 				}, 
 				deleteSubject:function(subject) {
-					let url = '/graduation_system/deleteSubject?subjectId=' + subject;
+					let url = '/deleteSubject?subjectId=' + subject;
 					var ok = confirm("선택한 폐지과목에 대한 정보를 삭제하시겠습니까?");
 					console.log(ok);
 					if(ok) {
 						axios.get(url).then();
 						alert("정상적으로 삭제되었습니다.");
-						location.href = 'SubstitutionSubject';
+						location.href="/graduation/SubstitutionSubject";
 					}
 				}
 			}
