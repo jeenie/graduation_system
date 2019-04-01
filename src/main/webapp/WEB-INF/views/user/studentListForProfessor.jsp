@@ -989,14 +989,14 @@ textarea {
 				methods : {
 					studentById: function(studentId) {
 						
-						let url = '/graduation_system/please?id=' + studentId;
+						let url = '/please?id=' + studentId;
 						axios.get(url)
 						.then(response => {
 							this.selectedStudent = response.data;
 						});
 					},
 					info: function(studentId) {
-						let url = '/graduation_system/info?id=' + studentId;
+						let url = '/info?id=' + studentId;
 						axios.get(url)
 						.then(response => {
 							this.stu = response.data;
@@ -1030,7 +1030,7 @@ textarea {
 						})
 					},
 					deleteComment: function(commentId) {
-						let url = '/graduation_system/deleteComment?commentId=' + commentId;
+						let url = '/deleteComment?commentId=' + commentId;
 						var ok = confirm("선택한 코멘트를 삭제하시겠습니까?");
 						console.log(commentId);
 						if(ok) {
