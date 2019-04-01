@@ -262,4 +262,15 @@ public class StudentController {
 		
 	}
 	
+	@RequestMapping(value="professor/searchAll", method=RequestMethod.GET)
+	public String prfessorSearchAll(Model model, @RequestParam("searchAll") String searchAll) {
+		
+		List<Student> students = studentService.searchAll(searchAll);
+		model.addAttribute("searchAll", searchAll);
+		model.addAttribute("departments", departmentMapper.findRealDept());
+		model.addAttribute("students", students);
+		return "user/studentListForProfessor";
+		
+		
+	}
 }

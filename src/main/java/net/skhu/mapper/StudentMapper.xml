@@ -5,6 +5,7 @@
 	<select id="findAll" resultType="Student">
 		SELECT s.*, d.departmentName, file.majorUnit, file.cultureUnit
 		FROM (student s LEFT JOIN department d ON s.departmentId = d.id) LEFT JOIN student_gradefile file ON s.id = file.id
+		ORDER BY departmentId, id
 	</select>
 	<select id="findById" resultType="Student">
 		SELECT * FROM Student WHERE id=#{id}
