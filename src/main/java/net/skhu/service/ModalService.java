@@ -116,14 +116,11 @@ public class ModalService {
 				
 				String str2 = ssg.getSubjectId();
 				if(str1.equals(str2)) { s1.add(ssg); break; }
-				++count;
-			}
-			if(mustCulture.size()==count) {
-				s2.add(re);
+				else {s2.add(re); break;}
 			}
 		}
 		
-		stu.setS2(requiredCultureSubject);
+		//stu.setS2(requiredCultureSubject);
 		stu.setComments(commentMapper.findByStuPro(id, professorId));
 		return stu;
 	}
