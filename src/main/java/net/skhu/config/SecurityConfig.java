@@ -22,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/admin/**").access("ROLE_ADMIN")
+			.antMatchers("/findAllDepartment").permitAll()
+			.antMatchers("/findMajorListByDeptId").permitAll()
 			.antMatchers("/grade_file_format.xlsx").permitAll()
 			.antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()

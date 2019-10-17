@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.skhu.dto.Comment;
+import net.skhu.dto.Department;
+import net.skhu.dto.DepartmentMajor;
 import net.skhu.dto.Major;
 import net.skhu.dto.Student;
 import net.skhu.dto.Subject;
 import net.skhu.dto.SubstitutionSubject;
 import net.skhu.mapper.CommentMapper;
+import net.skhu.mapper.DepartmentMajorMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.MajorMapper;
 import net.skhu.mapper.StudentMapper;
@@ -32,6 +34,19 @@ public class APIController {
 	@Autowired StudentMapper studentMapper;
 	@Autowired SubstitutionSubjectMapper substitutionSubjectMapper;
 	@Autowired ModalService modal;
+	@Autowired DepartmentMajorMapper departmentMajorMapper;
+	
+	// 전체 학과 조회
+	@RequestMapping("findAllDepartment")
+	public List<Department> findAllDepartment() {
+		return departmentMapper.findRealDept();
+	}
+	
+	// 학부 내 전공목록 조회
+	@RequestMapping("findMajorListByDeptId")
+	public List<DepartmentMajor> findMajorList(@RequestParam("deptId") int deptId) {
+		return departmentMajorMapper.findMajorsByDepartmentId(deptId);
+	}
 	
 	@RequestMapping("findSubject")
 	public List<Subject> subjectList(@RequestParam("ss") String ss, @RequestParam("st") String st) {

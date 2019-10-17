@@ -71,6 +71,8 @@ public class EditController {
 		int userNumber=Integer.parseInt(authentication.getName());
 
 		Student student = studentMapper.findById(userNumber);
+		student.setPassword("");
+		student.setPassword2("");
 		List<Department> departments = departmentMapper.findAll();
 		List<PasswordQuiz> quizs = passwordQuizMapper.findAll();
 		model.addAttribute("student", student);
