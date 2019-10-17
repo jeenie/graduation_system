@@ -748,7 +748,7 @@ textarea {
 									<div class="progressbar progressbar-green"
 										style="width: 500px;">
 
-										<div class="progressbar-inner total" style="width: 490px"></div>
+										<div class="progressbar-inner total" v-bind:style="totalStyle"></div>
 										<!--<p>{{stuTotal}}%</p>-->
 									</div>
 								</div>
@@ -765,7 +765,7 @@ textarea {
 									</p>
 									<div class="progressbar progressbar-green"
 										style="float: left; width: 500px;">
-										<div class="progressbar-inner" style="width: {{stuMajor"></div>
+										<div class="progressbar-inner" v-bind:style="majorStyle"></div>
 									</div>
 								</div>
 								<br> <br>
@@ -830,7 +830,7 @@ textarea {
 
 									<div class="progressbar progressbar-green"
 										style="float: left; width: 500px;">
-										<div class="progressbar-inner" style="width:"></div>
+										<div class="progressbar-inner" v-bind:style="cultureStyle"></div>
 									</div>
 								</div>
 
@@ -977,7 +977,16 @@ textarea {
 					comments : [{updateDate : '2018-12-09', comment : '지도교수 면담 신청'},
 						{updateDate : '2018-12-10', comment : '휴학계 신청 관련 면담'}],
 					commentss : {},
-					myComment : []
+					myComment : [],
+					totalStyle: {
+						width: 0
+					},
+					majorStyle: {
+						width: 0
+					},
+					cultureStyle: {
+						width: 0
+					}
 					
 				},
 				methods : {
@@ -1011,16 +1020,29 @@ textarea {
 							
 							var total =  this.studentfile.totalUnit / this.total.grade * 100;
 							var major = this.studentfile.majorUnit / 60 * 100;
+							var culture = this.studentfile.cultureUnit / 70 * 100;
 							if(total < 100) {
-								this.stuTotal = total;
+								this.stuTotal = total; //총점 백분율
+								this.totalStyle.width = this.stuTotal + '%';
+								console.log('총점 백분율 ?' + this.totalStyle.width)
 							} else {
 								this.stuTotal =  100;
+								this.totalStyle.width = 100 + '%';
 							}
 							if(major < 100) {
 								this.stuMajor = major;
+								this.majorStyle.width = this.stuMajor + '%'
+								console.log('전공 백분율 ?' + this.stuMajor)
 							} else {
 								this.stuMajor =  100;
+								this.majorStyle = 100 + '%';
 							}
+							console.log('이것은?' + culture);
+							if(culture < 100) {
+								this.cultureStyle.width = culture + '%'
+								console.log('교양 백분율?' + this.cultureStyle.width)
+							} else
+								this.cultureStyle.width = 100 + '%'
 						})
 					},
 					deleteComment: function(commentId) {

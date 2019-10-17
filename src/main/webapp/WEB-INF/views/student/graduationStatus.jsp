@@ -436,7 +436,7 @@ td {
 			</div>
 		</div>
 
-		<c:if test="${entranceYear == 2018}">
+		<c:if test="${entranceYear >= 2018}">
 			<br>
 			<br>
 			<div class="progress-wrap">

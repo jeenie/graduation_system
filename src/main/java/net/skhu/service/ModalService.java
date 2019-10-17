@@ -63,6 +63,8 @@ public class ModalService {
 		stu.setRules(rules);
 		stu.setFileData(file);
 		stu.setTotal(totalMapper.find());
+		System.out.println("교양 점수를 알려줘" + file.getCultureUnit());
+		stu.setCulture(file.getCultureUnit());
 		
 		
 		stu.setEntranceYear(entranceYear);
