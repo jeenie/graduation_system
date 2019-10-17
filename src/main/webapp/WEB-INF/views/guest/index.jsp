@@ -186,7 +186,7 @@
 						</button>
 						<div class="navbar-brand">
 							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
+									<span>SKKU</span>졸업관리시스템
 								</h1></a>
 						</div>
 					</div>
@@ -226,7 +226,7 @@
 							<div class="col-sm-6">
 								<div class="carousel-content">
 									<h2 class="animation animated-item-1">
-										&nbsp;Welcome <span>SKHU</span>
+										&nbsp;Welcome <span>SKKU</span>
 									</h2>
 									<p class="animation animated-item-2"></p>
 									&nbsp;&nbsp; <a class="btn-slide animation animated-item-3"

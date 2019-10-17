@@ -74,6 +74,10 @@ input.form-control.w300 {
 .atag:hover {
 	color: black;
 }
+
+.aboutus {
+	margin-bottom: 18%;
+}
 </style>
 	<script>
 		function alertGuest() {

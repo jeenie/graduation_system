@@ -18,7 +18,7 @@
 					</button>
 					<div class="navbar-brand">
 						<a href="${R}user/index"><h1>
-								<span>SKHU</span>졸업관리시스템
+								<span>SKKU</span>졸업관리시스템
 							</h1></a>
 					</div>
 				</div>
