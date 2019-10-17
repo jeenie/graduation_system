@@ -325,7 +325,7 @@ select.form-control.w200 {
 				<div class="form-group  selectMajor"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">전공 선택</p>
-					<select class="form-controls w200">
+					<select name="majorId" class="form-controls w200">
 						<option disabled value="">선택</option>
 						<option value="99">전체 조회</option>
 						<option v-for="major in majorList" v-bind:value="major.majorId">

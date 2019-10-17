@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.MajorExplorationMapper">
+	<select id="findExplorationByMajorId" resultType="MajorExploration">
+		Select majorId, subjectId, name subjectName 
+		From major_exploration me 
+		join subject s on me.subjectId = s.id
+		Where majorId=#{majorId}
+	</select>
+</mapper>

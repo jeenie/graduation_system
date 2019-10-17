@@ -419,7 +419,7 @@ select.form-control.w200 {
 					<div class="form-group selectMajor"
 						style="float: left; margin-right: 20px; margin-bottom: 5px;">
 						<p class="font4">전공 선택</p>
-						<select v-model="majorId" class="form-controls w200">
+						<select v-model="majorId" name="majorId" class="form-controls w200">
 							<option disabled value="">선택</option>
 							<option value="99">전체 조회</option>
 							<option v-for="major in majorList" v-bind:value="major.majorId">
@@ -513,6 +513,24 @@ select.form-control.w200 {
 					<p class="font2" style="margin-bottom: 0px;">▶ 전공탐색세미나 : 3학기 이후부터 신청 가능</p>
 				</div>
 				<br/><br/>
+			</div>
+		</c:if>
+		
+		<c:if test="${majorId != 99}">
+			<div style="margin-top: 0px; margin-left: 40px;">
+				<p>
+				<div class="form-group" style="">
+					<div style="width: 330px;">
+						<p class="font5">전공탐색과목</p>
+					</div>
+					<div class="list-group"
+						style="width: 330px; margin-top: 10px; margin-left: -5px;">
+						<a v-for="subject in explorationSubjectList" href="#" class="list-group-item list-group-item-action">
+							{{ subject.subjectName }}
+						</a>
+					</div>
+				</div>
+				</p>
 			</div>
 		</c:if>
 		<c:if test="${departmentId < 99 && entranceYear < 2016}">
@@ -691,7 +709,8 @@ select.form-control.w200 {
   			deptId: '',
   			majorId: '',
   			departments: [],
-  			majorList: []
+  			majorList: [],
+  			explorationSubjectList: []
   		},
   		methods: {
   			onChangeDeptId(event) {
@@ -716,12 +735,22 @@ select.form-control.w200 {
   			}
   		},
   		mounted() {
+ 			this.deptId = this.getParam("departmentId")
+ 			this.majorId = this.getParam("majorId")
 			let url = '/findAllDepartment';
 			axios.get(url).then(response => {
 				this.departments = response.data;
 	 			console.log(this.departments);
-	 			this.deptId = this.getParam("departmentId")
 	 			console.log("파라미터값" + this.deptId);
+			})
+			let url2 = '/findMajorListByDeptId?deptId=' + this.deptId;
+			axios.get(url2).then(response => {
+				this.majorList = response.data;
+			})
+			let url3 = '/findExplorationByMajorId?majorId=' + this.majorId;
+			axios.get(url3).then(response => {
+				this.explorationSubjectList = response.data;
+				console.log(this.explorationSubjectList);
 			})
   		}
   	})

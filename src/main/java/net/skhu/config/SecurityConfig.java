@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/admin/**").access("ROLE_ADMIN")
 			.antMatchers("/findAllDepartment").permitAll()
 			.antMatchers("/findMajorListByDeptId").permitAll()
+			.antMatchers("//findExplorationByMajorId").permitAll()
 			.antMatchers("/grade_file_format.xlsx").permitAll()
 			.antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()

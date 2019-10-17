@@ -72,7 +72,7 @@ public class GraduationRuleController {
 
 	@RequestMapping(value = "guest/select", method = RequestMethod.GET)
 	public String viewGuest(Model model, @RequestParam("departmentId") int departmentId,
-			@RequestParam("entranceYear") int entranceYear) {
+			@RequestParam("entranceYear") int entranceYear, @RequestParam("majorId") int majorId) {
 		Total total = totalMapper.find();
 		int totalGrade = total.getGrade();
 		DepartmentMajorRule firstRule = null;
