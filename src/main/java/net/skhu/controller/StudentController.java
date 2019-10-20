@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.skhu.dto.CoreSubject;
 import net.skhu.dto.Culture;
 import net.skhu.dto.Department;
+import net.skhu.dto.DepartmentMajor;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.Exploration;
 import net.skhu.dto.Major;
@@ -28,6 +29,7 @@ import net.skhu.dto.Total;
 import net.skhu.mapper.ChapelSubjectMapper;
 import net.skhu.mapper.CoreSubjectMapper;
 import net.skhu.mapper.CultureMapper;
+import net.skhu.mapper.DepartmentMajorMapper;
 import net.skhu.mapper.DepartmentMajorRuleMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.ExplorationMapper;
@@ -85,6 +87,8 @@ public class StudentController {
 	CoreSubjectMapper coreSubjectMapper;
 	@Autowired
 	StudentGradeService studentGradeService;
+	@Autowired
+	DepartmentMajorMapper departmentMajorMapper;
 
 	@RequestMapping("user/studentListForAdmin")
 	public String list(Model model) {
@@ -130,6 +134,7 @@ public class StudentController {
 		
 		//인문학과 목록
 		List<Department> depts =  departmentMapper.findLiberal();
+		List<DepartmentMajor> majors = departmentMajorMapper.findAll();
 		
 		Culture culture = cultureMapper.find();
 		List<SpecialProcess> specialProcess = specialProcessMapper.findAll();
@@ -213,6 +218,7 @@ public class StudentController {
 		model.addAttribute("anotherTotal", studentGradeService.addAnotherMajorGrade(userNumber));
 		model.addAttribute("anoterMustMajorList", studentGradeService.anotherMustMajorList(userNumber)); //학생이 수강한 복수전공 복필 목록
 		model.addAttribute("departmentMajorRule", departmentMajorRule);
+		model.addAttribute("majorList", majors);
 		model.addAttribute("anotherProcess", anotherProcess); //복수전공 학과의 7번 과정 데이터
 		model.addAttribute("anotherMajorSubjects", studentGradeService.anotherMajorSubjects(deptId));
 		model.addAttribute("culture", cultureGrade);

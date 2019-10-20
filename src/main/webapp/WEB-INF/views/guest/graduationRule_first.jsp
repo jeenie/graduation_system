@@ -89,7 +89,7 @@
 .contents {
 	margin-top: 5px;
 	margin-right: 100px;
-	margin-left: 225px;
+	margin-left: 310px;
 	margin-bottom: 250px;
 }
 

@@ -45,6 +45,12 @@ public class APIController {
 		return departmentMapper.findRealDept();
 	}
 	
+	// 전공목록 조회
+	@RequestMapping("findAllMajor")
+	public List<DepartmentMajor> findAllMajor() {
+		return departmentMajorMapper.findAll();
+	}
+	
 	// 학부 내 전공목록 조회
 	@RequestMapping("findMajorListByDeptId")
 	public List<DepartmentMajor> findMajorList(@RequestParam("deptId") int deptId) {

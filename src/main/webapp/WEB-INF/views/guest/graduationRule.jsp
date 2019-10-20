@@ -516,7 +516,7 @@ select.form-control.w200 {
 			</div>
 		</c:if>
 		
-		<c:if test="${majorId != 99}">
+		<c:if test="${majorId >= 99}">
 			<div style="margin-top: 0px; margin-left: 40px;">
 				<p>
 				<div class="form-group" style="">
