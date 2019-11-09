@@ -186,7 +186,7 @@
 						</button>
 						<div class="navbar-brand">
 							<a href="${R}"><h1>
-									<span>SKKU</span>졸업관리시스템
+									<span>SKHU</span>졸업관리시스템
 								</h1></a>
 						</div>
 					</div>
