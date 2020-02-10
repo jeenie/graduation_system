@@ -3,6 +3,7 @@ package net.skhu.model;
 import java.util.List;
 
 import net.skhu.dto.Comment;
+import net.skhu.dto.Culture;
 import net.skhu.dto.DepartmentMajorRule;
 import net.skhu.dto.Major;
 import net.skhu.dto.RequiredCultureCount;
@@ -30,6 +31,8 @@ public class StudentVO {
 	int entranceYear;
 	
 	//교양
+	int culture;
+	
 	RequiredCultureCount requiredCultureCount;
 	
 	int serveSubject;
@@ -85,6 +88,14 @@ public class StudentVO {
 		this.entranceYear = entranceYear;
 	}
 	
+	public int getCulture() {
+		return culture;
+	}
+
+	public void setCulture(int culture) {
+		this.culture = culture;
+	}
+
 	public List<Major> getUnlisten() {
 		return unlisten;
 	}

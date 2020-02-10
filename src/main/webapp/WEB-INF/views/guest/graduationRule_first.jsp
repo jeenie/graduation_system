@@ -89,7 +89,7 @@
 .contents {
 	margin-top: 5px;
 	margin-right: 100px;
-	margin-left: 140px;
+	margin-left: 310px;
 	margin-bottom: 250px;
 }
 
@@ -175,6 +175,10 @@ select.form-control.w200 {
 	height: 259px;
 	overflow-y: scroll;
 }
+
+.selectMajor {
+	display: none;
+}
 </style>
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -197,7 +201,12 @@ select.form-control.w200 {
 					alert("18학번은 학부로 조회해주시기 바랍니다.");
 				}
 			});
-			
+			$('#departmentId').on('change', function() {
+				if(this.value >= 35) {
+					$('.selectMajor').show();
+				} else
+					$('.selectMajor').hide();
+			})
 		});
 	</script>
 </head>
@@ -215,7 +224,7 @@ select.form-control.w200 {
 						</button>
 						<div class="navbar-brand">
 							<a href="${R}"><h1>
-									<span>SKHU</span>졸업관리시스템
+									<span>SKKU</span>졸업관리시스템
 								</h1></a>
 						</div>
 					</div>
@@ -253,7 +262,7 @@ select.form-control.w200 {
 		</div>
 	</div>
 
-	<div class="contents">
+	<div class="contents" id="app">
 
 		<p class="font3">전체 학생</p>
 		<div class="form-group" style="margin-left: 20px;">
@@ -292,17 +301,6 @@ select.form-control.w200 {
 			<div style="margin-top: 40px">
 				<div class="form-group"
 					style="float: left; margin-right: 20px; margin-bottom: 5px;">
-					<p class="font4">학과</p>
-					<select name="departmentId" class="form-controls w200" id="departmentId">
-						<option value="99">선택</option>
-						<c:forEach var="department" items="${departments}">
-							<option value="${department.id}"
-								${departmentId == department.id ? "selected" : ""}>${department.departmentName}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div class="form-group"
-					style="float: left; margin-right: 20px; margin-bottom: 5px;">
 					<p class="font4">학번</p>
 					<select name="entranceYear" class="form-controls w200" id="entranceYear">
 						<option value="99">선택</option>
@@ -312,6 +310,30 @@ select.form-control.w200 {
 						</c:forEach>
 					</select>
 				</div>
+				<div class="form-group"
+					style="float: left; margin-right: 20px; margin-bottom: 5px;">
+					<p class="font4">학과 및 학부</p>
+					<select v-model="deptId" @change="onChangeDeptId($event)" name="departmentId" class="form-controls w200" id="departmentId">
+						<option disabled value="">선택</option>
+						<option v-for="dept in departments" v-bind:value="dept.id">
+							{{ dept.departmentName }} 
+						</option>
+					</select>
+				</div>
+				
+				<!-- (18학번 이후 적용) 전공 선택 -->
+				<div class="form-group  selectMajor"
+					style="float: left; margin-right: 20px; margin-bottom: 5px;">
+					<p class="font4">전공 선택</p>
+					<select name="majorId" class="form-controls w200">
+						<option disabled value="">선택</option>
+						<option value="99">전체 조회</option>
+						<option v-for="major in majorList" v-bind:value="major.majorId">
+							{{ major.majorName }}
+						</option>
+					</select>
+				</div>
+				
 				<button type="submit" class="btn-submit" id="selectRule"
 					style="margin-left: 0; margin-top: 0; padding: 5px 20px; float: left;" onclick="">조회</button>
 			</div>
@@ -331,5 +353,38 @@ select.form-control.w200 {
   <script src="${R}res/js/wow.min.js"></script>
   <script src="${R}res/js/functions.js"></script>
   <script src="${R}res/js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script type="text/javascript">
+  	var app = new Vue({
+  		el: '#app',
+  		data: {
+  			deptId: '',
+  			departments: [],
+  			majorList: []
+  		},
+  		methods: {
+  			onChangeDeptId(event) {
+  				console.log(event.target.value);
+  				let url = '/findMajorListByDeptId?deptId=' + Number(event.target.value);
+  				axios.get(url).then(response => {
+  					this.majorList = response.data;
+  				})
+  			}
+  		},
+  		mounted() {
+			let url = '/findAllDepartment';
+			let url2 = '/findMajorListByDeptId?deptId=' + Number(this.deptId);
+			axios.get(url).then(response => {
+				this.departments = response.data;
+	 			console.log(this.departments);
+			})
+			axios.get(url2).then(response => {
+				this.majorList = response.data; 
+				console.log(this.majorList);
+			})
+  		}
+  	})
+  </script>
 </body>
 </html>

@@ -115,8 +115,7 @@ td {
 
 .contents {
 	margin-top: 5px;
-	margin-right: 100px;
-	margin-left: 140px;
+	margin-left: 15%;
 	margin-bottom: 100px;
 }
 
@@ -344,14 +343,14 @@ td {
 			<hr>
 		</div>
 	</div>
-	<p style="float: right; margin-right: 200px; margin-bottom: 20px;">
+	<p style="float: right; margin-right: 280px; margin-bottom: 20px;">
 		<a style="color: #ac0; font-weight: bold; text-decoration: underline;"
 			href="${R}user/select?departmentId=${ student.departmentId }&entranceYear=${ entranceYear }">콕
 			! 내게 맞는 졸업요건</a>
 	</p>
-	<div class="contents">
+	<div class="contents" id="app">
 		<div
-			style="float: left; margin-left: 70px; margin-right: 100px; margin-top: 30px;">
+			style="float: left; margin-left: 70px; margin-right: 100px;">
 			<img src="${R}res/images/abouti/student1.png" width="150px"
 				height="170px">
 		</div>
@@ -383,7 +382,7 @@ td {
 	</div>
 
 	<div
-		style="margin-right: 100px; margin-left: 100px; margin-top: 300px;">
+		style="margin-left: 20%; margin-top: 230px;">
 		<form>
 			<div>
 				<div style="float: left">
@@ -422,6 +421,28 @@ td {
 		</div>
 		<br> <br> <br> <br>
 
+		
+		<!-- 전공 선택 -->
+		<c:if test="false">
+			<div style="float: left">
+				<p style="font-size: 18px; font-weight: bold;">
+					&nbsp ${ student.name }님이 선택한 전공 
+					<select class="form-controls w200" v-model="majorId" @change="onChangeDeptId($event)">
+						<option value="99">전체 조회</option>
+						<c:forEach var="major" items="${majorList}">
+							<option value="${major.majorId}">
+								${ major.majorName }
+							</option>
+						</c:forEach>
+						
+					</select>&nbsp 
+				</p>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+		</c:if>
+		
 		<div class="progress-wrap">
 			<p style="font-size: 18px; font-weight: bold;">
 				>&nbsp 전공
@@ -436,7 +457,7 @@ td {
 			</div>
 		</div>
 
-		<c:if test="${entranceYear == 2018}">
+		<c:if test="${entranceYear >= 2018}">
 			<br>
 			<br>
 			<div class="progress-wrap">
@@ -571,7 +592,7 @@ td {
 
 		<div>
 			<p style="font-size: 18px; font-weight: bold;">>&nbsp 교양
-				${studentGradefile.cultureUnit}/${culture+departmentMajorRule.addCulture}</p>
+				${studentGradefile.cultureUnit}/${entranceYear <= 2017 ? culture+departmentMajorRule.addCulture : 34}</p>
 			<div class="progressbar progressbar-green" style="float: left">
 				<div class="progressbar-inner"
 					style="width:${((studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100)>100 ? "100" : (studentGradefile.cultureUnit/(culture+departmentMajorRule.addCulture))*100}%"></div>
@@ -691,6 +712,29 @@ td {
 	<br>
 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-</body>
-
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				majorId: '',
+				majorList:[]
+			},
+			methods: {
+	  			onChangeDeptId(event) {
+	  				console.log(majorId);
+	  			}
+	  		},
+			mounted() {
+				let url = '/findAllMajor';
+				axios.get(url).then(response => {
+					this.majorList = response.data;
+					console.log(this.majorList);
+				})
+			}
+		})
+	</script>
+</body>  
 </html>

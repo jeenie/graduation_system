@@ -226,7 +226,7 @@
 							<div class="col-sm-6">
 								<div class="carousel-content">
 									<h2 class="animation animated-item-1">
-										&nbsp;Welcome <span>SKHU</span>
+										&nbsp;Welcome <span>SKKU</span>
 									</h2>
 									<p class="animation animated-item-2"></p>
 									&nbsp;&nbsp; <a class="btn-slide animation animated-item-3"
